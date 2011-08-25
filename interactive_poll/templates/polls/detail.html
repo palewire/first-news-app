@@ -4,7 +4,7 @@
 
         <param name="movie" value="/local-media/voteinator.swf"/>
 
-        <param name="FlashVars" value="xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&post_path=http://localhost:8000/polls/{{ project.id }}/vote/"/>
+        <param name="FlashVars" value="xml_path=/polls/{{ project.id }}/data.xml&post_path=/polls/{{ project.id }}/vote/"/>
 
         <param name="bgcolor" value="#FFFFFF"/>
 
@@ -14,7 +14,7 @@
 
         <param name="wmode" value="opaque"/>
 
-        <embed src="/local-media/voteinator.swf" FlashVars="xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&post_path=http://localhost:8000/polls/{{ project.id }}/vote/" bgcolor="#FFFFFF" width="592" height="333" wmode="opaque" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
+        <embed src="/local-media/voteinator.swf" FlashVars="xml_path=/polls/{{ project.id }}/data.xml&post_path=/polls/{{ project.id }}/vote/" bgcolor="#FFFFFF" width="592" height="333" wmode="opaque" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
 
     </object>
 

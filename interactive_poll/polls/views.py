@@ -3,6 +3,7 @@ from polls.models import Project, Vote
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Sum
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -15,7 +16,7 @@ def detail(request, poll_id):
     total = p.vote_set.count()
     return render_to_response('polls/detail.html', {'project': p, 'vote_total': total, })
 
-
+@csrf_exempt
 def vote(request, poll_id):
     p = get_object_or_404(Project, pk=poll_id)
     if request.POST['data'] == "0":
