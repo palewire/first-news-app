@@ -148,6 +148,7 @@ Add a bunch of stuff up at the top of views.py we will need later::
     from django.http import HttpResponseRedirect, HttpResponse
     from django.core.urlresolvers import reverse
     from django.db.models import Sum
+    from django.views.decorators.csrf import csrf_exempt
 
 In our views.py, let's change our index view to pull some real data::
 
@@ -222,6 +223,7 @@ Download votinator.swf and put in in the "media" directory::
 
 Extra credit... it votes up, but not down. how to fix?::
 
+    @csrf_exempt
     def vote(request, poll_id):
         p = get_object_or_404(Project, pk=poll_id)
         if request.POST['data'] == "0":
@@ -231,8 +233,6 @@ Extra credit... it votes up, but not down. how to fix?::
         v = p.vote_set.create(choice = value)
         v.save()
         return HttpResponse(status=200)
-
-
 
 Contents:
 
