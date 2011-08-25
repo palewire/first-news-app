@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Build your first news app with Django
-=====================================
+Your first news app
+===================
 
-A step-by-step guide to building your first news application with Django
+A step-by-step guide to building a news application with Django
 
 Resources
 ---------
@@ -18,7 +18,7 @@ Instructions
 
 Create your Django project::
 
-$ django-admin.py startproject nicar2011
+$ django-admin.py startproject interactive_poll
 
 Start it up for the first time::
 
@@ -32,7 +32,7 @@ In settings.py...::
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'nicar2011.db'
+            'NAME': 'database.db'
         }
     }
 
