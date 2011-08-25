@@ -11,4 +11,4 @@
 
 A step-by-step guide to building your first news application with Django
 
-* Full tutorial at "https://github.com/ireapps/first-news-app":https://github.com/ireapps/first-news-app
+* Full tutorial at "http://ireapps.github.com/first-news-app/":http://ireapps.github.com/first-news-app/
