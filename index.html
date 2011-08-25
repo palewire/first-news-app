@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to Build your first news app with Django’s documentation! &mdash; Build your first news app with Django v0.1 documentation</title>
+    <title>Build your first news app with Django &mdash; Build your first news app with Django v0.1 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -40,21 +40,227 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="welcome-to-build-your-first-news-app-with-django-s-documentation">
-<h1>Welcome to Build your first news app with Django&#8217;s documentation!<a class="headerlink" href="#welcome-to-build-your-first-news-app-with-django-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="build-your-first-news-app-with-django">
+<h1>Build your first news app with Django<a class="headerlink" href="#build-your-first-news-app-with-django" title="Permalink to this headline">¶</a></h1>
+<p>A step-by-step guide to building your first news application with Django</p>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/ireapps/first-news-app">Source code</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<p>Create your Django project:</p>
+<div class="highlight-python"><pre>$ django-admin.py startproject nicar2011</pre>
+</div>
+<p>Start it up for the first time:</p>
+<div class="highlight-python"><pre>$ cd nicar2011
+$ python manage.py runserver</pre>
+</div>
+<p>Set your database connection and syncdb</p>
+<p>In settings.py...:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+        <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="s">&#39;nicar2011.db&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then back on the shell:</p>
+<div class="highlight-python"><pre>$ python manage.py syncdb</pre>
+</div>
+<p>Create an application, call it polls:</p>
+<div class="highlight-python"><pre>$ python manage.py startapp polls</pre>
+</div>
+<p>Define two models in models.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s">&#39;date published&#39;</span><span class="p">)</span>
+    <span class="n">active_flag</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">Vote</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Project</span><span class="p">)</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Add line to settings.py as an installed app:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;polls&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Sync your db again:</p>
+<div class="highlight-python"><pre>$ python manage.py syncdb</pre>
+</div>
+<p>Add a string representation of your object to the model Project in models.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+</pre></div>
+</div>
+<p>Add your app to settings.py in INSTALLED_APPS:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>Sync db to create admin tables:</p>
+<div class="highlight-python"><pre>$ python manage.py syncdb</pre>
+</div>
+<p>Enable admin. in urls.py by uncommenting the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+</pre></div>
+</div>
+<p>Fire up the server, and log in at <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a>:</p>
+<div class="highlight-python"><pre>$ python manage.py runserver</pre>
+</div>
+<p>Add your app to the admin. create a file called admin.py in your project (make joke about conventions), and add:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Project</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
+
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Project</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add vote to the admin.py file so we can see associations:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Vote</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Vote</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Configure your templates and dump the urls for our app into urls.py</p>
+<p>First add this to settings.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">settings_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+<span class="n">STATIC_DOC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings_dir</span><span class="p">,</span> <span class="s">&#39;media&#39;</span><span class="p">)</span>
+<span class="n">TEMPLATE_DIRS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings_dir</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Then replace all of urls.py with the following:</p>
+<div class="highlight-python"><pre>from django.conf.urls.defaults import
+from django.conf import settings
+from django.contrib import admin
+admin.autodiscover()
+
+urlpatterns = patterns('',
+    (r'^admin/', include(admin.site.urls)),
+    (r'^polls/$', 'polls.views.index'),
+    (r'^polls/(?P&lt;poll_id&gt;\d+)/$', 'polls.views.detail'),
+    (r'^polls/(?P&lt;poll_id&gt;\d+)/vote/$', 'polls.views.vote'),
+    (r'^polls/(?P&lt;poll_id&gt;\d+)/data.xml$', 'polls.views.data'),
+    (r'^crossdomain.xml$', 'polls.views.crossdomain'),
+    (r'^local-media/(?P&lt;path&gt;.)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT }),
+)</pre>
+</div>
+<p>Create a view. in views.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;Hello, world. You&#39;re at the poll index.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add a new method to your views.py, to see how django passes parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;You&#39;re looking at poll </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">poll_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add a bunch of stuff up at the top of views.py we will need later:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">render_to_response</span>
+<span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Vote</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span><span class="p">,</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.core.urlresolvers</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Sum</span>
+</pre></div>
+</div>
+<p>In our views.py, let&#8217;s change our index view to pull some real data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">projects</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;polls/index.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;projects&#39;</span><span class="p">:</span> <span class="n">projects</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Create an index.html file:</p>
+<div class="highlight-python"><pre>{% if projects %}
+    &lt;ul&gt;
+    {% for project in projects %}
+        &lt;li&gt;&lt;a href="/polls/{{ project.id }}/"&gt;{{ project.title }}&lt;/a&gt;&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+{% else %}
+    &lt;p&gt;No projects are available.&lt;/p&gt;
+{% endif %}</pre>
+</div>
+<p>Tweak our details method in views.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;polls/detail.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span> <span class="s">&#39;vote_total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">,</span> <span class="p">})</span>
+</pre></div>
+</div>
+<p>Add a votes method to views.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">choice</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">])</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Add a data method to views.py:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;choice&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="s">&#39;polls/data.xml&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span> <span class="s">&#39;vote_total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">[</span><span class="s">&#39;choice__sum&#39;</span><span class="p">],</span> <span class="p">},</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">&quot;text/xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a data.xml file:</p>
+<div class="highlight-python"><pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;results&gt;
+&lt;project&gt;{{ project }}&lt;/project&gt;
+&lt;totals&gt;{{ vote_total }}&lt;/totals&gt;
+&lt;/results&gt;</pre>
+</div>
+<p>Create a crossdomain.xml method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">crossdomain</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&#39;&lt;?xml version=</span><span class="se">\&quot;</span><span class="s">1.0</span><span class="se">\&quot;</span><span class="s">?&gt;&lt;cross-domain-policy&gt;&lt;allow-access-from domain=</span><span class="se">\&quot;\&quot;</span><span class="s"> /&gt;&lt;/cross-domain-policy&gt;&#39;</span><span class="p">,</span> <span class="n">mimetype</span><span class="o">=</span><span class="s">&quot;text/xml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a detail.html template where it all comes together:</p>
+<div class="highlight-python"><pre>&lt;pre&gt;&amp;lt;div align=&amp;quot;center&amp;quot; class=&amp;quot;left&amp;quot;&amp;gt;
+    &amp;lt;object type=&amp;quot;application/x-shockwave-flash&amp;quot; data=&amp;quot;/local-media/voteinator.swf&amp;quot; width=&amp;quot;592&amp;quot; height=&amp;quot;333&amp;quot;&amp;gt;
+        &amp;lt;param name=&amp;quot;movie&amp;quot; value=&amp;quot;/local-media/voteinator.swf&amp;quot;/&amp;gt;
+        &amp;lt;param name=&amp;quot;FlashVars&amp;quot; value=&amp;quot;xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&amp;amp;post_path=http://localhost:8000/polls/{{ project.id }}/vote/&amp;quot;/&amp;gt;
+        &amp;lt;param name=&amp;quot;bgcolor&amp;quot; value=&amp;quot;#FFFFFF&amp;quot;/&amp;gt;
+        &amp;lt;param name=&amp;quot;allowScriptAccess&amp;quot; value=&amp;quot;always&amp;quot;/&amp;gt;
+        &amp;lt;param name=&amp;quot;allowFullScreen&amp;quot; value=&amp;quot;true&amp;quot;/&amp;gt;
+        &amp;lt;param name=&amp;quot;wmode&amp;quot; value=&amp;quot;opaque&amp;quot;/&amp;gt;
+        &amp;lt;embed src=&amp;quot;/local-media/voteinator.swf&amp;quot; FlashVars=&amp;quot;xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&amp;amp;post_path=http://localhost:8000/polls/{{ project.id }}/vote/&amp;quot; bgcolor=&amp;quot;#FFFFFF&amp;quot; width=&amp;quot;592&amp;quot; height=&amp;quot;333&amp;quot; wmode=&amp;quot;opaque&amp;quot; allowScriptAccess=&amp;quot;always&amp;quot; allowFullScreen=&amp;quot;true&amp;quot; type=&amp;quot;application/x-shockwave-flash&amp;quot;&amp;gt;&amp;lt;/embed&amp;gt;
+    &amp;lt;/object&amp;gt;
+&amp;lt;/div&amp;gt;</pre>
+</div>
+<p>Download votinator.swf and put in in the &#8220;media&#8221; directory:</p>
+<div class="highlight-python"><pre>https://github.com/palewire/nicar2011/blob/master/nicar2011/media/voteinator.swf</pre>
+</div>
+<p>Extra credit... it votes up, but not down. how to fix?:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;0&quot;</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">choice</span> <span class="o">=</span> <span class="n">value</span><span class="p">)</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul class="simple">
 </ul>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
-</ul>
 </div>
 
 
@@ -65,10 +271,13 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to Build your first news app with Django&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#">Build your first news app with Django</a><ul>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#instructions">Instructions</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
 </ul>
 
   <h3>This Page</h3>
