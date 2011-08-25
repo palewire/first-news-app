@@ -1,0 +1,9 @@
+{% if projects %}
+    <ul>
+    {% for project in projects %}
+        <li><a href="/polls/{{ project.id }}/">{{ project.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects are available.</p>
+{% endif %}
