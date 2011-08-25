@@ -233,9 +233,3 @@ Extra credit... it votes up, but not down. how to fix?::
         v = p.vote_set.create(choice = value)
         v.save()
         return HttpResponse(status=200)
-
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
