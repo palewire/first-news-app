@@ -9,7 +9,7 @@
                                                                                        \/_/    \/_/ 
 </code></pre>
 
-A example Django app, by "Aron Pilhofer":http://github.com/pilhofer.
+A step-by-step guide to building your first news application with Django
 
 h3. Instructions
 
