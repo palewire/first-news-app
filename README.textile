@@ -20,8 +20,12 @@ $ python manage.py runserver</code></pre>
 
 In settings.py...
 
-<pre><code>DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'nicar2011.db'</code></pre>
+<pre><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'nicar2011.db'
+    }
+}</code></pre>
 
 Then back on the shell...
 
