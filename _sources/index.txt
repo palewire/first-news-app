@@ -204,17 +204,17 @@ Create a crossdomain.xml method::
 
 Create a detail.html template where it all comes together::
 
-    <pre>&lt;div align=&quot;center&quot; class=&quot;left&quot;&gt;
-        &lt;object type=&quot;application/x-shockwave-flash&quot; data=&quot;/local-media/voteinator.swf&quot; width=&quot;592&quot; height=&quot;333&quot;&gt;
-            &lt;param name=&quot;movie&quot; value=&quot;/local-media/voteinator.swf&quot;/&gt;
-            &lt;param name=&quot;FlashVars&quot; value=&quot;xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&amp;post_path=http://localhost:8000/polls/{{ project.id }}/vote/&quot;/&gt;
-            &lt;param name=&quot;bgcolor&quot; value=&quot;#FFFFFF&quot;/&gt;
-            &lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot;/&gt;
-            &lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;/&gt;
-            &lt;param name=&quot;wmode&quot; value=&quot;opaque&quot;/&gt;
-            &lt;embed src=&quot;/local-media/voteinator.swf&quot; FlashVars=&quot;xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&amp;post_path=http://localhost:8000/polls/{{ project.id }}/vote/&quot; bgcolor=&quot;#FFFFFF&quot; width=&quot;592&quot; height=&quot;333&quot; wmode=&quot;opaque&quot; allowScriptAccess=&quot;always&quot; allowFullScreen=&quot;true&quot; type=&quot;application/x-shockwave-flash&quot;&gt;&lt;/embed&gt;
-        &lt;/object&gt;
-    &lt;/div&gt;
+    <div align="center" class="left">
+        <object type="application/x-shockwave-flash" data="/local-media/voteinator.swf" width="592" height="333">
+            <param name="movie" value="/local-media/voteinator.swf"/>
+            <param name="FlashVars" value="xml_path=/polls/{{ project.id }}/data.xml&post_path=/polls/{{ project.id }}/vote/"/>
+            <param name="bgcolor" value="#FFFFFF"/>
+            <param name="allowScriptAccess" value="always"/>
+            <param name="allowFullScreen" value="true"/>
+            <param name="wmode" value="opaque"/>
+            <embed src="/local-media/voteinator.swf" FlashVars="xml_path=/polls/{{ project.id }}/data.xml&post_path=/polls/{{ project.id }}/vote/" bgcolor="#FFFFFF" width="592" height="333" wmode="opaque" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
+        </object>
+    </div>
 
 Download votinator.swf and put in in the "media" directory::
 

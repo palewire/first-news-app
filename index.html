@@ -228,17 +228,17 @@ urlpatterns = patterns('',
 </pre></div>
 </div>
 <p>Create a detail.html template where it all comes together:</p>
-<div class="highlight-python"><pre>&lt;pre&gt;&amp;lt;div align=&amp;quot;center&amp;quot; class=&amp;quot;left&amp;quot;&amp;gt;
-    &amp;lt;object type=&amp;quot;application/x-shockwave-flash&amp;quot; data=&amp;quot;/local-media/voteinator.swf&amp;quot; width=&amp;quot;592&amp;quot; height=&amp;quot;333&amp;quot;&amp;gt;
-        &amp;lt;param name=&amp;quot;movie&amp;quot; value=&amp;quot;/local-media/voteinator.swf&amp;quot;/&amp;gt;
-        &amp;lt;param name=&amp;quot;FlashVars&amp;quot; value=&amp;quot;xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&amp;amp;post_path=http://localhost:8000/polls/{{ project.id }}/vote/&amp;quot;/&amp;gt;
-        &amp;lt;param name=&amp;quot;bgcolor&amp;quot; value=&amp;quot;#FFFFFF&amp;quot;/&amp;gt;
-        &amp;lt;param name=&amp;quot;allowScriptAccess&amp;quot; value=&amp;quot;always&amp;quot;/&amp;gt;
-        &amp;lt;param name=&amp;quot;allowFullScreen&amp;quot; value=&amp;quot;true&amp;quot;/&amp;gt;
-        &amp;lt;param name=&amp;quot;wmode&amp;quot; value=&amp;quot;opaque&amp;quot;/&amp;gt;
-        &amp;lt;embed src=&amp;quot;/local-media/voteinator.swf&amp;quot; FlashVars=&amp;quot;xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&amp;amp;post_path=http://localhost:8000/polls/{{ project.id }}/vote/&amp;quot; bgcolor=&amp;quot;#FFFFFF&amp;quot; width=&amp;quot;592&amp;quot; height=&amp;quot;333&amp;quot; wmode=&amp;quot;opaque&amp;quot; allowScriptAccess=&amp;quot;always&amp;quot; allowFullScreen=&amp;quot;true&amp;quot; type=&amp;quot;application/x-shockwave-flash&amp;quot;&amp;gt;&amp;lt;/embed&amp;gt;
-    &amp;lt;/object&amp;gt;
-&amp;lt;/div&amp;gt;</pre>
+<div class="highlight-python"><pre>&lt;div align="center" class="left"&gt;
+    &lt;object type="application/x-shockwave-flash" data="/local-media/voteinator.swf" width="592" height="333"&gt;
+        &lt;param name="movie" value="/local-media/voteinator.swf"/&gt;
+        &lt;param name="FlashVars" value="xml_path=/polls/{{ project.id }}/data.xml&amp;post_path=/polls/{{ project.id }}/vote/"/&gt;
+        &lt;param name="bgcolor" value="#FFFFFF"/&gt;
+        &lt;param name="allowScriptAccess" value="always"/&gt;
+        &lt;param name="allowFullScreen" value="true"/&gt;
+        &lt;param name="wmode" value="opaque"/&gt;
+        &lt;embed src="/local-media/voteinator.swf" FlashVars="xml_path=/polls/{{ project.id }}/data.xml&amp;post_path=/polls/{{ project.id }}/vote/" bgcolor="#FFFFFF" width="592" height="333" wmode="opaque" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"&gt;&lt;/embed&gt;
+    &lt;/object&gt;
+&lt;/div&gt;</pre>
 </div>
 <p>Download votinator.swf and put in in the &#8220;media&#8221; directory:</p>
 <div class="highlight-python"><pre>https://github.com/palewire/nicar2011/blob/master/nicar2011/media/voteinator.swf</pre>
