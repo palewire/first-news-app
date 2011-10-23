@@ -198,6 +198,10 @@ div.body p, div.body dd, div.body li {
     line-height: 1.4em;
 }
 
+div.body img {
+    margin: 5px 0 20px 0;
+}
+
 div.admonition {
     background: #fafafa;
     margin: 20px -30px;
