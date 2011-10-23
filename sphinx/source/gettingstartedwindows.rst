@@ -1,2 +1,2 @@
-Installing Bitnami's Django Stack for Windows
-=============================================
+Installing Bitnami for Windows
+==============================

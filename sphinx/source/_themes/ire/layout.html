@@ -8,7 +8,9 @@
     pathto('_static/small_flask.css', 1) }}" type= "text/css" rel="stylesheet" />
 {% endblock %}
   {%- block sidebarlogo %}
-  <img id="logo" src="_static/logo.png">
+  <a href="{{ pathto('index') }}" style="border:none;">
+      <img id="logo" src="_static/logo.png">
+  </a>
   {%- endblock %}
 {%- block relbar2 %}{% endblock %}
 {%- block footer %}
