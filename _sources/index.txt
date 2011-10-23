@@ -21,6 +21,8 @@ Unless you can handle that on your own, pick a getting started guide:
    gettingstartedwindows
 
 
+.. _tutorials:
+
 Tutorials
 ---------
 
