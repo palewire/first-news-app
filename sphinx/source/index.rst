@@ -34,4 +34,4 @@ Once you have your Django stack installed, you're ready to start building. Pick 
 Other Resources
 ---------------
 
- * `Source code <https://github.com/ireapps/first-news-app>`_
+* `Source code <https://github.com/ireapps/first-news-app>`_
