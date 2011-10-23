@@ -10,7 +10,7 @@ $ django-admin.py startproject interactive_poll
 
 Start it up for the first time::
 
-$ cd nicar2011
+$ cd interactive_poll
 $ python manage.py runserver
 
 Set your database connection and syncdb
