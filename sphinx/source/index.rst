@@ -10,7 +10,7 @@ Getting Started
 ---------------
 
 Before you can begin, your computer needs `Python <http://python.org>`_, `Django <http://djangoproject.com>`_, 
-a database. This tutorial assumes you installed them using an all-in-one 
+and a database. This tutorial assumes you installed them using an all-in-one 
 `Bitnami "stack." <http://bitnami.org/stack/djangostack>`_
 
 Unless you can handle that on your own, pick a getting started guide:
