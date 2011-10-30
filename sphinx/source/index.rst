@@ -29,7 +29,7 @@ Tutorials
 Once you have your Django stack installed, you're ready to start building. Pick one of our tutorials and follow along.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
 
    interactivepoll
 
