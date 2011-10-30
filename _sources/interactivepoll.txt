@@ -200,12 +200,6 @@ First add the following to the top of your settings.py file.
     import os
     settings_dir = os.path.dirname(__file__)
 
-Then set the MEDIA_ROOT variable lower in the file.
-
-.. code-block:: python
-
-    MEDIA_ROOT = os.path.join(settings_dir, 'media')
-
 And change the TEMPLATE_DIRS variable.
 
 .. code-block:: python

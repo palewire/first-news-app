@@ -209,10 +209,6 @@ the active flag, so we have something to work with.</p>
 <span class="n">settings_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then set the MEDIA_ROOT variable lower in the file.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings_dir</span><span class="p">,</span> <span class="s">&#39;media&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
 <p>And change the TEMPLATE_DIRS variable.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">TEMPLATE_DIRS</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">settings_dir</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">),</span>
