@@ -1,5 +1,5 @@
 Installing Bitnami for Windows
-==============================
+============================== 
 
 This guide will walk you through the steps necessary to install Bitnami's Django Stack
 and prepare your Windows computer to develop a simple news application.
