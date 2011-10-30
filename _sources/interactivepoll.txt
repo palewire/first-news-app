@@ -291,7 +291,7 @@ Add a detail.html template where it all comes together.
             var vote = function(data) {
                 $.ajax({
                   type: 'POST',
-                  url: 'http://{{ request.get_host }}/nicar/polls/{{ project.id }}/vote/',
+                  url: 'http://{{ request.get_host }}/polls/{{ project.id }}/vote/',
                   data: {'data': data}
                 });
                 currentTotal += data;
