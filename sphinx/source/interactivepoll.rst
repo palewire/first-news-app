@@ -238,8 +238,11 @@ Open up views.py in the polls folder and all all of the following.
     def detail(request, poll_id):
         p = Project.objects.get(pk=poll_id)
         total = p.vote_set.count()
-        return render(request, 'detail.html',
-            {'project': p, 'vote_total': total, })
+        return render(request, 'detail.html', {
+            'project': p,
+            'vote_total': total, 
+            'request': request,
+        })
     
     def data(request, poll_id):
         p = Project.objects.get(pk=poll_id)
@@ -292,16 +295,17 @@ Add a detail.html template where it all comes together.
 .. code-block:: html+django
 
     <div align="center" class="left">
-    <object type="application/x-shockwave-flash" data="/local-media/voteinator.swf"
+    <object type="application/x-shockwave-flash" data="http://{{ request.get_host }}/local-media/voteinator.swf"
             width="592" height="333">
-        <param name="movie" value="/local-media/voteinator.swf"/>
-        <param name="FlashVars" value="xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&post_path=http://localhost:8000/polls/{{ project.id }}/vote/"/>
+        <param name="movie" value="http://{{ request.get_host }}/local-media/voteinator.swf"/>
+        <param name="FlashVars"
+               value="xml_path=http://{{ request.get_host }}/polls/{{ project.id }}/data.xml&post_path=http://{{ request.get_host }}/polls/{{ project.id }}/vote/"/>
         <param name="bgcolor" value="#FFFFFF"/>
         <param name="allowScriptAccess" value="always"/>
         <param name="allowFullScreen" value="true"/>
         <param name="wmode" value="opaque"/>
-        <embed src="/local-media/voteinator.swf"
-               FlashVars="xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&post_path=http://localhost:8000/polls/{{ project.id }}/vote/"
+        <embed src="http://{{ request.get_host }}/local-media/voteinator.swf"
+               FlashVars="xml_path=http://{{ request.get_host }}/polls/{{ project.id }}/data.xml&post_path=http://{{ request.get_host }}/polls/{{ project.id }}/vote/"
                bgcolor="#FFFFFF" width="592" height="333" wmode="opaque"
                allowScriptAccess="always" allowFullScreen="true"
                type="application/x-shockwave-flash"></embed>
