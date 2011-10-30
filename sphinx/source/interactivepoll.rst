@@ -157,7 +157,9 @@ Now fire up the runserver,
 And now log in at http://localhost:8000/admin/, where you'll see Django's generic administration 
 system. But you'll notice that your app's database tables aren't in there. 
 
-To add them, create a file called admin.py in the "polls" folder and add the following. ::
+To add them, create a file called admin.py in the "polls" folder and add the following.
+
+.. code-block:: python
 
     from polls.models import Project, Vote
     from django.contrib import admin
@@ -263,7 +265,7 @@ Open up views.py in the polls folder and all all of the following.
 
 Create a "templates" folder in the base of your project and create an index.html file in there. Add the following.
 
-.. code-block:: django
+.. code-block:: html+django
 
     {% if projects %}
         <ul>
@@ -277,7 +279,7 @@ Create a "templates" folder in the base of your project and create an index.html
 
 Add a data.xml template.
 
-.. code-block:: django
+.. code-block:: xml+django
 
     <?xml version="1.0" encoding="UTF-8"?>
     <results>
@@ -287,7 +289,7 @@ Add a data.xml template.
 
 Add a detail.html template where it all comes together.
 
-.. code-block:: django
+.. code-block:: html+django
 
     <div align="center" class="left">
     <object type="application/x-shockwave-flash" data="/local-media/voteinator.swf"
