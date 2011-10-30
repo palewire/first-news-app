@@ -270,42 +270,42 @@ the active flag, so we have something to work with.</p>
 </pre></div>
 </div>
 <p>Create a &#8220;templates&#8221; folder in the base of your project and create an index.html file in there. Add the following.</p>
-<div class="highlight-django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="nv">projects</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;ul&gt;</span>
-<span class="x">    </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">project</span> <span class="k">in</span> <span class="nv">projects</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">        &lt;li&gt;&lt;a href=&quot;/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="x">/&quot;&gt;</span><span class="cp">{{</span> <span class="nv">project.title</span> <span class="cp">}}</span><span class="x">&lt;/a&gt;&lt;/li&gt;</span>
-<span class="x">    </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;/ul&gt;</span>
-<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;p&gt;No projects are available.&lt;/p&gt;</span>
-<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<div class="highlight-html+django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="nv">projects</span> <span class="cp">%}</span>
+    <span class="nt">&lt;ul&gt;</span>
+    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">project</span> <span class="k">in</span> <span class="nv">projects</span> <span class="cp">%}</span>
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
+    <span class="nt">&lt;p&gt;</span>No projects are available.<span class="nt">&lt;/p&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
 </pre></div>
 </div>
 <p>Add a data.xml template.</p>
-<div class="highlight-django"><div class="highlight"><pre><span class="x">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="x">&lt;results&gt;</span>
-<span class="x">&lt;project&gt;</span><span class="cp">{{</span> <span class="nv">project</span> <span class="cp">}}</span><span class="x">&lt;/project&gt;</span>
-<span class="x">&lt;totals&gt;</span><span class="cp">{{</span> <span class="nv">vote_total</span> <span class="cp">}}</span><span class="x">&lt;/totals&gt;</span>
-<span class="x">&lt;/results&gt;</span>
+<div class="highlight-xml+django"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;results&gt;</span>
+<span class="nt">&lt;project&gt;</span><span class="cp">{{</span> <span class="nv">project</span> <span class="cp">}}</span><span class="nt">&lt;/project&gt;</span>
+<span class="nt">&lt;totals&gt;</span><span class="cp">{{</span> <span class="nv">vote_total</span> <span class="cp">}}</span><span class="nt">&lt;/totals&gt;</span>
+<span class="nt">&lt;/results&gt;</span>
 </pre></div>
 </div>
 <p>Add a detail.html template where it all comes together.</p>
-<div class="highlight-django"><div class="highlight"><pre><span class="x">&lt;div align=&quot;center&quot; class=&quot;left&quot;&gt;</span>
-<span class="x">&lt;object type=&quot;application/x-shockwave-flash&quot; data=&quot;/local-media/voteinator.swf&quot;</span>
-<span class="x">        width=&quot;592&quot; height=&quot;333&quot;&gt;</span>
-<span class="x">    &lt;param name=&quot;movie&quot; value=&quot;/local-media/voteinator.swf&quot;/&gt;</span>
-<span class="x">    &lt;param name=&quot;FlashVars&quot; value=&quot;xml_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="x">/data.xml&amp;post_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="x">/vote/&quot;/&gt;</span>
-<span class="x">    &lt;param name=&quot;bgcolor&quot; value=&quot;#FFFFFF&quot;/&gt;</span>
-<span class="x">    &lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot;/&gt;</span>
-<span class="x">    &lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;/&gt;</span>
-<span class="x">    &lt;param name=&quot;wmode&quot; value=&quot;opaque&quot;/&gt;</span>
-<span class="x">    &lt;embed src=&quot;/local-media/voteinator.swf&quot;</span>
-<span class="x">           FlashVars=&quot;xml_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="x">/data.xml&amp;post_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="x">/vote/&quot;</span>
-<span class="x">           bgcolor=&quot;#FFFFFF&quot; width=&quot;592&quot; height=&quot;333&quot; wmode=&quot;opaque&quot;</span>
-<span class="x">           allowScriptAccess=&quot;always&quot; allowFullScreen=&quot;true&quot;</span>
-<span class="x">           type=&quot;application/x-shockwave-flash&quot;&gt;&lt;/embed&gt;</span>
-<span class="x">&lt;/object&gt;</span>
-<span class="x">&lt;/div&gt;</span>
+<div class="highlight-html+django"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span> <span class="na">class=</span><span class="s">&quot;left&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;object</span> <span class="na">type=</span><span class="s">&quot;application/x-shockwave-flash&quot;</span> <span class="na">data=</span><span class="s">&quot;/local-media/voteinator.swf&quot;</span>
+        <span class="na">width=</span><span class="s">&quot;592&quot;</span> <span class="na">height=</span><span class="s">&quot;333&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;movie&quot;</span> <span class="na">value=</span><span class="s">&quot;/local-media/voteinator.swf&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;FlashVars&quot;</span> <span class="na">value=</span><span class="s">&quot;xml_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/data.xml&amp;post_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/vote/&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;bgcolor&quot;</span> <span class="na">value=</span><span class="s">&quot;#FFFFFF&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;allowScriptAccess&quot;</span> <span class="na">value=</span><span class="s">&quot;always&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;allowFullScreen&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;wmode&quot;</span> <span class="na">value=</span><span class="s">&quot;opaque&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;embed</span> <span class="na">src=</span><span class="s">&quot;/local-media/voteinator.swf&quot;</span>
+           <span class="na">FlashVars=</span><span class="s">&quot;xml_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/data.xml&amp;post_path=http://localhost:8000/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/vote/&quot;</span>
+           <span class="na">bgcolor=</span><span class="s">&quot;#FFFFFF&quot;</span> <span class="na">width=</span><span class="s">&quot;592&quot;</span> <span class="na">height=</span><span class="s">&quot;333&quot;</span> <span class="na">wmode=</span><span class="s">&quot;opaque&quot;</span>
+           <span class="na">allowScriptAccess=</span><span class="s">&quot;always&quot;</span> <span class="na">allowFullScreen=</span><span class="s">&quot;true&quot;</span>
+           <span class="na">type=</span><span class="s">&quot;application/x-shockwave-flash&quot;</span><span class="nt">&gt;&lt;/embed&gt;</span>
+<span class="nt">&lt;/object&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
 </pre></div>
 </div>
 <p>Finally, download <a class="reference external" href="https://github.com/downloads/ireapps/first-news-app/voteinator.swf">votinator.swf</a> and put in a new folder called
