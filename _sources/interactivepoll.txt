@@ -1,7 +1,7 @@
 Interactive Poll
 ================
 
-A step-by-step guide for building a Flash-based interactive poll. Based on
+A step-by-step guide for building an interactive poll. Based on
 an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_.
 
 Act 1: Hello Database
@@ -213,8 +213,6 @@ Then replace all of urls.py file with the following.
         url(r'^$', 'polls.views.index'),
         url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
         url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
-        url(r'^polls/(?P<poll_id>\d+)/data.xml$', 'polls.views.data'),
-        url(r'^crossdomain.xml$', 'polls.views.crossdomain'),
         url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT, 'show_indexes': True
         }),
@@ -224,47 +222,38 @@ Open up views.py in the polls folder and all all of the following.
 
 .. code-block:: python
 
-    from django.shortcuts import get_object_or_404, render
-    from polls.models import Project, Vote
-    from django.http import HttpResponseRedirect, HttpResponse
-    from django.core.urlresolvers import reverse
     from django.db.models import Sum
+    from polls.models import Project, Vote
     from django.views.decorators.csrf import csrf_exempt
+    from django.shortcuts import get_object_or_404, render
+    from django.http import HttpResponseRedirect, HttpResponse
     
     def index(request):
         projects = Project.objects.all().order_by('-pub_date')[:5]
-        return render(request, 'index.html', {'projects': projects})
+        return render(request, 'index.html', {
+            'projects': projects
+        })
     
     def detail(request, poll_id):
         p = Project.objects.get(pk=poll_id)
-        total = p.vote_set.count()
+        total = p.vote_set.aggregate(Sum('choice'))
         return render(request, 'detail.html', {
             'project': p,
-            'vote_total': total, 
+            'total': total['choice__sum'],
             'request': request,
         })
     
-    def data(request, poll_id):
-        p = Project.objects.get(pk=poll_id)
-        total = p.vote_set.aggregate(Sum('choice'))
-        return render(request, 'data.xml', {
-            'project': p,
-            'vote_total': total['choice__sum'],
-        }, content_type="text/xml")
-    
     @csrf_exempt
     def vote(request, poll_id):
+        print poll_id, request.POST
         p = get_object_or_404(Project, pk=poll_id)
-        if request.POST['data'] == "0":
+        if request.POST['data'] == "-1":
             value = -1
         else:
             value = 1
-        v = p.vote_set.create(choice = value)
+        v = p.vote_set.create(choice=value)
         v.save()
         return HttpResponse(status=200)
-    
-    def crossdomain(request):
-        return HttpResponse('<?xml version=\"1.0\"?><cross-domain-policy><allow-access-from domain=\"*\" /></cross-domain-policy>', mimetype="text/xml")
 
 Create a "templates" folder in the base of your project and create an index.html file in there. Add the following.
 
@@ -280,40 +269,48 @@ Create a "templates" folder in the base of your project and create an index.html
         <p>No projects are available.</p>
     {% endif %}
 
-Add a data.xml template.
-
-.. code-block:: xml+django
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <results>
-    <project>{{ project }}</project>
-    <totals>{{ vote_total }}</totals>
-    </results>
-
 Add a detail.html template where it all comes together.
 
 .. code-block:: html+django
 
-    <div align="center" class="left">
-    <object type="application/x-shockwave-flash" data="http://{{ request.get_host }}/local-media/voteinator.swf"
-            width="592" height="333">
-        <param name="movie" value="http://{{ request.get_host }}/local-media/voteinator.swf"/>
-        <param name="FlashVars"
-               value="xml_path=http://{{ request.get_host }}/polls/{{ project.id }}/data.xml&post_path=http://{{ request.get_host }}/polls/{{ project.id }}/vote/"/>
-        <param name="bgcolor" value="#FFFFFF"/>
-        <param name="allowScriptAccess" value="always"/>
-        <param name="allowFullScreen" value="true"/>
-        <param name="wmode" value="opaque"/>
-        <embed src="http://{{ request.get_host }}/local-media/voteinator.swf"
-               FlashVars="xml_path=http://{{ request.get_host }}/polls/{{ project.id }}/data.xml&post_path=http://{{ request.get_host }}/polls/{{ project.id }}/vote/"
-               bgcolor="#FFFFFF" width="592" height="333" wmode="opaque"
-               allowScriptAccess="always" allowFullScreen="true"
-               type="application/x-shockwave-flash"></embed>
-    </object>
-    </div>
-
-Finally, download `votinator.swf <https://github.com/downloads/ireapps/first-news-app/voteinator.swf>`_ and put in a new folder called
-"media" is your project's base directory.
+    <html>
+    <head>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <style type="text/css">
+            h3 {margin-bottom:40px;}
+            .button { display:inline; background-color: black; color:white; padding:7px; margin: 0 15px; cursor:pointer; }
+            .button:hover { background-color:#CCC; }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h1 id="title">{{ project }}</h1>
+            <h3 id="total">Total: {{ total }}</h3>
+            <div>
+                <div id="yes" class="button">YES</div>
+                <div id="no" class="button">NO</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var currentTotal = {{ total }};
+            var vote = function(data) {
+                $.ajax({
+                  type: 'POST',
+                  url: 'http://{{ request.get_host }}/polls/{{ project.id }}/vote/',
+                  data: {'data': data}
+                });
+                currentTotal += data;
+                $("#total").html("Total: " + currentTotal.toString());
+            };
+            $("#yes").click(function() {
+                vote(1);
+            });
+            $("#no").click(function () {
+                vote(-1);
+            });
+        </script>
+    </body>
+    </html>
 
 Now fire up the runserver and watch it fly in your browser at http://localhost:8000.
 
