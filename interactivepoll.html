@@ -211,7 +211,6 @@ the active flag, so we have something to work with.</p>
 </div>
 <p>Then replace all of urls.py file with the following.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.conf.urls.defaults</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
 <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 <span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
 
@@ -220,9 +219,6 @@ the active flag, so we have something to work with.</p>
     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="s">&#39;polls.views.index&#39;</span><span class="p">),</span>
     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/$&#39;</span><span class="p">,</span> <span class="s">&#39;polls.views.detail&#39;</span><span class="p">),</span>
     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/vote/$&#39;</span><span class="p">,</span> <span class="s">&#39;polls.views.vote&#39;</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^local-media/(?P&lt;path&gt;.*)$&#39;</span><span class="p">,</span> <span class="s">&#39;django.views.static.serve&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="s">&#39;document_root&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="s">&#39;show_indexes&#39;</span><span class="p">:</span> <span class="bp">True</span>
-    <span class="p">}),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -250,7 +246,6 @@ the active flag, so we have something to work with.</p>
 
 <span class="nd">@csrf_exempt</span>
 <span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-    <span class="k">print</span> <span class="n">poll_id</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">[</span><span class="s">&#39;data&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;-1&quot;</span><span class="p">:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
@@ -286,18 +281,18 @@ the active flag, so we have something to work with.</p>
 <span class="nt">&lt;body&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
-        <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;total&quot;</span><span class="nt">&gt;</span>Total: <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="nt">&lt;/h3&gt;</span>
+        <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;total&quot;</span><span class="nt">&gt;</span>Total: <span class="cp">{{</span> <span class="nv">total</span><span class="o">|</span><span class="nf">default_if_none</span><span class="o">:</span><span class="m">0</span> <span class="cp">}}</span><span class="nt">&lt;/h3&gt;</span>
         <span class="nt">&lt;div&gt;</span>
             <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;yes&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>YES<span class="nt">&lt;/div&gt;</span>
             <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;no&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>NO<span class="nt">&lt;/div&gt;</span>
         <span class="nt">&lt;/div&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
     <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-        <span class="kd">var</span> <span class="nx">currentTotal</span> <span class="o">=</span> <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">currentTotal</span> <span class="o">=</span> <span class="cp">{{</span> <span class="nv">total</span><span class="o">|</span><span class="nf">default_if_none</span><span class="o">:</span><span class="m">0</span> <span class="cp">}}</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">vote</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
               <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-              <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
+              <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/nicar/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
               <span class="nx">data</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}</span>
             <span class="p">});</span>
             <span class="nx">currentTotal</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>

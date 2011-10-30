@@ -204,7 +204,6 @@ Then replace all of urls.py file with the following.
 .. code-block:: python
 
     from django.conf.urls.defaults import *
-    from django.conf import settings
     from django.contrib import admin
     admin.autodiscover()
     
@@ -213,9 +212,6 @@ Then replace all of urls.py file with the following.
         url(r'^$', 'polls.views.index'),
         url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
         url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
-        url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT, 'show_indexes': True
-        }),
     )
 
 Open up views.py in the polls folder and all all of the following.
@@ -245,7 +241,6 @@ Open up views.py in the polls folder and all all of the following.
     
     @csrf_exempt
     def vote(request, poll_id):
-        print poll_id, request.POST
         p = get_object_or_404(Project, pk=poll_id)
         if request.POST['data'] == "-1":
             value = -1
@@ -285,18 +280,18 @@ Add a detail.html template where it all comes together.
     <body>
         <div align="center">
             <h1 id="title">{{ project }}</h1>
-            <h3 id="total">Total: {{ total }}</h3>
+            <h3 id="total">Total: {{ total|default_if_none:0 }}</h3>
             <div>
                 <div id="yes" class="button">YES</div>
                 <div id="no" class="button">NO</div>
             </div>
         </div>
         <script type="text/javascript">
-            var currentTotal = {{ total }};
+            var currentTotal = {{ total|default_if_none:0 }};
             var vote = function(data) {
                 $.ajax({
                   type: 'POST',
-                  url: 'http://{{ request.get_host }}/polls/{{ project.id }}/vote/',
+                  url: 'http://{{ request.get_host }}/nicar/polls/{{ project.id }}/vote/',
                   data: {'data': data}
                 });
                 currentTotal += data;
