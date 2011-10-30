@@ -4,6 +4,21 @@ Interactive Poll
 A step-by-step guide for building an interactive poll. Based on
 an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_.
 
+.. image:: images/interactivepoll.png
+
+To see a working demonstration of what you'll be building, visit http://palewire.com/nicar/polls/1/
+
+Prelude: Hello Django
+---------------------
+
+Before you you can begin work, you need to get your Django environment up and flying. If you havn't
+done it already, follow one of our :ref:`getting started guides<gettingstarted>`. 
+
+If you elected to install Bitnami for Windows, you'll need to fire it up by clicking "Use Bitnami DjangoStack"
+in the start menu. That should bring up a terminal where you can being work.
+
+.. image:: images/bootingbitnamiwindows.png
+
 Act 1: Hello Database
 ---------------------
 
