@@ -1,4 +1,6 @@
-# Django settings for foo project.
+# Django settings for interactive_poll project.
+import os
+settings_dir = os.path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,12 +13,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'database.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'database.db'
     }
 }
 
@@ -83,7 +81,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '=e)r*i@1yl%iy1$vc_q94oetodamz8(4z036twtx0tz)4+br%o'
+SECRET_KEY = '@^$pzhf^fc$yomk2m=n6@!nxz%1m(_x145k2e*+%4=9*djfhrn'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -100,11 +98,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'interactive_poll.urls'
 
-import os
-settings_dir = os.path.dirname(__file__)
-STATIC_DOC_ROOT = os.path.join(settings_dir, 'media')
 TEMPLATE_DIRS = (
     os.path.join(settings_dir, 'templates'),
 )
@@ -145,4 +140,3 @@ LOGGING = {
         },
     }
 }
-
