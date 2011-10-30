@@ -199,7 +199,7 @@ div.body p, div.body dd, div.body li {
 }
 
 div.body img {
-    margin: 5px 0 20px 0;
+    margin: 10px 0;
 }
 
 div.admonition {
