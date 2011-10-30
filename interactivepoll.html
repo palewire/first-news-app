@@ -292,7 +292,7 @@ the active flag, so we have something to work with.</p>
         <span class="kd">var</span> <span class="nx">vote</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
               <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-              <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/nicar/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
+              <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
               <span class="nx">data</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}</span>
             <span class="p">});</span>
             <span class="nx">currentTotal</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
