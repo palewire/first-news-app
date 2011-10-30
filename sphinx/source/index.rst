@@ -6,6 +6,8 @@ A step-by-step guide to building a simple news application with Django.
 Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
+.. _gettingstarted:
+
 Getting Started
 ---------------
 
