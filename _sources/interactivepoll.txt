@@ -4,19 +4,30 @@ Interactive Poll
 A step-by-step guide for building a Flash-based interactive poll. Based on
 an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_.
 
-Create your Django project::
+Act 1: Hello Database
+---------------------
 
-$ django-admin.py startproject interactive_poll
+First, create your Django project
 
-Start it up for the first time::
+.. code-block:: bash
 
-$ cd interactive_poll
-$ python manage.py runserver
+    $ django-admin.py startproject interactive_poll
 
-Set your database connection and syncdb
+Jump and start it up for the first time
 
-In settings.py...::
+.. code-block:: bash
 
+    $ cd interactive_poll
+    $ python manage.py runserver
+
+If you visit http://localhost:8000 in your browser, you should see Django's "Hello World" page, 
+indicating that you've got everything properly configured and are ready to begin work.
+
+Then you start in on your app by first settings your database connection. For this app,
+we'll be creating a Sqlite database.
+
+In your settings.py file, replace the default database configuration with::
+    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -24,15 +35,20 @@ In settings.py...::
         }
     }
 
-Then back on the shell::
+Then back in your shell run the following command to create your database. When it asks, be sure to create a superuser. We'll need it later.
+
+.. code-block:: bash
 
     $ python manage.py syncdb
 
-Create an application, call it polls::
+Now we will create an "application", Django slang for a package of code. We'll call it "polls."
+
+.. code-block:: bash
 
     $ python manage.py startapp polls
 
-Define two models in models.py::
+You'll now find a folder called "polls" where we'll be building our app. The models file is where we define our database tables.
+Go in there and add the following to the models.py file, which will act as the blueprint for two new tables. ::
 
     class Project(models.Model):
         title = models.CharField(max_length=200)
@@ -43,108 +59,211 @@ Define two models in models.py::
         project = models.ForeignKey(Project)
         choice = models.IntegerField()
 
-Add line to settings.py as an installed app::
+Now return do the settings.py file and add a line to the INSTALLED_APPS list with the name of our new app.
 
-    'polls',
+.. code-block:: python
+   :emphasize-lines: 12
 
-Sync your db again::
+    INSTALLED_APPS = (
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.sites',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        # Uncomment the next line to enable the admin:
+        # 'django.contrib.admin',
+        # Uncomment the next line to enable admin documentation:
+        # 'django.contrib.admindocs',
+        'polls',
+    )
+
+Sync your database again and your new tables will be created in the database.
+
+.. code-block:: bash
 
     $ python manage.py syncdb
 
-Add a string representation of your object to the model Project in models.py::
+Act 2: Hello Admin
+------------------
 
-    def __unicode__(self):
-        return self.title
+Jump back into models.py and add a string representation of your object to the model Project.
 
-Add your app to settings.py in INSTALLED_APPS::
+.. code-block:: python
+   :emphasize-lines: 6,7
 
-    'django.contrib.admin',
+    class Project(models.Model):
+        title = models.CharField(max_length=200)
+        pub_date = models.DateTimeField('date published')
+        active_flag = models.BooleanField()
+        
+        def __unicode__(self):
+            return self.title
 
-Sync db to create admin tables::
+Go back into settings.py and uncomment "django.contrib.admin" in INSTALLED_APPS
+
+.. code-block:: python
+   :emphasize-lines: 9
+
+    INSTALLED_APPS = (
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.sites',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        # Uncomment the next line to enable the admin:
+        'django.contrib.admin',
+        # Uncomment the next line to enable admin documentation:
+        # 'django.contrib.admindocs',
+        'polls',
+    )
+
+Sync the database to create the admin's set of tables.
+
+.. code-block:: bash
 
     $ python manage.py syncdb
 
-Enable admin. in urls.py by uncommenting the following::
+Now go into the urls.py file and uncomment the lines related to the admin, look like so
 
+.. code-block:: python
+   :emphasize-lines: 4,5,16
+
+    from django.conf.urls.defaults import patterns, include, url
+    
+    # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
     admin.autodiscover()
+    
+    urlpatterns = patterns('',
+        # Examples:
+        # url(r'^$', 'interactive_poll.views.home', name='home'),
+        # url(r'^interactive_poll/', include('interactive_poll.foo.urls')),
+        
+        # Uncomment the admin/doc line below to enable admin documentation:
+        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+        
+        # Uncomment the next line to enable the admin:
+        url(r'^admin/', include(admin.site.urls)),
+    )
 
-and::
+Now fire up the runserver,
 
-    (r'^admin/', include(admin.site.urls)),
-
-Fire up the server, and log in at http://localhost:8000/admin/::
+.. code-block:: bash
 
     $ python manage.py runserver
 
-Add your app to the admin. create a file called admin.py in your project (make joke about conventions), and add::
+And now log in at http://localhost:8000/admin/, where you'll see Django's generic administration 
+system. But you'll notice that your app's database tables aren't in there. 
 
-    from polls.models import Project
+To add them, create a file called admin.py in the "polls" folder and add the following. ::
+
+    from polls.models import Project, Vote
     from django.contrib import admin
-
+    
     admin.site.register(Project)
-
-Add vote to the admin.py file so we can see associations::
-
-    from polls.models import Vote
     admin.site.register(Vote)
 
-Configure your templates and dump the urls for our app into urls.py
+Now, if you visit http://localhost:8000/admin/ again you should find administration panels
+for entering data into the poll's database tables.
 
-First add this to settings.py::
+For the purposes of this demonstration, I created a poll Project with the title
+"Python is the best programming language". When we finish our site, users will be able
+vote up or down my claim. Feel free to insert your own title, but drop one or two in there, and check
+the active flag, so we have something to work with.
+
+Act 3: Hello Internets
+----------------------
+
+First add the following to the top of your settings.py file.
+
+.. code-block:: python
 
     import os
     settings_dir = os.path.dirname(__file__)
-    STATIC_DOC_ROOT = os.path.join(settings_dir, 'media')
+
+Then set the MEDIA_ROOT variable lower in the file.
+
+.. code-block:: python
+
+    MEDIA_ROOT = os.path.join(settings_dir, 'media')
+
+And change the TEMPLATE_DIRS variable.
+
+.. code-block:: python
+
     TEMPLATE_DIRS = (
         os.path.join(settings_dir, 'templates'),
     )
 
-Then replace all of urls.py with the following::
+Then replace all of urls.py file with the following.
 
-    from django.conf.urls.defaults import 
+.. code-block:: python
+
+    from django.conf.urls.defaults import *
     from django.conf import settings
     from django.contrib import admin
     admin.autodiscover()
-
+    
     urlpatterns = patterns('',
         (r'^admin/', include(admin.site.urls)),
-        (r'^polls/$', 'polls.views.index'),
-        (r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
-        (r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
-        (r'^polls/(?P<poll_id>\d+)/data.xml$', 'polls.views.data'),
-        (r'^crossdomain.xml$', 'polls.views.crossdomain'),
-        (r'^local-media/(?P<path>.)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT }),
+        url(r'^$', 'polls.views.index'),
+        url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
+        url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
+        url(r'^polls/(?P<poll_id>\d+)/data.xml$', 'polls.views.data'),
+        url(r'^crossdomain.xml$', 'polls.views.crossdomain'),
+        url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT, 'show_indexes': True
+        }),
     )
 
-Create a view. in views.py::
+Open up views.py in the polls folder and all all of the following.
 
-    from django.http import HttpResponse
+.. code-block:: python
 
-    def index(request):
-        return HttpResponse("Hello, world. You're at the poll index.")
-
-Add a new method to your views.py, to see how django passes parameters::
-
-    def detail(request, poll_id):
-        return HttpResponse("You're looking at poll %s." % poll_id)
-
-Add a bunch of stuff up at the top of views.py we will need later::
-
-    from django.shortcuts import get_object_or_404, render_to_response
+    from django.shortcuts import get_object_or_404, render
     from polls.models import Project, Vote
     from django.http import HttpResponseRedirect, HttpResponse
     from django.core.urlresolvers import reverse
     from django.db.models import Sum
     from django.views.decorators.csrf import csrf_exempt
-
-In our views.py, let's change our index view to pull some real data::
-
+    
     def index(request):
         projects = Project.objects.all().order_by('-pub_date')[:5]
-        return render_to_response('polls/index.html', {'projects': projects})
+        return render(request, 'index.html', {'projects': projects})
+    
+    def detail(request, poll_id):
+        p = Project.objects.get(pk=poll_id)
+        total = p.vote_set.count()
+        return render(request, 'detail.html',
+            {'project': p, 'vote_total': total, })
+    
+    def data(request, poll_id):
+        p = Project.objects.get(pk=poll_id)
+        total = p.vote_set.aggregate(Sum('choice'))
+        return render(request, 'data.xml', {
+            'project': p,
+            'vote_total': total['choice__sum'],
+        }, content_type="text/xml")
+    
+    @csrf_exempt
+    def vote(request, poll_id):
+        p = get_object_or_404(Project, pk=poll_id)
+        if request.POST['data'] == "0":
+            value = -1
+        else:
+            value = 1
+        v = p.vote_set.create(choice = value)
+        v.save()
+        return HttpResponse(status=200)
+    
+    def crossdomain(request):
+        return HttpResponse('<?xml version=\"1.0\"?><cross-domain-policy><allow-access-from domain=\"*\" /></cross-domain-policy>', mimetype="text/xml")
 
-Create an index.html file::
+Create a "templates" folder in the base of your project and create an index.html file in there. Add the following.
+
+.. code-block:: django
 
     {% if projects %}
         <ul>
@@ -156,29 +275,9 @@ Create an index.html file::
         <p>No projects are available.</p>
     {% endif %}
 
-Tweak our details method in views.py::
+Add a data.xml template.
 
-    def detail(request, poll_id):
-        p = Project.objects.get(pk=poll_id)
-        total = p.vote_set.count()
-        return render_to_response('polls/detail.html', {'project': p, 'vote_total': total, })
-
-Add a votes method to views.py::
-
-    def vote(request, poll_id):
-        p = get_object_or_404(Project, pk=poll_id)
-        v = p.vote_set.create(choice = request.POST['data'])
-        v.save()
-        return HttpResponse(status=200)
-
-Add a data method to views.py::
-
-    def data(request, poll_id):
-        p = Project.objects.get(pk=poll_id)
-        total = p.vote_set.aggregate(Sum('choice'))
-        return render_to_response('polls/data.xml', {'project': p, 'vote_total': total['choice__sum'], }, mimetype="text/xml")
-
-Create a data.xml file::
+.. code-block:: django
 
     <?xml version="1.0" encoding="UTF-8"?>
     <results>
@@ -186,38 +285,34 @@ Create a data.xml file::
     <totals>{{ vote_total }}</totals>
     </results>
 
-Create a crossdomain.xml method::
+Add a detail.html template where it all comes together.
 
-    def crossdomain(request):
-        return HttpResponse('<?xml version=\"1.0\"?><cross-domain-policy><allow-access-from domain=\"\" /></cross-domain-policy>', mimetype="text/xml")
-
-Create a detail.html template where it all comes together::
+.. code-block:: django
 
     <div align="center" class="left">
-        <object type="application/x-shockwave-flash" data="/local-media/voteinator.swf" width="592" height="333">
-            <param name="movie" value="/local-media/voteinator.swf"/>
-            <param name="FlashVars" value="xml_path=/polls/{{ project.id }}/data.xml&post_path=/polls/{{ project.id }}/vote/"/>
-            <param name="bgcolor" value="#FFFFFF"/>
-            <param name="allowScriptAccess" value="always"/>
-            <param name="allowFullScreen" value="true"/>
-            <param name="wmode" value="opaque"/>
-            <embed src="/local-media/voteinator.swf" FlashVars="xml_path=/polls/{{ project.id }}/data.xml&post_path=/polls/{{ project.id }}/vote/" bgcolor="#FFFFFF" width="592" height="333" wmode="opaque" allowScriptAccess="always" allowFullScreen="true" type="application/x-shockwave-flash"></embed>
-        </object>
+    <object type="application/x-shockwave-flash" data="/local-media/voteinator.swf"
+            width="592" height="333">
+        <param name="movie" value="/local-media/voteinator.swf"/>
+        <param name="FlashVars" value="xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&post_path=http://localhost:8000/polls/{{ project.id }}/vote/"/>
+        <param name="bgcolor" value="#FFFFFF"/>
+        <param name="allowScriptAccess" value="always"/>
+        <param name="allowFullScreen" value="true"/>
+        <param name="wmode" value="opaque"/>
+        <embed src="/local-media/voteinator.swf"
+               FlashVars="xml_path=http://localhost:8000/polls/{{ project.id }}/data.xml&post_path=http://localhost:8000/polls/{{ project.id }}/vote/"
+               bgcolor="#FFFFFF" width="592" height="333" wmode="opaque"
+               allowScriptAccess="always" allowFullScreen="true"
+               type="application/x-shockwave-flash"></embed>
+    </object>
     </div>
 
-Download votinator.swf and put in in the "media" directory::
+Finally, download `votinator.swf <https://github.com/downloads/ireapps/first-news-app/voteinator.swf>`_ and put in a new folder called
+"media" is your project's base directory.
 
-    https://github.com/palewire/nicar2011/blob/master/nicar2011/media/voteinator.swf
+Now fire up the runserver and watch it fly in your browser at http://localhost:8000.
 
-Extra credit... it votes up, but not down. how to fix?::
+.. code-block:: bash
 
-    @csrf_exempt
-    def vote(request, poll_id):
-        p = get_object_or_404(Project, pk=poll_id)
-        if request.POST['data'] == "0":
-            value = -1
-        else:
-            value = 1
-        v = p.vote_set.create(choice = value)
-        v.save()
-        return HttpResponse(status=200)
+    $ python manage.py runserver
+
+
