@@ -2,7 +2,7 @@ Interactive Poll
 ================
 
 A step-by-step guide for building an interactive poll. Based on
-an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_.
+an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_. It has been adapted here by `Ben Welsh <http://palewire.com/who-is-ben-welsh/>`_.
 
 .. image:: images/interactivepoll.png
 
