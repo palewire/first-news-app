@@ -251,7 +251,10 @@ Open up views.py in the polls folder and all all of the following.
     @csrf_exempt
     def vote(request, poll_id):
         p = get_object_or_404(Project, pk=poll_id)
-        if request.POST['data'] == "-1":
+        data = request.POST.get("data", None)
+        if not data:
+            return HttpResponse(status=405)
+        if data == "-1":
             value = -1
         else:
             value = 1
