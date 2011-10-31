@@ -24,9 +24,11 @@ def detail(request, poll_id):
 
 @csrf_exempt
 def vote(request, poll_id):
-    print poll_id, request.POST
     p = get_object_or_404(Project, pk=poll_id)
-    if request.POST['data'] == "-1":
+    data = request.POST.get("data", None)
+    if not data:
+        return HttpResponse(status=405)
+    if data == "-1":
         value = -1
     else:
         value = 1
