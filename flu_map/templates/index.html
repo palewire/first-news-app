@@ -1,0 +1,76 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://raw.github.com/DmitryBaranovskiy/raphael/master/raphael-min.js"></script>
+</head>
+<body>
+    <h1>Flu activity by state, week ending {{ week.end_date }}</h1>
+
+    <div id="container"></div>
+    <h2 id="name"></div>
+    <h3 id="activity"></h3>
+    <script type="text/javascript">
+        {% include "us-map-svg.js" %}
+    </script>
+    <script type="text/javascript">
+        var usData = {
+        {% for obj in object_list %}
+            {{ obj.state.get_postal_code|lower }}: {
+                name: "{{ obj.state.name }}",
+                level: {{ obj.activity_level }},
+                label: "{{ obj.get_activity_level_label }}"
+            }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+        };
+    </script>
+    <script type="text/javascript">
+      window.onload = function () {
+        var R = Raphael("container", 1000, 600);
+        var usRaphael = {};
+        var level2color = {
+          0: "White",
+          1: "Green",
+          2: "SeaGreen",
+          3: "GreenYellow",
+          4: "Lime",
+          5: "LawnGreen",
+          6: "Gold",
+          7: "Orange",
+          8: "DarkOrange",
+          9: "OrangeRed",
+          10: "Red",
+        };
+        for (var state in usMap) {
+            var data = usData[state];
+            var attr = {
+                "fill": level2color[data.level],
+                "stroke": "#fff",
+                "stroke-opacity": "1",
+                "stroke-linejoin": "round",
+                "stroke-miterlimit": "4",
+                "stroke-width": "0.75",
+                "stroke-dasharray": "none"
+              };
+            usRaphael[state] = R.path(usMap[state]).attr(attr);
+            (function (obj, data) {
+                obj[0].style.cursor = "pointer";
+                obj[0].onmouseover = function () {
+                  document.getElementById("name").innerHTML = data.name;
+                  document.getElementById("activity").innerHTML = "Level: " + data.label + " (" + data.level + "/10)";
+                  obj.animate({opacity: 0.25}, 500);
+                  obj.toFront();
+                  R.safari();
+                };
+                obj[0].onmouseout = function () {
+                  document.getElementById("name").innerHTML = "";
+                  document.getElementById("activity").innerHTML = "";
+                  obj.animate({opacity: 1}, 500);
+                  obj.toFront();
+                  R.safari();
+                };
+              })(usRaphael[state], data);
+
+        }
+      };
+    </script>
+</body>
+</html>
