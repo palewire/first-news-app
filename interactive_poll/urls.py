@@ -5,9 +5,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'polls.views.index'),
-    url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
-    url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
+    url(r'^$', view='polls.views.index', name='polls_index_view'),
+    url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
+    url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote, name='polls_vote_view'),
     url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT, 'show_indexes': True
     }),
