@@ -1,9 +1,9 @@
-{% if projects %}
-    <ul>
-    {% for project in projects %}
-        <li><a href="/polls/{{ project.id }}/">{{ project.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
+{% load url from future %}
+
+<ul>
+{% for project in projects %}
+    <li><a href="{% url "polls_detail_view" %}">{{ project.title }}</a></li>
+{% empty %}
     <p>No projects are available.</p>
-{% endif %}
+{% endfor %}
+</ul>
