@@ -141,7 +141,11 @@ Go in there and add the following to the models.py file, which will act as the b
 </span><span class="hll">         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
 </span></pre></div>
 </div>
-<p>Go back into settings.py and uncomment &#8220;django.contrib.admin&#8221; in INSTALLED_APPS</p>
+<p>Go back into settings.py and set ADMIN_MEDIA_PREFIX if it isn&#8217;t set to this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s">&#39;/static/admin/&#39;</span>
+</pre></div>
+</div>
+<p>Uncomment &#8220;django.contrib.admin&#8221; in INSTALLED_APPS</p>
 <div class="highlight-python"><div class="highlight"><pre> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
      <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
      <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>

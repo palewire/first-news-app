@@ -114,8 +114,14 @@ Jump back into models.py and add a string representation of your object to the m
         
         def __unicode__(self):
             return self.title
+  
+Go back into settings.py and set ADMIN_MEDIA_PREFIX if it isn't set to this:
 
-Go back into settings.py and uncomment "django.contrib.admin" in INSTALLED_APPS
+.. code-block:: python
+
+   ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+Uncomment "django.contrib.admin" in INSTALLED_APPS
 
 .. code-block:: python
    :emphasize-lines: 9
