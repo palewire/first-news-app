@@ -1,8 +1,6 @@
-{% load url from future %}
-
 <ul>
 {% for project in projects %}
-    <li><a href="{% url "polls_detail_view" %}">{{ project.title }}</a></li>
+    <li><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></li>
 {% empty %}
     <p>No projects are available.</p>
 {% endfor %}
