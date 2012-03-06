@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import permalink
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
@@ -7,6 +8,10 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('detail', [self.pk])
 
 
 class Vote(models.Model):
