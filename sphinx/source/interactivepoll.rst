@@ -69,6 +69,13 @@ Go in there and add the following to the models.py file, which will act as the b
         title = models.CharField(max_length=200)
         pub_date = models.DateTimeField('date published')
         active_flag = models.BooleanField()
+        
+        def __unicode__(self):
+                return self.title
+
+        @models.permalink
+        def get_absolute_url(self):
+            return ('detail', [self.pk])
 
     class Vote(models.Model):
         project = models.ForeignKey(Project)
@@ -114,8 +121,14 @@ Jump back into models.py and add a string representation of your object to the m
         
         def __unicode__(self):
             return self.title
+  
+Go back into settings.py and set ADMIN_MEDIA_PREFIX if it isn't set to this:
 
-Go back into settings.py and uncomment "django.contrib.admin" in INSTALLED_APPS
+.. code-block:: python
+
+   ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+Uncomment "django.contrib.admin" in INSTALLED_APPS
 
 .. code-block:: python
    :emphasize-lines: 9
@@ -218,9 +231,9 @@ Then replace all of urls.py file with the following.
     
     urlpatterns = patterns('',
         (r'^admin/', include(admin.site.urls)),
-        url(r'^$', view='polls.views.index', name='polls_index_view'),
-        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
-        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote, name='polls_vote_view'),
+        url(r'^$', view='polls.views.index', name='polls_index'),
+        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail'),
+        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote', name='polls_vote'),
         url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT, 'show_indexes': True
         }),
@@ -269,11 +282,9 @@ Create a "templates" folder in the base of your project and create an index.html
 
 .. code-block:: html+django
 
-    {% load url from future %}
-
     <ul>
     {% for project in projects %}
-        <li><a href="{% url "polls_detail_view" %}">{{ project.title }}</a></li>
+        <li><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></li>
     {% empty %}
         <p>No projects are available.</p>
     {% endfor %}

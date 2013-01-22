@@ -103,6 +103,13 @@ Go in there and add the following to the models.py file, which will act as the b
     <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s">&#39;date published&#39;</span><span class="p">)</span>
     <span class="n">active_flag</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
 
+    <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="nd">@models.permalink</span>
+    <span class="k">def</span> <span class="nf">get_absolute_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s">&#39;detail&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pk</span><span class="p">])</span>
+
 <span class="k">class</span> <span class="nc">Vote</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">project</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Project</span><span class="p">)</span>
     <span class="n">choice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
@@ -141,7 +148,11 @@ Go in there and add the following to the models.py file, which will act as the b
 </span><span class="hll">         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
 </span></pre></div>
 </div>
-<p>Go back into settings.py and uncomment &#8220;django.contrib.admin&#8221; in INSTALLED_APPS</p>
+<p>Go back into settings.py and set ADMIN_MEDIA_PREFIX if it isn&#8217;t set to this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s">&#39;/static/admin/&#39;</span>
+</pre></div>
+</div>
+<p>Uncomment &#8220;django.contrib.admin&#8221; in INSTALLED_APPS</p>
 <div class="highlight-python"><div class="highlight"><pre> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
      <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
      <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
@@ -222,9 +233,12 @@ the active flag, so we have something to work with.</p>
 
 <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
     <span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="s">&#39;polls.views.index&#39;</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/$&#39;</span><span class="p">,</span> <span class="s">&#39;polls.views.detail&#39;</span><span class="p">),</span>
-    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/vote/$&#39;</span><span class="p">,</span> <span class="s">&#39;polls.views.vote&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.index&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_index&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.detail&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_detail&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/vote/$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.vote&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_vote&#39;</span><span class="p">),</span>
+    <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^local-media/(?P&lt;path&gt;.*)$&#39;</span><span class="p">,</span> <span class="s">&#39;django.views.static.serve&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;document_root&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="s">&#39;show_indexes&#39;</span><span class="p">:</span> <span class="bp">True</span>
+    <span class="p">}),</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -266,15 +280,13 @@ the active flag, so we have something to work with.</p>
 </pre></div>
 </div>
 <p>Create a &#8220;templates&#8221; folder in the base of your project and create an index.html file in there. Add the following.</p>
-<div class="highlight-html+django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="nv">projects</span> <span class="cp">%}</span>
-    <span class="nt">&lt;ul&gt;</span>
-    <span class="cp">{%</span> <span class="k">for</span> <span class="nv">project</span> <span class="k">in</span> <span class="nv">projects</span> <span class="cp">%}</span>
-        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
-    <span class="nt">&lt;/ul&gt;</span>
-<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span>
+<div class="highlight-html+django"><div class="highlight"><pre><span class="nt">&lt;ul&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">project</span> <span class="k">in</span> <span class="nv">projects</span> <span class="cp">%}</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;</span><span class="cp">{{</span> <span class="nv">project.get_absolute_url</span> <span class="cp">}}</span><span class="s">&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="cp">{%</span> <span class="k">empty</span> <span class="cp">%}</span>
     <span class="nt">&lt;p&gt;</span>No projects are available.<span class="nt">&lt;/p&gt;</span>
-<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="nt">&lt;/ul&gt;</span>
 </pre></div>
 </div>
 <p>Add a detail.html template where it all comes together.</p>
