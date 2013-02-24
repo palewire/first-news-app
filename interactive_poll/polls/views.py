@@ -14,10 +14,10 @@ def index(request):
 
 def detail(request, poll_id):
     p = Project.objects.get(pk=poll_id)
-    total = p.vote_set.aggregate(Sum('choice'))
+    total = p.vote_set.aggregate(sum=Sum('choice'))
     return render(request, 'detail.html', {
         'project': p,
-        'total': total['choice__sum'],
+        'total': total['sum'] or 0,
         'request': request,
     })
 
