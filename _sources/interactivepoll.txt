@@ -218,9 +218,12 @@ Then replace all of urls.py file with the following.
     
     urlpatterns = patterns('',
         (r'^admin/', include(admin.site.urls)),
-        url(r'^$', 'polls.views.index'),
-        url(r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
-        url(r'^polls/(?P<poll_id>\d+)/vote/$', 'polls.views.vote'),
+        url(r'^$', view='polls.views.index', name='polls_index_view'),
+        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
+        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote, name='polls_vote_view'),
+        url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT, 'show_indexes': True
+        }),
     )
 
 Open up views.py in the polls folder and all all of the following.
@@ -241,10 +244,10 @@ Open up views.py in the polls folder and all all of the following.
     
     def detail(request, poll_id):
         p = Project.objects.get(pk=poll_id)
-        total = p.vote_set.aggregate(Sum('choice'))
+        total = p.vote_set.aggregate(sum=Sum('choice'))
         return render(request, 'detail.html', {
             'project': p,
-            'total': total['choice__sum'],
+            'total': total['sum'] or 0,
             'request': request,
         })
     
@@ -266,15 +269,15 @@ Create a "templates" folder in the base of your project and create an index.html
 
 .. code-block:: html+django
 
-    {% if projects %}
-        <ul>
-        {% for project in projects %}
-            <li><a href="/polls/{{ project.id }}/">{{ project.title }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
+    {% load url from future %}
+
+    <ul>
+    {% for project in projects %}
+        <li><a href="{% url "polls_detail_view" %}">{{ project.title }}</a></li>
+    {% empty %}
         <p>No projects are available.</p>
-    {% endif %}
+    {% endfor %}
+    </ul>
 
 Add a detail.html template where it all comes together.
 
