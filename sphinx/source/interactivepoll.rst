@@ -2,7 +2,7 @@ Interactive Poll
 ================
 
 A step-by-step guide for building an interactive poll. Based on
-an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_, it has been adapted here by `Ben Welsh <http://palewire.com/who-is-ben-welsh/>`_.
+an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_, it has been adapted here by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_.
 
 .. image:: images/interactivepoll.png
 
@@ -179,7 +179,7 @@ the active flag, so we have something to work with.
 You'll notice that the lists in the database have boring names for each entry. To fix that, jump back into models.py and add a string representation of your object to the model Poll.
 
 .. code-block:: python
-   :emphasize-lines: 6,7
+   :emphasize-lines: 5,6
 
     class Poll(models.Model):
         title = models.CharField(max_length=200)
