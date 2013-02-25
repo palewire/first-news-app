@@ -238,7 +238,7 @@ First, lets create an new url that will serve as our site's homepage, often call
         url(r'^admin/', include(admin.site.urls)),
     )
 
-Open up views.py in the polls folder and all all of the following.
+Open up views.py in the polls folder and add all of the following.
 
 .. code-block:: python
 
