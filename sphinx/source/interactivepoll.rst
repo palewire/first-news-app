@@ -219,22 +219,131 @@ Then replace all of urls.py file with the following.
     urlpatterns = patterns('',
         (r'^admin/', include(admin.site.urls)),
         url(r'^$', view='polls.views.index', name='polls_index_view'),
-        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
-        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote, name='polls_vote_view'),
-        url(r'^local-media/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT, 'show_indexes': True
-        }),
     )
 
 Open up views.py in the polls folder and all all of the following.
 
 .. code-block:: python
 
+    from polls.models import Project
+    from django.shortcuts import render
+    
+    def index(request):
+        projects = Project.objects.all().order_by('-pub_date')[:5]
+        return render(request, 'index.html', {
+            'projects': projects
+        })
+    
+
+Create a "templates" folder in the base of your project and create an index.html file in there. Add the following.
+
+.. code-block:: html+django
+
+    <ul>
+    {% for project in projects %}
+        <li><a href="/polls/{{ project.id }}/">{{ project.title }}</a></li>
+    {% empty %}
+        <p>No projects are available.</p>
+    {% endfor %}
+    </ul>
+
+Now fire up the runserver and watch it fly in your browser at http://localhost:8000.
+
+.. code-block:: bash
+
+    $ python manage.py runserver
+
+Now create a detail page by adding the same set of an url, view and template. First the url.
+
+.. code-block:: python
+   :emphasize-lines: 8
+
+    from django.conf.urls.defaults import *
+    from django.contrib import admin
+    admin.autodiscover()
+    
+    urlpatterns = patterns('',
+        (r'^admin/', include(admin.site.urls)),
+        url(r'^$', view='polls.views.index', name='polls_index_view'),
+        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
+    )
+
+Then the view.
+
+.. code-block:: python
+   :emphasize-lines: 1,11,12,13,14,15,16,17,18
+
     from django.db.models import Sum
-    from polls.models import Project, Vote
+    from polls.models import Project
+    from django.shortcuts import render
+    
+    def index(request):
+        projects = Project.objects.all().order_by('-pub_date')[:5]
+        return render(request, 'index.html', {
+            'projects': projects
+        })
+    
+    def detail(request, poll_id):
+        p = Project.objects.get(pk=poll_id)
+        total = p.vote_set.aggregate(sum=Sum('choice'))
+        return render(request, 'detail.html', {
+            'project': p,
+            'total': total['sum'] or 0,
+            'request': request,
+        })
+
+Add a detail.html template.
+
+.. code-block:: html+django
+
+    <html>
+    <head>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <style type="text/css">
+            h3 {margin-bottom:40px;}
+            .button { display:inline; background-color: black; color:white; padding:7px; margin: 0 15px; cursor:pointer; }
+            .button:hover { background-color:#CCC; }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h1 id="title">{{ project }}</h1>
+            <h3 id="total">Total: {{ total }}</h3>
+            <div>
+                <div id="yes" class="button">YES</div>
+                <div id="no" class="button">NO</div>
+            </div>
+        </div>
+    </body>
+    </html>
+
+That's great, but you can't vote yet. To do that you'll need another url and view where votes get handled. First the url.
+
+.. code-block:: python
+   :emphasize-lines: 9
+
+    from django.conf.urls.defaults import *
+    from django.contrib import admin
+    admin.autodiscover()
+    
+    urlpatterns = patterns('',
+        (r'^admin/', include(admin.site.urls)),
+        url(r'^$', view='polls.views.index', name='polls_index_view'),
+        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
+        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote', name='polls_vote_view'),
+    )
+
+Then then view.
+
+.. code-block:: python
+   :emphasize-lines: 4,5,6,22,23,24,25,26,27,28,29,30,31,32,33,34,35
+
+    from django.db.models import Sum
+    from polls.models import Project
+    from django.shortcuts import render
+    from django.http import HttpResponse
+    from django.shortcuts import get_object_or_404
     from django.views.decorators.csrf import csrf_exempt
-    from django.shortcuts import get_object_or_404, render
-    from django.http import HttpResponseRedirect, HttpResponse
     
     def index(request):
         projects = Project.objects.all().order_by('-pub_date')[:5]
@@ -265,24 +374,11 @@ Open up views.py in the polls folder and all all of the following.
         v.save()
         return HttpResponse(status=200)
 
-Create a "templates" folder in the base of your project and create an index.html file in there. Add the following.
+Then add some JavaScript to the detail template where the page can interact with the database using this new view.
 
 .. code-block:: html+django
-
-    {% load url from future %}
-
-    <ul>
-    {% for project in projects %}
-        <li><a href="{% url "polls_detail_view" %}">{{ project.title }}</a></li>
-    {% empty %}
-        <p>No projects are available.</p>
-    {% endfor %}
-    </ul>
-
-Add a detail.html template where it all comes together.
-
-.. code-block:: html+django
-
+   :emphasize-lines: 19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36
+    
     <html>
     <head>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -295,7 +391,7 @@ Add a detail.html template where it all comes together.
     <body>
         <div align="center">
             <h1 id="title">{{ project }}</h1>
-            <h3 id="total">Total: {{ total|default_if_none:0 }}</h3>
+            <h3 id="total">Total: {{ total }}</h3>
             <div>
                 <div id="yes" class="button">YES</div>
                 <div id="no" class="button">NO</div>
@@ -322,10 +418,4 @@ Add a detail.html template where it all comes together.
     </body>
     </html>
 
-Now fire up the runserver and watch it fly in your browser at http://localhost:8000.
-
-.. code-block:: bash
-
-    $ python manage.py runserver
-
-
+Now reload the page and it should all work. You did it!
