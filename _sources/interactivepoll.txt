@@ -63,13 +63,24 @@ Now we will create an "application", Django slang for a package of code. We'll c
     $ python manage.py startapp polls
 
 You'll now find a folder called "polls" where we'll be building our app. The models file is where we define our database tables.
-Go in there and add the following to the models.py file, which will act as the blueprint for two new tables. ::
+Go in there and add the following to the models.py file, which will act as the blueprint for two new tables.
 
+.. code-block:: python
+   :emphasize-lines: 3-15
+
+    from django.db import models
+    
     class Poll(models.Model):
+        """
+        A poll we ask users to vote on.
+        """
         title = models.CharField(max_length=200)
         pub_date = models.DateTimeField()
-
+    
     class Vote(models.Model):
+        """
+        A yes or no vote.
+        """
         poll = models.ForeignKey(Poll)
         choice = models.IntegerField()
 
@@ -179,45 +190,52 @@ the active flag, so we have something to work with.
 You'll notice that the lists in the database have boring names for each entry. To fix that, jump back into models.py and add a string representation of your object to the model Poll.
 
 .. code-block:: python
-   :emphasize-lines: 5,6
+   :emphasize-lines: 10-11
 
+    from django.db import models
+    
     class Poll(models.Model):
+        """
+        A poll we ask users to vote on.
+        """
         title = models.CharField(max_length=200)
         pub_date = models.DateTimeField()
-        
+    
         def __unicode__(self):
             return self.title
+    
+    class Vote(models.Model):
+        """
+        A yes or no vote.
+        """
+        poll = models.ForeignKey(Poll)
+        choice = models.IntegerField()
 
 
 Act 3: Hello Internets
 ----------------------
 
-First add the following to the top of your settings.py file.
+First, lets create an new url that will serve as our site's homepage, often called an "index" page by Internet geeks.
 
 .. code-block:: python
+   :emphasize-lines: 9
 
-    import os
-    settings_dir = os.path.dirname(__file__)
-
-And change the TEMPLATE_DIRS variable.
-
-.. code-block:: python
-
-    TEMPLATE_DIRS = (
-        os.path.join(settings_dir, 'templates'),
-    )
-
-Then replace all of urls.py file with the following.
-
-.. code-block:: python
-
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
+    
+    # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
     admin.autodiscover()
     
     urlpatterns = patterns('',
-        (r'^admin/', include(admin.site.urls)),
+        # Examples:
         url(r'^$', view='polls.views.index', name='polls_index_view'),
+        # url(r'^interactive_poll/', include('interactive_poll.foo.urls')),
+        
+        # Uncomment the admin/doc line below to enable admin documentation:
+        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+        
+        # Uncomment the next line to enable the admin:
+        url(r'^admin/', include(admin.site.urls)),
     )
 
 Open up views.py in the polls folder and all all of the following.
@@ -228,13 +246,16 @@ Open up views.py in the polls folder and all all of the following.
     from django.shortcuts import render
     
     def index(request):
+        """
+        A list of the five most recent polls.
+        """
         poll_list = Poll.objects.all().order_by('-pub_date')[:5]
         return render(request, 'index.html', {
             'poll_list': poll_list
         })
     
 
-Create a "templates" folder in the base of your project and create an index.html file in there. Add the following.
+Create a "templates" folder inside the "polls" folder and then create an index.html file in there. Add the following.
 
 .. code-block:: html+django
 
@@ -255,34 +276,49 @@ Now fire up the runserver and watch it fly in your browser at http://localhost:8
 Now create a detail page by adding the same set of an url, view and template. First the url.
 
 .. code-block:: python
-   :emphasize-lines: 8
+   :emphasize-lines: 10-11
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
+    
+    # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
     admin.autodiscover()
     
     urlpatterns = patterns('',
-        (r'^admin/', include(admin.site.urls)),
+        # Examples:
         url(r'^$', view='polls.views.index', name='polls_index_view'),
-        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
+        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail',
+            name='polls_detail_view'),
+        
+        # Uncomment the admin/doc line below to enable admin documentation:
+        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+        
+        # Uncomment the next line to enable the admin:
+        url(r'^admin/', include(admin.site.urls)),
     )
 
 Then the view.
 
 .. code-block:: python
-   :emphasize-lines: 1,11,12,13,14,15,16,17,18
+   :emphasize-lines: 1,14-24
 
     from django.db.models import Sum
     from polls.models import Poll
     from django.shortcuts import render
     
     def index(request):
+        """
+        A list of the five most recent polls.
+        """
         poll_list = Poll.objects.all().order_by('-pub_date')[:5]
         return render(request, 'index.html', {
             'poll_list': poll_list
         })
     
     def detail(request, poll_id):
+        """
+        A page where you vote on a particular poll.
+        """
         p = Poll.objects.get(pk=poll_id)
         total = p.vote_set.aggregate(sum=Sum('choice'))
         return render(request, 'detail.html', {
@@ -319,23 +355,33 @@ Add a detail.html template.
 That's great, but you can't vote yet. To do that you'll need another url and view where votes get handled. First the url.
 
 .. code-block:: python
-   :emphasize-lines: 9
+   :emphasize-lines: 12-13
 
-    from django.conf.urls.defaults import *
+    from django.conf.urls.defaults import patterns, include, url
+    
+    # Uncomment the next two lines to enable the admin:
     from django.contrib import admin
     admin.autodiscover()
     
     urlpatterns = patterns('',
-        (r'^admin/', include(admin.site.urls)),
+        # Examples:
         url(r'^$', view='polls.views.index', name='polls_index_view'),
-        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail', name='polls_detail_view'),
-        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote', name='polls_vote_view'),
+        url(r'^polls/(?P<poll_id>\d+)/$', view='polls.views.detail',
+            name='polls_detail_view'),
+        url(r'^polls/(?P<poll_id>\d+)/vote/$', view='polls.views.vote',
+            name='polls_vote_view'),
+        
+        # Uncomment the admin/doc line below to enable admin documentation:
+        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+        
+        # Uncomment the next line to enable the admin:
+        url(r'^admin/', include(admin.site.urls)),
     )
 
 Then then view.
 
 .. code-block:: python
-   :emphasize-lines: 4,5,6,22,23,24,25,26,27,28,29,30,31,32,33,34,35
+   :emphasize-lines: 4,5,6,29-45
 
     from django.db.models import Sum
     from polls.models import Poll
@@ -345,12 +391,18 @@ Then then view.
     from django.views.decorators.csrf import csrf_exempt
     
     def index(request):
+        """
+        A list of the five most recent polls.
+        """
         poll_list = Poll.objects.all().order_by('-pub_date')[:5]
         return render(request, 'index.html', {
             'poll_list': poll_list
         })
     
     def detail(request, poll_id):
+        """
+        A page where you vote on a particular poll.
+        """
         p = Poll.objects.get(pk=poll_id)
         total = p.vote_set.aggregate(sum=Sum('choice'))
         return render(request, 'detail.html', {
@@ -361,6 +413,10 @@ Then then view.
     
     @csrf_exempt
     def vote(request, poll_id):
+        """
+        The hidden url where votes are sent 
+        to be added to the database.
+        """
         p = get_object_or_404(Poll, pk=poll_id)
         data = request.POST.get("data", None)
         if not data:
