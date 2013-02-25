@@ -98,13 +98,12 @@ we&#8217;ll be creating a Sqlite database.</p>
 </div>
 <p>You&#8217;ll now find a folder called &#8220;polls&#8221; where we&#8217;ll be building our app. The models file is where we define our database tables.
 Go in there and add the following to the models.py file, which will act as the blueprint for two new tables.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s">&#39;date published&#39;</span><span class="p">)</span>
-    <span class="n">active_flag</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
+    <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span>
 
 <span class="k">class</span> <span class="nc">Vote</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">project</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Project</span><span class="p">)</span>
+    <span class="n">poll</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Poll</span><span class="p">)</span>
     <span class="n">choice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -131,16 +130,6 @@ Go in there and add the following to the models.py file, which will act as the b
 </div>
 <div class="section" id="act-2-hello-admin">
 <h2>Act 2: Hello Admin<a class="headerlink" href="#act-2-hello-admin" title="Permalink to this headline">¶</a></h2>
-<p>Jump back into models.py and add a string representation of your object to the model Project.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-     <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s">&#39;date published&#39;</span><span class="p">)</span>
-     <span class="n">active_flag</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">BooleanField</span><span class="p">()</span>
-
-<span class="hll">     <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class="hll">         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
-</span></pre></div>
-</div>
 <p>Go back into settings.py and uncomment &#8220;django.contrib.admin&#8221; in INSTALLED_APPS</p>
 <div class="highlight-python"><div class="highlight"><pre> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
      <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
@@ -188,19 +177,28 @@ Go in there and add the following to the models.py file, which will act as the b
 <p>And now log in at <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a>, where you&#8217;ll see Django&#8217;s generic administration
 system. But you&#8217;ll notice that your app&#8217;s database tables aren&#8217;t in there.</p>
 <p>To add them, create a file called admin.py in the &#8220;polls&#8221; folder and add the following.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Project</span><span class="p">,</span> <span class="n">Vote</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span><span class="p">,</span> <span class="n">Vote</span>
 <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 
-<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Project</span><span class="p">)</span>
+<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Poll</span><span class="p">)</span>
 <span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Vote</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now, if you visit <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a> again you should find administration panels
 for entering data into the poll&#8217;s database tables.</p>
-<p>For the purposes of this demonstration, I created a poll Project with the title
+<p>For the purposes of this demonstration, I created a poll with the title
 &#8220;Python is the best programming language&#8221;. When we finish our site, users will be able
 vote up or down my claim. Feel free to insert your own title, but drop one or two in there, and check
 the active flag, so we have something to work with.</p>
+<p>You&#8217;ll notice that the lists in the database have boring names for each entry. To fix that, jump back into models.py and add a string representation of your object to the model Poll.</p>
+<div class="highlight-python"><div class="highlight"><pre> <span class="k">class</span> <span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+     <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span>
+
+     <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="hll">         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+</span></pre></div>
+</div>
 </div>
 <div class="section" id="act-3-hello-internets">
 <h2>Act 3: Hello Internets<a class="headerlink" href="#act-3-hello-internets" title="Permalink to this headline">¶</a></h2>
@@ -227,22 +225,22 @@ the active flag, so we have something to work with.</p>
 </pre></div>
 </div>
 <p>Open up views.py in the polls folder and all all of the following.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Project</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span>
 <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
 <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">projects</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">poll_list</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="s">&#39;projects&#39;</span><span class="p">:</span> <span class="n">projects</span>
+        <span class="s">&#39;poll_list&#39;</span><span class="p">:</span> <span class="n">poll_list</span>
     <span class="p">})</span>
 </pre></div>
 </div>
 <p>Create a &#8220;templates&#8221; folder in the base of your project and create an index.html file in there. Add the following.</p>
 <div class="highlight-html+django"><div class="highlight"><pre><span class="nt">&lt;ul&gt;</span>
-<span class="cp">{%</span> <span class="k">for</span> <span class="nv">project</span> <span class="k">in</span> <span class="nv">projects</span> <span class="cp">%}</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s">/&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">object</span> <span class="k">in</span> <span class="nv">poll_list</span> <span class="cp">%}</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/polls/</span><span class="cp">{{</span> <span class="nv">object.id</span> <span class="cp">}}</span><span class="s">/&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">object.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
 <span class="cp">{%</span> <span class="k">empty</span> <span class="cp">%}</span>
-    <span class="nt">&lt;p&gt;</span>No projects are available.<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>No polls are available.<span class="nt">&lt;/p&gt;</span>
 <span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
 <span class="nt">&lt;/ul&gt;</span>
 </pre></div>
@@ -265,20 +263,20 @@ the active flag, so we have something to work with.</p>
 </div>
 <p>Then the view.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="hll"> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Sum</span>
-</span> <span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Project</span>
+</span> <span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span>
  <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 
  <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-     <span class="n">projects</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+     <span class="n">poll_list</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
      <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-         <span class="s">&#39;projects&#39;</span><span class="p">:</span> <span class="n">projects</span>
+         <span class="s">&#39;poll_list&#39;</span><span class="p">:</span> <span class="n">poll_list</span>
      <span class="p">})</span>
 
 <span class="hll"> <span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-</span><span class="hll">     <span class="n">p</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+</span><span class="hll">     <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
 </span><span class="hll">     <span class="n">total</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="nb">sum</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;choice&#39;</span><span class="p">))</span>
 </span><span class="hll">     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;detail.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class="hll">         <span class="s">&#39;project&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
+</span><span class="hll">         <span class="s">&#39;poll&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
 </span><span class="hll">         <span class="s">&#39;total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">[</span><span class="s">&#39;sum&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class="hll">         <span class="s">&#39;request&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span>
 </span><span class="hll">     <span class="p">})</span>
@@ -296,7 +294,7 @@ the active flag, so we have something to work with.</p>
 <span class="nt">&lt;/head&gt;</span>
 <span class="nt">&lt;body&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">poll</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
         <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;total&quot;</span><span class="nt">&gt;</span>Total: <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="nt">&lt;/h3&gt;</span>
         <span class="nt">&lt;div&gt;</span>
             <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;yes&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>YES<span class="nt">&lt;/div&gt;</span>
@@ -322,30 +320,30 @@ the active flag, so we have something to work with.</p>
 </div>
 <p>Then then view.</p>
 <div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Sum</span>
- <span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Project</span>
+ <span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span>
  <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 <span class="hll"> <span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
 </span><span class="hll"> <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
 </span><span class="hll"> <span class="kn">from</span> <span class="nn">django.views.decorators.csrf</span> <span class="kn">import</span> <span class="n">csrf_exempt</span>
 </span>
  <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-     <span class="n">projects</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+     <span class="n">poll_list</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
      <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-         <span class="s">&#39;projects&#39;</span><span class="p">:</span> <span class="n">projects</span>
+         <span class="s">&#39;poll_list&#39;</span><span class="p">:</span> <span class="n">poll_list</span>
      <span class="p">})</span>
 
  <span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-     <span class="n">p</span> <span class="o">=</span> <span class="n">Project</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+     <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
      <span class="n">total</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="nb">sum</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;choice&#39;</span><span class="p">))</span>
      <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;detail.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-         <span class="s">&#39;project&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
+         <span class="s">&#39;poll&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
          <span class="s">&#39;total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">[</span><span class="s">&#39;sum&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span>
          <span class="s">&#39;request&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span>
      <span class="p">})</span>
 <span class="hll">
 </span><span class="hll"> <span class="nd">@csrf_exempt</span>
 </span><span class="hll"> <span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-</span><span class="hll">     <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Project</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
+</span><span class="hll">     <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Poll</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
 </span><span class="hll">     <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
 </span><span class="hll">     <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
 </span><span class="hll">         <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">405</span><span class="p">)</span>
@@ -370,7 +368,7 @@ the active flag, so we have something to work with.</p>
  <span class="nt">&lt;/head&gt;</span>
  <span class="nt">&lt;body&gt;</span>
      <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">project</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
+         <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">poll</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
          <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;total&quot;</span><span class="nt">&gt;</span>Total: <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="nt">&lt;/h3&gt;</span>
          <span class="nt">&lt;div&gt;</span>
              <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;yes&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>YES<span class="nt">&lt;/div&gt;</span>
@@ -378,11 +376,11 @@ the active flag, so we have something to work with.</p>
          <span class="nt">&lt;/div&gt;</span>
      <span class="nt">&lt;/div&gt;</span>
 <span class="hll">     <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class="hll">         <span class="kd">var</span> <span class="nx">currentTotal</span> <span class="o">=</span> <span class="cp">{{</span> <span class="nv">total</span><span class="o">|</span><span class="nf">default_if_none</span><span class="o">:</span><span class="m">0</span> <span class="cp">}}</span><span class="p">;</span>
+</span><span class="hll">         <span class="kd">var</span> <span class="nx">currentTotal</span> <span class="o">=</span> <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="p">;</span>
 </span><span class="hll">         <span class="kd">var</span> <span class="nx">vote</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hll">             <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
 </span><span class="hll">               <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-</span><span class="hll">               <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/polls/</span><span class="cp">{{</span> <span class="nv">project.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
+</span><span class="hll">               <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/polls/</span><span class="cp">{{</span> <span class="nv">poll.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
 </span><span class="hll">               <span class="nx">data</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}</span>
 </span><span class="hll">             <span class="p">});</span>
 </span><span class="hll">             <span class="nx">currentTotal</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>

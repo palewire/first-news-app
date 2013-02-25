@@ -65,13 +65,12 @@ Now we will create an "application", Django slang for a package of code. We'll c
 You'll now find a folder called "polls" where we'll be building our app. The models file is where we define our database tables.
 Go in there and add the following to the models.py file, which will act as the blueprint for two new tables. ::
 
-    class Project(models.Model):
+    class Poll(models.Model):
         title = models.CharField(max_length=200)
-        pub_date = models.DateTimeField('date published')
-        active_flag = models.BooleanField()
+        pub_date = models.DateTimeField()
 
     class Vote(models.Model):
-        project = models.ForeignKey(Project)
+        poll = models.ForeignKey(Poll)
         choice = models.IntegerField()
 
 Now return do the settings.py file and add a line to the INSTALLED_APPS list with the name of our new app.
@@ -101,19 +100,6 @@ Sync your database again and your new tables will be created in the database.
 
 Act 2: Hello Admin
 ------------------
-
-Jump back into models.py and add a string representation of your object to the model Project.
-
-.. code-block:: python
-   :emphasize-lines: 6,7
-
-    class Project(models.Model):
-        title = models.CharField(max_length=200)
-        pub_date = models.DateTimeField('date published')
-        active_flag = models.BooleanField()
-        
-        def __unicode__(self):
-            return self.title
 
 Go back into settings.py and uncomment "django.contrib.admin" in INSTALLED_APPS
 
@@ -176,19 +162,32 @@ To add them, create a file called admin.py in the "polls" folder and add the fol
 
 .. code-block:: python
 
-    from polls.models import Project, Vote
+    from polls.models import Poll, Vote
     from django.contrib import admin
     
-    admin.site.register(Project)
+    admin.site.register(Poll)
     admin.site.register(Vote)
 
 Now, if you visit http://localhost:8000/admin/ again you should find administration panels
 for entering data into the poll's database tables.
 
-For the purposes of this demonstration, I created a poll Project with the title
+For the purposes of this demonstration, I created a poll with the title
 "Python is the best programming language". When we finish our site, users will be able
 vote up or down my claim. Feel free to insert your own title, but drop one or two in there, and check
 the active flag, so we have something to work with.
+
+You'll notice that the lists in the database have boring names for each entry. To fix that, jump back into models.py and add a string representation of your object to the model Poll.
+
+.. code-block:: python
+   :emphasize-lines: 6,7
+
+    class Poll(models.Model):
+        title = models.CharField(max_length=200)
+        pub_date = models.DateTimeField()
+        
+        def __unicode__(self):
+            return self.title
+
 
 Act 3: Hello Internets
 ----------------------
@@ -225,13 +224,13 @@ Open up views.py in the polls folder and all all of the following.
 
 .. code-block:: python
 
-    from polls.models import Project
+    from polls.models import Poll
     from django.shortcuts import render
     
     def index(request):
-        projects = Project.objects.all().order_by('-pub_date')[:5]
+        poll_list = Poll.objects.all().order_by('-pub_date')[:5]
         return render(request, 'index.html', {
-            'projects': projects
+            'poll_list': poll_list
         })
     
 
@@ -240,10 +239,10 @@ Create a "templates" folder in the base of your project and create an index.html
 .. code-block:: html+django
 
     <ul>
-    {% for project in projects %}
-        <li><a href="/polls/{{ project.id }}/">{{ project.title }}</a></li>
+    {% for object in poll_list %}
+        <li><a href="/polls/{{ object.id }}/">{{ object.title }}</a></li>
     {% empty %}
-        <p>No projects are available.</p>
+        <p>No polls are available.</p>
     {% endfor %}
     </ul>
 
@@ -274,20 +273,20 @@ Then the view.
    :emphasize-lines: 1,11,12,13,14,15,16,17,18
 
     from django.db.models import Sum
-    from polls.models import Project
+    from polls.models import Poll
     from django.shortcuts import render
     
     def index(request):
-        projects = Project.objects.all().order_by('-pub_date')[:5]
+        poll_list = Poll.objects.all().order_by('-pub_date')[:5]
         return render(request, 'index.html', {
-            'projects': projects
+            'poll_list': poll_list
         })
     
     def detail(request, poll_id):
-        p = Project.objects.get(pk=poll_id)
+        p = Poll.objects.get(pk=poll_id)
         total = p.vote_set.aggregate(sum=Sum('choice'))
         return render(request, 'detail.html', {
-            'project': p,
+            'poll': p,
             'total': total['sum'] or 0,
             'request': request,
         })
@@ -307,7 +306,7 @@ Add a detail.html template.
     </head>
     <body>
         <div align="center">
-            <h1 id="title">{{ project }}</h1>
+            <h1 id="title">{{ poll }}</h1>
             <h3 id="total">Total: {{ total }}</h3>
             <div>
                 <div id="yes" class="button">YES</div>
@@ -339,30 +338,30 @@ Then then view.
    :emphasize-lines: 4,5,6,22,23,24,25,26,27,28,29,30,31,32,33,34,35
 
     from django.db.models import Sum
-    from polls.models import Project
+    from polls.models import Poll
     from django.shortcuts import render
     from django.http import HttpResponse
     from django.shortcuts import get_object_or_404
     from django.views.decorators.csrf import csrf_exempt
     
     def index(request):
-        projects = Project.objects.all().order_by('-pub_date')[:5]
+        poll_list = Poll.objects.all().order_by('-pub_date')[:5]
         return render(request, 'index.html', {
-            'projects': projects
+            'poll_list': poll_list
         })
     
     def detail(request, poll_id):
-        p = Project.objects.get(pk=poll_id)
+        p = Poll.objects.get(pk=poll_id)
         total = p.vote_set.aggregate(sum=Sum('choice'))
         return render(request, 'detail.html', {
-            'project': p,
+            'poll': p,
             'total': total['sum'] or 0,
             'request': request,
         })
     
     @csrf_exempt
     def vote(request, poll_id):
-        p = get_object_or_404(Project, pk=poll_id)
+        p = get_object_or_404(Poll, pk=poll_id)
         data = request.POST.get("data", None)
         if not data:
             return HttpResponse(status=405)
@@ -390,7 +389,7 @@ Then add some JavaScript to the detail template where the page can interact with
     </head>
     <body>
         <div align="center">
-            <h1 id="title">{{ project }}</h1>
+            <h1 id="title">{{ poll }}</h1>
             <h3 id="total">Total: {{ total }}</h3>
             <div>
                 <div id="yes" class="button">YES</div>
@@ -398,11 +397,11 @@ Then add some JavaScript to the detail template where the page can interact with
             </div>
         </div>
         <script type="text/javascript">
-            var currentTotal = {{ total|default_if_none:0 }};
+            var currentTotal = {{ total }};
             var vote = function(data) {
                 $.ajax({
                   type: 'POST',
-                  url: 'http://{{ request.get_host }}/polls/{{ project.id }}/vote/',
+                  url: 'http://{{ request.get_host }}/polls/{{ poll.id }}/vote/',
                   data: {'data': data}
                 });
                 currentTotal += data;
