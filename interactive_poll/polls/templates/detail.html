@@ -9,30 +9,30 @@
 </head>
 <body>
     <div align="center">
-        <h1 id="title">{{ project }}</h1>
+        <h1 id="title">{{ poll }}</h1>
         <h3 id="total">Total: {{ total }}</h3>
         <div>
             <div id="yes" class="button">YES</div>
             <div id="no" class="button">NO</div>
         </div>
     </div>
-    <script type="text/javascript">
-        var currentTotal = {{ total }};
-        var vote = function(data) {
-            $.ajax({
-              type: 'POST',
-              url: 'http://{{ request.get_host }}/polls/{{ project.id }}/vote/',
-              data: {'data': data}
-            });
-            currentTotal += data;
-            $("#total").html("Total: " + currentTotal.toString());
-        };
-        $("#yes").click(function() {
-            vote(1);
-        });
-        $("#no").click(function () {
-            vote(-1);
-        });
-    </script>
+     <script type="text/javascript">
+         var currentTotal = {{ total }};
+         var vote = function(data) {
+             $.ajax({
+               type: 'POST',
+               url: 'http://{{ request.get_host }}/polls/{{ poll.id }}/vote/',
+               data: {'data': data}
+             });
+             currentTotal += data;
+             $("#total").html("Total: " + currentTotal.toString());
+         };
+         $("#yes").click(function() {
+             vote(1);
+         });
+         $("#no").click(function () {
+             vote(-1);
+         });
+     </script>
 </body>
 </html>

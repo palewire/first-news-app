@@ -1,30 +1,28 @@
 from django.db.models import Sum
-from polls.models import Project, Vote
+from polls.models import Poll
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect, HttpResponse
-
 
 def index(request):
-    projects = Project.objects.all().order_by('-pub_date')[:5]
+    poll_list = Poll.objects.all().order_by('-pub_date')[:5]
     return render(request, 'index.html', {
-        'projects': projects
+        'poll_list': poll_list
     })
-
 
 def detail(request, poll_id):
-    p = Project.objects.get(pk=poll_id)
-    total = p.vote_set.aggregate(sum=Sum('choice'))
-    return render(request, 'detail.html', {
-        'project': p,
-        'total': total['sum'] or 0,
-        'request': request,
-    })
-
+     p = Poll.objects.get(pk=poll_id)
+     total = p.vote_set.aggregate(sum=Sum('choice'))
+     return render(request, 'detail.html', {
+         'poll': p,
+         'total': total['sum'] or 0,
+         'request': request,
+     })
 
 @csrf_exempt
 def vote(request, poll_id):
-    p = get_object_or_404(Project, pk=poll_id)
+    p = get_object_or_404(Poll, pk=poll_id)
     data = request.POST.get("data", None)
     if not data:
         return HttpResponse(status=405)
@@ -35,5 +33,3 @@ def vote(request, poll_id):
     v = p.vote_set.create(choice=value)
     v.save()
     return HttpResponse(status=200)
-
-

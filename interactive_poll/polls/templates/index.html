@@ -1,0 +1,7 @@
+<ul>
+{% for object in poll_list %}
+    <li><a href="/polls/{{ object.id }}/">{{ object.title }}</a></li>
+{% empty %}
+    <p>No polls are available.</p>
+{% endfor %}
+</ul>

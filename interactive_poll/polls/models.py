@@ -1,14 +1,12 @@
 from django.db import models
 
-class Project(models.Model):
+class Poll(models.Model):
     title = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
-    active_flag = models.BooleanField()
-
+    pub_date = models.DateTimeField()
+    
     def __unicode__(self):
         return self.title
 
-
 class Vote(models.Model):
-    project = models.ForeignKey(Project)
+    poll = models.ForeignKey(Poll)
     choice = models.IntegerField()

@@ -1,5 +1,5 @@
-from polls.models import Project, Vote
+from polls.models import Poll, Vote
 from django.contrib import admin
 
-admin.site.register(Project)
+admin.site.register(Poll)
 admin.site.register(Vote)
