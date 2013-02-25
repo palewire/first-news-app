@@ -6,7 +6,7 @@ an application designed by `Aron Pilhofer <http://twitter.com/pilhofer>`_, it ha
 
 .. image:: images/interactivepoll.png
 
-To see a working demonstration of what you'll be building, visit http://palewire.com/nicar/polls/1/
+To see a working demonstration of what you'll be building, visit http://palewi.re/nicar/polls/1/
 
 Prelude: Hello Django
 ---------------------
