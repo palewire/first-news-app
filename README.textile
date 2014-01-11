@@ -9,6 +9,4 @@
                                                                                        \/_/    \/_/ 
 </code></pre>
 
-A step-by-step guide to building a simple news application with Django
-
-* Full tutorial at "http://ireapps.github.com/first-news-app/":http://ireapps.github.com/first-news-app/
+A step-by-step guide to building a simple news application with Python, Flask and GitHub.
