@@ -1,7 +1,0 @@
-h1. Documentation
-
-This branch contains documentation created by Python's Sphinx framework.
-
-It lives at "http://ireapps.github.com/first-news-app/":http://ireapps.github.com/first-news-app/
-
-To update it, first make the desired revisions to the reStructuredText files in sphinx/source/. Then run "make html" from the sphinx directory. The files should update, and all that's required to publish is to commit the changes and run "git push origin gh-pages".
