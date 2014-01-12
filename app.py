@@ -7,7 +7,8 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     csv_path = './static/baltimore-cctv-locations.csv'
-    object_list = csv.DictReader(open(csv_path, 'r'))
+    csv_obj = csv.DictReader(open(csv_path, 'r'))
+    object_list = list(csv_obj)
     return render_template('index.html',
         object_list=object_list,
     )

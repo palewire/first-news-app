@@ -24,4 +24,26 @@
         subdomains: ['otile1','otile2','otile3','otile4']
     });
     map.addLayer(mapquestLayer);
+
+    var data = {
+      "type": "FeatureCollection",
+      "features": [
+        {% for obj in object_list %}
+        {
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              {{ obj.x }},
+              {{ obj.y }}
+            ]
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    };
+
+    var dataLayer = L.geoJson(data);
+    map.addLayer(dataLayer);
 </script>
