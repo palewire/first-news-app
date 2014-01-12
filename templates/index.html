@@ -1,1 +1,11 @@
-Hello Baltimore!
+<h1>Baltimore CCTV location</h1>
+
+<table>
+{% for obj in object_list %}
+    <tr>
+        <td>{{ obj.number }}</td>
+        <td>{{ obj.location }}</td>
+        <td>{{ obj.project }}</td>
+    </tr>
+{% endfor %}
+</table>

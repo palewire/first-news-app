@@ -1,3 +1,4 @@
+import csv
 from flask import Flask
 from flask import render_template
 app = Flask(__name__)
@@ -5,7 +6,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    csv_path = './static/baltimore-cctv-locations.csv'
+    object_list = csv.DictReader(open(csv_path, 'r'))
+    return render_template('index.html',
+        object_list=object_list,
+    )
 
 
 if __name__ == '__main__':
