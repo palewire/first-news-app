@@ -1,22 +1,12 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Baltimore CCTV locations</h1>
+<h1>{{ object_list.length }} Baltimore CCTV locations</h1>
 
-<div id="map" style="width:100%; height:600px;"></div>
-
-<table>
-{% for obj in object_list %}
-    <tr>
-        <td>{{ obj.number }}</td>
-        <td>{{ obj.location }}</td>
-        <td>{{ obj.project }}</td>
-    </tr>
-{% endfor %}
-</table>
+<div id="map" style="width:100%; height:800px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.2903848,-76.61219], 12);
+    var map = L.map('map').setView([39.295, -76.61219], 14);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
