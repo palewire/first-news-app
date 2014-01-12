@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <pre><code> ____                    __        __  __                                 ______                    
 /\  _`\  __             /\ \__    /\ \/\ \                               /\  _  \                   
 \ \ \L\_\\_\  _ __  ____\ \ ,_\   \ \ `\\ \     __  __  __  __    ____   \ \ \L\ \  _____   _____   
@@ -11,4 +10,3 @@
 </code></pre>
 
 A step-by-step guide to building a simple news application with Python, Flask and GitHub.
-
