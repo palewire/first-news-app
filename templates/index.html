@@ -31,7 +31,11 @@
         {% for obj in object_list %}
         {
           "type": "Feature",
-          "properties": {},
+          "properties": {
+            "number": {{ obj.number }},
+            "location": "{{ obj.location }}",
+            "project": "{{ obj.project }}",
+          },
           "geometry": {
             "type": "Point",
             "coordinates": [
@@ -44,6 +48,17 @@
       ]
     };
 
-    var dataLayer = L.geoJson(data);
+    var dataLayer = L.geoJson(data, {
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(
+                "Camera #" + 
+                feature.properties.number + 
+                "<br>" + 
+                feature.properties.location +
+                "<br>" + 
+                feature.properties.project
+            );
+        }
+    });
     map.addLayer(dataLayer);
 </script>
