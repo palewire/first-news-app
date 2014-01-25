@@ -1,22 +1,23 @@
-.. First News App documentation master file, created by
-   sphinx-quickstart on Sat Jan 25 14:58:50 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+First News App
+==============
 
-Welcome to First News App's documentation!
-==========================================
+A step-by-step guide to building a simple news application with Python, Flask and GitHub.
 
-Contents:
+Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
+and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
-.. toctree::
-   :maxdepth: 2
+.. _gettingstarted:
 
+Getting started
+---------------
 
+Before you can begin, your computer needs `Python <http://python.org>`_, `Django <http://djangoproject.com>`_, 
+and a database. This tutorial assumes you installed them using an all-in-one 
+`Bitnami "stack." <http://bitnami.org/stack/djangostack>`_
 
-Indices and tables
-==================
+.. _tutorials:
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+Tutorials
+---------
 
+Once you have the prerequisites installed, you're ready to start building.
