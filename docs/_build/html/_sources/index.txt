@@ -141,6 +141,7 @@ Act 1: Hello Git
     $ git commit add README.md
     $ git commit -m "First commit"
     $ git push origin master
+    # Look at your repo on the web
 
 ******************
 Act 2: Hello Flask
@@ -148,7 +149,6 @@ Act 2: Hello Flask
 
 .. code-block:: bash
 
-    # Look at your repo on the web
     $ pip install Flask
     $ touch app.py
     # Fill it in with basic Flask stuff to make a single page
@@ -163,7 +163,7 @@ Act 2: Hello Flask
 
 
 *****************
-Act 2: Hello HTML
+Act 3: Hello HTML
 *****************
 
 .. code-block:: bash
@@ -177,12 +177,19 @@ Act 2: Hello HTML
     # Create basic table in HTML page
     $ git add .
     $ git commit -m "Created basic table"
+
+***********************
+Act 4: Hello JavaScript
+***********************
+
+.. code-block:: bash
+
     # Convert to Leaflet map
     $ git add .
     $ git commit -m "Replaced table with map"
 
 *********************
-Act 3: Hello Internet
+Act 5: Hello Internet
 *********************
 
 .. code-block:: bash

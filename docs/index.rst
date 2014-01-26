@@ -141,6 +141,7 @@ Act 1: Hello Git
     $ git commit add README.md
     $ git commit -m "First commit"
     $ git push origin master
+    # Look at your repo on the web
 
 ******************
 Act 2: Hello Flask
@@ -148,7 +149,6 @@ Act 2: Hello Flask
 
 .. code-block:: bash
 
-    # Look at your repo on the web
     $ pip install Flask
     $ touch app.py
     # Fill it in with basic Flask stuff to make a single page
