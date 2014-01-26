@@ -9,9 +9,9 @@ A step-by-step guide to building a simple news application with Python, Flask an
 Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
-*********************************
-Prelude: Installing prerequisites
-*********************************
+**********************
+Prelude: Prerequisites
+**********************
 
 Before you can begin, your computer needs the following tools installed and working 
 to participate.
