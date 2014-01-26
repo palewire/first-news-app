@@ -21,7 +21,7 @@ provide some help installing them below if you need help.
 * Version 2.7 of the `Python <http://python.org>`_ programming language
 * The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
-.. rubric:: Python
+.. rubric:: **Python**
 
 If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can 
 test to see what version, if any, is there waiting for you by typing the following into your terminal. 
