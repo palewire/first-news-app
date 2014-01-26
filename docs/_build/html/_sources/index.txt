@@ -6,8 +6,21 @@ First News App
 
 A step-by-step guide to building a simple news application with Python, Flask and GitHub.
 
-Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
-and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
+This guide will walk you through the process of building a simple online application 
+from a dataset. You will get hands-on experience in every stage of the development process,
+writing Python, HTML and JavaScript using version control tools. By the end you will have
+deployed a working application on the World Wide Web.
+
+This tutorial was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
+and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
+by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construction but it will have its debut on February 27 `at the 
+2014 CAR Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
+
+Other resources:
+
+* Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
+* Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
+* Documentation: `http://first-news-app.rtfd.org/ <http://first-news-app.rtfd.org/>`_
 
 **********************
 Prelude: Prerequisites
