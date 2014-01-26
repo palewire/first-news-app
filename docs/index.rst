@@ -6,27 +6,21 @@ A step-by-step guide to building a simple news application with Python, Flask an
 Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
-.. _gettingstarted:
-
-Getting started
----------------
-
-Before you can begin, your computer needs `Python <http://python.org>`_, `Django <http://djangoproject.com>`_, 
-and a database. This tutorial assumes you installed them using an all-in-one 
-`Bitnami "stack." <http://bitnami.org/stack/djangostack>`_
-
-.. _tutorials:
-
-Prelude: Hello Django
+Prelude: Hello Python
 ---------------------
 
-Before you you can begin work, you need to get your Django environment up and flying. If you havn't
-done it already, follow one of our :ref:`getting started guides<gettingstarted>`. 
+Before you can begin, your computer needs the following tools installed and working:
 
-If you elected to install Bitnami for Windows, you'll need to fire it up by clicking "Use Bitnami DjangoStack"
-in the start menu. That should bring up a terminal where you can being work.
+- `Git <http://git-scm.com/>`_ version control software.
+- Version 2.7 of the `Python <http://python.org>`_ programming language
+- The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
-.. image:: images/bootingbitnamiwindows.png
+python
+  If you are using Mac OS X or a common flavor of Linux, Python is probably already installed and you can 
+  test to see what version, if any, is there by typing "python -V" into your terminal. I don't have Python
+  already installed (a more likely fate for Windows users) try downloading and installing it from `here 
+  <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
+  way to make most of this tutorial work with other versions if you stick with it.
 
 Act 1: Hello Database
 ---------------------
