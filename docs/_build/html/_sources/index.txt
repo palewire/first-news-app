@@ -12,8 +12,7 @@ Prelude: Hello command line
 ***************************
 
 Before you can begin, your computer needs the following tools installed and working to work through
-the tutorial below. Depending on your operating system, much of it may already be installed but we'll 
-provide some help installing them below if you need help.
+the tutorial below. 
 
 * A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
 * A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
@@ -21,7 +20,15 @@ provide some help installing them below if you need help.
 * Version 2.7 of the `Python <http://python.org>`_ programming language
 * The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
-.. rubric:: **Python**
+.. note::
+
+    Depending on your experience and operating system, you might already be ready
+    to go with everything on the list above. If so, move on to the next section. If not, 
+    don't worry. And don't give up! It's going to be a little bit of a 
+    pain but the instructions below will point you in the right direction.
+
+Python
+------
 
 If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can 
 test to see what version, if any, is there waiting for you by typing the following into your terminal. 
