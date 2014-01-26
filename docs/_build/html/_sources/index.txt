@@ -6,7 +6,7 @@ First News App
 
 A step-by-step guide to building a simple news application with Python, Flask and GitHub.
 
-This guide will walk you through the process of building a simple online application 
+This guide will walk you through the process of building a online application 
 from a dataset. You will get hands-on experience in every stage of the development process,
 writing Python, HTML and JavaScript using version control tools. By the end you will have
 deployed a working application on the World Wide Web.
