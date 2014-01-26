@@ -126,9 +126,9 @@ Verify it's installed with the following.
 
     $ pip -V
 
-*********************
-Act 1: Hello Database
-*********************
+******************
+Act 1: Hello Flask
+******************
 
 First, create your Django project
 
@@ -217,9 +217,9 @@ Sync your database again and your new tables will be created in the database.
 
     $ python manage.py syncdb
 
-******************
-Act 2: Hello Admin
-******************
+*****************
+Act 2: Hello HTML
+*****************
 
 Go back into settings.py and uncomment "django.contrib.admin" in INSTALLED_APPS
 
