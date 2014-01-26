@@ -60,6 +60,28 @@ Ubuntu Linux stick with the pre-installed `gedit <https://help.ubuntu.com/commun
 Git and GitHub
 --------------
 
+`Git <http://git-scm.com/>`_ is a version control program for saving the changes 
+you make to files over time. This is useful when you're working on your own, 
+but quickly becomes essential with large software projects, especially if you work with other developers. 
+
+`GitHub <https://github.com/>`_ is a website that hosts git code repositories, both public and private. It comes
+with many helpful tools for reviewing code and managing projects. It also has some 
+`extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later. 
+
+GitHub offers helpful guides for installing Git for 
+`Windows <https://help.github.com/articles/set-up-git#platform-windows>`_,
+`Macs <https://help.github.com/articles/set-up-git#platform-mac>`_ and
+`Linux <https://help.github.com/articles/set-up-git#platform-linux>`_. You can verify
+it's installed from your command line.
+
+.. code-block:: bash
+
+    $ git --version
+
+Once that's done, you should create an account at GitHub, if you don't already have one.
+It shouldn't cost you anything. `The free plan <https://github.com/pricing>`_ 
+is all that's required to complete this lesson.
+
 Python
 ------
 
