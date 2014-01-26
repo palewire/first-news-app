@@ -10,16 +10,21 @@ Prelude: Hello command line
 ---------------------------
 
 Before you can begin, your computer needs the following tools installed and working to work through
-the tutorial below.
+the tutorial below. Depending on your operating system, much of it may already be installed but we'll 
+provide some help installing them below if you need help.
 
 * A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
-* A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ that allows you to  work with plain text files
+* A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
 * `Git <http://git-scm.com/>`_ version control software
 * Version 2.7 of the `Python <http://python.org>`_ programming language
 * The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
+Installation
+~~~~~~~~~~~~
+
 Python
-~~~~~~
+******
+
 If you are using Mac OS X or a common flavor of Linux, Python is probably already installed and you can 
 test to see what version, if any, is there by typing "python -V" into your terminal. I don't have Python
 already installed (a more likely fate for Windows users) try downloading and installing it from `here 
