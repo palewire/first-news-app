@@ -19,15 +19,17 @@ provide some help installing them below if you need help.
 * Version 2.7 of the `Python <http://python.org>`_ programming language
 * The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
-Installation
-~~~~~~~~~~~~
-
 Python
-******
+~~~~~~
 
-If you are using Mac OS X or a common flavor of Linux, Python is probably already installed and you can 
-test to see what version, if any, is there by typing "python -V" into your terminal. I don't have Python
-already installed (a more likely fate for Windows users) try downloading and installing it from `here 
+If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can 
+test to see what version, if any, is there waiting for you by typing the following into your terminal. 
+
+.. code-block:: bash
+
+    $ python -V
+
+If you don't have Python installed (a more likely fate for Windows users) try downloading and installing it from `here 
 <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you stick with it.
 
