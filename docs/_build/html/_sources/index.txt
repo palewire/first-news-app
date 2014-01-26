@@ -16,7 +16,7 @@ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data
 by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construction but it will have its debut on February 27 `at the 
 2014 CAR Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
 
-Other resources:
+Resources:
 
 * Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
 * Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
