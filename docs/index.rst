@@ -1,3 +1,5 @@
+:tocdepth: 2
+
 ==============
 First News App
 ==============
@@ -7,18 +9,18 @@ A step-by-step guide to building a simple news application with Python, Flask an
 Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
-***************************
-Prelude: Hello command line
-***************************
+*********************************
+Prelude: Installing prerequisites
+*********************************
 
-Before you can begin, your computer needs the following tools installed and working to work through
-the tutorial below. 
+Before you can begin, your computer needs the following tools installed and working 
+to participate.
 
-* A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
-* A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
-* `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
-* Version 2.7 of the `Python <http://python.org>`_ programming language
-* The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
+1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
+2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
+3. `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
+4. Version 2.7 of the `Python <http://python.org>`_ programming language
+5. The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
 .. note::
 
