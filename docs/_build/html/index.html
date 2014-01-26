@@ -142,396 +142,69 @@ Verify it&#8217;s installed with the following.</p>
 </div>
 </div>
 </div>
-<div class="section" id="act-1-hello-flask">
-<h2>Act 1: Hello Flask<a class="headerlink" href="#act-1-hello-flask" title="Permalink to this headline">¶</a></h2>
-<p>First, create your Django project</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>django-admin.py startproject interactive_poll
+<div class="section" id="act-1-hello-git">
+<h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git init repo
+<span class="nv">$ </span><span class="nb">cd </span>repo
+<span class="c"># Create a new &#39;first-news-app&#39; app on GitHub</span>
+<span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
+<span class="nv">$ </span>touch README.md
+<span class="c"># Write something in the file</span>
+<span class="nv">$ </span>git commit add README.md
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;First commit&quot;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Jump and start it up for the first time</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>interactive_poll
-<span class="nv">$ </span>python manage.py runserver
-</pre></div>
 </div>
-<p>If you visit <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> in your browser, you should see Django&#8217;s &#8220;Hello World&#8221; page,
-indicating that you&#8217;ve got everything properly configured and are ready to begin work.</p>
-<p>Then you start in on your app by first settings your database connection. For this app,
-we&#8217;ll be creating a Sqlite database.</p>
-<p>In your settings.py file, replace the default database configuration with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
-        <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="s">&#39;database.db&#39;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Then back in your shell run the following command to create your database. When it asks, be sure to create a superuser. We&#8217;ll need it later.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py syncdb
-</pre></div>
-</div>
-<p>Now we will create an &#8220;application&#8221;, Django slang for a package of code. We&#8217;ll call it &#8220;polls.&#8221;</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py startapp polls
-</pre></div>
-</div>
-<p>You&#8217;ll now find a folder called &#8220;polls&#8221; where we&#8217;ll be building our app. The models file is where we define our database tables.
-Go in there and add the following to the models.py file, which will act as the blueprint for two new tables.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-
-<span class="hll"> <span class="k">class</span> <span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-</span><span class="hll">     <span class="sd">&quot;&quot;&quot;</span>
-</span><span class="hll"><span class="sd">     A poll we ask users to vote on.</span>
-</span><span class="hll"><span class="sd">     &quot;&quot;&quot;</span>
-</span><span class="hll">     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-</span><span class="hll">     <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span>
-</span><span class="hll">
-</span><span class="hll"> <span class="k">class</span> <span class="nc">Vote</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-</span><span class="hll">     <span class="sd">&quot;&quot;&quot;</span>
-</span><span class="hll"><span class="sd">     A yes or no vote.</span>
-</span><span class="hll"><span class="sd">     &quot;&quot;&quot;</span>
-</span><span class="hll">     <span class="n">poll</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Poll</span><span class="p">)</span>
-</span><span class="hll">     <span class="n">choice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
-</span></pre></div>
-</div>
-<p>Now return do the settings.py file and add a line to the INSTALLED_APPS list with the name of our new app.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-     <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
-     <span class="c"># Uncomment the next line to enable the admin:</span>
-     <span class="c"># &#39;django.contrib.admin&#39;,</span>
-     <span class="c"># Uncomment the next line to enable admin documentation:</span>
-     <span class="c"># &#39;django.contrib.admindocs&#39;,</span>
-<span class="hll">     <span class="s">&#39;polls&#39;</span><span class="p">,</span>
-</span> <span class="p">)</span>
-</pre></div>
-</div>
-<p>Sync your database again and your new tables will be created in the database.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py syncdb
+<div class="section" id="act-2-hello-flask">
+<h2>Act 2: Hello Flask<a class="headerlink" href="#act-2-hello-flask" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Look at your repo on the web</span>
+<span class="nv">$ </span>pip install Flask
+<span class="nv">$ </span>touch app.py
+<span class="c"># Fill it in with basic Flask stuff to make a single page</span>
+<span class="nv">$ </span>mkdir templates
+<span class="nv">$ </span>touch templates/index.html
+<span class="c"># Write Hello NICAR14 in the template file</span>
+<span class="nv">$ </span>python app.py
+<span class="c"># Check it out in the browser</span>
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
+<span class="c"># Check out the commit message and diff on GitHub</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="act-2-hello-html">
 <h2>Act 2: Hello HTML<a class="headerlink" href="#act-2-hello-html" title="Permalink to this headline">¶</a></h2>
-<p>Go back into settings.py and uncomment &#8220;django.contrib.admin&#8221; in INSTALLED_APPS</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-     <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.messages&#39;</span><span class="p">,</span>
-     <span class="s">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>
-     <span class="c"># Uncomment the next line to enable the admin:</span>
-<span class="hll">     <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
-</span>     <span class="c"># Uncomment the next line to enable admin documentation:</span>
-     <span class="c"># &#39;django.contrib.admindocs&#39;,</span>
-     <span class="s">&#39;polls&#39;</span><span class="p">,</span>
- <span class="p">)</span>
-</pre></div>
-</div>
-<p>Sync the database to create the admin&#8217;s set of tables.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py syncdb
-</pre></div>
-</div>
-<p>Now go into the urls.py file and uncomment the lines related to the admin, look like so</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.conf.urls.defaults</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
-
- <span class="c"># Uncomment the next two lines to enable the admin:</span>
-<span class="hll"> <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
-</span><span class="hll"> <span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
-</span>
- <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
-     <span class="c"># Examples:</span>
-     <span class="c"># url(r&#39;^$&#39;, &#39;interactive_poll.views.home&#39;, name=&#39;home&#39;),</span>
-     <span class="c"># url(r&#39;^interactive_poll/&#39;, include(&#39;interactive_poll.foo.urls&#39;)),</span>
-
-     <span class="c"># Uncomment the admin/doc line below to enable admin documentation:</span>
-     <span class="c"># url(r&#39;^admin/doc/&#39;, include(&#39;django.contrib.admindocs.urls&#39;)),</span>
-
-     <span class="c"># Uncomment the next line to enable the admin:</span>
-<span class="hll">     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
-</span> <span class="p">)</span>
-</pre></div>
-</div>
-<p>Now fire up the runserver,</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
-</pre></div>
-</div>
-<p>And now log in at <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a>, where you&#8217;ll see Django&#8217;s generic administration
-system. But you&#8217;ll notice that your app&#8217;s database tables aren&#8217;t in there.</p>
-<p>To add them, create a file called admin.py in the &#8220;polls&#8221; folder and add the following.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span><span class="p">,</span> <span class="n">Vote</span>
-<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
-
-<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Poll</span><span class="p">)</span>
-<span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Vote</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Now, if you visit <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a> again you should find administration panels
-for entering data into the poll&#8217;s database tables.</p>
-<p>For the purposes of this demonstration, I created a poll with the title
-&#8220;Python is the best programming language&#8221;. When we finish our site, users will be able
-vote up or down my claim. Feel free to insert your own title, but drop one or two in there, and check
-the active flag, so we have something to work with.</p>
-<p>You&#8217;ll notice that the lists in the database have boring names for each entry. To fix that, jump back into models.py and add a string representation of your object to the model Poll.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-
- <span class="k">class</span> <span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">     A poll we ask users to vote on.</span>
-<span class="sd">     &quot;&quot;&quot;</span>
-     <span class="n">title</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-     <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">()</span>
-
-<span class="hll">     <span class="k">def</span> <span class="nf">__unicode__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class="hll">         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
-</span>
- <span class="k">class</span> <span class="nc">Vote</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">     A yes or no vote.</span>
-<span class="sd">     &quot;&quot;&quot;</span>
-     <span class="n">poll</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Poll</span><span class="p">)</span>
-     <span class="n">choice</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">IntegerField</span><span class="p">()</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir static
+<span class="c"># Download the data file and load it into the template context and dump</span>
+<span class="c"># it into the HTML template</span>
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Added CSV source data&quot;</span>
+<span class="c"># Show how GitHub nicely formats CSV in the website</span>
+<span class="c"># Create basic table in HTML page</span>
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Created basic table&quot;</span>
+<span class="c"># Convert to Leaflet map</span>
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Replaced table with map&quot;</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="act-3-hello-internets">
-<h2>Act 3: Hello Internets<a class="headerlink" href="#act-3-hello-internets" title="Permalink to this headline">¶</a></h2>
-<p>First, lets create an new url that will serve as our site&#8217;s homepage, often called an &#8220;index&#8221; page by Internet geeks.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.conf.urls.defaults</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
-
- <span class="c"># Uncomment the next two lines to enable the admin:</span>
- <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
- <span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
-
- <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
-     <span class="c"># Examples:</span>
-<span class="hll">     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.index&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_index_view&#39;</span><span class="p">),</span>
-</span>     <span class="c"># url(r&#39;^interactive_poll/&#39;, include(&#39;interactive_poll.foo.urls&#39;)),</span>
-
-     <span class="c"># Uncomment the admin/doc line below to enable admin documentation:</span>
-     <span class="c"># url(r&#39;^admin/doc/&#39;, include(&#39;django.contrib.admindocs.urls&#39;)),</span>
-
-     <span class="c"># Uncomment the next line to enable the admin:</span>
-     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
- <span class="p">)</span>
+<div class="section" id="act-3-hello-internet">
+<h2>Act 3: Hello Internet<a class="headerlink" href="#act-3-hello-internet" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Frozen-Flask
+<span class="nv">$ </span>touch freeze.py
+<span class="c"># Fill in freeze app</span>
+<span class="nv">$ </span>python freeze.py
+<span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Frozen our app&quot;</span>
+<span class="c"># Open up the frozen page in the browser and point out differences</span>
+<span class="nv">$ </span>git checkout gh-pages
+<span class="nv">$ </span>git rebase master
+<span class="nv">$ </span>git push origin gh-pages
+<span class="c"># The big reveal at http://&lt;yourusername&gt;.github.io/first-news-app/build/index.html</span>
 </pre></div>
 </div>
-<p>Open up views.py in the polls folder and add all of the following.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span>
-<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-
-<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A list of the five most recent polls.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">poll_list</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="s">&#39;poll_list&#39;</span><span class="p">:</span> <span class="n">poll_list</span>
-    <span class="p">})</span>
-</pre></div>
-</div>
-<p>Create a &#8220;templates&#8221; folder inside the &#8220;polls&#8221; folder and then create an index.html file in there. Add the following.</p>
-<div class="highlight-html+django"><div class="highlight"><pre><span class="nt">&lt;ul&gt;</span>
-<span class="cp">{%</span> <span class="k">for</span> <span class="nv">object</span> <span class="k">in</span> <span class="nv">poll_list</span> <span class="cp">%}</span>
-    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/polls/</span><span class="cp">{{</span> <span class="nv">object.id</span> <span class="cp">}}</span><span class="s">/&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">object.title</span> <span class="cp">}}</span><span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-<span class="cp">{%</span> <span class="k">empty</span> <span class="cp">%}</span>
-    <span class="nt">&lt;p&gt;</span>No polls are available.<span class="nt">&lt;/p&gt;</span>
-<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
-<span class="nt">&lt;/ul&gt;</span>
-</pre></div>
-</div>
-<p>Now fire up the runserver and watch it fly in your browser at <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python manage.py runserver
-</pre></div>
-</div>
-<p>Now create a detail page by adding the same set of an url, view and template. First the url.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.conf.urls.defaults</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
-
- <span class="c"># Uncomment the next two lines to enable the admin:</span>
- <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
- <span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
-
- <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
-     <span class="c"># Examples:</span>
-     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.index&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_index_view&#39;</span><span class="p">),</span>
-<span class="hll">     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.detail&#39;</span><span class="p">,</span>
-</span><span class="hll">         <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_detail_view&#39;</span><span class="p">),</span>
-</span>
-     <span class="c"># Uncomment the admin/doc line below to enable admin documentation:</span>
-     <span class="c"># url(r&#39;^admin/doc/&#39;, include(&#39;django.contrib.admindocs.urls&#39;)),</span>
-
-     <span class="c"># Uncomment the next line to enable the admin:</span>
-     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
- <span class="p">)</span>
-</pre></div>
-</div>
-<p>Then the view.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="hll"> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Sum</span>
-</span> <span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span>
- <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-
- <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">     A list of the five most recent polls.</span>
-<span class="sd">     &quot;&quot;&quot;</span>
-     <span class="n">poll_list</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
-     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-         <span class="s">&#39;poll_list&#39;</span><span class="p">:</span> <span class="n">poll_list</span>
-     <span class="p">})</span>
-
-<span class="hll"> <span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-</span><span class="hll">     <span class="sd">&quot;&quot;&quot;</span>
-</span><span class="hll"><span class="sd">     A page where you vote on a particular poll.</span>
-</span><span class="hll"><span class="sd">     &quot;&quot;&quot;</span>
-</span><span class="hll">     <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
-</span><span class="hll">     <span class="n">total</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="nb">sum</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;choice&#39;</span><span class="p">))</span>
-</span><span class="hll">     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;detail.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class="hll">         <span class="s">&#39;poll&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
-</span><span class="hll">         <span class="s">&#39;total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">[</span><span class="s">&#39;sum&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span>
-</span><span class="hll">         <span class="s">&#39;request&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span>
-</span><span class="hll">     <span class="p">})</span>
-</span></pre></div>
-</div>
-<p>Add a detail.html template.</p>
-<div class="highlight-html+django"><div class="highlight"><pre><span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-    <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">h3</span> <span class="p">{</span><span class="k">margin-bottom</span><span class="o">:</span><span class="m">40px</span><span class="p">;}</span>
-        <span class="nc">.button</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="p">;</span> <span class="k">background-color</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span> <span class="k">color</span><span class="o">:</span><span class="nb">white</span><span class="p">;</span> <span class="k">padding</span><span class="o">:</span><span class="m">7px</span><span class="p">;</span> <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="m">15px</span><span class="p">;</span> <span class="k">cursor</span><span class="o">:</span><span class="k">pointer</span><span class="p">;</span> <span class="p">}</span>
-        <span class="nc">.button</span><span class="nd">:hover</span> <span class="p">{</span> <span class="k">background-color</span><span class="o">:</span><span class="m">#CCC</span><span class="p">;</span> <span class="p">}</span>
-    <span class="nt">&lt;/style&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">poll</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
-        <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;total&quot;</span><span class="nt">&gt;</span>Total: <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="nt">&lt;/h3&gt;</span>
-        <span class="nt">&lt;div&gt;</span>
-            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;yes&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>YES<span class="nt">&lt;/div&gt;</span>
-            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;no&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>NO<span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre></div>
-</div>
-<p>That&#8217;s great, but you can&#8217;t vote yet. To do that you&#8217;ll need another url and view where votes get handled. First the url.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.conf.urls.defaults</span> <span class="kn">import</span> <span class="n">patterns</span><span class="p">,</span> <span class="n">include</span><span class="p">,</span> <span class="n">url</span>
-
- <span class="c"># Uncomment the next two lines to enable the admin:</span>
- <span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
- <span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
-
- <span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
-     <span class="c"># Examples:</span>
-     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.index&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_index_view&#39;</span><span class="p">),</span>
-     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.detail&#39;</span><span class="p">,</span>
-         <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_detail_view&#39;</span><span class="p">),</span>
-<span class="hll">     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^polls/(?P&lt;poll_id&gt;\d+)/vote/$&#39;</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="s">&#39;polls.views.vote&#39;</span><span class="p">,</span>
-</span><span class="hll">         <span class="n">name</span><span class="o">=</span><span class="s">&#39;polls_vote_view&#39;</span><span class="p">),</span>
-</span>
-     <span class="c"># Uncomment the admin/doc line below to enable admin documentation:</span>
-     <span class="c"># url(r&#39;^admin/doc/&#39;, include(&#39;django.contrib.admindocs.urls&#39;)),</span>
-
-     <span class="c"># Uncomment the next line to enable the admin:</span>
-     <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
- <span class="p">)</span>
-</pre></div>
-</div>
-<p>Then then view.</p>
-<div class="highlight-python"><div class="highlight"><pre> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Sum</span>
- <span class="kn">from</span> <span class="nn">polls.models</span> <span class="kn">import</span> <span class="n">Poll</span>
- <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="hll"> <span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
-</span><span class="hll"> <span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span>
-</span><span class="hll"> <span class="kn">from</span> <span class="nn">django.views.decorators.csrf</span> <span class="kn">import</span> <span class="n">csrf_exempt</span>
-</span>
- <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">     A list of the five most recent polls.</span>
-<span class="sd">     &quot;&quot;&quot;</span>
-     <span class="n">poll_list</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;-pub_date&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
-     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;index.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-         <span class="s">&#39;poll_list&#39;</span><span class="p">:</span> <span class="n">poll_list</span>
-     <span class="p">})</span>
-
- <span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">     A page where you vote on a particular poll.</span>
-<span class="sd">     &quot;&quot;&quot;</span>
-     <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
-     <span class="n">total</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="nb">sum</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;choice&#39;</span><span class="p">))</span>
-     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">&#39;detail.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-         <span class="s">&#39;poll&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
-         <span class="s">&#39;total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">[</span><span class="s">&#39;sum&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">,</span>
-         <span class="s">&#39;request&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">,</span>
-     <span class="p">})</span>
-
-<span class="hll"> <span class="nd">@csrf_exempt</span>
-</span><span class="hll"> <span class="k">def</span> <span class="nf">vote</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">poll_id</span><span class="p">):</span>
-</span><span class="hll">     <span class="sd">&quot;&quot;&quot;</span>
-</span><span class="hll"><span class="sd">     The hidden url where votes are sent</span>
-</span><span class="hll"><span class="sd">     to be added to the database.</span>
-</span><span class="hll"><span class="sd">     &quot;&quot;&quot;</span>
-</span><span class="hll">     <span class="n">p</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Poll</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">poll_id</span><span class="p">)</span>
-</span><span class="hll">     <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
-</span><span class="hll">     <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
-</span><span class="hll">         <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">405</span><span class="p">)</span>
-</span><span class="hll">     <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">&quot;-1&quot;</span><span class="p">:</span>
-</span><span class="hll">         <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class="hll">     <span class="k">else</span><span class="p">:</span>
-</span><span class="hll">         <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class="hll">     <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">vote_set</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">choice</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
-</span><span class="hll">     <span class="n">v</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</span><span class="hll">     <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-</span></pre></div>
-</div>
-<p>Then add some JavaScript to the detail template where the page can interact with the database using this new view.</p>
-<div class="highlight-html+django"><div class="highlight"><pre> <span class="nt">&lt;html&gt;</span>
- <span class="nt">&lt;head&gt;</span>
-     <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-     <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">h3</span> <span class="p">{</span><span class="k">margin-bottom</span><span class="o">:</span><span class="m">40px</span><span class="p">;}</span>
-         <span class="nc">.button</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span><span class="k">inline</span><span class="p">;</span> <span class="k">background-color</span><span class="o">:</span> <span class="nb">black</span><span class="p">;</span> <span class="k">color</span><span class="o">:</span><span class="nb">white</span><span class="p">;</span> <span class="k">padding</span><span class="o">:</span><span class="m">7px</span><span class="p">;</span> <span class="k">margin</span><span class="o">:</span> <span class="m">0</span> <span class="m">15px</span><span class="p">;</span> <span class="k">cursor</span><span class="o">:</span><span class="k">pointer</span><span class="p">;</span> <span class="p">}</span>
-         <span class="nc">.button</span><span class="nd">:hover</span> <span class="p">{</span> <span class="k">background-color</span><span class="o">:</span><span class="m">#CCC</span><span class="p">;</span> <span class="p">}</span>
-     <span class="nt">&lt;/style&gt;</span>
- <span class="nt">&lt;/head&gt;</span>
- <span class="nt">&lt;body&gt;</span>
-     <span class="nt">&lt;div</span> <span class="na">align=</span><span class="s">&quot;center&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">&quot;title&quot;</span><span class="nt">&gt;</span><span class="cp">{{</span> <span class="nv">poll</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
-         <span class="nt">&lt;h3</span> <span class="na">id=</span><span class="s">&quot;total&quot;</span><span class="nt">&gt;</span>Total: <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="nt">&lt;/h3&gt;</span>
-         <span class="nt">&lt;div&gt;</span>
-             <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;yes&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>YES<span class="nt">&lt;/div&gt;</span>
-             <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;no&quot;</span> <span class="na">class=</span><span class="s">&quot;button&quot;</span><span class="nt">&gt;</span>NO<span class="nt">&lt;/div&gt;</span>
-         <span class="nt">&lt;/div&gt;</span>
-     <span class="nt">&lt;/div&gt;</span>
-<span class="hll">     <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class="hll">         <span class="kd">var</span> <span class="nx">currentTotal</span> <span class="o">=</span> <span class="cp">{{</span> <span class="nv">total</span> <span class="cp">}}</span><span class="p">;</span>
-</span><span class="hll">         <span class="kd">var</span> <span class="nx">vote</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="hll">             <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class="hll">               <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
-</span><span class="hll">               <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;http://</span><span class="cp">{{</span> <span class="nv">request.get_host</span> <span class="cp">}}</span><span class="s1">/polls/</span><span class="cp">{{</span> <span class="nv">poll.id</span> <span class="cp">}}</span><span class="s1">/vote/&#39;</span><span class="p">,</span>
-</span><span class="hll">               <span class="nx">data</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="o">:</span> <span class="nx">data</span><span class="p">}</span>
-</span><span class="hll">             <span class="p">});</span>
-</span><span class="hll">             <span class="nx">currentTotal</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
-</span><span class="hll">             <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#total&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="s2">&quot;Total: &quot;</span> <span class="o">+</span> <span class="nx">currentTotal</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
-</span><span class="hll">         <span class="p">};</span>
-</span><span class="hll">         <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#yes&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="hll">             <span class="nx">vote</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</span><span class="hll">         <span class="p">});</span>
-</span><span class="hll">         <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#no&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class="hll">             <span class="nx">vote</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-</span><span class="hll">         <span class="p">});</span>
-</span><span class="hll">     <span class="nt">&lt;/script&gt;</span>
-</span> <span class="nt">&lt;/body&gt;</span>
- <span class="nt">&lt;/html&gt;</span>
-</pre></div>
-</div>
-<p>Now reload the page and it should all work. You did it!</p>
 </div>
 </div>
 
@@ -545,9 +218,10 @@ the active flag, so we have something to work with.</p>
   <ul>
 <li><a class="reference internal" href="#">First News App</a><ul>
 <li><a class="reference internal" href="#prelude-prerequisites">Prelude: Prerequisites</a></li>
-<li><a class="reference internal" href="#act-1-hello-flask">Act 1: Hello Flask</a></li>
+<li><a class="reference internal" href="#act-1-hello-git">Act 1: Hello Git</a></li>
+<li><a class="reference internal" href="#act-2-hello-flask">Act 2: Hello Flask</a></li>
 <li><a class="reference internal" href="#act-2-hello-html">Act 2: Hello HTML</a></li>
-<li><a class="reference internal" href="#act-3-hello-internets">Act 3: Hello Internets</a></li>
+<li><a class="reference internal" href="#act-3-hello-internet">Act 3: Hello Internet</a></li>
 </ul>
 </li>
 </ul>
