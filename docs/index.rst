@@ -36,12 +36,10 @@ some form of it, and there are alternative programs you can install as well.
 
 On Windows this can be done by opening the "command prompt." Here are instructions for 
 `Windows 8 <http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8>`_ 
-and `earlier versions <http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window>`_.
-
-On an Apple computer, this can be done by opening the `"Terminal" application 
-<http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_.
-
-Ubuntu Linux also calls its default program `Terminal 
+and `earlier versions <http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window>`_. On
+an Apple desktops, this can be done by opening the `"Terminal" application 
+<http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux 
+uses the same name, also calling its default program `Terminal 
 <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
 Text editor
