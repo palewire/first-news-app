@@ -1,3 +1,4 @@
+==============
 First News App
 ==============
 
@@ -6,8 +7,9 @@ A step-by-step guide to building a simple news application with Python, Flask an
 Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
+***************************
 Prelude: Hello command line
----------------------------
+***************************
 
 Before you can begin, your computer needs the following tools installed and working to work through
 the tutorial below. Depending on your operating system, much of it may already be installed but we'll 
@@ -20,7 +22,7 @@ provide some help installing them below if you need help.
 * The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
 Python
-~~~~~~
+======
 
 If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can 
 test to see what version, if any, is there waiting for you by typing the following into your terminal. 
@@ -33,8 +35,9 @@ If you don't have Python installed (a more likely fate for Windows users) try do
 <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you stick with it.
 
+*********************
 Act 1: Hello Database
----------------------
+*********************
 
 First, create your Django project
 
@@ -123,8 +126,9 @@ Sync your database again and your new tables will be created in the database.
 
     $ python manage.py syncdb
 
+******************
 Act 2: Hello Admin
-------------------
+******************
 
 Go back into settings.py and uncomment "django.contrib.admin" in INSTALLED_APPS
 
@@ -225,9 +229,9 @@ You'll notice that the lists in the database have boring names for each entry. T
         poll = models.ForeignKey(Poll)
         choice = models.IntegerField()
 
-
+**********************
 Act 3: Hello Internets
-----------------------
+**********************
 
 First, lets create an new url that will serve as our site's homepage, often called an "index" page by Internet geeks.
 
