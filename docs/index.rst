@@ -16,16 +16,25 @@ the tutorial below.
 
 * A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
 * A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
-* `Git <http://git-scm.com/>`_ version control software
+* `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
 * Version 2.7 of the `Python <http://python.org>`_ programming language
 * The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
 .. note::
 
     Depending on your experience and operating system, you might already be ready
-    to go with everything on the list above. If so, move on to the next section. If not, 
-    don't worry. And don't give up! It's going to be a little bit of a 
+    to go with everything above. If so, move on to the next chapter. If not, 
+    don't worry. And don't give up! It will be a bit of a 
     pain but the instructions below will point you in the right direction.
+
+Command-line interface
+----------------------
+
+Text editor
+-----------
+
+Git and GitHub
+--------------
 
 Python
 ------
@@ -40,6 +49,9 @@ test to see what version, if any, is there waiting for you by typing the followi
 If you don't have Python installed (a more likely fate for Windows users) try downloading and installing it from `here 
 <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you stick with it.
+
+pip
+---
 
 *********************
 Act 1: Hello Database
