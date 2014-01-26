@@ -99,6 +99,19 @@ way to make most of this tutorial work with other versions if you stick with it.
 pip
 ---
 
+The `pip package manager <http://www.pip-installer.org/en/latest/index.html>`_
+makes it easy to install open-source libraries that 
+expand what you're able to do with Python. Later, we will use it to install everything
+needed to create a working web application. 
+
+If you don't have it already, you can get pip by following 
+`these instructions <http://www.pip-installer.org/en/latest/installing.html>`_.
+Verify it's installed with the following.
+
+.. code-block:: bash
+
+    $ pip -V
+
 *********************
 Act 1: Hello Database
 *********************
