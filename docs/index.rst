@@ -46,31 +46,30 @@ Command-line interface
 ----------------------
 
 Unless something is wrong with your computer, there should be a way to open a window that lets you 
-type in commands. Operating systems give this function slightly different names, but they all have
+type in commands. Different operating systems give this tool slightly different names, but they all have
 some form of it, and there are alternative programs you can install as well. 
 
-On Windows this can be done by opening the "command prompt." Here are instructions for 
+On Windows you can find the command-line interface by opening the "command prompt." Here are instructions for 
 `Windows 8 <http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8>`_ 
 and `earlier versions <http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window>`_. On
-an Apple desktops, this can be done by opening the `"Terminal" application 
+an Apple desktops, you open the `"Terminal" application 
 <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux 
-uses the same name, also calling its default program `Terminal 
+comes with a program of the `same name 
 <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
 Text editor
 -----------
 
-A program like Microsoft Word, which can do all sorts of formatting like
-change the size and color of words, is not what we're talking about. Do not try to use it.
+A program like Microsoft Word, which can do all sorts of text formatting like
+change the size and color of words, is not what you need. Do not try to use it below.
 
 You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_,
-capable of editing documents containing Python code, HTML markup and other languages without
-dressing them up. They are easy to find. Some of the fancy ones cost money, but
-I'm going to recommend you start out with a free options.
+and is therefore capable of editing documents containing Python code, HTML markup and other languages without
+dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
 
 For Windows, I recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For
 Apple computers, try `TextWrangler <http://www.barebones.com/products/textwrangler/download.html>`_. In
-Ubuntu Linux stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor.
+Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor.
 
 Git and GitHub
 --------------
@@ -83,11 +82,11 @@ but quickly becomes essential with large software projects, especially if you wo
 with many helpful tools for reviewing code and managing projects. It also has some 
 `extra tricks <http://pages.github.com/>`_ that make it easy to publish web pages, which we will use later. 
 
-GitHub offers helpful guides for installing Git for 
+GitHub offers helpful guides for installing Git in 
 `Windows <https://help.github.com/articles/set-up-git#platform-windows>`_,
 `Macs <https://help.github.com/articles/set-up-git#platform-mac>`_ and
 `Linux <https://help.github.com/articles/set-up-git#platform-linux>`_. You can verify
-it's installed from your command line.
+it's installed from your command line like so:
 
 .. code-block:: bash
 
@@ -109,7 +108,7 @@ test to see what version, if any, is there waiting for you by typing the followi
 
 If you don't have Python installed (a more likely fate for Windows users) try downloading and installing it from `here 
 <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
-way to make most of this tutorial work with other versions if you stick with it.
+way to make most of this tutorial work with other versions if you futz a little.
 
 pip
 ---
