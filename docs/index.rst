@@ -6,21 +6,25 @@ A step-by-step guide to building a simple news application with Python, Flask an
 Prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_.  
 
-Prelude: Hello Python
----------------------
+Prelude: Hello command line
+---------------------------
 
-Before you can begin, your computer needs the following tools installed and working:
+Before you can begin, your computer needs the following tools installed and working to work through
+the tutorial below.
 
-- `Git <http://git-scm.com/>`_ version control software.
-- Version 2.7 of the `Python <http://python.org>`_ programming language
-- The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
+* A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
+* A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ that allows you to  work with plain text files
+* `Git <http://git-scm.com/>`_ version control software
+* Version 2.7 of the `Python <http://python.org>`_ programming language
+* The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
 
-python
-  If you are using Mac OS X or a common flavor of Linux, Python is probably already installed and you can 
-  test to see what version, if any, is there by typing "python -V" into your terminal. I don't have Python
-  already installed (a more likely fate for Windows users) try downloading and installing it from `here 
-  <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
-  way to make most of this tutorial work with other versions if you stick with it.
+Python
+~~~~~~
+If you are using Mac OS X or a common flavor of Linux, Python is probably already installed and you can 
+test to see what version, if any, is there by typing "python -V" into your terminal. I don't have Python
+already installed (a more likely fate for Windows users) try downloading and installing it from `here 
+<http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
+way to make most of this tutorial work with other versions if you stick with it.
 
 Act 1: Hello Database
 ---------------------
