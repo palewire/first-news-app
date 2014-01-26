@@ -9,7 +9,7 @@
                                                                                        \/_/    \/_/ 
 </code></pre>
 
-A step-by-step guide to building a simple news application with Python, Flask and GitHub.
+A step-by-step guide to publishing a simple news application with Python, Flask and GitHub.
 
 * Documentation: [http://first-news-app.readthedocs.org](http://first-news-app.readthedocs.org)
 * Issues: [https://github.com/ireapps/first-news-app/issues](https://github.com/ireapps/first-news-app/issues)
