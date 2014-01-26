@@ -45,6 +45,18 @@ uses the same name, also calling its default program `Terminal
 Text editor
 -----------
 
+A program like Microsoft Word, which can do all sorts of formatting like
+change the size and color of words, is not what we're talking about. Do not try to use it.
+
+You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_,
+capable of editing documents containing Python code, HTML markup and other languages without
+dressing them up. They are easy to find. Some of the fancy ones cost money, but
+I'm going to recommend you start out with a free options.
+
+For Windows, I recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For
+Apple computers, try `TextWrangler <http://www.barebones.com/products/textwrangler/download.html>`_. In
+Ubuntu Linux stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor.
+
 Git and GitHub
 --------------
 
