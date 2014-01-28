@@ -4,11 +4,11 @@
 First News App
 ==============
 
-A step-by-step guide to publishing a simple news application with Python, Flask and GitHub.
+A step-by-step guide to publishing a simple news application.
 
 This tutorial will walk you through the process of building an online application 
 from a structured dataset. You will get hands-on experience in every stage of the development process,
-writing Python, HTML and JavaScript using version control tools. By the end you will have
+writing Python, HTML and JavaScript with Git. By the end you will have
 deployed a working application on the World Wide Web.
 
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
