@@ -154,52 +154,82 @@ Verify it&#8217;s installed with the following.</p>
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
 <p>The lesson will begin with an introduction to Git and GitHub.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git init repo
-<span class="nv">$ </span><span class="nb">cd </span>repo
-<span class="c"># Create a new &#39;first-news-app&#39; app on GitHub</span>
-<span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
-<span class="nv">$ </span>touch README.md
-<span class="c"># Write something in the file</span>
-<span class="nv">$ </span>git commit add README.md
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;First commit&quot;</span>
-<span class="nv">$ </span>git push origin master
-<span class="c"># Look at your repo on the web</span>
 </pre></div>
 </div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>repo
+</pre></div>
+</div>
+<p>Create a new &#8216;first-news-app&#8217; app on GitHub</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch README.md
+</pre></div>
+</div>
+<p>Write something in the file</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit add README.md
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit -m <span class="s2">&quot;First commit&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Look at your repo on the web</p>
 </div>
 <div class="section" id="act-2-hello-flask">
 <h2>Act 2: Hello Flask<a class="headerlink" href="#act-2-hello-flask" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Flask
-<span class="nv">$ </span>touch app.py
-<span class="c"># Fill it in with basic Flask stuff to make a single page</span>
-<span class="nv">$ </span>mkdir templates
-<span class="nv">$ </span>touch templates/index.html
-<span class="c"># Write Hello NICAR14 in the template file</span>
-<span class="nv">$ </span>python app.py
-<span class="c"># Check it out in the browser</span>
-<span class="nv">$ </span>git add .
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
-<span class="c"># Check out the commit message and diff on GitHub</span>
 </pre></div>
 </div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch app.py
+</pre></div>
+</div>
+<p>Fill it in with basic Flask stuff to make a single page</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Write Hello NICAR14 in the template file</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
+</pre></div>
+</div>
+<p>Check it out in the browser</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
+</pre></div>
+</div>
+<p>Check out the commit message and diff on GitHub</p>
 </div>
 <div class="section" id="act-3-hello-html">
 <h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir static
-<span class="c"># Download the data file and load it into the template context and dump</span>
-<span class="c"># it into the HTML template</span>
-<span class="nv">$ </span>git add .
+</pre></div>
+</div>
+<p>Download the data file and load it into the template context and dump it into the HTML template</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Added CSV source data&quot;</span>
-<span class="c"># Show how GitHub nicely formats CSV in the website</span>
-<span class="c"># Create basic table in HTML page</span>
-<span class="nv">$ </span>git add .
+</pre></div>
+</div>
+<p>Show how GitHub nicely formats CSV in the website</p>
+<p>Create basic table in HTML page</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Created basic table&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="act-4-hello-javascript">
 <h2>Act 4: Hello JavaScript<a class="headerlink" href="#act-4-hello-javascript" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Convert to Leaflet map</span>
-<span class="nv">$ </span>git add .
+<div class="highlight-bash"><div class="highlight"><pre>
+</pre></div>
+</div>
+<p>Convert to Leaflet map</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Replaced table with map&quot;</span>
 </pre></div>
 </div>
@@ -207,18 +237,26 @@ Verify it&#8217;s installed with the following.</p>
 <div class="section" id="act-5-hello-internet">
 <h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Frozen-Flask
-<span class="nv">$ </span>touch freeze.py
-<span class="c"># Fill in freeze app</span>
-<span class="nv">$ </span>python freeze.py
-<span class="nv">$ </span>git add .
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;Frozen our app&quot;</span>
-<span class="c"># Open up the frozen page in the browser and point out differences</span>
-<span class="nv">$ </span>git checkout gh-pages
-<span class="nv">$ </span>git rebase master
-<span class="nv">$ </span>git push origin gh-pages
-<span class="c"># The big reveal at http://&lt;yourusername&gt;.github.io/first-news-app/build/index.html</span>
 </pre></div>
 </div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch freeze.py
+</pre></div>
+</div>
+<p>Fill in freeze app</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Frozen our app&quot;</span>
+</pre></div>
+</div>
+<p>Open up the frozen page in the browser and point out differences</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout gh-pages
+<span class="nv">$ </span>git rebase master
+<span class="nv">$ </span>git push origin gh-pages
+</pre></div>
+</div>
+<p>The big reveal at <a class="reference external" href="http:/">http:/</a>/&lt;yourusername&gt;.github.io/first-news-app/build/index.html</p>
 </div>
 </div>
 

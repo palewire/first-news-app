@@ -146,15 +146,36 @@ The lesson will begin with an introduction to Git and GitHub.
 .. code-block:: bash
 
     $ git init repo
+
+.. code-block:: bash
+
     $ cd repo
-    # Create a new 'first-news-app' app on GitHub
+
+Create a new 'first-news-app' app on GitHub
+
+.. code-block:: bash
+
     $ git remote add origin https://github.com/<yourusername>/first-news-app.git
+
+.. code-block:: bash
+
     $ touch README.md
-    # Write something in the file
+
+Write something in the file
+
+.. code-block:: bash
+
     $ git commit add README.md
+
+.. code-block:: bash
+
     $ git commit -m "First commit"
+
+.. code-block:: bash
+
     $ git push origin master
-    # Look at your repo on the web
+
+Look at your repo on the web
 
 ******************
 Act 2: Hello Flask
@@ -163,17 +184,37 @@ Act 2: Hello Flask
 .. code-block:: bash
 
     $ pip install Flask
+
+.. code-block:: bash
+
     $ touch app.py
-    # Fill it in with basic Flask stuff to make a single page
+
+Fill it in with basic Flask stuff to make a single page
+
+.. code-block:: bash
+
     $ mkdir templates
+
+.. code-block:: bash
+
     $ touch templates/index.html
+
+.. code-block:: bash
+
     # Write Hello NICAR14 in the template file
+
+.. code-block:: bash
+
     $ python app.py
-    # Check it out in the browser
+
+Check it out in the browser
+
+.. code-block:: bash
+
     $ git add .
     $ git commit -m "Flask app.py and first template"
-    # Check out the commit message and diff on GitHub
 
+Check out the commit message and diff on GitHub
 
 *****************
 Act 3: Hello HTML
@@ -182,12 +223,20 @@ Act 3: Hello HTML
 .. code-block:: bash
 
     $ mkdir static
-    # Download the data file and load it into the template context and dump
-    # it into the HTML template
+
+Download the data file and load it into the template context and dump it into the HTML template
+
+.. code-block:: bash
+
     $ git add .
     $ git commit -m "Added CSV source data"
-    # Show how GitHub nicely formats CSV in the website
-    # Create basic table in HTML page
+
+Show how GitHub nicely formats CSV in the website
+
+Create basic table in HTML page
+
+.. code-block:: bash
+
     $ git add .
     $ git commit -m "Created basic table"
 
@@ -197,7 +246,10 @@ Act 4: Hello JavaScript
 
 .. code-block:: bash
 
-    # Convert to Leaflet map
+Convert to Leaflet map
+
+.. code-block:: bash
+
     $ git add .
     $ git commit -m "Replaced table with map"
 
@@ -208,14 +260,28 @@ Act 5: Hello Internet
 .. code-block:: bash
 
     $ pip install Frozen-Flask
+
+.. code-block:: bash
+
     $ touch freeze.py
-    # Fill in freeze app
+
+Fill in freeze app
+
+.. code-block:: bash
+
     $ python freeze.py
+
+.. code-block:: bash
+
     $ git add .
     $ git commit -m "Frozen our app"
-    # Open up the frozen page in the browser and point out differences
+
+Open up the frozen page in the browser and point out differences
+
+.. code-block:: bash
+
     $ git checkout gh-pages
     $ git rebase master
     $ git push origin gh-pages
-    # The big reveal at http://<yourusername>.github.io/first-news-app/build/index.html
 
+The big reveal at http://<yourusername>.github.io/first-news-app/build/index.html
