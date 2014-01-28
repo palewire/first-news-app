@@ -16,4 +16,3 @@ pathtools==0.1.2
 sphinx-autobuild==0.2.3
 tornado==3.1.1
 watchdog==0.6.0
-wsgiref==0.1.2
