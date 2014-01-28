@@ -191,6 +191,24 @@ Act 2: Hello Flask
 
 Fill it in with basic Flask stuff to make a single page
 
+.. code-block:: python
+
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    @app.route("/")
+    def index():
+        return render_template('index.html')
+
+    if __name__ == '__main__':
+        app.run( 
+            host="0.0.0.0",
+            port=8000,
+            use_reloader=True,
+            debug=True,
+        )
+
 .. code-block:: bash
 
     $ mkdir templates
@@ -199,9 +217,9 @@ Fill it in with basic Flask stuff to make a single page
 
     $ touch templates/index.html
 
-.. code-block:: bash
+.. code-block:: html
 
-    # Write Hello NICAR14 in the template file
+    Hello NICAR '14!
 
 .. code-block:: bash
 
@@ -233,7 +251,46 @@ Download the data file and load it into the template context and dump it into th
 
 Show how GitHub nicely formats CSV in the website
 
+.. code-block:: python
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+
+    @app.route("/")
+    def index():
+        csv_path = './static/baltimore-cctv-locations.csv'
+        object_list = csv.DictReader(open(csv_path, 'r'))
+        return render_template('index.html',
+            object_list=object_list,
+        )
+
+
+    if __name__ == '__main__':
+        app.run( 
+            host="0.0.0.0",
+            port=8000,
+            use_reloader=True,
+            debug=True,
+        )
+
 Create basic table in HTML page
+
+.. code-block:: jinja
+
+    <h1>Baltimore CCTV locations</h1>
+
+    <table>
+    {% for obj in object_list %}
+        <tr>
+            <td>{{ obj.number }}</td>
+            <td>{{ obj.location }}</td>
+            <td>{{ obj.project }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 
 .. code-block:: bash
 
@@ -244,9 +301,62 @@ Create basic table in HTML page
 Act 4: Hello JavaScript
 ***********************
 
-.. code-block:: bash
+.. code-block:: html
 
-Convert to Leaflet map
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+    <h1>{{ object_list.length }} Baltimore CCTV locations</h1>
+
+    <div id="map" style="width:100%; height:800px; margin-bottom: 30px;"></div>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([39.295, -76.61219], 14);
+
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
+
+        var data = {
+          "type": "FeatureCollection",
+          "features": [
+            {% for obj in object_list %}
+            {
+              "type": "Feature",
+              "properties": {
+                "number": {{ obj.number }},
+                "location": "{{ obj.location }}",
+                "project": "{{ obj.project }}",
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  {{ obj.x }},
+                  {{ obj.y }}
+                ]
+              }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        };
+
+        var dataLayer = L.geoJson(data, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(
+                    "Camera #" + 
+                    feature.properties.number + 
+                    "<br>" + 
+                    feature.properties.location +
+                    "<br>" + 
+                    feature.properties.project
+                );
+            }
+        });
+        map.addLayer(dataLayer);
+    </script>
 
 .. code-block:: bash
 
@@ -266,6 +376,18 @@ Act 5: Hello Internet
     $ touch freeze.py
 
 Fill in freeze app
+
+.. code-block:: python
+
+    from flask_frozen import Freezer
+    from app import app
+
+    app.config['FREEZER_RELATIVE_URLS'] = True
+
+    freezer = Freezer(app)
+
+    if __name__ == '__main__':
+        freezer.freeze()
 
 .. code-block:: bash
 
