@@ -32,6 +32,8 @@ This tutorial will guide you through the process of publishing an interactive ma
 exactly the sort of feature that could have enhanced `this 2012 story <http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story>`_
 by Sun reporter Luke Broadwater.
 
+You can see a working example `here <http://ireapps.github.io/first-news-app/build/index.html>`_.
+
 **********************
 Prelude: Prerequisites
 **********************
