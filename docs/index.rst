@@ -130,6 +130,8 @@ Verify it's installed with the following.
 Act 1: Hello Git
 ****************
 
+The lesson will begin with an introduction to Git and GitHub.
+
 .. code-block:: bash
 
     $ git init repo
