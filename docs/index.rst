@@ -196,6 +196,24 @@ Fill it in with basic Flask stuff to make a single page
     from flask import render_template
     app = Flask(__name__)
 
+.. code-block:: python
+    :emphasize-lines: 5-7
+
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    @app.route("/")
+    def index():
+        return render_template('index.html')
+
+.. code-block:: python
+    :emphasize-lines: 8-15
+
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
     @app.route("/")
     def index():
         return render_template('index.html')
@@ -251,12 +269,12 @@ Download the data file and load it into the template context and dump it into th
 Show how GitHub nicely formats CSV in the website
 
 .. code-block:: python
+    :emphasize-lines: 1,8,9,11
 
     import csv
     from flask import Flask
     from flask import render_template
     app = Flask(__name__)
-
 
     @app.route("/")
     def index():
@@ -265,7 +283,6 @@ Show how GitHub nicely formats CSV in the website
         return render_template('index.html',
             object_list=object_list,
         )
-
 
     if __name__ == '__main__':
         app.run( 
@@ -305,9 +322,141 @@ Act 4: Hello JavaScript
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-    <h1>{{ object_list.length }} Baltimore CCTV locations</h1>
+.. code-block:: html
+    :emphasize-lines: 4
 
-    <div id="map" style="width:100%; height:800px; margin-bottom: 30px;"></div>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+    <div id="map" style="width:100%; height:800px;"></div>
+
+.. code-block:: html
+    :emphasize-lines: 6-15
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+    <div id="map" style="width:100%; height:800px;"></div>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([39.295, -76.61219], 14);
+
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
+    </script>
+
+.. code-block:: html
+    :emphasize-lines: 16-37
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+    <div id="map" style="width:100%; height:800px;"></div>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([39.295, -76.61219], 14);
+
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
+
+        var data = {
+          "type": "FeatureCollection",
+          "features": [
+            {% for obj in object_list %}
+            {
+              "type": "Feature",
+              "properties": {
+                "number": {{ obj.number }},
+                "location": "{{ obj.location }}",
+                "project": "{{ obj.project }}",
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  {{ obj.x }},
+                  {{ obj.y }}
+                ]
+              }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        };
+
+        var dataLayer = L.geoJson(data, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(
+                    "Camera #" + 
+                    feature.properties.number + 
+                    "<br>" + 
+                    feature.properties.location +
+                    "<br>" + 
+                    feature.properties.project
+                );
+            }
+        });
+        map.addLayer(dataLayer);
+    </script>
+
+.. code-block:: html
+    :emphasize-lines: 39-40
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+    <div id="map" style="width:100%; height:800px;"></div>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([39.295, -76.61219], 14);
+
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
+
+        var data = {
+          "type": "FeatureCollection",
+          "features": [
+            {% for obj in object_list %}
+            {
+              "type": "Feature",
+              "properties": {
+                "number": {{ obj.number }},
+                "location": "{{ obj.location }}",
+                "project": "{{ obj.project }}",
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [
+                  {{ obj.x }},
+                  {{ obj.y }}
+                ]
+              }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+          ]
+        };
+
+        var dataLayer = L.geoJson(data);
+        map.addLayer(dataLayer);
+    </script>
+
+.. code-block:: html
+    :emphasize-lines: 39-50
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+
+    <div id="map" style="width:100%; height:800px;"></div>
 
     <script type="text/javascript">
         var map = L.map('map').setView([39.295, -76.61219], 14);
