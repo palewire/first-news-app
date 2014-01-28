@@ -4,9 +4,7 @@
 First News App
 ==============
 
-.. epigraph::
-
-    A step-by-step guide to publishing a simple news application with Python, Flask and GitHub.
+A step-by-step guide to publishing a simple news application with Python, Flask and GitHub.
 
 This tutorial will walk you through the process of building an online application 
 from a structured dataset. You will get hands-on experience in every stage of the development process,
