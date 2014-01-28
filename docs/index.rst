@@ -11,12 +11,6 @@ from a structured dataset. You will get hands-on experience in every stage of th
 writing Python, HTML and JavaScript using version control tools. By the end you will have
 deployed a working application on the World Wide Web.
 
-As the Baltimore Sun has reported, the city's government has gradually increased the number of surveillance cameras it operates as part
-of a crime-fighting initiative that has spanned several mayoral administrations. This tutorial will guide
-you through the process of publishing an interactive map that shows the location of each city camera, 
-exactly the sort of feature that could have enhanced `this 2012 story <http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story>`_
-by Sun reporter Luke Broadwater.
-
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construction but will debut on February 27 `at the 
@@ -27,6 +21,16 @@ Resources:
 * Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
 * Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
 * Documentation: `http://first-news-app.rtfd.org/ <http://first-news-app.rtfd.org/>`_
+
+******************
+What you will make
+******************
+
+As the Baltimore Sun has reported, the city's government has gradually increased the number of surveillance cameras it operates as part
+of a crime-fighting initiative that has spanned several mayoral administrations. This tutorial will guide
+you through the process of publishing an interactive map that shows the location of each city camera, 
+exactly the sort of feature that could have enhanced `this 2012 story <http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story>`_
+by Sun reporter Luke Broadwater.
 
 **********************
 Prelude: Prerequisites
