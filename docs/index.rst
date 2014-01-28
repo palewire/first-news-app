@@ -27,8 +27,9 @@ What you will make
 ******************
 
 As the Baltimore Sun has reported, the city's government has gradually increased the number of surveillance cameras it operates as part
-of a crime-fighting initiative that has spanned several mayoral administrations. This tutorial will guide
-you through the process of publishing an interactive map that shows the location of each city camera, 
+of a crime-fighting initiative that has spanned several mayoral administrations. 
+
+This tutorial will guide you through the process of publishing an interactive map that shows the location of each city camera, 
 exactly the sort of feature that could have enhanced `this 2012 story <http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story>`_
 by Sun reporter Luke Broadwater.
 
