@@ -208,7 +208,7 @@ Fill it in with basic Flask stuff to make a single page
         return render_template('index.html')
 
 .. code-block:: python
-    :emphasize-lines: 8-15
+    :emphasize-lines: 9-15
 
     from flask import Flask
     from flask import render_template
