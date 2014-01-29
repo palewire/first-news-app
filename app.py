@@ -4,13 +4,23 @@ from flask import render_template
 app = Flask(__name__)
 
 
+csv_path = './static/baltimore-cctv-locations.csv'
+csv_obj = csv.DictReader(open(csv_path, 'r'))
+csv_list = list(csv_obj)
+csv_dict = dict([[o['number'], o] for o in csv_list])
+
+
 @app.route("/")
 def index():
-    csv_path = './static/baltimore-cctv-locations.csv'
-    csv_obj = csv.DictReader(open(csv_path, 'r'))
-    object_list = list(csv_obj)
     return render_template('index.html',
-        object_list=object_list,
+        object_list=csv_list,
+    )
+
+
+@app.route('/<number>/')
+def detail(number):
+    return render_template('detail.html',
+        object=csv_dict[number],
     )
 
 
