@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>First News App &mdash; First News App 2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="First News App 2.0 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">First News App 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="first-news-app">
+<h1>First News App<a class="headerlink" href="#first-news-app" title="Permalink to this headline">¶</a></h1>
+<p>A step-by-step guide to publishing a simple news application.</p>
+<p>This tutorial will walk you through the process of building an interactive data visualization
+from a structured dataset. You will get hands-on experience in every stage of the development process,
+writing Python, HTML and JavaScript with Git. By the end you will have published your work on the World Wide Web.</p>
+<p>This guide was prepared for training sessions of <a class="reference external" href="http://www.ire.org/">Investigative Reporters and Editors (IRE)</a>
+and the <a class="reference external" href="http://data.nicar.org/">National Institute for Computer-Assisted Reporting (NICAR)</a>
+by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It is still under construction but will debut on February 27 <a class="reference external" href="https://ire.org/events-and-training/event/973/1026/">at the
+2014 CAR Conference in Baltimore, MD</a>.</p>
+<p>Resources:</p>
+<ul class="simple">
+<li>Code repository: <a class="reference external" href="https://github.com/ireapps/first-news-app">https://github.com/ireapps/first-news-app</a></li>
+<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">https://github.com/ireapps/first-news-app/issues</a></li>
+<li>Documentation: <a class="reference external" href="http://first-news-app.rtfd.org/">http://first-news-app.rtfd.org/</a></li>
+</ul>
+<div class="section" id="what-you-will-make">
+<h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
+<p>As the Baltimore Sun has reported, the city&#8217;s government has gradually increased the number of surveillance cameras it operates as part
+of a crime-fighting initiative that has spanned several mayoral administrations.</p>
+<p>This tutorial will guide you through the process of publishing an interactive map that shows the location of each city camera,
+exactly the sort of feature that could have enhanced <a class="reference external" href="http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story">this 2012 story</a>
+by Sun reporter Luke Broadwater.</p>
+<p>You can see a working example <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">here</a>.</p>
+</div>
+<div class="section" id="prelude-prerequisites">
+<h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Before you can begin, your computer needs the following tools installed and working
+to participate.</p>
+<ol class="arabic simple">
+<li>A <a class="reference external" href="https://en.wikipedia.org/wiki/Command-line_interface">command-line interface</a> to interact with your computer</li>
+<li>A <a class="reference external" href="https://en.wikipedia.org/wiki/Text_editor">text editor</a> to work with plain text files</li>
+<li><a class="reference external" href="http://git-scm.com/">Git</a> version control software and an account at <a class="reference external" href="http://www.github.com">GitHub.com</a></li>
+<li>Version 2.7 of the <a class="reference external" href="http://python.org">Python</a> programming language</li>
+<li>The <a class="reference external" href="http://www.pip-installer.org/en/latest/installing.html">pip</a> package manager for Python</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Depending on your experience and operating system, you might already be ready
+to go with everything above. If so, move on to the next chapter. If not,
+don&#8217;t worry. And don&#8217;t give up! It will be a bit of a
+slog but the instructions below will point you in the right direction.</p>
+</div>
+<div class="section" id="id1">
+<h3>Command-line interface<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Unless something is wrong with your computer, there should be a way to open a window that lets you
+type in commands. Different operating systems give this tool slightly different names, but they all have
+some form of it, and there are alternative programs you can install as well.</p>
+<p>On Windows you can find the command-line interface by opening the &#8220;command prompt.&#8221; Here are instructions for
+<a class="reference external" href="http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8">Windows 8</a>
+and <a class="reference external" href="http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window">earlier versions</a>. On
+an Apple desktops, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">&#8220;Terminal&#8221; application</a>. Ubuntu Linux
+comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same name</a>.</p>
+</div>
+<div class="section" id="id2">
+<h3>Text editor<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>A program like Microsoft Word, which can do all sorts of text formatting like
+change the size and color of words, is not what you need. Do not try to use it below.</p>
+<p>You need a program that works with simple <a class="reference external" href="https://en.wikipedia.org/wiki/Text_file">&#8220;plain text&#8221; files</a>,
+and is therefore capable of editing documents containing Python code, HTML markup and other languages without
+dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.</p>
+<p>For Windows, I recommend installing <a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a>. For
+Apple computers, try <a class="reference external" href="http://www.barebones.com/products/textwrangler/download.html">TextWrangler</a>. In
+Ubuntu Linux you can stick with the pre-installed <a class="reference external" href="https://help.ubuntu.com/community/gedit">gedit</a> text editor.</p>
+</div>
+<div class="section" id="git-and-github">
+<h3>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://git-scm.com/">Git</a> is a version control program for saving the changes
+you make to files over time. This is useful when you&#8217;re working on your own,
+but quickly becomes essential with large software projects, especially if you work with other developers.</p>
+<p><a class="reference external" href="https://github.com/">GitHub</a> is a website that hosts git code repositories, both public and private. It comes
+with many helpful tools for reviewing code and managing projects. It also has some
+<a class="reference external" href="http://pages.github.com/">extra tricks</a> that make it easy to publish web pages, which we will use later.</p>
+<p>GitHub offers helpful guides for installing Git in
+<a class="reference external" href="https://help.github.com/articles/set-up-git#platform-windows">Windows</a>,
+<a class="reference external" href="https://help.github.com/articles/set-up-git#platform-mac">Macs</a> and
+<a class="reference external" href="https://help.github.com/articles/set-up-git#platform-linux">Linux</a>. You can verify
+it&#8217;s installed from your command line like so:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git --version
+</pre></div>
+</div>
+<p>Once that&#8217;s done, you should create an account at GitHub, if you don&#8217;t already have one.
+It shouldn&#8217;t cost you anything. <a class="reference external" href="https://github.com/pricing">The free plan</a>
+is all that&#8217;s required to complete this lesson.</p>
+</div>
+<div class="section" id="id4">
+<h3>Python<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can
+test to see what version, if any, is there waiting for you by typing the following into your terminal.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python -V
+</pre></div>
+</div>
+<p>If you don&#8217;t have Python installed (a more likely fate for Windows users) try downloading and installing it from <a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>. Python 2.7 is preferred but you can probably find a
+way to make most of this tutorial work with other versions if you futz a little.</p>
+</div>
+<div class="section" id="id6">
+<h3>pip<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="http://www.pip-installer.org/en/latest/index.html">pip package manager</a>
+makes it easy to install open-source libraries that
+expand what you&#8217;re able to do with Python. Later, we will use it to install everything
+needed to create a working web application.</p>
+<p>If you don&#8217;t have it already, you can get pip by following
+<a class="reference external" href="http://www.pip-installer.org/en/latest/installing.html">these instructions</a>.
+Verify it&#8217;s installed with the following.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip -V
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="act-1-hello-git">
+<h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
+<p>The lesson will begin with an introduction to Git and GitHub.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git init repo
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>repo
+</pre></div>
+</div>
+<p>Create a new &#8216;first-news-app&#8217; app on GitHub</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch README.md
+</pre></div>
+</div>
+<p>Write something in the file</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit add README.md
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit -m <span class="s2">&quot;First commit&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Look at your repo on the web</p>
+</div>
+<div class="section" id="act-2-hello-flask">
+<h2>Act 2: Hello Flask<a class="headerlink" href="#act-2-hello-flask" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Flask
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch app.py
+</pre></div>
+</div>
+<p>Fill it in with basic Flask stuff to make a single page</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+
+<span class="hll"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="hll">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+</span><span class="hll">        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+</span><span class="hll">    <span class="p">)</span>
+</span></pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre>Hello NICAR &#39;14!
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
+</pre></div>
+</div>
+<p>Check it out in the browser</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
+</pre></div>
+</div>
+<p>Check out the commit message and diff on GitHub</p>
+</div>
+<div class="section" id="act-3-hello-html">
+<h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir static
+</pre></div>
+</div>
+<p>Download the data file and load it into the template context and dump it into the HTML template</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Added CSV source data&quot;</span>
+</pre></div>
+</div>
+<p>Show how GitHub nicely formats CSV in the website</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+<span class="hll">    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/baltimore-cctv-locations.csv&#39;</span>
+</span><span class="hll">    <span class="n">object_list</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+<span class="hll">        <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">,</span>
+</span>    <span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Create basic table in HTML page</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;h1&gt;Baltimore CCTV locations&lt;/h1&gt;</span>
+
+<span class="x">&lt;table&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">    &lt;tr&gt;</span>
+<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.number</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.location</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.project</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+<span class="x">    &lt;/tr&gt;</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;/table&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Created basic table&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="act-4-hello-javascript">
+<h2>Act 4: Hello JavaScript<a class="headerlink" href="#act-4-hello-javascript" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="hll"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span></pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="hll"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class="hll">    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
+</span><span class="hll">
+</span><span class="hll">    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span><span class="hll">        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+</span><span class="hll">        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+</span><span class="hll">    <span class="p">});</span>
+</span><span class="hll">    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+</span><span class="hll"><span class="nt">&lt;/script&gt;</span>
+</span></pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+    <span class="p">});</span>
+    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+
+<span class="hll">    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="hll">      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+</span><span class="hll">      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class="hll">        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="hll">        <span class="p">{</span>
+</span><span class="hll">          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+</span><span class="hll">          <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">            <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">number</span> <span class="p">}},</span>
+</span><span class="hll">            <span class="s2">&quot;location&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.location }}&quot;</span><span class="p">,</span>
+</span><span class="hll">            <span class="s2">&quot;project&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.project }}&quot;</span><span class="p">,</span>
+</span><span class="hll">          <span class="p">},</span>
+</span><span class="hll">          <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+</span><span class="hll">            <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class="hll">              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span>
+</span><span class="hll">              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}</span>
+</span><span class="hll">            <span class="p">]</span>
+</span><span class="hll">          <span class="p">}</span>
+</span><span class="hll">        <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="hll">        <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="hll">      <span class="p">]</span>
+</span><span class="hll">    <span class="p">};</span>
+</span>
+    <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span>
+                <span class="s2">&quot;Camera #&quot;</span> <span class="o">+</span>
+                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">number</span> <span class="o">+</span>
+                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
+                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>
+                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
+                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">project</span>
+            <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+    <span class="p">});</span>
+    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">number</span> <span class="p">}},</span>
+            <span class="s2">&quot;location&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.location }}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;project&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.project }}&quot;</span><span class="p">,</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[</span>
+              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span>
+              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}</span>
+            <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">};</span>
+
+<span class="hll">    <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class="hll">    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+</span><span class="nt">&lt;/script&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+    <span class="p">});</span>
+    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">number</span> <span class="p">}},</span>
+            <span class="s2">&quot;location&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.location }}&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;project&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.project }}&quot;</span><span class="p">,</span>
+          <span class="p">},</span>
+          <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[</span>
+              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span>
+              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}</span>
+            <span class="p">]</span>
+          <span class="p">}</span>
+        <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">};</span>
+
+<span class="hll">    <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">        <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">            <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span>
+</span><span class="hll">                <span class="s2">&quot;Camera #&quot;</span> <span class="o">+</span>
+</span><span class="hll">                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">number</span> <span class="o">+</span>
+</span><span class="hll">                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
+</span><span class="hll">                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>
+</span><span class="hll">                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
+</span><span class="hll">                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">project</span>
+</span><span class="hll">            <span class="p">);</span>
+</span><span class="hll">        <span class="p">}</span>
+</span><span class="hll">    <span class="p">});</span>
+</span>    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Replaced table with map&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="act-5-hello-internet">
+<h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Frozen-Flask
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch freeze.py
+</pre></div>
+</div>
+<p>Fill in freeze app</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
+<span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;FREEZER_RELATIVE_URLS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Frozen our app&quot;</span>
+</pre></div>
+</div>
+<p>Open up the frozen page in the browser and point out differences</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout gh-pages
+<span class="nv">$ </span>git rebase master
+<span class="nv">$ </span>git push origin gh-pages
+</pre></div>
+</div>
+<p>The big reveal at <a class="reference external" href="http:/">http:/</a>/&lt;yourusername&gt;.github.io/first-news-app/build/index.html</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">First News App</a><ul>
+<li><a class="reference internal" href="#what-you-will-make">What you will make</a></li>
+<li><a class="reference internal" href="#prelude-prerequisites">Prelude: Prerequisites</a></li>
+<li><a class="reference internal" href="#act-1-hello-git">Act 1: Hello Git</a></li>
+<li><a class="reference internal" href="#act-2-hello-flask">Act 2: Hello Flask</a></li>
+<li><a class="reference internal" href="#act-3-hello-html">Act 3: Hello HTML</a></li>
+<li><a class="reference internal" href="#act-4-hello-javascript">Act 4: Hello JavaScript</a></li>
+<li><a class="reference internal" href="#act-5-hello-internet">Act 5: Hello Internet</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">First News App 2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Investigative Reporters and Editors.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.1.
+    </div>
+  </body>
+</html>
