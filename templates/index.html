@@ -7,7 +7,7 @@
 <table border=1 cellpadding=7>
 {% for obj in object_list %}
     <tr>
-        <td><a href="/{{ obj.number }}/">{{ obj.number }}</a></td>
+        <td><a href="{{ obj.number }}/">{{ obj.number }}</a></td>
         <td>{{ obj.location }}</td>
         <td>{{ obj.project }}</td>
     </tr>
