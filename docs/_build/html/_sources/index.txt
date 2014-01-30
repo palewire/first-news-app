@@ -25,12 +25,10 @@ Resources:
 What you will make
 ******************
 
-As the Baltimore Sun has reported, the city's government has gradually increased the number of surveillance cameras it operates as part
-of a crime-fighting initiative that has spanned several mayoral administrations. 
-
-This tutorial will guide you through the process of publishing an interactive map that shows the location of each city camera, 
-exactly the sort of feature that could have enhanced `this 2012 story <http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story>`_
-by Sun reporter Luke Broadwater.
+This tutorial will guide you through the process of publishing an interactive database and map
+about the more than 60 people who died during the riots that swept Los Angeles
+for five days in 1992. You will repurpose the data from this `Los Angeles Times <http://spreadsheets.latimes.com/la-riots-deaths/>`_
+application, which accompanied a story released on the 20th anniversary of the riots.
 
 You can see a working example `here <http://ireapps.github.io/first-news-app/build/index.html>`_.
 
