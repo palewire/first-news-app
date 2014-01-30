@@ -75,7 +75,7 @@ to participate.</p>
 <li>A <a class="reference external" href="https://en.wikipedia.org/wiki/Text_editor">text editor</a> to work with plain text files</li>
 <li><a class="reference external" href="http://git-scm.com/">Git</a> version control software and an account at <a class="reference external" href="http://www.github.com">GitHub.com</a></li>
 <li>Version 2.7 of the <a class="reference external" href="http://python.org">Python</a> programming language</li>
-<li>The <a class="reference external" href="http://www.pip-installer.org/en/latest/installing.html">pip</a> package manager for Python</li>
+<li>The <a class="reference external" href="http://www.pip-installer.org/en/latest/installing.html">pip</a> package manager and <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv</a> environment manager for Python</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -136,8 +136,8 @@ test to see what version, if any, is there waiting for you by typing the followi
 <p>If you don&#8217;t have Python installed (a more likely fate for Windows users) try downloading and installing it from <a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>. Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you futz a little.</p>
 </div>
-<div class="section" id="id6">
-<h3>pip<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="pip-and-virtualenv">
+<h3>pip and virtualenv<a class="headerlink" href="#pip-and-virtualenv" title="Permalink to this headline">¶</a></h3>
 <p>The <a class="reference external" href="http://www.pip-installer.org/en/latest/index.html">pip package manager</a>
 makes it easy to install open-source libraries that
 expand what you&#8217;re able to do with Python. Later, we will use it to install everything
@@ -148,10 +148,37 @@ Verify it&#8217;s installed with the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip -V
 </pre></div>
 </div>
+<p>The <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtualenv environment manager</a>
+makes it possible to create an isolated corner of your computer where all the different
+tools you use to build an application are sealed off.</p>
+<p>It might not be obvious why you need this, but it quickly becomes essential when you need to juggle different tools
+for different projects on one computer. By developing your applications inside separate
+virtualenv projects, you can use different versions of the same third-party libraries without conflicts.
+You can also more easily recreate your project on another machine, which comes in handy when
+you want to copy your code to a server that publishes pages on the Internet.</p>
+<p>You can check if virtualenv is installed with the following.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv --version
+</pre></div>
+</div>
+<p>If you don&#8217;t have it, install it with pip. You might want to use the sudo command
+to put virtualenv in your system&#8217;s global directories where it can always be called, just
+like other common commands like ls or cd.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="act-1-hello-git">
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv first-news-app
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first-news-app
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>. bin/activate
+</pre></div>
+</div>
 <p>The lesson will begin with an introduction to Git and GitHub.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git init repo
 </pre></div>
