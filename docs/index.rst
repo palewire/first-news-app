@@ -18,8 +18,9 @@ by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construc
 Resources:
 
 * Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
-* Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
+* Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_.
 * Documentation: `http://first-news-app.rtfd.org/ <http://first-news-app.rtfd.org/>`_
+* Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
 
 ******************
 What you will make
@@ -27,10 +28,11 @@ What you will make
 
 This tutorial will guide you through the process of publishing an interactive database and map
 about the more than 60 people who died during the riots that swept Los Angeles
-for five days in 1992. You will repurpose the data from this `Los Angeles Times <http://spreadsheets.latimes.com/la-riots-deaths/>`_
-application, which accompanied a story released on the 20th anniversary of the riots.
+for five days in 1992. You will repurpose the data from `a Los Angeles Times 
+application <http://spreadsheets.latimes.com/la-riots-deaths/>`_ that 
+accompanied a story released on the 20th anniversary of the riots.
 
-You can see a working example `here <http://ireapps.github.io/first-news-app/build/index.html>`_.
+A working example can be found at `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
 
 **********************
 Prelude: Prerequisites
@@ -154,7 +156,7 @@ You can check if virtualenv is installed with the following.
 
 If you don't have it, install it with pip. You might want to use the sudo command 
 to put virtualenv in your system's global directories where it can always be called, just
-like other common commands like ls or cd.
+like other common commands like ``ls`` or ``cd``.
 
 .. code-block:: bash
 
@@ -164,53 +166,77 @@ like other common commands like ls or cd.
 Act 1: Hello Git
 ****************
 
+Start by creating a new development environment with virtualenv. Name it after our application.
+
 .. code-block:: bash
 
     $ virtualenv first-news-app
+
+Jump into the directory it created.
 
 .. code-block:: bash
 
     $ cd first-news-app
 
+Turn on the virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space.
+
 .. code-block:: bash
 
     $ . bin/activate
 
-The lesson will begin with an introduction to Git and GitHub.
+Create a new Git repository.
 
 .. code-block:: bash
 
     $ git init repo
 
+Jump into the repository.
+
 .. code-block:: bash
 
     $ cd repo
 
-Create a new 'first-news-app' app on GitHub
+Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``.
+Then connect your local directory to it with the following.
 
 .. code-block:: bash
 
     $ git remote add origin https://github.com/<yourusername>/first-news-app.git
 
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ 
+file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
+
 .. code-block:: bash
 
     $ touch README.md
 
-Write something in the file
+Open up the README in your text editor and type something in it. Maybe something like
+
+.. code-block:: markdown
+
+    My first news app
+    =================
+
+Officially add the file to your repository for tracking with git's ``add`` command.
 
 .. code-block:: bash
 
-    $ git commit add README.md
+    $ git add README.md
+
+Log its creation with git's ``commit`` command.
 
 .. code-block:: bash
 
     $ git commit -m "First commit"
 
+And push it up to 
+
 .. code-block:: bash
 
     $ git push origin master
 
-Look at your repo on the web
+Reload your repository on GitHub and see your handiwork.
 
 ******************
 Act 2: Hello Flask

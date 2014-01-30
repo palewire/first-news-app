@@ -54,16 +54,18 @@ by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben W
 <p>Resources:</p>
 <ul class="simple">
 <li>Code repository: <a class="reference external" href="https://github.com/ireapps/first-news-app">https://github.com/ireapps/first-news-app</a></li>
-<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">https://github.com/ireapps/first-news-app/issues</a></li>
+<li>Demonstration: <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">http://ireapps.github.io/first-news-app/build/index.html</a>.</li>
 <li>Documentation: <a class="reference external" href="http://first-news-app.rtfd.org/">http://first-news-app.rtfd.org/</a></li>
+<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">https://github.com/ireapps/first-news-app/issues</a></li>
 </ul>
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial will guide you through the process of publishing an interactive database and map
 about the more than 60 people who died during the riots that swept Los Angeles
-for five days in 1992. You will repurpose the data from this <a class="reference external" href="http://spreadsheets.latimes.com/la-riots-deaths/">Los Angeles Times</a>
-application, which accompanied a story released on the 20th anniversary of the riots.</p>
-<p>You can see a working example <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">here</a>.</p>
+for five days in 1992. You will repurpose the data from <a class="reference external" href="http://spreadsheets.latimes.com/la-riots-deaths/">a Los Angeles Times
+application</a> that
+accompanied a story released on the 20th anniversary of the riots.</p>
+<p>A working example can be found at <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">http://ireapps.github.io/first-news-app/build/index.html</a></p>
 </div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -83,8 +85,8 @@ to go with everything above. If so, move on to the next chapter. If not,
 don&#8217;t worry. And don&#8217;t give up! It will be a bit of a
 slog but the instructions below will point you in the right direction.</p>
 </div>
-<div class="section" id="id1">
-<h3>Command-line interface<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Command-line interface<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Unless something is wrong with your computer, there should be a way to open a window that lets you
 type in commands. Different operating systems give this tool slightly different names, but they all have
 some form of it, and there are alternative programs you can install as well.</p>
@@ -94,8 +96,8 @@ and <a class="reference external" href="http://windows.microsoft.com/en-us/windo
 an Apple desktops, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">&#8220;Terminal&#8221; application</a>. Ubuntu Linux
 comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same name</a>.</p>
 </div>
-<div class="section" id="id2">
-<h3>Text editor<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Text editor<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>A program like Microsoft Word, which can do all sorts of text formatting like
 change the size and color of words, is not what you need. Do not try to use it below.</p>
 <p>You need a program that works with simple <a class="reference external" href="https://en.wikipedia.org/wiki/Text_file">&#8220;plain text&#8221; files</a>,
@@ -125,8 +127,8 @@ it&#8217;s installed from your command line like so:</p>
 It shouldn&#8217;t cost you anything. <a class="reference external" href="https://github.com/pricing">The free plan</a>
 is all that&#8217;s required to complete this lesson.</p>
 </div>
-<div class="section" id="id4">
-<h3>Python<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Python<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can
 test to see what version, if any, is there waiting for you by typing the following into your terminal.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python -V
@@ -161,7 +163,7 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 </div>
 <p>If you don&#8217;t have it, install it with pip. You might want to use the sudo command
 to put virtualenv in your system&#8217;s global directories where it can always be called, just
-like other common commands like ls or cd.</p>
+like other common commands like <tt class="docutils literal"><span class="pre">ls</span></tt> or <tt class="docutils literal"><span class="pre">cd</span></tt>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
 </pre></div>
 </div>
@@ -169,40 +171,55 @@ like other common commands like ls or cd.</p>
 </div>
 <div class="section" id="act-1-hello-git">
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
+<p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv first-news-app
 </pre></div>
 </div>
+<p>Jump into the directory it created.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first-news-app
 </pre></div>
 </div>
+<p>Turn on the virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>. bin/activate
 </pre></div>
 </div>
-<p>The lesson will begin with an introduction to Git and GitHub.</p>
+<p>Create a new Git repository.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git init repo
 </pre></div>
 </div>
+<p>Jump into the repository.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>repo
 </pre></div>
 </div>
-<p>Create a new &#8216;first-news-app&#8217; app on GitHub</p>
+<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <tt class="docutils literal"><span class="pre">first-news-app</span></tt>.
+Then connect your local directory to it with the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
 </pre></div>
 </div>
+<p>Create your first file, a blank <tt class="docutils literal"><span class="pre">README</span></tt> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>
+file extension since that&#8217;s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch README.md
 </pre></div>
 </div>
-<p>Write something in the file</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit add README.md
+<p>Open up the README in your text editor and type something in it. Maybe something like</p>
+<div class="highlight-markdown"><div class="highlight"><pre>My first news app
+=================
 </pre></div>
 </div>
+<p>Officially add the file to your repository for tracking with git&#8217;s <tt class="docutils literal"><span class="pre">add</span></tt> command.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add README.md
+</pre></div>
+</div>
+<p>Log its creation with git&#8217;s <tt class="docutils literal"><span class="pre">commit</span></tt> command.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit -m <span class="s2">&quot;First commit&quot;</span>
 </pre></div>
 </div>
+<p>And push it up to</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Look at your repo on the web</p>
+<p>Reload your repository on GitHub and see your handiwork.</p>
 </div>
 <div class="section" id="act-2-hello-flask">
 <h2>Act 2: Hello Flask<a class="headerlink" href="#act-2-hello-flask" title="Permalink to this headline">¶</a></h2>
