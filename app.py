@@ -4,10 +4,10 @@ from flask import render_template
 app = Flask(__name__)
 
 
-csv_path = './static/baltimore-cctv-locations.csv'
+csv_path = './static/la-riots-deaths.csv'
 csv_obj = csv.DictReader(open(csv_path, 'r'))
 csv_list = list(csv_obj)
-csv_dict = dict([[o['number'], o] for o in csv_list])
+csv_dict = dict([[o['id'], o] for o in csv_list])
 
 
 @app.route("/")
@@ -31,4 +31,3 @@ if __name__ == '__main__':
         use_reloader=True,
         debug=True,
     )
-

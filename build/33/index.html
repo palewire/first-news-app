@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #33</h1>
-<p>Park Ave and W Saratoga St<p>
-<p>Downtown</p>
+<h1>Lucie R. Maronian</h1>
+<p>1800 block of East New York Drive<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.292954000000002, -76.618157999999994], 16);
+    var map = L.map('map').setView([34.1785051, -118.1134357], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.292954000000002, -76.618157999999994]).addTo(map);
+    var marker = L.marker([34.1785051, -118.1134357]).addTo(map);
 </script>

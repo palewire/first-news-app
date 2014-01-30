@@ -1,21 +1,25 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-<h1>{{ object_list.length }} Baltimore CCTV locations</h1>
+<h1>Deaths during the L.A. riots</h1>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <table border=1 cellpadding=7>
 {% for obj in object_list %}
     <tr>
-        <td><a href="{{ obj.number }}/">{{ obj.number }}</a></td>
-        <td>{{ obj.location }}</td>
-        <td>{{ obj.project }}</td>
+        <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+        <td>{{ obj.date }}</td>
+        <td>{{ obj.type }}</td>
+        <td>{{ obj.address }}</td>
+        <td>{{ obj.age }}</td>
+        <td>{{ obj.gender }}</td>
+        <td>{{ obj.race }}</td>
     </tr>
 {% endfor %}
 </table>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.295, -76.61219], 16);
+    var map = L.map('map').setView([34.025, -118.35], 10);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -31,16 +35,12 @@
         {
           "type": "Feature",
           "properties": {
-            "number": {{ obj.number }},
-            "location": "{{ obj.location }}",
-            "project": "{{ obj.project }}",
+            "full_name": "{{ obj.full_name }}",
+            "address": "{{ obj.address }}"
           },
           "geometry": {
             "type": "Point",
-            "coordinates": [
-              {{ obj.x }},
-              {{ obj.y }}
-            ]
+            "coordinates": [{{ obj.x }}, {{ obj.y }}]
           }
         }{% if not loop.last %},{% endif %}
         {% endfor %}
@@ -49,14 +49,7 @@
 
     var dataLayer = L.geoJson(data, {
         onEachFeature: function(feature, layer) {
-            layer.bindPopup(
-                "Camera #" + 
-                feature.properties.number + 
-                "<br>" + 
-                feature.properties.location +
-                "<br>" + 
-                feature.properties.project
-            );
+            layer.bindPopup(feature.properties.full_name);
         }
     });
     map.addLayer(dataLayer);

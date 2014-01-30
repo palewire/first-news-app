@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #10</h1>
-<p>Greene and Fayette<p>
-<p>Downtown</p>
+<h1>Jerel L. Channell</h1>
+<p>Santa Monica Boulevard &amp; Seward Street<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.290332999999997, -76.623777000000004], 16);
+    var map = L.map('map').setView([34.09129756, -118.3323783], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.290332999999997, -76.623777000000004]).addTo(map);
+    var marker = L.marker([34.09129756, -118.3323783]).addTo(map);
 </script>
