@@ -211,7 +211,7 @@ file extension since that's `the preferred format of GitHub <https://help.github
 
     $ touch README.md
 
-Open up the README in your text editor and type something in it. Maybe something like
+Open up the README in your text editor and type something in it. Maybe something like:
 
 .. code-block:: markdown
 
@@ -230,7 +230,7 @@ Log its creation with git's ``commit`` command.
 
     $ git commit -m "First commit"
 
-And push it up to 
+Push it up to GitHub.
 
 .. code-block:: bash
 
