@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #21</h1>
-<p>N Howard St and W Lexington St<p>
-<p>Downtown</p>
+<h1>Andreas Garnica</h1>
+<p>2034 W. Pico Blvd.<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.291601999999997, -76.619664], 16);
+    var map = L.map('map').setView([34.0468443, -118.2818793], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.291601999999997, -76.619664]).addTo(map);
+    var marker = L.marker([34.0468443, -118.2818793]).addTo(map);
 </script>

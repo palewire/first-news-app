@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #5</h1>
-<p>Eutaw and Lombard<p>
-<p>Downtown</p>
+<h1>Vivian Austin</h1>
+<p>1600 W. 60th St.<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.287528000000002, -76.620853999999994], 16);
+    var map = L.map('map').setView([33.985667, -118.304741], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.287528000000002, -76.620853999999994]).addTo(map);
+    var marker = L.marker([33.985667, -118.304741]).addTo(map);
 </script>

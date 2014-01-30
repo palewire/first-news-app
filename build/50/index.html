@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #50</h1>
-<p>Cathedral St and W Centre St<p>
-<p>Downtown</p>
+<h1>Imad Sharaf</h1>
+<p>San Diego Freeway &amp; San Fernando Mission Boulevard<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.296299405500001, -76.616957187699995], 16);
+    var map = L.map('map').setView([34.27185555, -118.4717452], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.296299405500001, -76.616957187699995]).addTo(map);
+    var marker = L.marker([34.27185555, -118.4717452]).addTo(map);
 </script>

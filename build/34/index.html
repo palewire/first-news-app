@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #34</h1>
-<p>N Howard St and W Saratoga St<p>
-<p>Downtown</p>
+<h1>Howard Eugene Martin</h1>
+<p>near North Los Robles Avenue &amp; Claremont Street<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.292895999999999, -76.619658999999999], 16);
+    var map = L.map('map').setView([34.1668637, -118.141613], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.292895999999999, -76.619658999999999]).addTo(map);
+    var marker = L.marker([34.1668637, -118.141613]).addTo(map);
 </script>

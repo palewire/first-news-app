@@ -1,14 +1,13 @@
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
 <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
 
-<h1>Camera #12</h1>
-<p>Paca and Fayette<p>
-<p>Downtown</p>
+<h1>John Doe #80</h1>
+<p>5800 block of South Vermont Avenue<p>
 
 <div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
 
 <script type="text/javascript">
-    var map = L.map('map').setView([39.290370000000003, -76.622411], 16);
+    var map = L.map('map').setView([33.98939885, -118.2914954], 16);
 
     var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -17,5 +16,5 @@
     });
     map.addLayer(mapquestLayer);
 
-    var marker = L.marker([39.290370000000003, -76.622411]).addTo(map);
+    var marker = L.marker([33.98939885, -118.2914954]).addTo(map);
 </script>
