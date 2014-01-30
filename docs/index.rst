@@ -144,8 +144,8 @@ tools you use to build an application are sealed off.
 
 It might not be obvious why you need this, but it quickly becomes essential when you need to juggle different tools
 for different projects on one computer. By developing your applications inside separate
-virtualenv projects, you can use different versions of the same third-party libraries without conflicts.
-You can also more easily recreate your project on another machine, which comes in handy when
+virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
+You can also more easily recreate your project on another machine, handy when
 you want to copy your code to a server that publishes pages on the Internet.
 
 You can check if virtualenv is installed with the following.
