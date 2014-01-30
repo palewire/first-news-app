@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Louis A. Watson, a 18 year old, Black male died on 1992-04-29
+    <h1>Louis A. Watson, a 18 year old, Black male died on 1992-04-29
 in a homicide at 4365 S. Vermont Ave. in Vermont Square.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Louis A. Watson, an 18-year-old black man, was fatally shot Wednesday, April 29, 1992, in the 4300 block of South Vermont Avenue in Vermont Square. Struck by a single bullet to the head outside a swap meet, Watson was taken to a local hospital, where he died. Watson, the oldest of seven boys, lived with his mother, Sherry Ann Johnson, and his stepfather on West 43rd. Friends said Watson had toyed briefly with a gang, then rejected it. His friend, Drama, said Watson decided &#34;it wasn&#39;t worth it. He didn&#39;t want to die from gangbanging.&#34; So Watson went back to school and to playing the drums, playing football and running track. At Watson&#39;s funeral, 600 people, many of them teenagers, filled the church to capacity. The service began quietly, with testimony from friends and relatives. Then the grief and tension seemed to escalate to a point where the church was filled with the sound of weeping and wailing.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([34.00524354, -118.2915566], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([34.00524354, -118.2915566], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([34.00524354, -118.2915566]).addTo(map);
-</script>
-
-<p>Louis A. Watson, an 18-year-old black man, was fatally shot Wednesday, April 29, 1992, in the 4300 block of South Vermont Avenue in Vermont Square. Struck by a single bullet to the head outside a swap meet, Watson was taken to a local hospital, where he died. Watson, the oldest of seven boys, lived with his mother, Sherry Ann Johnson, and his stepfather on West 43rd. Friends said Watson had toyed briefly with a gang, then rejected it. His friend, Drama, said Watson decided &#34;it wasn&#39;t worth it. He didn&#39;t want to die from gangbanging.&#34; So Watson went back to school and to playing the drums, playing football and running track. At Watson&#39;s funeral, 600 people, many of them teenagers, filled the church to capacity. The service began quietly, with testimony from friends and relatives. Then the grief and tension seemed to escalate to a point where the church was filled with the sound of weeping and wailing.</p>
+        var marker = L.marker([34.00524354, -118.2915566]).addTo(map);
+    </script>
+</body>
+</html>

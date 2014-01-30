@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Brian E. Andrew, a 30 year old, Black male died on 1992-04-30
+    <h1>Brian E. Andrew, a 30 year old, Black male died on 1992-04-30
 in a officer involved shooting at Rosecrans &amp; Chester avenues in Compton.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Brian E. Andrew, a 30-year-old black man, was shot and killed Thursday, April 30, 1992, near Rosecrans and Chester avenues in Compton. Andrew, who worked odd jobs in construction, went out Thursday night and never returned. After trying in vain to locate her son, Gloria Andrew filed a missing-persons report six days later. The next day, a Compton police officer knocked on her door to tell her the news. Andrew was seen running from a nearby shoe store with other looters, police said, and was carrying boxes of shoes and a large bottle of beer. Andrew had dropped the shoes and was waving the bottle when a Compton police officer caught up with him in an alley and shot him once in the face as they grappled, police said. Andrew, the father of two 14-year-old girls, had had minor run-ins with police, his mother said, and once served six months in the California Youth Authority on an assault conviction. But she said it was &#34;inconceivable&#34; that he would strike an armed officer. &#34;He wasn&#39;t that type of person.&#34;</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([33.9034569, -118.2153903], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([33.9034569, -118.2153903], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([33.9034569, -118.2153903]).addTo(map);
-</script>
-
-<p>Brian E. Andrew, a 30-year-old black man, was shot and killed Thursday, April 30, 1992, near Rosecrans and Chester avenues in Compton. Andrew, who worked odd jobs in construction, went out Thursday night and never returned. After trying in vain to locate her son, Gloria Andrew filed a missing-persons report six days later. The next day, a Compton police officer knocked on her door to tell her the news. Andrew was seen running from a nearby shoe store with other looters, police said, and was carrying boxes of shoes and a large bottle of beer. Andrew had dropped the shoes and was waving the bottle when a Compton police officer caught up with him in an alley and shot him once in the face as they grappled, police said. Andrew, the father of two 14-year-old girls, had had minor run-ins with police, his mother said, and once served six months in the California Youth Authority on an assault conviction. But she said it was &#34;inconceivable&#34; that he would strike an armed officer. &#34;He wasn&#39;t that type of person.&#34;</p>
+        var marker = L.marker([33.9034569, -118.2153903]).addTo(map);
+    </script>
+</body>
+</html>

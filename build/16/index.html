@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Juana Espinosa, a 65 year old, Latino female died on 1992-05-02
+    <h1>Juana Espinosa, a 65 year old, Latino female died on 1992-05-02
 in a homicide at 7608 S. Compton Ave. in Compton.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Juana Espinosa, a 65-year-old Latina, was shot and killed Saturday, May 2, 1992, in the 7600 block of South Compton Avenue in Willowbrook. Espinosa was shot in the stomach by a 15-year-old boy who authorities say was aiming for two other youths.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([33.9198205, -118.2461881], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([33.9198205, -118.2461881], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([33.9198205, -118.2461881]).addTo(map);
-</script>
-
-<p>Juana Espinosa, a 65-year-old Latina, was shot and killed Saturday, May 2, 1992, in the 7600 block of South Compton Avenue in Willowbrook. Espinosa was shot in the stomach by a 15-year-old boy who authorities say was aiming for two other youths.</p>
+        var marker = L.marker([33.9198205, -118.2461881]).addTo(map);
+    </script>
+</body>
+</html>

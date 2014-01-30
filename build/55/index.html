@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>James L. Taylor, a 26 year old, Black male died on 1992-04-30
+    <h1>James L. Taylor, a 26 year old, Black male died on 1992-04-30
 in a homicide at 5213 Sunset Blvd. in East Hollywood.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>James L. Taylor, a 26-year-old black man, was shot and killed Thursday, April 30, 1992, in East Hollywood. Taylor was shot in the back at the scene of a looted video store and cleaners in the 5200 block of Sunset Boulevard.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([34.0982485, -118.3037557], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([34.0982485, -118.3037557], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([34.0982485, -118.3037557]).addTo(map);
-</script>
-
-<p>James L. Taylor, a 26-year-old black man, was shot and killed Thursday, April 30, 1992, in East Hollywood. Taylor was shot in the back at the scene of a looted video store and cleaners in the 5200 block of Sunset Boulevard.</p>
+        var marker = L.marker([34.0982485, -118.3037557]).addTo(map);
+    </script>
+</body>
+</html>

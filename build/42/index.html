@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Charles W. Orebo, a 21 year old, Black male died on 1992-05-01
+    <h1>Charles W. Orebo, a 21 year old, Black male died on 1992-05-01
 in a officer involved shooting at Florence Avenue &amp; Flower Street in Florence.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Charles Orebo, a 21-year-old black man, was shot and killed Friday, May 1, 1992, near the intersection of Florence Avenue and Flower Street in Florence. Charles &#34;Sticks&#34; Orebo and two friends, Andre Webb and Lavelle &#34;Frog&#34; Williams were driving toward a South Los Angeles house where Webb planned to spend the night. Near Florence Avenue and the 110 Freeway, Orebo tried to make a lane change, nearly cutting off a car behind him. The other driver honked and pulled alongside at a stoplight. Williams drew a handgun, loaded it and pointed it past Orebo toward the other driver, an LAPD officer who was out of uniform and en route to work. &#34;The guy looked at us,&#34; Webb said, &#34;and he jumped like he was in shock. Then he pulled up his gun. . . . Then he shot like three times and hit Sticks.&#34; Orebo, mortally wounded, punched the accelerator. The car lurched into a wall and caught fire. Orebo, a dropout and the father of a 4-year-old son, had planned to get married the next month and become an auto mechanic, said his mother, Georgia Alfred. He had been jailed a couple of times for traffic tickets and other small offenses, she said. &#34;But nothing violent. No guns or anything like that.&#34; Alfred said her son and Williams watched the verdicts in the King beating case together and were angry, &#34;but he wasn&#39;t going out beating anyone or carrying a gun.&#34; &#34;From what I gathered, my son didn&#39;t know [Williams] had the gun until he pulled it up,&#34; she said. &#34;I&#39;m angry, but I&#39;m angry with the young man.&#34;</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([33.9746575, -118.2812901], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([33.9746575, -118.2812901], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([33.9746575, -118.2812901]).addTo(map);
-</script>
-
-<p>Charles Orebo, a 21-year-old black man, was shot and killed Friday, May 1, 1992, near the intersection of Florence Avenue and Flower Street in Florence. Charles &#34;Sticks&#34; Orebo and two friends, Andre Webb and Lavelle &#34;Frog&#34; Williams were driving toward a South Los Angeles house where Webb planned to spend the night. Near Florence Avenue and the 110 Freeway, Orebo tried to make a lane change, nearly cutting off a car behind him. The other driver honked and pulled alongside at a stoplight. Williams drew a handgun, loaded it and pointed it past Orebo toward the other driver, an LAPD officer who was out of uniform and en route to work. &#34;The guy looked at us,&#34; Webb said, &#34;and he jumped like he was in shock. Then he pulled up his gun. . . . Then he shot like three times and hit Sticks.&#34; Orebo, mortally wounded, punched the accelerator. The car lurched into a wall and caught fire. Orebo, a dropout and the father of a 4-year-old son, had planned to get married the next month and become an auto mechanic, said his mother, Georgia Alfred. He had been jailed a couple of times for traffic tickets and other small offenses, she said. &#34;But nothing violent. No guns or anything like that.&#34; Alfred said her son and Williams watched the verdicts in the King beating case together and were angry, &#34;but he wasn&#39;t going out beating anyone or carrying a gun.&#34; &#34;From what I gathered, my son didn&#39;t know [Williams] had the gun until he pulled it up,&#34; she said. &#34;I&#39;m angry, but I&#39;m angry with the young man.&#34;</p>
+        var marker = L.marker([33.9746575, -118.2812901]).addTo(map);
+    </script>
+</body>
+</html>

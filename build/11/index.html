@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Gregory Davis Jr., a 15 year old, Black male died on 1992-04-30
+    <h1>Gregory Davis Jr., a 15 year old, Black male died on 1992-04-30
 in a homicide at Vermont Avenue &amp; 43rd Street in Vermont Square.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Gregory Davis Jr., a 15-year-old black teen, was fatally shot Wednesday, April 29, 1992, near the intersection of Vermont Avenue and 43rd Street in Vermont Square. He was transported by friends to County-USC Medical Center, where he died.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([34.005485, -118.2915492], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([34.005485, -118.2915492], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([34.005485, -118.2915492]).addTo(map);
-</script>
-
-<p>Gregory Davis Jr., a 15-year-old black teen, was fatally shot Wednesday, April 29, 1992, near the intersection of Vermont Avenue and 43rd Street in Vermont Square. He was transported by friends to County-USC Medical Center, where he died.</p>
+        var marker = L.marker([34.005485, -118.2915492]).addTo(map);
+    </script>
+</body>
+</html>

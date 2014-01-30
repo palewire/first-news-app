@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>DeAndre Harrison, a 17 year old, Black male died on 1992-04-30
+    <h1>DeAndre Harrison, a 17 year old, Black male died on 1992-04-30
 in a officer involved shooting at Central Avenue &amp; 112th Street in Green Meadows.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>DeAndre Harrison, a 17-year-old-black man, was fatally shot Thursday, April 30, 1992, near the intersection of Central Avenue and 112th Street in Green Meadows. He was taken to Martin Luther King Jr./Drew Medical Center, where he died. Less than four hours after truck driver Reginald O. Denny and others were attacked at Florence and Normandie, four LAPD officers in a patrol car said they came under intense fire from looters outside a Korean American-owned store in Green Meadows at Central Avenue and 112th Street. The officers returned fire and then sped off to await reinforcements. One of seven rounds they fired had hit a heavyset, shirtless gunman. When they returned, the victim and his weapon had vanished. LAPD officials later learned that 17-year-old Harrison had died of a gunshot wound at the hospital, and ballistics tests showed that he had been struck by a 9-millimeter bullet fired by an LAPD officer. Harrison was angry over the verdicts in the King beating case, relatives said, and had helped loot clothing stores earlier in the night. But whether he was the shirtless suspect who shot at police is another question. About 10:30 p.m., there was a soft knock on the door of an apartment Harrison&#39;s girlfriend shared with her mother, Myra Collins. It was Harrison, Collins said later, and he was wearing a blood-drenched T-shirt with a small bullet hole in the chest. &#34;It was just like when you watch these westerns and they stagger in the door,&#34; she said. &#34;I don&#39;t know what DeAndre was doing,&#34; Collins said. &#34;I don&#39;t know if he was an angel or a devil. But he did have on a white T-shirt.&#34; &#34;He was just a kid that got caught up in a vicious cycle,&#34; said Verbum Dei High School Principal Robert Mendoza, who had known Harrison for years. &#34;It&#39;s very difficult to live around here.&#34;</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([33.9294721, -118.2542949], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([33.9294721, -118.2542949], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([33.9294721, -118.2542949]).addTo(map);
-</script>
-
-<p>DeAndre Harrison, a 17-year-old-black man, was fatally shot Thursday, April 30, 1992, near the intersection of Central Avenue and 112th Street in Green Meadows. He was taken to Martin Luther King Jr./Drew Medical Center, where he died. Less than four hours after truck driver Reginald O. Denny and others were attacked at Florence and Normandie, four LAPD officers in a patrol car said they came under intense fire from looters outside a Korean American-owned store in Green Meadows at Central Avenue and 112th Street. The officers returned fire and then sped off to await reinforcements. One of seven rounds they fired had hit a heavyset, shirtless gunman. When they returned, the victim and his weapon had vanished. LAPD officials later learned that 17-year-old Harrison had died of a gunshot wound at the hospital, and ballistics tests showed that he had been struck by a 9-millimeter bullet fired by an LAPD officer. Harrison was angry over the verdicts in the King beating case, relatives said, and had helped loot clothing stores earlier in the night. But whether he was the shirtless suspect who shot at police is another question. About 10:30 p.m., there was a soft knock on the door of an apartment Harrison&#39;s girlfriend shared with her mother, Myra Collins. It was Harrison, Collins said later, and he was wearing a blood-drenched T-shirt with a small bullet hole in the chest. &#34;It was just like when you watch these westerns and they stagger in the door,&#34; she said. &#34;I don&#39;t know what DeAndre was doing,&#34; Collins said. &#34;I don&#39;t know if he was an angel or a devil. But he did have on a white T-shirt.&#34; &#34;He was just a kid that got caught up in a vicious cycle,&#34; said Verbum Dei High School Principal Robert Mendoza, who had known Harrison for years. &#34;It&#39;s very difficult to live around here.&#34;</p>
+        var marker = L.marker([33.9294721, -118.2542949]).addTo(map);
+    </script>
+</body>
+</html>

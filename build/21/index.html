@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Andreas Garnica, a 36 year old, Latino male died on 1992-04-30
+    <h1>Andreas Garnica, a 36 year old, Latino male died on 1992-04-30
 in a not riot-related at 2034 W. Pico Blvd. in Pico-Union.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Andreas Garnica, a 36-year-old Latino, was stabbed to death Thursday, April 30, 1992, in Pico-Union. Garnica was attacked in the 2000 block of West Pico Boulevard during a drug deal and street robbery. Detectives were unable to find the family of Adolfo Morales, also known as Andres J. Garnica, until they received a lead through a wire service reporter&#39;s inquiry.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([34.0468443, -118.2818793], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([34.0468443, -118.2818793], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([34.0468443, -118.2818793]).addTo(map);
-</script>
-
-<p>Andreas Garnica, a 36-year-old Latino, was stabbed to death Thursday, April 30, 1992, in Pico-Union. Garnica was attacked in the 2000 block of West Pico Boulevard during a drug deal and street robbery. Detectives were unable to find the family of Adolfo Morales, also known as Andres J. Garnica, until they received a lead through a wire service reporter&#39;s inquiry.</p>
+        var marker = L.marker([34.0468443, -118.2818793]).addTo(map);
+    </script>
+</body>
+</html>

@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Suzanne R. Morgan, a 24 year old, Black female died on 1992-05-01
+    <h1>Suzanne R. Morgan, a 24 year old, Black female died on 1992-05-01
 in a not riot-related at 2137 E. 115th St. in Watts.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Suzanne R. Morgan, a 24-year-old black woman, was shot and killed Friday, May 1, 1992, in the 2100 block of East 115th Street in Watts. Morgan was allegedly shot at her apartment by her boyfriend. Police say he obtained the gun because of the rioting.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([33.9304917, -118.2344108], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([33.9304917, -118.2344108], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([33.9304917, -118.2344108]).addTo(map);
-</script>
-
-<p>Suzanne R. Morgan, a 24-year-old black woman, was shot and killed Friday, May 1, 1992, in the 2100 block of East 115th Street in Watts. Morgan was allegedly shot at her apartment by her boyfriend. Police say he obtained the gun because of the rioting.</p>
+        var marker = L.marker([33.9304917, -118.2344108]).addTo(map);
+    </script>
+</body>
+</html>

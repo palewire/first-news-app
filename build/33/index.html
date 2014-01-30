@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Lucie R. Maronian, a 51 year old, White female died on 1992-05-01
+    <h1>Lucie R. Maronian, a 51 year old, White female died on 1992-05-01
 in a homicide at 1800 block of East New York Drive in Altadena.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Lucie Maronian, a 51-year-old white woman, was stabbed to death Friday, May 1, 1992, in the 1800 block of East New York Drive in Altadena. Maronian was found stabbed in her home. According to sheriff&#39;s investigators, she was killed after confronting a group of teenagers who had been chasing her 14-year-old son and his friend from a nearby intersection. In October 1994, two Altadena teenagers, previously accused of the murder of Maronian, were given five years&#39; probation on related charges. O&#39;Dell Whitley Jr., 19, and Leonard Hampton, 18, were sentenced in Pasadena Superior Court for commercial burglary of an Arcadia sporting goods store and attempted robbery of a pedestrian. The two originally were charged with a series of crimes that included the stabbing of Maronian. In April 1993, Whitley and Hampton were found guilty of the lesser crimes. But a mistrial was declared on the murder charge when only four of the 12 jurors voted for conviction. The district attorney decided not to retry the two for murder.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([34.1785051, -118.1134357], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([34.1785051, -118.1134357], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([34.1785051, -118.1134357]).addTo(map);
-</script>
-
-<p>Lucie Maronian, a 51-year-old white woman, was stabbed to death Friday, May 1, 1992, in the 1800 block of East New York Drive in Altadena. Maronian was found stabbed in her home. According to sheriff&#39;s investigators, she was killed after confronting a group of teenagers who had been chasing her 14-year-old son and his friend from a nearby intersection. In October 1994, two Altadena teenagers, previously accused of the murder of Maronian, were given five years&#39; probation on related charges. O&#39;Dell Whitley Jr., 19, and Leonard Hampton, 18, were sentenced in Pasadena Superior Court for commercial burglary of an Arcadia sporting goods store and attempted robbery of a pedestrian. The two originally were charged with a series of crimes that included the stabbing of Maronian. In April 1993, Whitley and Hampton were found guilty of the lesser crimes. But a mistrial was declared on the murder charge when only four of the 12 jurors voted for conviction. The district attorney decided not to retry the two for murder.</p>
+        var marker = L.marker([34.1785051, -118.1134357]).addTo(map);
+    </script>
+</body>
+</html>

@@ -1,1429 +1,1438 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-<h1>Deaths during the L.A. riots</h1>
-
-<div id="map" style="width:100%; height:600px; margin-bottom: 30px;"></div>
-
-<table border=1 cellpadding=7>
-    <tr>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Type</th>
-        <th>Address</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Race</th>
-    </tr>
-
-    <tr>
-        <td><a href="1/">Cesar A. Aguilar</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>2009 W. 6th St.</td>
-        <td>18</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="2/">George Alvarez</a></td>
-        <td>1992-05-01</td>
-        <td>Not riot-related</td>
-        <td>Main &amp; College streets</td>
-        <td>42</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="3/">Wilson Alvarez</a></td>
-        <td>1992-05-23</td>
-        <td>Homicide</td>
-        <td>3100 Rosecrans Ave.</td>
-        <td>40</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="4/">Brian E. Andrew</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>Rosecrans &amp; Chester avenues</td>
-        <td>30</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="5/">Vivian Austin</a></td>
-        <td>1992-05-03</td>
-        <td>Death</td>
-        <td>1600 W. 60th St.</td>
-        <td>87</td>
-        <td>Female</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="6/">Franklin Benavidez</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>4404 S. Western Ave.</td>
-        <td>27</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="7/">Carol Benson</a></td>
-        <td>1992-05-02</td>
-        <td>Death</td>
-        <td>Harbor Freeway near Slauson Avenue</td>
-        <td>42</td>
-        <td>Female</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="8/">Patrick Bettan</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>2740 W. Olympic Blvd.</td>
-        <td>30</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="9/">Hector Castro</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Vermont &amp; Leeward avenues</td>
-        <td>49</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="10/">Jerel L. Channell</a></td>
-        <td>1992-04-30</td>
-        <td>Death</td>
-        <td>Santa Monica Boulevard &amp; Seward Street</td>
-        <td>26</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="11/">Gregory Davis Jr.</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Vermont Avenue &amp; 43rd Street</td>
-        <td>15</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="12/">John Doe #80</a></td>
-        <td>1992-05-02</td>
-        <td>Homicide</td>
-        <td>5800 block of South Vermont Avenue</td>
-        <td></td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="13/">Harry Doller</a></td>
-        <td>1992-05-01</td>
-        <td>Not riot-related</td>
-        <td>3500 block of Winslow Drive</td>
-        <td>56</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="14/">Kevin J. Edwards</a></td>
-        <td>1992-04-30</td>
-        <td>Not riot-related</td>
-        <td>614 S. Locust Ave.</td>
-        <td>35</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="15/">Howard Epstein</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Slauson &amp; 7th avenues</td>
-        <td>45</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="16/">Juana Espinosa</a></td>
-        <td>1992-05-02</td>
-        <td>Homicide</td>
-        <td>7608 S. Compton Ave.</td>
-        <td>65</td>
-        <td>Female</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="17/">Kevin A. Evanahen</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>Braddock Drive &amp; Inglewood Boulevard</td>
-        <td>24</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="18/">Jose L. Garcia</a></td>
-        <td>1992-04-30</td>
-        <td>Not riot-related</td>
-        <td>1005 S. Fresno St.</td>
-        <td>15</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="19/">Mark Garcia</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>10700 block of Burin Avenue</td>
-        <td>15</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="20/">Elias Garcia Rivera</a></td>
-        <td>1992-12-16</td>
-        <td>Homicide</td>
-        <td>12834 Vanowen St.</td>
-        <td>32</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="21/">Andreas Garnica</a></td>
-        <td>1992-04-30</td>
-        <td>Not riot-related</td>
-        <td>2034 W. Pico Blvd.</td>
-        <td>36</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="22/">Meeker Gibson</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>Holt &amp; Loranne avenues</td>
-        <td>35</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="23/">Matthew D. Haines</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Lemon Avenue &amp; Pacific Coast Highway</td>
-        <td>32</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="24/">Jimmie Harris</a></td>
-        <td>1992-04-29</td>
-        <td>Death</td>
-        <td>Avalon Boulevard &amp; Slauson Avenue</td>
-        <td>38</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="25/">DeAndre Harrison</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>Central Avenue &amp; 112th Street</td>
-        <td>17</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="26/">Paul D. Horace</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>1439 E. Walnut</td>
-        <td>38</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="27/">Betty Jackson</a></td>
-        <td>1992-05-01</td>
-        <td>Death</td>
-        <td>Main &amp; 51st streets</td>
-        <td>56</td>
-        <td>Female</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="28/">Dennis Ray Jackson</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>11322 Alvaro St.</td>
-        <td>38</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="29/">Tranh Lam</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Willowbrook Avenue &amp; Alondra Boulevard</td>
-        <td>25</td>
-        <td>Male</td>
-        <td>Asian</td>
-    </tr>
-
-    <tr>
-        <td><a href="30/">Edward Song Lee</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Hobart Boulevard &amp; 3rd Street</td>
-        <td>18</td>
-        <td>Male</td>
-        <td>Asian</td>
-    </tr>
-
-    <tr>
-        <td><a href="31/">Frank D. Lopez</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>16th Street &amp; Central Avenue</td>
-        <td>36</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="32/">Darnell R. Mallory</a></td>
-        <td>1992-04-30</td>
-        <td>Death</td>
-        <td>Santa Monica Boulevard &amp; Seward Street</td>
-        <td>18</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="33/">Lucie R. Maronian</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>1800 block of East New York Drive</td>
-        <td>51</td>
-        <td>Female</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="34/">Howard Eugene Martin</a></td>
-        <td>1992-05-03</td>
-        <td>Officer involved shooting</td>
-        <td>near North Los Robles Avenue &amp; Claremont Street</td>
-        <td>22</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="35/">Ira F. McCurry</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Avalon Boulevard &amp; 102nd Street</td>
-        <td>45</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="36/">Alfred V. Miller</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>Florence Avenue &amp; Cimarron Street</td>
-        <td>32</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="37/">Arturo C. Miranda</a></td>
-        <td>1992-04-29</td>
-        <td>Homicide</td>
-        <td>120th Street &amp; Central Avenue</td>
-        <td>23</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="38/">Suzanne R. Morgan</a></td>
-        <td>1992-05-01</td>
-        <td>Not riot-related</td>
-        <td>2137 E. 115th St.</td>
-        <td>24</td>
-        <td>Female</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="39/">Nissar Mustafa</a></td>
-        <td>1992-08-12</td>
-        <td>Homicide</td>
-        <td>1601 S. Western Ave.</td>
-        <td>20</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="40/">Ernest Neal Jr.</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Western Avenue &amp; 92nd Street</td>
-        <td>27</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="41/">Anthony Netherly</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>San Pedro &amp; 78th streets</td>
-        <td>21</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="42/">Charles W. Orebo</a></td>
-        <td>1992-05-01</td>
-        <td>Officer involved shooting</td>
-        <td>Florence Avenue &amp; Flower Street</td>
-        <td>21</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="43/">Juanita Pettaway</a></td>
-        <td>1992-04-30</td>
-        <td>Death</td>
-        <td>Santa Monica Boulevard &amp; Seward Street</td>
-        <td>37</td>
-        <td>Female</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="44/">Juan A. Pineda</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>4028 Santa Monica Blvd.</td>
-        <td>20</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="45/">Hugo G. Ramirez</a></td>
-        <td>1992-05-03</td>
-        <td>Not riot-related</td>
-        <td>12732 Bess St.</td>
-        <td>23</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="46/">Aaron Ratinoff</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>11690 Gateway Blvd.</td>
-        <td>68</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="47/">Victor R. Rivas</a></td>
-        <td>1992-05-03</td>
-        <td>Officer involved shooting</td>
-        <td>Pico Boulevard &amp; Vermont Avenue</td>
-        <td>26</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="48/">William Ross</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>2882 W. 9th St.</td>
-        <td>33</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="49/">Juan V. Salgado</a></td>
-        <td>1992-05-20</td>
-        <td>Homicide</td>
-        <td>3100 block of South Main Street</td>
-        <td>20</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="50/">Imad Sharaf</a></td>
-        <td>1992-05-03</td>
-        <td>Not riot-related</td>
-        <td>San Diego Freeway &amp; San Fernando Mission Boulevard</td>
-        <td>31</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="51/">Jose Solorzano</a></td>
-        <td>1992-05-01</td>
-        <td>Homicide</td>
-        <td>Vermont Avenue &amp; Santa Monica Boulevard</td>
-        <td>25</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="52/">George A. Sosa</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>2600 block of Florence Avenue</td>
-        <td>20</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="53/">Anthony J. Taylor</a></td>
-        <td>1992-04-30</td>
-        <td>Officer involved shooting</td>
-        <td>11322 Alvaro St.</td>
-        <td>31</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="54/">Dwight Taylor</a></td>
-        <td>1992-04-29</td>
-        <td>Homicide</td>
-        <td>4365 S. Vermont Ave.</td>
-        <td>42</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="55/">James L. Taylor</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>5213 Sunset Blvd.</td>
-        <td>26</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="56/">Wallace Tope</a></td>
-        <td>1993-11-24</td>
-        <td>Homicide</td>
-        <td>5510 W. Sunset Blvd.</td>
-        <td>54</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="57/">Edward Anthony Travens</a></td>
-        <td>1992-04-29</td>
-        <td>Not riot-related</td>
-        <td>San Fernando Road &amp; San Fernando Mission Boulevard</td>
-        <td>15</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="58/">Eduardo C. Vela</a></td>
-        <td>1992-04-29</td>
-        <td>Homicide</td>
-        <td>5100 block of West Slauson Avenue</td>
-        <td>33</td>
-        <td>Male</td>
-        <td>Latino</td>
-    </tr>
-
-    <tr>
-        <td><a href="59/">Fredrick Ward</a></td>
-        <td>1992-05-02</td>
-        <td>Homicide</td>
-        <td>11932 Cometa Ave.</td>
-        <td>20</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="60/">Louis A. Watson</a></td>
-        <td>1992-04-29</td>
-        <td>Homicide</td>
-        <td>4365 S. Vermont Ave.</td>
-        <td>18</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="61/">Elbert O. Wilkins</a></td>
-        <td>1992-04-30</td>
-        <td>Homicide</td>
-        <td>Western Avenue &amp; 92nd Street</td>
-        <td>33</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-    <tr>
-        <td><a href="62/">John H. Willers</a></td>
-        <td>1992-04-29</td>
-        <td>Homicide</td>
-        <td>10621 Sepulveda Blvd.</td>
-        <td>37</td>
-        <td>Male</td>
-        <td>White</td>
-    </tr>
-
-    <tr>
-        <td><a href="63/">Willie Bernard Williams</a></td>
-        <td>1992-04-29</td>
-        <td>Death</td>
-        <td>Gage &amp; Western avenues</td>
-        <td>29</td>
-        <td>Male</td>
-        <td>Black</td>
-    </tr>
-
-</table>
-
-<script type="text/javascript">
-    var map = L.map('map').setView([34.025, -118.35], 10);
-
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
-
-    var data = {
-      "type": "FeatureCollection",
-      "features": [
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Cesar A. Aguilar",
-            "address": "2009 W. 6th St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2739756, 34.0592814]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "George Alvarez",
-            "address": "Main &amp; College streets"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2340982, 34.0626901]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Wilson Alvarez",
-            "address": "3100 Rosecrans Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.326816, 33.901662]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Brian E. Andrew",
-            "address": "Rosecrans &amp; Chester avenues"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2153903, 33.9034569]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Vivian Austin",
-            "address": "1600 W. 60th St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.304741, 33.985667]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Franklin Benavidez",
-            "address": "4404 S. Western Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3088215, 34.0034731]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Carol Benson",
-            "address": "Harbor Freeway near Slauson Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2805037, 33.98916756]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Patrick Bettan",
-            "address": "2740 W. Olympic Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.293181, 34.052068]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Hector Castro",
-            "address": "Vermont &amp; Leeward avenues"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.291654, 34.0587022]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Jerel L. Channell",
-            "address": "Santa Monica Boulevard &amp; Seward Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3323783, 34.09129756]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Gregory Davis Jr.",
-            "address": "Vermont Avenue &amp; 43rd Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2915492, 34.005485]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "John Doe #80",
-            "address": "5800 block of South Vermont Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2914954, 33.98939885]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Harry Doller",
-            "address": "3500 block of Winslow Drive"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.278763, 34.08778849]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Kevin J. Edwards",
-            "address": "614 S. Locust Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2002522, 33.892421]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Howard Epstein",
-            "address": "Slauson &amp; 7th avenues"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3247424, 33.9890486]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Juana Espinosa",
-            "address": "7608 S. Compton Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2461881, 33.9198205]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Kevin A. Evanahen",
-            "address": "Braddock Drive &amp; Inglewood Boulevard"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.4144533, 33.99267241]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Jose L. Garcia",
-            "address": "1005 S. Fresno St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2070419, 34.0275527]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Mark Garcia",
-            "address": "10700 block of Burin Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3537656, 33.93895407]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Elias Garcia Rivera",
-            "address": "12834 Vanowen St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.4137912, 34.1939342]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Andreas Garnica",
-            "address": "2034 W. Pico Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2818793, 34.0468443]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Meeker Gibson",
-            "address": "Holt &amp; Loranne avenues"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-117.7306469, 34.0628458]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Matthew D. Haines",
-            "address": "Lemon Avenue &amp; Pacific Coast Highway"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.1785114, 33.7898575]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Jimmie Harris",
-            "address": "Avalon Boulevard &amp; Slauson Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2651995, 33.989245]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "DeAndre Harrison",
-            "address": "Central Avenue &amp; 112th Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2542949, 33.9294721]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Paul D. Horace",
-            "address": "1439 E. Walnut"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2474139, 34.0217355]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Betty Jackson",
-            "address": "Main &amp; 51st streets"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2739305, 33.9965216]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Dennis Ray Jackson",
-            "address": "11322 Alvaro St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2537567, 33.93229185]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Tranh Lam",
-            "address": "Willowbrook Avenue &amp; Alondra Boulevard"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2238673, 33.8885943]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Edward Song Lee",
-            "address": "Hobart Boulevard &amp; 3rd Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3054392, 34.0689851]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Frank D. Lopez",
-            "address": "16th Street &amp; Central Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2487649, 34.0264271]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Darnell R. Mallory",
-            "address": "Santa Monica Boulevard &amp; Seward Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3341384, 34.09097156]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Lucie R. Maronian",
-            "address": "1800 block of East New York Drive"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.1134357, 34.1785051]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Howard Eugene Martin",
-            "address": "near North Los Robles Avenue &amp; Claremont Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.141613, 34.1668637]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Ira F. McCurry",
-            "address": "Avalon Boulevard &amp; 102nd Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.265163, 33.9437558]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Alfred V. Miller",
-            "address": "Florence Avenue &amp; Cimarron Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3157372, 33.9745911]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Arturo C. Miranda",
-            "address": "120th Street &amp; Central Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2543429, 33.9237304]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Suzanne R. Morgan",
-            "address": "2137 E. 115th St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2344108, 33.9304917]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Nissar Mustafa",
-            "address": "1601 S. Western Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3090341, 34.0435539]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Ernest Neal Jr.",
-            "address": "Western Avenue &amp; 92nd Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.309006, 33.952709]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Anthony Netherly",
-            "address": "San Pedro &amp; 78th streets"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2695156, 33.9687806]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Charles W. Orebo",
-            "address": "Florence Avenue &amp; Flower Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2812901, 33.9746575]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Juanita Pettaway",
-            "address": "Santa Monica Boulevard &amp; Seward Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3331771, 34.090696]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Juan A. Pineda",
-            "address": "4028 Santa Monica Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.281326, 34.092221]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Hugo G. Ramirez",
-            "address": "12732 Bess St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-117.997106, 34.070238]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Aaron Ratinoff",
-            "address": "11690 Gateway Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.4431, 34.0286551]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Victor R. Rivas",
-            "address": "Pico Boulevard &amp; Vermont Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.291583, 34.0472563]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "William Ross",
-            "address": "2882 W. 9th St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.291274, 34.05569]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Juan V. Salgado",
-            "address": "3100 block of South Main Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2713789, 34.02062153]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Imad Sharaf",
-            "address": "San Diego Freeway &amp; San Fernando Mission Boulevard"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.4717452, 34.27185555]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Jose Solorzano",
-            "address": "Vermont Avenue &amp; Santa Monica Boulevard"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.291755, 34.0908675]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "George A. Sosa",
-            "address": "2600 block of Florence Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.22518059, 33.97418]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Anthony J. Taylor",
-            "address": "11322 Alvaro St."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2531966, 33.9314634]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Dwight Taylor",
-            "address": "4365 S. Vermont Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.292169, 34.004453]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "James L. Taylor",
-            "address": "5213 Sunset Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3037557, 34.0982485]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Wallace Tope",
-            "address": "5510 W. Sunset Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3098224, 34.0980819]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Edward Anthony Travens",
-            "address": "San Fernando Road &amp; San Fernando Mission Boulevard"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.4430027, 34.28418731]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Eduardo C. Vela",
-            "address": "5100 block of West Slauson Avenue"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3687199, 33.9876036]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Fredrick Ward",
-            "address": "11932 Cometa Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.412778, 34.287098]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Louis A. Watson",
-            "address": "4365 S. Vermont Ave."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.2915566, 34.00524354]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Elbert O. Wilkins",
-            "address": "Western Avenue &amp; 92nd Street"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3100043, 33.95276731]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "John H. Willers",
-            "address": "10621 Sepulveda Blvd."
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.46777, 34.263184]
-          }
-        },
-        
-        {
-          "type": "Feature",
-          "properties": {
-            "full_name": "Willie Bernard Williams",
-            "address": "Gage &amp; Western avenues"
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-118.3089517, 33.9823625]
-          }
-        }
-        
-      ]
-    };
-
-    var dataLayer = L.geoJson(data, {
-        onEachFeature: function(feature, layer) {
-            layer.bindPopup(feature.properties.full_name);
-        }
-    });
-    map.addLayer(dataLayer);
-</script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
+
+    <h1>Deaths during the L.A. riots</h1>
+
+    <table border=1 cellpadding=7>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Race</th>
+        </tr>
+    
+        <tr>
+            <td><a href="1/">Cesar A. Aguilar</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>2009 W. 6th St.</td>
+            <td>18</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="2/">George Alvarez</a></td>
+            <td>1992-05-01</td>
+            <td>Not riot-related</td>
+            <td>Main &amp; College streets</td>
+            <td>42</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="3/">Wilson Alvarez</a></td>
+            <td>1992-05-23</td>
+            <td>Homicide</td>
+            <td>3100 Rosecrans Ave.</td>
+            <td>40</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="4/">Brian E. Andrew</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>Rosecrans &amp; Chester avenues</td>
+            <td>30</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="5/">Vivian Austin</a></td>
+            <td>1992-05-03</td>
+            <td>Death</td>
+            <td>1600 W. 60th St.</td>
+            <td>87</td>
+            <td>Female</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="6/">Franklin Benavidez</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>4404 S. Western Ave.</td>
+            <td>27</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="7/">Carol Benson</a></td>
+            <td>1992-05-02</td>
+            <td>Death</td>
+            <td>Harbor Freeway near Slauson Avenue</td>
+            <td>42</td>
+            <td>Female</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="8/">Patrick Bettan</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>2740 W. Olympic Blvd.</td>
+            <td>30</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="9/">Hector Castro</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Vermont &amp; Leeward avenues</td>
+            <td>49</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="10/">Jerel L. Channell</a></td>
+            <td>1992-04-30</td>
+            <td>Death</td>
+            <td>Santa Monica Boulevard &amp; Seward Street</td>
+            <td>26</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="11/">Gregory Davis Jr.</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Vermont Avenue &amp; 43rd Street</td>
+            <td>15</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="12/">John Doe #80</a></td>
+            <td>1992-05-02</td>
+            <td>Homicide</td>
+            <td>5800 block of South Vermont Avenue</td>
+            <td></td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="13/">Harry Doller</a></td>
+            <td>1992-05-01</td>
+            <td>Not riot-related</td>
+            <td>3500 block of Winslow Drive</td>
+            <td>56</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="14/">Kevin J. Edwards</a></td>
+            <td>1992-04-30</td>
+            <td>Not riot-related</td>
+            <td>614 S. Locust Ave.</td>
+            <td>35</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="15/">Howard Epstein</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Slauson &amp; 7th avenues</td>
+            <td>45</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="16/">Juana Espinosa</a></td>
+            <td>1992-05-02</td>
+            <td>Homicide</td>
+            <td>7608 S. Compton Ave.</td>
+            <td>65</td>
+            <td>Female</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="17/">Kevin A. Evanahen</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>Braddock Drive &amp; Inglewood Boulevard</td>
+            <td>24</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="18/">Jose L. Garcia</a></td>
+            <td>1992-04-30</td>
+            <td>Not riot-related</td>
+            <td>1005 S. Fresno St.</td>
+            <td>15</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="19/">Mark Garcia</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>10700 block of Burin Avenue</td>
+            <td>15</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="20/">Elias Garcia Rivera</a></td>
+            <td>1992-12-16</td>
+            <td>Homicide</td>
+            <td>12834 Vanowen St.</td>
+            <td>32</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="21/">Andreas Garnica</a></td>
+            <td>1992-04-30</td>
+            <td>Not riot-related</td>
+            <td>2034 W. Pico Blvd.</td>
+            <td>36</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="22/">Meeker Gibson</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>Holt &amp; Loranne avenues</td>
+            <td>35</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="23/">Matthew D. Haines</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Lemon Avenue &amp; Pacific Coast Highway</td>
+            <td>32</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="24/">Jimmie Harris</a></td>
+            <td>1992-04-29</td>
+            <td>Death</td>
+            <td>Avalon Boulevard &amp; Slauson Avenue</td>
+            <td>38</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="25/">DeAndre Harrison</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>Central Avenue &amp; 112th Street</td>
+            <td>17</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="26/">Paul D. Horace</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>1439 E. Walnut</td>
+            <td>38</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="27/">Betty Jackson</a></td>
+            <td>1992-05-01</td>
+            <td>Death</td>
+            <td>Main &amp; 51st streets</td>
+            <td>56</td>
+            <td>Female</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="28/">Dennis Ray Jackson</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>11322 Alvaro St.</td>
+            <td>38</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="29/">Tranh Lam</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Willowbrook Avenue &amp; Alondra Boulevard</td>
+            <td>25</td>
+            <td>Male</td>
+            <td>Asian</td>
+        </tr>
+    
+        <tr>
+            <td><a href="30/">Edward Song Lee</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Hobart Boulevard &amp; 3rd Street</td>
+            <td>18</td>
+            <td>Male</td>
+            <td>Asian</td>
+        </tr>
+    
+        <tr>
+            <td><a href="31/">Frank D. Lopez</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>16th Street &amp; Central Avenue</td>
+            <td>36</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="32/">Darnell R. Mallory</a></td>
+            <td>1992-04-30</td>
+            <td>Death</td>
+            <td>Santa Monica Boulevard &amp; Seward Street</td>
+            <td>18</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="33/">Lucie R. Maronian</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>1800 block of East New York Drive</td>
+            <td>51</td>
+            <td>Female</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="34/">Howard Eugene Martin</a></td>
+            <td>1992-05-03</td>
+            <td>Officer involved shooting</td>
+            <td>near North Los Robles Avenue &amp; Claremont Street</td>
+            <td>22</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="35/">Ira F. McCurry</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Avalon Boulevard &amp; 102nd Street</td>
+            <td>45</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="36/">Alfred V. Miller</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>Florence Avenue &amp; Cimarron Street</td>
+            <td>32</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="37/">Arturo C. Miranda</a></td>
+            <td>1992-04-29</td>
+            <td>Homicide</td>
+            <td>120th Street &amp; Central Avenue</td>
+            <td>23</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="38/">Suzanne R. Morgan</a></td>
+            <td>1992-05-01</td>
+            <td>Not riot-related</td>
+            <td>2137 E. 115th St.</td>
+            <td>24</td>
+            <td>Female</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="39/">Nissar Mustafa</a></td>
+            <td>1992-08-12</td>
+            <td>Homicide</td>
+            <td>1601 S. Western Ave.</td>
+            <td>20</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="40/">Ernest Neal Jr.</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Western Avenue &amp; 92nd Street</td>
+            <td>27</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="41/">Anthony Netherly</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>San Pedro &amp; 78th streets</td>
+            <td>21</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="42/">Charles W. Orebo</a></td>
+            <td>1992-05-01</td>
+            <td>Officer involved shooting</td>
+            <td>Florence Avenue &amp; Flower Street</td>
+            <td>21</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="43/">Juanita Pettaway</a></td>
+            <td>1992-04-30</td>
+            <td>Death</td>
+            <td>Santa Monica Boulevard &amp; Seward Street</td>
+            <td>37</td>
+            <td>Female</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="44/">Juan A. Pineda</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>4028 Santa Monica Blvd.</td>
+            <td>20</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="45/">Hugo G. Ramirez</a></td>
+            <td>1992-05-03</td>
+            <td>Not riot-related</td>
+            <td>12732 Bess St.</td>
+            <td>23</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="46/">Aaron Ratinoff</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>11690 Gateway Blvd.</td>
+            <td>68</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="47/">Victor R. Rivas</a></td>
+            <td>1992-05-03</td>
+            <td>Officer involved shooting</td>
+            <td>Pico Boulevard &amp; Vermont Avenue</td>
+            <td>26</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="48/">William Ross</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>2882 W. 9th St.</td>
+            <td>33</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="49/">Juan V. Salgado</a></td>
+            <td>1992-05-20</td>
+            <td>Homicide</td>
+            <td>3100 block of South Main Street</td>
+            <td>20</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="50/">Imad Sharaf</a></td>
+            <td>1992-05-03</td>
+            <td>Not riot-related</td>
+            <td>San Diego Freeway &amp; San Fernando Mission Boulevard</td>
+            <td>31</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="51/">Jose Solorzano</a></td>
+            <td>1992-05-01</td>
+            <td>Homicide</td>
+            <td>Vermont Avenue &amp; Santa Monica Boulevard</td>
+            <td>25</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="52/">George A. Sosa</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>2600 block of Florence Avenue</td>
+            <td>20</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="53/">Anthony J. Taylor</a></td>
+            <td>1992-04-30</td>
+            <td>Officer involved shooting</td>
+            <td>11322 Alvaro St.</td>
+            <td>31</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="54/">Dwight Taylor</a></td>
+            <td>1992-04-29</td>
+            <td>Homicide</td>
+            <td>4365 S. Vermont Ave.</td>
+            <td>42</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="55/">James L. Taylor</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>5213 Sunset Blvd.</td>
+            <td>26</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="56/">Wallace Tope</a></td>
+            <td>1993-11-24</td>
+            <td>Homicide</td>
+            <td>5510 W. Sunset Blvd.</td>
+            <td>54</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="57/">Edward Anthony Travens</a></td>
+            <td>1992-04-29</td>
+            <td>Not riot-related</td>
+            <td>San Fernando Road &amp; San Fernando Mission Boulevard</td>
+            <td>15</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="58/">Eduardo C. Vela</a></td>
+            <td>1992-04-29</td>
+            <td>Homicide</td>
+            <td>5100 block of West Slauson Avenue</td>
+            <td>33</td>
+            <td>Male</td>
+            <td>Latino</td>
+        </tr>
+    
+        <tr>
+            <td><a href="59/">Fredrick Ward</a></td>
+            <td>1992-05-02</td>
+            <td>Homicide</td>
+            <td>11932 Cometa Ave.</td>
+            <td>20</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="60/">Louis A. Watson</a></td>
+            <td>1992-04-29</td>
+            <td>Homicide</td>
+            <td>4365 S. Vermont Ave.</td>
+            <td>18</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="61/">Elbert O. Wilkins</a></td>
+            <td>1992-04-30</td>
+            <td>Homicide</td>
+            <td>Western Avenue &amp; 92nd Street</td>
+            <td>33</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+        <tr>
+            <td><a href="62/">John H. Willers</a></td>
+            <td>1992-04-29</td>
+            <td>Homicide</td>
+            <td>10621 Sepulveda Blvd.</td>
+            <td>37</td>
+            <td>Male</td>
+            <td>White</td>
+        </tr>
+    
+        <tr>
+            <td><a href="63/">Willie Bernard Williams</a></td>
+            <td>1992-04-29</td>
+            <td>Death</td>
+            <td>Gage &amp; Western avenues</td>
+            <td>29</td>
+            <td>Male</td>
+            <td>Black</td>
+        </tr>
+    
+    </table>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([34.055, -118.35], 9);
+
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
+
+        var data = {
+          "type": "FeatureCollection",
+          "features": [
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Cesar A. Aguilar",
+                "address": "2009 W. 6th St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2739756, 34.0592814]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "George Alvarez",
+                "address": "Main &amp; College streets"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2340982, 34.0626901]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Wilson Alvarez",
+                "address": "3100 Rosecrans Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.326816, 33.901662]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Brian E. Andrew",
+                "address": "Rosecrans &amp; Chester avenues"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2153903, 33.9034569]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Vivian Austin",
+                "address": "1600 W. 60th St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.304741, 33.985667]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Franklin Benavidez",
+                "address": "4404 S. Western Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3088215, 34.0034731]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Carol Benson",
+                "address": "Harbor Freeway near Slauson Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2805037, 33.98916756]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Patrick Bettan",
+                "address": "2740 W. Olympic Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.293181, 34.052068]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Hector Castro",
+                "address": "Vermont &amp; Leeward avenues"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.291654, 34.0587022]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Jerel L. Channell",
+                "address": "Santa Monica Boulevard &amp; Seward Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3323783, 34.09129756]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Gregory Davis Jr.",
+                "address": "Vermont Avenue &amp; 43rd Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2915492, 34.005485]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "John Doe #80",
+                "address": "5800 block of South Vermont Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2914954, 33.98939885]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Harry Doller",
+                "address": "3500 block of Winslow Drive"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.278763, 34.08778849]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Kevin J. Edwards",
+                "address": "614 S. Locust Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2002522, 33.892421]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Howard Epstein",
+                "address": "Slauson &amp; 7th avenues"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3247424, 33.9890486]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Juana Espinosa",
+                "address": "7608 S. Compton Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2461881, 33.9198205]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Kevin A. Evanahen",
+                "address": "Braddock Drive &amp; Inglewood Boulevard"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.4144533, 33.99267241]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Jose L. Garcia",
+                "address": "1005 S. Fresno St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2070419, 34.0275527]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Mark Garcia",
+                "address": "10700 block of Burin Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3537656, 33.93895407]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Elias Garcia Rivera",
+                "address": "12834 Vanowen St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.4137912, 34.1939342]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Andreas Garnica",
+                "address": "2034 W. Pico Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2818793, 34.0468443]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Meeker Gibson",
+                "address": "Holt &amp; Loranne avenues"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-117.7306469, 34.0628458]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Matthew D. Haines",
+                "address": "Lemon Avenue &amp; Pacific Coast Highway"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.1785114, 33.7898575]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Jimmie Harris",
+                "address": "Avalon Boulevard &amp; Slauson Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2651995, 33.989245]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "DeAndre Harrison",
+                "address": "Central Avenue &amp; 112th Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2542949, 33.9294721]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Paul D. Horace",
+                "address": "1439 E. Walnut"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2474139, 34.0217355]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Betty Jackson",
+                "address": "Main &amp; 51st streets"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2739305, 33.9965216]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Dennis Ray Jackson",
+                "address": "11322 Alvaro St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2537567, 33.93229185]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Tranh Lam",
+                "address": "Willowbrook Avenue &amp; Alondra Boulevard"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2238673, 33.8885943]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Edward Song Lee",
+                "address": "Hobart Boulevard &amp; 3rd Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3054392, 34.0689851]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Frank D. Lopez",
+                "address": "16th Street &amp; Central Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2487649, 34.0264271]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Darnell R. Mallory",
+                "address": "Santa Monica Boulevard &amp; Seward Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3341384, 34.09097156]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Lucie R. Maronian",
+                "address": "1800 block of East New York Drive"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.1134357, 34.1785051]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Howard Eugene Martin",
+                "address": "near North Los Robles Avenue &amp; Claremont Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.141613, 34.1668637]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Ira F. McCurry",
+                "address": "Avalon Boulevard &amp; 102nd Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.265163, 33.9437558]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Alfred V. Miller",
+                "address": "Florence Avenue &amp; Cimarron Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3157372, 33.9745911]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Arturo C. Miranda",
+                "address": "120th Street &amp; Central Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2543429, 33.9237304]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Suzanne R. Morgan",
+                "address": "2137 E. 115th St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2344108, 33.9304917]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Nissar Mustafa",
+                "address": "1601 S. Western Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3090341, 34.0435539]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Ernest Neal Jr.",
+                "address": "Western Avenue &amp; 92nd Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.309006, 33.952709]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Anthony Netherly",
+                "address": "San Pedro &amp; 78th streets"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2695156, 33.9687806]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Charles W. Orebo",
+                "address": "Florence Avenue &amp; Flower Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2812901, 33.9746575]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Juanita Pettaway",
+                "address": "Santa Monica Boulevard &amp; Seward Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3331771, 34.090696]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Juan A. Pineda",
+                "address": "4028 Santa Monica Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.281326, 34.092221]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Hugo G. Ramirez",
+                "address": "12732 Bess St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-117.997106, 34.070238]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Aaron Ratinoff",
+                "address": "11690 Gateway Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.4431, 34.0286551]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Victor R. Rivas",
+                "address": "Pico Boulevard &amp; Vermont Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.291583, 34.0472563]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "William Ross",
+                "address": "2882 W. 9th St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.291274, 34.05569]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Juan V. Salgado",
+                "address": "3100 block of South Main Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2713789, 34.02062153]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Imad Sharaf",
+                "address": "San Diego Freeway &amp; San Fernando Mission Boulevard"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.4717452, 34.27185555]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Jose Solorzano",
+                "address": "Vermont Avenue &amp; Santa Monica Boulevard"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.291755, 34.0908675]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "George A. Sosa",
+                "address": "2600 block of Florence Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.22518059, 33.97418]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Anthony J. Taylor",
+                "address": "11322 Alvaro St."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2531966, 33.9314634]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Dwight Taylor",
+                "address": "4365 S. Vermont Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.292169, 34.004453]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "James L. Taylor",
+                "address": "5213 Sunset Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3037557, 34.0982485]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Wallace Tope",
+                "address": "5510 W. Sunset Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3098224, 34.0980819]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Edward Anthony Travens",
+                "address": "San Fernando Road &amp; San Fernando Mission Boulevard"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.4430027, 34.28418731]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Eduardo C. Vela",
+                "address": "5100 block of West Slauson Avenue"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3687199, 33.9876036]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Fredrick Ward",
+                "address": "11932 Cometa Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.412778, 34.287098]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Louis A. Watson",
+                "address": "4365 S. Vermont Ave."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.2915566, 34.00524354]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Elbert O. Wilkins",
+                "address": "Western Avenue &amp; 92nd Street"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3100043, 33.95276731]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "John H. Willers",
+                "address": "10621 Sepulveda Blvd."
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.46777, 34.263184]
+              }
+            },
+            
+            {
+              "type": "Feature",
+              "properties": {
+                "full_name": "Willie Bernard Williams",
+                "address": "Gage &amp; Western avenues"
+              },
+              "geometry": {
+                "type": "Point",
+                "coordinates": [-118.3089517, 33.9823625]
+              }
+            }
+            
+          ]
+        };
+
+        var dataLayer = L.geoJson(data, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(feature.properties.full_name);
+            }
+        });
+        map.addLayer(dataLayer);
+    </script>
+</body>
+</html>

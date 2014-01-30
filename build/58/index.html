@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Your First News App</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+</head>
+<body>
+    <div id="map" style="width:100%; height:300px;"></div>
 
-<h1>Eduardo C. Vela, a 33 year old, Latino male died on 1992-04-29
+    <h1>Eduardo C. Vela, a 33 year old, Latino male died on 1992-04-29
 in a homicide at 5100 block of West Slauson Avenue in Ladera Heights.</h1>
 
-<div id="map" style="width:100%; height:300px; margin-bottom: 30px;"></div>
+    <p>Eduardo C. Vela, a 33-year-old Latino, was shot and killed Wednesday, April 29, 1992, in the 5100 block of West Slauson Avenue in Ladera Heights. Vela, a Mexican immigrant who ran a Japanese restaurant in Bakersfield, was visiting Los Angeles on the day the riots broke out. He was killed as he waited behind the steering wheel of his disabled car while a co-worker, Estevan Ortigoza, went to make a telephone call.</p>
 
-<script type="text/javascript">
-    var map = L.map('map').setView([33.9876036, -118.3687199], 16);
+    <script type="text/javascript">
+        var map = L.map('map').setView([33.9876036, -118.3687199], 16);
 
-    var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-        subdomains: ['otile1','otile2','otile3','otile4']
-    });
-    map.addLayer(mapquestLayer);
+        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+            subdomains: ['otile1','otile2','otile3','otile4']
+        });
+        map.addLayer(mapquestLayer);
 
-    var marker = L.marker([33.9876036, -118.3687199]).addTo(map);
-</script>
-
-<p>Eduardo C. Vela, a 33-year-old Latino, was shot and killed Wednesday, April 29, 1992, in the 5100 block of West Slauson Avenue in Ladera Heights. Vela, a Mexican immigrant who ran a Japanese restaurant in Bakersfield, was visiting Los Angeles on the day the riots broke out. He was killed as he waited behind the steering wheel of his disabled car while a co-worker, Estevan Ortigoza, went to make a telephone call.</p>
+        var marker = L.marker([33.9876036, -118.3687199]).addTo(map);
+    </script>
+</body>
+</html>
