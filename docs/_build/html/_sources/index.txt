@@ -45,7 +45,7 @@ to participate.
 2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
 3. `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
 4. Version 2.7 of the `Python <http://python.org>`_ programming language
-5. The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager for Python
+5. The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
 
 .. note::
 
@@ -122,8 +122,8 @@ If you don't have Python installed (a more likely fate for Windows users) try do
 <http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you futz a little.
 
-pip
----
+pip and virtualenv
+------------------
 
 The `pip package manager <http://www.pip-installer.org/en/latest/index.html>`_
 makes it easy to install open-source libraries that 
@@ -138,9 +138,45 @@ Verify it's installed with the following.
 
     $ pip -V
 
+The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
+makes it possible to create an isolated corner of your computer where all the different
+tools you use to build an application are sealed off. 
+
+It might not be obvious why you need this, but it quickly becomes essential when you need to juggle different tools
+for different projects on one computer. By developing your applications inside separate
+virtualenv projects, you can use different versions of the same third-party libraries without conflicts.
+You can also more easily recreate your project on another machine, which comes in handy when
+you want to copy your code to a server that publishes pages on the Internet.
+
+You can check if virtualenv is installed with the following.
+
+.. code-block:: bash
+
+    $ virtualenv --version
+
+If you don't have it, install it with pip. You might want to use the sudo command 
+to put virtualenv in your system's global directories where it can always be called, just
+like other common commands like ls or cd.
+
+.. code-block:: bash
+
+    $ sudo pip install virtualenv
+
 ****************
 Act 1: Hello Git
 ****************
+
+.. code-block:: bash
+
+    $ virtualenv first-news-app
+
+.. code-block:: bash
+
+    $ cd first-news-app
+
+.. code-block:: bash
+
+    $ . bin/activate
 
 The lesson will begin with an introduction to Git and GitHub.
 
