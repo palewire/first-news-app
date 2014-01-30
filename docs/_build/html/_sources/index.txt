@@ -242,24 +242,31 @@ Reload your repository on GitHub and see your handiwork.
 Act 2: Hello Flask
 ******************
 
+Use pip to install `Flask <http://flask.pocoo.org/>` the Python "microframework"
+we'll use to put together our website.
+
 .. code-block:: bash
 
     $ pip install Flask
+
+Create a new file called ``app.py`` where we will configure Flask.
 
 .. code-block:: bash
 
     $ touch app.py
 
-Fill it in with basic Flask stuff to make a single page
+Open it with your text editor and import the Flask basics.
 
 .. code-block:: python
 
     from flask import Flask
-    from flask import render_template
     app = Flask(__name__)
 
+Now configure Flask to make a page at your site's root URL, where we will publish
+the complete list of people who died during the riots using a template called ``index.html``.
+
 .. code-block:: python
-    :emphasize-lines: 5-7
+    :emphasize-lines: 2, 5-7
 
     from flask import Flask
     from flask import render_template
@@ -268,6 +275,26 @@ Fill it in with basic Flask stuff to make a single page
     @app.route("/")
     def index():
         return render_template('index.html')
+
+Create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
+
+.. code-block:: bash
+
+    $ mkdir templates
+
+Create the ``index.html`` we referenced in ``app.py``.
+
+.. code-block:: bash
+
+    $ touch templates/index.html
+
+Open it up and write something clever.
+
+.. code-block:: html
+
+    Hello World!
+
+Configure Flask to boot up a test server when you run ``app.py``.
 
 .. code-block:: python
     :emphasize-lines: 9-15
@@ -288,30 +315,24 @@ Fill it in with basic Flask stuff to make a single page
             debug=True,
         )
 
-.. code-block:: bash
-
-    $ mkdir templates
-
-.. code-block:: bash
-
-    $ touch templates/index.html
-
-.. code-block:: html
-
-    Hello NICAR '14!
+Run ``app.py`` and open up your browser to ``localhost:8000`` or ``127.0.0.1:8000``.
 
 .. code-block:: bash
 
     $ python app.py
 
-Check it out in the browser
+Commit our work to your Git repository.
 
 .. code-block:: bash
 
     $ git add .
     $ git commit -m "Flask app.py and first template"
 
-Check out the commit message and diff on GitHub
+Push it up to GitHub and check out the changes there.
+
+.. code-block:: bash
+
+    $ git push origin master
 
 *****************
 Act 3: Hello HTML

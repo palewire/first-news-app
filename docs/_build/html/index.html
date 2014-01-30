@@ -223,27 +223,44 @@ file extension since that&#8217;s <a class="reference external" href="https://he
 </div>
 <div class="section" id="act-2-hello-flask">
 <h2>Act 2: Hello Flask<a class="headerlink" href="#act-2-hello-flask" title="Permalink to this headline">¶</a></h2>
+<p>Use pip to install <cite>Flask &lt;http://flask.pocoo.org/&gt;</cite> the Python &#8220;microframework&#8221;
+we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Flask
 </pre></div>
 </div>
+<p>Create a new file called <tt class="docutils literal"><span class="pre">app.py</span></tt> where we will configure Flask.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch app.py
 </pre></div>
 </div>
-<p>Fill it in with basic Flask stuff to make a single page</p>
+<p>Open it with your text editor and import the Flask basics.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Now configure Flask to make a page at your site&#8217;s root URL, where we will publish
+the complete list of people who died during the riots using a template called <tt class="docutils literal"><span class="pre">index.html</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
 <span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 </span><span class="hll"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
 </span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 </span></pre></div>
 </div>
+<p>Create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
+</pre></div>
+</div>
+<p>Create the <tt class="docutils literal"><span class="pre">index.html</span></tt> we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
+</pre></div>
+</div>
+<p>Open it up and write something clever.</p>
+<div class="highlight-html"><div class="highlight"><pre>Hello World!
+</pre></div>
+</div>
+<p>Configure Flask to boot up a test server when you run <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -261,24 +278,19 @@ file extension since that&#8217;s <a class="reference external" href="https://he
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
-</pre></div>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
-</pre></div>
-</div>
-<div class="highlight-html"><div class="highlight"><pre>Hello NICAR &#39;14!
-</pre></div>
-</div>
+<p>Run <tt class="docutils literal"><span class="pre">app.py</span></tt> and open up your browser to <tt class="docutils literal"><span class="pre">localhost:8000</span></tt> or <tt class="docutils literal"><span class="pre">127.0.0.1:8000</span></tt>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
-<p>Check it out in the browser</p>
+<p>Commit our work to your Git repository.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
 </pre></div>
 </div>
-<p>Check out the commit message and diff on GitHub</p>
+<p>Push it up to GitHub and check out the changes there.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
 </div>
 <div class="section" id="act-3-hello-html">
 <h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
