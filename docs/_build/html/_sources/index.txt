@@ -1025,7 +1025,7 @@ detail pages. Edit ``freeze.py`` to give it the instructions it needs to make a 
 in the source CSV.
 
 .. code-block:: python
-    :emphasize-lines: 2,5-9
+    :emphasize-lines: 2,5-8
 
     from flask_frozen import Freezer
     from app import app, csv_list
