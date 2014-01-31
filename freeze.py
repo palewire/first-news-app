@@ -1,6 +1,7 @@
 from flask_frozen import Freezer
 from app import app, csv_list
 freezer = Freezer(app)
+app.config['FREEZER_RELATIVE_URLS'] = True
 
 
 @freezer.register_generator
