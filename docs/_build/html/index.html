@@ -294,27 +294,46 @@ the complete list of people who died during the riots using a template called <t
 </div>
 <div class="section" id="act-3-hello-html">
 <h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
+<p>Start over in your <tt class="docutils literal"><span class="pre">index.html</span></tt> file with a bare-bones HTML document.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Commit the changes to your repository, if only for practice.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add templates/index.html
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Real HTML&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Make a directory to store data files.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir static
 </pre></div>
 </div>
-<p>Download the data file and load it into the template context and dump it into the HTML template</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<p>Download <a class="reference external" href="https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv">the comma-delimited file</a>
+that will be the backbone of our application and save it there as <tt class="docutils literal"><span class="pre">la-riots-deaths.csv</span></tt>. Add it to your git repository.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add static
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Added CSV source data&quot;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Show how GitHub nicely formats CSV in the website</p>
+<p>Use Python&#8217;s <tt class="docutils literal"><span class="pre">csv</span></tt> module to open up the file in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
 </span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
+<span class="hll"><span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+</span><span class="hll"><span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+</span><span class="hll"><span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+</span>
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-<span class="hll">    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/baltimore-cctv-locations.csv&#39;</span>
-</span><span class="hll">    <span class="n">object_list</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
-<span class="hll">        <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">,</span>
-</span>    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
@@ -325,22 +344,99 @@ the complete list of people who died during the riots using a template called <t
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create basic table in HTML page</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;h1&gt;Baltimore CCTV locations&lt;/h1&gt;</span>
+<p>Pass the list to your template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="x">&lt;table&gt;</span>
-<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;tr&gt;</span>
-<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.number</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
-<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.location</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
-<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.project</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
-<span class="x">    &lt;/tr&gt;</span>
-<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">&lt;/table&gt;</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+<span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
+<p>Dump it out in <tt class="docutils literal"><span class="pre">index.html</span></tt> and reload it in your browser to see what&#8217;s going on.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">    &lt;head&gt;&lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;h1&gt;Deaths during the L.A. riots&lt;/h1&gt;</span>
+<span class="hll"><span class="x">        </span><span class="cp">{{</span> <span class="nv">object_list</span> <span class="cp">}}</span><span class="x"></span>
+</span><span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Use Flask&#8217;s templating language <a class="reference external" href="http://jinja.pocoo.org/">Jinja</a> to loop through
+the data and create an HTML table that lists all the names.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">    &lt;head&gt;&lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;h1&gt;Deaths during the L.A. riots&lt;/h1&gt;</span>
+<span class="hll"><span class="x">        &lt;table border=1 cellpadding=7&gt;</span>
+</span><span class="hll"><span class="x">            &lt;tr&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Name&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">            &lt;/tr&gt;</span>
+</span><span class="hll"><span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">            &lt;tr&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.full_name</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">            &lt;/tr&gt;</span>
+</span><span class="hll"><span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">        &lt;/table&gt;</span>
+</span><span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Expand the table to include a lot more data.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">    &lt;head&gt;&lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;h1&gt;Deaths during the L.A. riots&lt;/h1&gt;</span>
+<span class="x">        &lt;table border=1 cellpadding=7&gt;</span>
+<span class="x">            &lt;tr&gt;</span>
+<span class="x">                &lt;th&gt;Name&lt;/th&gt;</span>
+<span class="hll"><span class="x">                &lt;th&gt;Date&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Type&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Address&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Age&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Gender&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Race&lt;/th&gt;</span>
+</span><span class="x">            &lt;/tr&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            &lt;tr&gt;</span>
+<span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.full_name</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+<span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.date</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.type</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.address</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.age</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.gender</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.race</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="x">            &lt;/tr&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;/table&gt;</span>
+<span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Commit your work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Created basic table&quot;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
 </div>

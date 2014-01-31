@@ -338,33 +338,85 @@ Push it up to GitHub and check out the changes there.
 Act 3: Hello HTML
 *****************
 
+Start over in your ``index.html`` file with a bare-bones HTML document.
+
+.. code-block:: html
+
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>Deaths during the L.A. riots</h1> 
+        </body>
+    </html>
+
+Commit the changes to your repository, if only for practice.
+
+.. code-block:: bash
+
+    $ git add templates/index.html
+    $ git commit -m "Real HTML"
+    $ git push origin master
+
+Make a directory to store data files.
+
 .. code-block:: bash
 
     $ mkdir static
 
-Download the data file and load it into the template context and dump it into the HTML template
+Download `the comma-delimited file <https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv>`_
+that will be the backbone of our application and save it there as ``la-riots-deaths.csv``. Add it to your git repository.
 
 .. code-block:: bash
 
-    $ git add .
+    $ git add static
     $ git commit -m "Added CSV source data"
+    $ git push origin master
 
-Show how GitHub nicely formats CSV in the website
+Use Python's ``csv`` module to open up the file in ``app.py``.
 
 .. code-block:: python
-    :emphasize-lines: 1,8,9,11
+    :emphasize-lines: 1, 6-8
 
     import csv
     from flask import Flask
     from flask import render_template
     app = Flask(__name__)
 
+    csv_path = './static/la-riots-deaths.csv'
+    csv_obj = csv.DictReader(open(csv_path, 'r'))
+    csv_list = list(csv_obj)
+
     @app.route("/")
     def index():
-        csv_path = './static/baltimore-cctv-locations.csv'
-        object_list = csv.DictReader(open(csv_path, 'r'))
+        return render_template('index.html')
+
+    if __name__ == '__main__':
+        app.run( 
+            host="0.0.0.0",
+            port=8000,
+            use_reloader=True,
+            debug=True,
+        )
+
+Pass the list to your template.
+
+.. code-block:: python
+    :emphasize-lines: 12-14
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    csv_path = './static/la-riots-deaths.csv'
+    csv_obj = csv.DictReader(open(csv_path, 'r'))
+    csv_list = list(csv_obj)
+
+    @app.route("/")
+    def index():
         return render_template('index.html',
-            object_list=object_list,
+            object_list=csv_list,
         )
 
     if __name__ == '__main__':
@@ -375,26 +427,86 @@ Show how GitHub nicely formats CSV in the website
             debug=True,
         )
 
-Create basic table in HTML page
+Dump it out in ``index.html`` and reload it in your browser to see what's going on.
 
 .. code-block:: jinja
+    :emphasize-lines: 6
 
-    <h1>Baltimore CCTV locations</h1>
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>Deaths during the L.A. riots</h1>
+            {{ object_list }}
+        </body>
+    </html>
 
-    <table>
-    {% for obj in object_list %}
-        <tr>
-            <td>{{ obj.number }}</td>
-            <td>{{ obj.location }}</td>
-            <td>{{ obj.project }}</td>
-        </tr>
-    {% endfor %}
-    </table>
+Use Flask's templating language `Jinja <http://jinja.pocoo.org/>`_ to loop through
+the data and create an HTML table that lists all the names.
+
+.. code-block:: jinja
+    :emphasize-lines: 6-15
+
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.full_name }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </body>
+    </html>
+
+Expand the table to include a lot more data.
+
+.. code-block:: jinja
+    :emphasize-lines: 9-14, 19-24
+
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td>{{ obj.full_name }}</td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </body>
+    </html>
+
+Commit your work.
 
 .. code-block:: bash
 
     $ git add .
     $ git commit -m "Created basic table"
+    $ git push origin master
 
 ***********************
 Act 4: Hello JavaScript
