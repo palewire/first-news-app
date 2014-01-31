@@ -241,7 +241,7 @@ Reload your repository on GitHub and see your handiwork.
 Act 2: Hello Flask
 ******************
 
-Use pip to install `Flask <http://flask.pocoo.org/>`_, the Python "microframework"
+Use pip on the command line to install `Flask <http://flask.pocoo.org/>`_, the Python "microframework"
 we'll use to put together our website.
 
 .. code-block:: bash
@@ -254,7 +254,7 @@ Create a new file called ``app.py`` where we will configure Flask.
 
     $ touch app.py
 
-Open it with your text editor and import the Flask basics.
+Open ``app.py`` with your text editor and import the Flask basics. You are now writing Python!
 
 .. code-block:: python
 
