@@ -241,7 +241,7 @@ Reload your repository on GitHub and see your handiwork.
 Act 2: Hello Flask
 ******************
 
-Use pip to install `Flask <http://flask.pocoo.org/>`_ the Python "microframework"
+Use pip to install `Flask <http://flask.pocoo.org/>`_, the Python "microframework"
 we'll use to put together our website.
 
 .. code-block:: bash
@@ -1096,7 +1096,7 @@ files.
 
     $ python freeze.py
 
-Try opening one in your web browse. Notice that the default configuration only saved ``index.html``, and not all your
+Try opening one in your browser. Notice that the default configuration only saved ``index.html``, and not all your
 detail pages. Edit ``freeze.py`` to give it the instructions it needs to make a page for every record
 in the source CSV.
 
@@ -1129,7 +1129,7 @@ Commit all of the flat pages to the repository.
     $ git commit -m "Froze my app"
     $ git push origin master
 
-Finally, we will publish these static files to the web using GitHub's Pages feature. All it
+Finally, we will publish these static files to the web using `GitHub's Pages <http://pages.github.com/>`_ feature. All it
 requires is that we create a new branch in our repository called ``gh-pages`` and push our files
 up to GitHub there.
 
