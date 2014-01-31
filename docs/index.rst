@@ -141,7 +141,7 @@ The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
 makes it possible to create an isolated corner of your computer where all the different
 tools you use to build an application are sealed off. 
 
-It might not be obvious why you need this, but it quickly becomes essential when you need to juggle different tools
+It might not be obvious why you need this, but it quickly becomes important when you need to juggle different tools
 for different projects on one computer. By developing your applications inside separate
 virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
 You can also more easily recreate your project on another machine, handy when
