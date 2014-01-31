@@ -1060,7 +1060,7 @@ up to GitHub there.
 
 .. code-block:: bash
 
-    $ git checkout gh-pages
+    $ git checkout -b gh-pages
     $ git rebase master
     $ git push origin gh-pages
 
