@@ -762,7 +762,76 @@ and print out the summary that&#8217;s been written in the data file.</p>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>Add a popup on the map pins that links to the corresponding detail page.</p>
+<p>Add a popup on the map pins that shows the name of the victim.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">34.055</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.35</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+                <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+                <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+            <span class="p">});</span>
+            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span>
+                  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.full_name }}&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.id }}&quot;</span>
+                  <span class="p">},</span>
+                  <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}]</span>
+                  <span class="p">}</span>
+                <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+              <span class="p">]</span>
+            <span class="p">};</span>
+<span class="hll">            <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">full_name</span><span class="p">);</span>
+</span><span class="hll">                <span class="p">}</span>
+</span><span class="hll">            <span class="p">});</span>
+</span>            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Now wrap the name in a hyperlink to that person&#8217;s detail page.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;head&gt;</span>

@@ -864,7 +864,79 @@ Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/
         </body>
     </html>
 
-Add a popup on the map pins that links to the corresponding detail page.
+Add a popup on the map pins that shows the name of the victim.
+
+.. code-block:: html
+    :emphasize-lines: 58-62
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var dataLayer = L.geoJson(data, {
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup(feature.properties.full_name);
+                    }
+                });
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
+
+Now wrap the name in a hyperlink to that person's detail page.
 
 .. code-block:: html
     :emphasize-lines: 58-66
