@@ -442,7 +442,7 @@ Dump it out in ``index.html`` and reload it in your browser to see what's going 
     </html>
 
 Use Flask's templating language `Jinja <http://jinja.pocoo.org/>`_ to loop through
-the data and create an HTML table that lists all the names.
+the data and create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
 
 .. code-block:: jinja
     :emphasize-lines: 6-15
@@ -506,6 +506,159 @@ Commit your work.
 
     $ git add .
     $ git commit -m "Created basic table"
+    $ git push origin master
+
+Next we're going to create a unique "detail" page dedicated to each person. Start by opening
+up ``app.py`` and adding the URL that will help make this happen.
+
+.. code-block:: python
+    :emphasize-lines: 16-18
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    csv_path = './static/la-riots-deaths.csv'
+    csv_obj = csv.DictReader(open(csv_path, 'r'))
+    csv_list = list(csv_obj)
+
+    @app.route("/")
+    def index():
+        return render_template('index.html',
+            object_list=csv_list,
+        )
+
+    @app.route('/<number>/')
+    def detail(number):
+        return render_template('detail.html')
+
+    if __name__ == '__main__':
+        app.run( 
+            host="0.0.0.0",
+            port=8000,
+            use_reloader=True,
+            debug=True,
+        )
+
+Create a new file in your templates directory called ``detail.html`` for it to connect with. 
+
+.. code-block:: bash
+
+    $ touch templates/detail.html
+
+Put something simple in it. Then use your browser to visit ``localhost:8000/1/``, ``or localhost:8000/200/`` or any other number.
+
+.. code-block:: html
+
+    Hello World!
+
+To customize the page for each person, we will need to connect the ``number`` in the URL
+with the ``id`` column in the CSV data file. First, use Python to transform the data list
+we currently have into a dictionary with each records ``id`` value as the key.
+
+.. code-block:: python
+    :emphasize-lines: 9
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    csv_path = './static/la-riots-deaths.csv'
+    csv_obj = csv.DictReader(open(csv_path, 'r'))
+    csv_list = list(csv_obj)
+    csv_dict = dict([[o['id'], o] for o in csv_list])
+
+    @app.route("/")
+    def index():
+        return render_template('index.html',
+            object_list=csv_list,
+        )
+
+    @app.route('/<number>/')
+    def detail(number):
+        return render_template('detail.html')
+
+    if __name__ == '__main__':
+        app.run( 
+            host="0.0.0.0",
+            port=8000,
+            use_reloader=True,
+            debug=True,
+        )
+
+Then have the ``detail`` function connect the number from the URL with the corresponding record
+in the dictionary and pass it through the template.
+
+.. code-block:: python
+    :emphasize-lines: 19-21
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    csv_path = './static/la-riots-deaths.csv'
+    csv_obj = csv.DictReader(open(csv_path, 'r'))
+    csv_list = list(csv_obj)
+    csv_dict = dict([[o['id'], o] for o in csv_list])
+
+    @app.route("/")
+    def index():
+        return render_template('index.html',
+            object_list=csv_list,
+        )
+
+    @app.route('/<number>/')
+    def detail(number):
+        return render_template('detail.html',
+            object=csv_dict[number],
+        )
+
+    if __name__ == '__main__':
+        app.run( 
+            host="0.0.0.0",
+            port=8000,
+            use_reloader=True,
+            debug=True,
+        )
+
+Now use the person's name in a real HTML document to make a headline in ``detail.html``.
+
+.. code-block:: html
+
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>{{ object.full_name }}</h1> 
+        </body>
+    </html>
+
+You can use the rest of the data fields to write a sentence about the victim.
+
+.. code-block:: html
+    :emphasize-lines: 5-9
+
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>
+                {{ object.full_name }}, a {{ object.age }} year old, 
+                {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+                in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+            </h1>
+        </body>
+    </html>
+
+Once again, commit your work.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Created a detail page about each victim."
     $ git push origin master
 
 ***********************

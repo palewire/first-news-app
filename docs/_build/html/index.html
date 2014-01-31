@@ -381,7 +381,7 @@ that will be the backbone of our application and save it there as <tt class="doc
 </pre></div>
 </div>
 <p>Use Flask&#8217;s templating language <a class="reference external" href="http://jinja.pocoo.org/">Jinja</a> to loop through
-the data and create an HTML table that lists all the names.</p>
+the data and create <a class="reference external" href="http://www.w3schools.com/html/html_tables.asp">an HTML table</a> that lists all the names.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
 <span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
 <span class="x">    &lt;head&gt;&lt;/head&gt;</span>
@@ -436,6 +436,139 @@ the data and create an HTML table that lists all the names.</p>
 <p>Commit your work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Created basic table&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Next we&#8217;re going to create a unique &#8220;detail&#8221; page dedicated to each person. Start by opening
+up <tt class="docutils literal"><span class="pre">app.py</span></tt> and adding the URL that will help make this happen.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a new file in your templates directory called <tt class="docutils literal"><span class="pre">detail.html</span></tt> for it to connect with.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/detail.html
+</pre></div>
+</div>
+<p>Put something simple in it. Then use your browser to visit <tt class="docutils literal"><span class="pre">localhost:8000/1/</span></tt>, <tt class="docutils literal"><span class="pre">or</span> <span class="pre">localhost:8000/200/</span></tt> or any other number.</p>
+<div class="highlight-html"><div class="highlight"><pre>Hello World!
+</pre></div>
+</div>
+<p>To customize the page for each person, we will need to connect the <tt class="docutils literal"><span class="pre">number</span></tt> in the URL
+with the <tt class="docutils literal"><span class="pre">id</span></tt> column in the CSV data file. First, use Python to transform the data list
+we currently have into a dictionary with each records <tt class="docutils literal"><span class="pre">id</span></tt> value as the key.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="hll"><span class="n">csv_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">o</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">])</span>
+</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Then have the <tt class="docutils literal"><span class="pre">detail</span></tt> function connect the number from the URL with the corresponding record
+in the dictionary and pass it through the template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="n">csv_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">o</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">])</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+<span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">,</span>
+</span><span class="hll">        <span class="nb">object</span><span class="o">=</span><span class="n">csv_dict</span><span class="p">[</span><span class="n">number</span><span class="p">],</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Now use the person&#8217;s name in a real HTML document to make a headline in <tt class="docutils literal"><span class="pre">detail.html</span></tt>.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>{{ object.full_name }}<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>You can use the rest of the data fields to write a sentence about the victim.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+<span class="hll">        <span class="nt">&lt;h1&gt;</span>
+</span><span class="hll">            {{ object.full_name }}, a {{ object.age }} year old,
+</span><span class="hll">            {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+</span><span class="hll">            in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+</span><span class="hll">        <span class="nt">&lt;/h1&gt;</span>
+</span>    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Once again, commit your work.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Created a detail page about each victim.&quot;</span>
 <span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
