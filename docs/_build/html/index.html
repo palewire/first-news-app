@@ -999,7 +999,9 @@ in the source CSV.</p>
 </div>
 <p>Finally, we will publish these static files to the web using <a class="reference external" href="http://pages.github.com/">GitHub&#8217;s Pages</a> feature. All it
 requires is that we create a new branch in our repository called <tt class="docutils literal"><span class="pre">gh-pages</span></tt> and push our files
-up to GitHub there.</p>
+up to GitHub there. Keep in mind there are many other options for publishing flat files, ranging from
+<a class="reference external" href="https://en.wikipedia.org/wiki/Dropbox_%28service%29">Dropbox</a>
+to <a class="reference external" href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon&#8217;s S3 service</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout -b gh-pages
 <span class="nv">$ </span>git rebase master
 <span class="nv">$ </span>git push origin gh-pages
