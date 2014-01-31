@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, sans-serif;
+}
+h1, table, p {
+    margin: 0 10px;
+}
+h1 {
+    padding: 10px 0 15px 0;
+    font-family: Georgia, serif;
+}
+table {
+    border-collapse:collapse;
+    margin-bottom: 20px;
+    border-color: gray;
+}
+table th {
+    text-align:left;
+}
+table tr, td, th {
+    border-color: gray;
+}
+div#map {
+    border-bottom: 1px solid gray;
+}
+p {
+    line-height:140%;
+}
