@@ -159,6 +159,8 @@ If you don't have it, install it with pip.
 
     $ pip install virtualenv
 
+If that doesn't work, `try following this advice <http://www.virtualenv.org/en/latest/virtualenv.html#installation>`_.
+
 ****************
 Act 1: Hello Git
 ****************
