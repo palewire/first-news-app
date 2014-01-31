@@ -10,4 +10,7 @@ script:
  - pyflakes app.py
  - pep8 freeze.py
  - python freeze.py
+ - coverage run test.py
  - cd docs && make html
+after_success:
+  - coveralls

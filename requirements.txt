@@ -9,12 +9,15 @@ Werkzeug==0.9.4
 argh==0.23.3
 argparse==1.2.1
 backports.ssl-match-hostname==3.4.0.2
+coverage==3.7.1
 docutils==0.11
 itsdangerous==0.23
 livereload==2.0.0
 pathtools==0.1.2
 pep8==1.4.6
+py==1.4.20
 pyflakes==0.7.3
 sphinx-autobuild==0.2.3
 tornado==3.1.1
+virtualenv==1.11.2
 watchdog==0.6.0
