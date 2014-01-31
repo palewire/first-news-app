@@ -1050,7 +1050,7 @@ Commit all of the flat pages to the repository.
 .. code-block:: bash
 
     $ git add .
-    $ git commit -m "Froze our app"
+    $ git commit -m "Froze my app"
     $ git push origin master
 
 Finally, we will publish these static files to the web using GitHub's Pages feature. All it
