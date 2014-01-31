@@ -19,7 +19,7 @@ by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construc
 Resources:
 
 * Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
-* Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_.
+* Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
 * Documentation: `http://first-news-app.rtfd.org/ <http://first-news-app.rtfd.org/>`_
 * Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
 

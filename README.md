@@ -11,5 +11,6 @@
 
 A step-by-step guide to publishing a simple news application.
 
+* Demonstration: [http://ireapps.github.io/first-news-app/build/index.html](http://ireapps.github.io/first-news-app/build/index.html)
 * Documentation: [http://first-news-app.rtfd.org](http://first-news-app.rtfd.org)
 * Issues: [https://github.com/ireapps/first-news-app/issues](https://github.com/ireapps/first-news-app/issues)
