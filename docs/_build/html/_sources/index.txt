@@ -791,7 +791,7 @@ Create an HTML element to hold the map and use Leaflet to boot it up and center 
         </body>
     </html>
 
-Loop through the CSV data and format it as a GeoJSON object, which Leaflet can easily load.
+Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/wiki/GeoJSON>`_ object, which Leaflet can easily load.
 
 .. code-block:: html
     :emphasize-lines: 40-59
