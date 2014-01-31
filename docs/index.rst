@@ -986,38 +986,76 @@ Commit that.
 Act 5: Hello Internet
 *********************
 
+In this final act, we will publish your application to the Internet using 
+`Frozen Flask <http://pythonhosted.org/Frozen-Flask/>`_, a Python library that saves every page 
+you've made with Flask as a flat file that can be uploaded to the web.
+
+First, use pip to install Frozen Flask.
+
 .. code-block:: bash
 
     $ pip install Frozen-Flask
+
+Create a new file called ``freeze.py`` where we will configure what it should create.
 
 .. code-block:: bash
 
     $ touch freeze.py
 
-Fill in freeze app
+Import a basic Frozen Flask configuration.
 
 .. code-block:: python
 
     from flask_frozen import Freezer
     from app import app
-
-    app.config['FREEZER_RELATIVE_URLS'] = True
-
     freezer = Freezer(app)
 
     if __name__ == '__main__':
         freezer.freeze()
 
+Run it, which will create a new directory called ``build`` in your project with the saved
+files. 
+
 .. code-block:: bash
 
     $ python freeze.py
 
+Try opening one in your web browse. Notice that the default configuration only saved ``index.html``, and not all your
+detail pages. Edit ``freeze.py`` to give it the instructions it needs to make a page for every record
+in the source CSV.
+
+.. code-block:: python
+    :emphasize-lines: 2,5-9
+
+    from flask_frozen import Freezer
+    from app import app, csv_list
+    freezer = Freezer(app)
+
+    @freezer.register_generator
+    def detail():
+        for row in csv_list:
+            yield {'number': row['id']}
+
+    if __name__ == '__main__':
+        freezer.freeze()
+
+Run it again and notice all the additional pages it made in the ``build`` directory.
+
+.. code-block:: bash
+
+    $ python freeze.py
+
+Commit all of the flat pages to the repository.
+
 .. code-block:: bash
 
     $ git add .
-    $ git commit -m "Frozen our app"
+    $ git commit -m "Froze our app"
+    $ git push origin master
 
-Open up the frozen page in the browser and point out differences
+Finally, we will publish these static files to the web using GitHub's Pages feature. All it
+requires is that we create a new branch in our repository called ``gh-pages`` and push our files
+up to GitHub there.
 
 .. code-block:: bash
 
@@ -1025,4 +1063,4 @@ Open up the frozen page in the browser and point out differences
     $ git rebase master
     $ git push origin gh-pages
 
-The big reveal at http://<yourusername>.github.io/first-news-app/build/index.html
+Now wait a minute or two, then visit http://<yourusername>.github.io/first-news-app/build/index.html to cross the finish line.

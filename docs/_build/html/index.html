@@ -873,38 +873,66 @@ and print out the summary that&#8217;s been written in the data file.</p>
 </div>
 <div class="section" id="act-5-hello-internet">
 <h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
+<p>In this final act, we will publish your application to the Internet using
+<a class="reference external" href="http://pythonhosted.org/Frozen-Flask/">Frozen Flask</a>, a Python library that saves every page
+you&#8217;ve made with Flask as a flat file that can be uploaded to the web.</p>
+<p>First, use pip to install Frozen Flask.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Frozen-Flask
 </pre></div>
 </div>
+<p>Create a new file called <tt class="docutils literal"><span class="pre">freeze.py</span></tt> where we will configure what it should create.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch freeze.py
 </pre></div>
 </div>
-<p>Fill in freeze app</p>
+<p>Import a basic Frozen Flask configuration.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;FREEZER_RELATIVE_URLS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-
 <span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>Run it, which will create a new directory called <tt class="docutils literal"><span class="pre">build</span></tt> in your project with the saved
+files.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;Frozen our app&quot;</span>
+<p>Try opening one in your web browse. Notice that the default configuration only saved <tt class="docutils literal"><span class="pre">index.html</span></tt>, and not all your
+detail pages. Edit <tt class="docutils literal"><span class="pre">freeze.py</span></tt> to give it the instructions it needs to make a page for every record
+in the source CSV.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">csv_list</span>
+</span><span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="hll"><span class="nd">@freezer.register_generator</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">yield</span> <span class="p">{</span><span class="s">&#39;number&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]}</span>
+</span><span class="hll">
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Open up the frozen page in the browser and point out differences</p>
+<p>Run it again and notice all the additional pages it made in the <tt class="docutils literal"><span class="pre">build</span></tt> directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
+</pre></div>
+</div>
+<p>Commit all of the flat pages to the repository.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Froze our app&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Finally, we will publish these static files to the web using GitHub&#8217;s Pages feature. All it
+requires is that we create a new branch in our repository called <tt class="docutils literal"><span class="pre">gh-pages</span></tt> and push our files
+up to GitHub there.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout gh-pages
 <span class="nv">$ </span>git rebase master
 <span class="nv">$ </span>git push origin gh-pages
 </pre></div>
 </div>
-<p>The big reveal at <a class="reference external" href="http:/">http:/</a>/&lt;yourusername&gt;.github.io/first-news-app/build/index.html</p>
+<p>Now wait a minute or two, then visit <a class="reference external" href="http:/">http:/</a>/&lt;yourusername&gt;.github.io/first-news-app/build/index.html to cross the finish line.</p>
 </div>
 </div>
 
