@@ -672,10 +672,11 @@ Return to ``index.html`` and add a hyperlink to each detail page to the table.
         </body>
     </html>
 
-In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim.
+In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim
+and print out the summary that's been written in the data file.
 
 .. code-block:: html
-    :emphasize-lines: 5-9
+    :emphasize-lines: 5-10
 
     <!doctype html>
     <html lang="en">
@@ -686,6 +687,7 @@ In ``detail.html`` you can use the rest of the data fields to write a sentence a
                 {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
                 in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
             </h1>
+            <p>{{ object.story }}</p>
         </body>
     </html>
 
@@ -701,199 +703,284 @@ Once again, commit your work.
 Act 4: Hello JavaScript
 ***********************
 
-.. code-block:: html
-
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
+Next we will work to make a map with every victim in ``index.html`` using the 
+`Leaflet <http://leafletjs.com/>`_ JavaScript library. Start by importing it in your page.
 
 .. code-block:: html
-    :emphasize-lines: 4
+    :emphasize-lines: 4-5
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-
-    <div id="map" style="width:100%; height:800px;"></div>
-
-.. code-block:: html
-    :emphasize-lines: 6-15
-
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-
-    <div id="map" style="width:100%; height:800px;"></div>
-
-    <script type="text/javascript">
-        var map = L.map('map').setView([39.295, -76.61219], 14);
-
-        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-            subdomains: ['otile1','otile2','otile3','otile4']
-        });
-        map.addLayer(mapquestLayer);
-    </script>
-
-.. code-block:: html
-    :emphasize-lines: 16-37
-
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-
-    <div id="map" style="width:100%; height:800px;"></div>
-
-    <script type="text/javascript">
-        var map = L.map('map').setView([39.295, -76.61219], 14);
-
-        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-            subdomains: ['otile1','otile2','otile3','otile4']
-        });
-        map.addLayer(mapquestLayer);
-
-        var data = {
-          "type": "FeatureCollection",
-          "features": [
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+        </head>
+        <body>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
             {% for obj in object_list %}
-            {
-              "type": "Feature",
-              "properties": {
-                "number": {{ obj.number }},
-                "location": "{{ obj.location }}",
-                "project": "{{ obj.project }}",
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  {{ obj.x }},
-                  {{ obj.y }}
-                ]
-              }
-            }{% if not loop.last %},{% endif %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
             {% endfor %}
-          ]
-        };
+            </table>
+        </body>
+    </html>
 
-        var dataLayer = L.geoJson(data, {
-            onEachFeature: function(feature, layer) {
-                layer.bindPopup(
-                    "Camera #" + 
-                    feature.properties.number + 
-                    "<br>" + 
-                    feature.properties.location +
-                    "<br>" + 
-                    feature.properties.project
-                );
-            }
-        });
-        map.addLayer(dataLayer);
-    </script>
+Create an HTML element to hold the map and use Leaflet to boot it up and center on Los Angeles.
 
 .. code-block:: html
-    :emphasize-lines: 39-40
+    :emphasize-lines: 8,32-40
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-
-    <div id="map" style="width:100%; height:800px;"></div>
-
-    <script type="text/javascript">
-        var map = L.map('map').setView([39.295, -76.61219], 14);
-
-        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-            subdomains: ['otile1','otile2','otile3','otile4']
-        });
-        map.addLayer(mapquestLayer);
-
-        var data = {
-          "type": "FeatureCollection",
-          "features": [
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
             {% for obj in object_list %}
-            {
-              "type": "Feature",
-              "properties": {
-                "number": {{ obj.number }},
-                "location": "{{ obj.location }}",
-                "project": "{{ obj.project }}",
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  {{ obj.x }},
-                  {{ obj.y }}
-                ]
-              }
-            }{% if not loop.last %},{% endif %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
             {% endfor %}
-          ]
-        };
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+            </script>
+        </body>
+    </html>
 
-        var dataLayer = L.geoJson(data);
-        map.addLayer(dataLayer);
-    </script>
+Loop through the CSV data and format it as a GeoJSON object, which Leaflet can easily load.
 
 .. code-block:: html
-    :emphasize-lines: 39-50
+    :emphasize-lines: 40-59
 
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2"></script>
-
-    <div id="map" style="width:100%; height:800px;"></div>
-
-    <script type="text/javascript">
-        var map = L.map('map').setView([39.295, -76.61219], 14);
-
-        var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-            subdomains: ['otile1','otile2','otile3','otile4']
-        });
-        map.addLayer(mapquestLayer);
-
-        var data = {
-          "type": "FeatureCollection",
-          "features": [
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
             {% for obj in object_list %}
-            {
-              "type": "Feature",
-              "properties": {
-                "number": {{ obj.number }},
-                "location": "{{ obj.location }}",
-                "project": "{{ obj.project }}",
-              },
-              "geometry": {
-                "type": "Point",
-                "coordinates": [
-                  {{ obj.x }},
-                  {{ obj.y }}
-                ]
-              }
-            }{% if not loop.last %},{% endif %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
             {% endfor %}
-          ]
-        };
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var dataLayer = L.geoJson(data);
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
 
-        var dataLayer = L.geoJson(data, {
-            onEachFeature: function(feature, layer) {
-                layer.bindPopup(
-                    "Camera #" + 
-                    feature.properties.number + 
-                    "<br>" + 
-                    feature.properties.location +
-                    "<br>" + 
-                    feature.properties.project
-                );
-            }
-        });
-        map.addLayer(dataLayer);
-    </script>
+Add a popup on the map pins that links to the corresponding detail page.
+
+.. code-block:: html
+    :emphasize-lines: 58-66
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var dataLayer = L.geoJson(data, {
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup(
+                            '<a href="' + feature.properties.id + '/">' + 
+                                feature.properties.full_name +
+                            '</a>'
+                        );
+                    }
+                });
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
+
+Commit your map.
 
 .. code-block:: bash
 
     $ git add .
-    $ git commit -m "Replaced table with map"
+    $ git commit -m "Made a map on the index page"
+    $ git push origin master
+
+Open up ``detail.html`` and make a map there, focus on just that victim.
+
+.. code-block:: html
+    :emphasize-lines: 3-6,8,15-24
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>
+                {{ object.full_name }}, a {{ object.age }} year old, 
+                {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+                in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+            </h1>
+            <p>{{ object.story }}</p>
+            <script type="text/javascript">
+                var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var marker = L.marker([{{ object.y }}, {{ object.x }}]).addTo(map);
+            </script>
+        </body>
+    </html>
+
+Commit that.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Made a map on the detail page"
+    $ git push origin master
 
 *********************
 Act 5: Hello Internet
