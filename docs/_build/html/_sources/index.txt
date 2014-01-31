@@ -241,7 +241,7 @@ Reload your repository on GitHub and see your handiwork.
 Act 2: Hello Flask
 ******************
 
-Use pip to install `Flask <http://flask.pocoo.org/>` the Python "microframework"
+Use pip to install `Flask <http://flask.pocoo.org/>`_ the Python "microframework"
 we'll use to put together our website.
 
 .. code-block:: bash
