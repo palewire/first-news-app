@@ -46,7 +46,8 @@
 <p>A step-by-step guide to publishing a simple news application.</p>
 <p>This tutorial will walk you through the process of building an interactive data visualization
 from a structured dataset. You will get hands-on experience in every stage of the development process,
-writing Python, HTML and JavaScript with Git. By the end you will have published your work on the World Wide Web.</p>
+writing Python, HTML and JavaScript and recording it in Git&#8217;s version control system.
+By the end you will have published your work on the World Wide Web.</p>
 <p>This guide was prepared for training sessions of <a class="reference external" href="http://www.ire.org/">Investigative Reporters and Editors (IRE)</a>
 and the <a class="reference external" href="http://data.nicar.org/">National Institute for Computer-Assisted Reporting (NICAR)</a>
 by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It is still under construction but will debut on February 27 <a class="reference external" href="https://ire.org/events-and-training/event/973/1026/">at the
@@ -54,17 +55,18 @@ by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben W
 <p>Resources:</p>
 <ul class="simple">
 <li>Code repository: <a class="reference external" href="https://github.com/ireapps/first-news-app">https://github.com/ireapps/first-news-app</a></li>
-<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">https://github.com/ireapps/first-news-app/issues</a></li>
+<li>Demonstration: <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">http://ireapps.github.io/first-news-app/build/index.html</a></li>
 <li>Documentation: <a class="reference external" href="http://first-news-app.rtfd.org/">http://first-news-app.rtfd.org/</a></li>
+<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">https://github.com/ireapps/first-news-app/issues</a></li>
 </ul>
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
-<p>As the Baltimore Sun has reported, the city&#8217;s government has gradually increased the number of surveillance cameras it operates as part
-of a crime-fighting initiative that has spanned several mayoral administrations.</p>
-<p>This tutorial will guide you through the process of publishing an interactive map that shows the location of each city camera,
-exactly the sort of feature that could have enhanced <a class="reference external" href="http://www.baltimoresun.com/news/maryland/baltimore-city/bs-md-ci-private-cameras-20120721,0,2896180.story">this 2012 story</a>
-by Sun reporter Luke Broadwater.</p>
-<p>You can see a working example <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">here</a>.</p>
+<p>This tutorial will guide you through the process of publishing an interactive database and map
+about the more than 60 people who died during the riots that swept Los Angeles
+for five days in 1992. You will repurpose the data from <a class="reference external" href="http://spreadsheets.latimes.com/la-riots-deaths/">a Los Angeles Times
+application</a> that
+accompanied a story released on the 20th anniversary of the riots.</p>
+<p>A working example can be found at <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">http://ireapps.github.io/first-news-app/build/index.html</a></p>
 </div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -84,8 +86,8 @@ to go with everything above. If so, move on to the next chapter. If not,
 don&#8217;t worry. And don&#8217;t give up! It will be a bit of a
 slog but the instructions below will point you in the right direction.</p>
 </div>
-<div class="section" id="id1">
-<h3>Command-line interface<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Command-line interface<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Unless something is wrong with your computer, there should be a way to open a window that lets you
 type in commands. Different operating systems give this tool slightly different names, but they all have
 some form of it, and there are alternative programs you can install as well.</p>
@@ -95,8 +97,8 @@ and <a class="reference external" href="http://windows.microsoft.com/en-us/windo
 an Apple desktops, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">&#8220;Terminal&#8221; application</a>. Ubuntu Linux
 comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same name</a>.</p>
 </div>
-<div class="section" id="id2">
-<h3>Text editor<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>Text editor<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>A program like Microsoft Word, which can do all sorts of text formatting like
 change the size and color of words, is not what you need. Do not try to use it below.</p>
 <p>You need a program that works with simple <a class="reference external" href="https://en.wikipedia.org/wiki/Text_file">&#8220;plain text&#8221; files</a>,
@@ -126,8 +128,8 @@ it&#8217;s installed from your command line like so:</p>
 It shouldn&#8217;t cost you anything. <a class="reference external" href="https://github.com/pricing">The free plan</a>
 is all that&#8217;s required to complete this lesson.</p>
 </div>
-<div class="section" id="id4">
-<h3>Python<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Python<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>If you are using Mac OSX or a common flavor of Linux, Python is probably already installed and you can
 test to see what version, if any, is there waiting for you by typing the following into your terminal.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python -V
@@ -153,81 +155,111 @@ makes it possible to create an isolated corner of your computer where all the di
 tools you use to build an application are sealed off.</p>
 <p>It might not be obvious why you need this, but it quickly becomes essential when you need to juggle different tools
 for different projects on one computer. By developing your applications inside separate
-virtualenv projects, you can use different versions of the same third-party libraries without conflicts.
-You can also more easily recreate your project on another machine, which comes in handy when
+virtualenv environments, you can use different versions of the same third-party Python libraries without a conflict.
+You can also more easily recreate your project on another machine, handy when
 you want to copy your code to a server that publishes pages on the Internet.</p>
 <p>You can check if virtualenv is installed with the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv --version
 </pre></div>
 </div>
-<p>If you don&#8217;t have it, install it with pip. You might want to use the sudo command
-to put virtualenv in your system&#8217;s global directories where it can always be called, just
-like other common commands like ls or cd.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>sudo pip install virtualenv
+<p>If you don&#8217;t have it, install it with pip.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install virtualenv
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="act-1-hello-git">
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
+<p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv first-news-app
 </pre></div>
 </div>
+<p>Jump into the directory it created.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first-news-app
 </pre></div>
 </div>
+<p>Turn on the virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>. bin/activate
 </pre></div>
 </div>
-<p>The lesson will begin with an introduction to Git and GitHub.</p>
+<p>Create a new Git repository.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git init repo
 </pre></div>
 </div>
+<p>Jump into the repository.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>repo
 </pre></div>
 </div>
-<p>Create a new &#8216;first-news-app&#8217; app on GitHub</p>
+<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <tt class="docutils literal"><span class="pre">first-news-app</span></tt>.
+Then connect your local directory to it with the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
 </pre></div>
 </div>
+<p>Create your first file, a blank <tt class="docutils literal"><span class="pre">README</span></tt> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>
+file extension since that&#8217;s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch README.md
 </pre></div>
 </div>
-<p>Write something in the file</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit add README.md
+<p>Open up the README in your text editor and type something in it. Maybe something like:</p>
+<div class="highlight-markdown"><div class="highlight"><pre>My first news app
+=================
 </pre></div>
 </div>
+<p>Officially add the file to your repository for tracking with git&#8217;s <tt class="docutils literal"><span class="pre">add</span></tt> command.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add README.md
+</pre></div>
+</div>
+<p>Log its creation with git&#8217;s <tt class="docutils literal"><span class="pre">commit</span></tt> command.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git commit -m <span class="s2">&quot;First commit&quot;</span>
 </pre></div>
 </div>
+<p>Push it up to GitHub.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Look at your repo on the web</p>
+<p>Reload your repository on GitHub and see your handiwork.</p>
 </div>
 <div class="section" id="act-2-hello-flask">
 <h2>Act 2: Hello Flask<a class="headerlink" href="#act-2-hello-flask" title="Permalink to this headline">¶</a></h2>
+<p>Use pip to install <a class="reference external" href="http://flask.pocoo.org/">Flask</a> the Python &#8220;microframework&#8221;
+we&#8217;ll use to put together our website.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Flask
 </pre></div>
 </div>
+<p>Create a new file called <tt class="docutils literal"><span class="pre">app.py</span></tt> where we will configure Flask.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch app.py
 </pre></div>
 </div>
-<p>Fill it in with basic Flask stuff to make a single page</p>
+<p>Open it with your text editor and import the Flask basics.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Now configure Flask to make a page at your site&#8217;s root URL, where we will publish
+the complete list of people who died during the riots using a template called <tt class="docutils literal"><span class="pre">index.html</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
 <span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 </span><span class="hll"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
 </span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 </span></pre></div>
 </div>
+<p>Create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
+</pre></div>
+</div>
+<p>Create the <tt class="docutils literal"><span class="pre">index.html</span></tt> we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
+</pre></div>
+</div>
+<p>Open it up and write something clever.</p>
+<div class="highlight-html"><div class="highlight"><pre>Hello World!
+</pre></div>
+</div>
+<p>Configure Flask to boot up a test server when you run <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -245,48 +277,67 @@ like other common commands like ls or cd.</p>
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
-</pre></div>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
-</pre></div>
-</div>
-<div class="highlight-html"><div class="highlight"><pre>Hello NICAR &#39;14!
-</pre></div>
-</div>
+<p>Run <tt class="docutils literal"><span class="pre">app.py</span></tt> and open up your browser to <tt class="docutils literal"><span class="pre">localhost:8000</span></tt> or <tt class="docutils literal"><span class="pre">127.0.0.1:8000</span></tt>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
-<p>Check it out in the browser</p>
+<p>Now return to the command line and commit your work to your Git repository. (To
+get the terminal back up, you will either need to quit out of <tt class="docutils literal"><span class="pre">app.py</span></tt>
+by hitting <tt class="docutils literal"><span class="pre">CTRL-C</span></tt>, or open a second terminal and do additional work there.
+If you elect to open a second terminal, which is recommended, make sure to check into the
+virtualenv with the <tt class="docutils literal"><span class="pre">.</span> <span class="pre">bin/activate</span></tt> step we used earlier. If you choose to quit out
+of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will need to turn it back on later by calling <tt class="docutils literal"><span class="pre">python</span> <span class="pre">app.py</span></tt> where appropriate.)</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
 </pre></div>
 </div>
-<p>Check out the commit message and diff on GitHub</p>
+<p>Push it up to GitHub and check out the changes there.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
 </div>
 <div class="section" id="act-3-hello-html">
 <h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
+<p>Start over in your <tt class="docutils literal"><span class="pre">index.html</span></tt> file with a bare-bones HTML document.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Commit the changes to your repository, if only for practice.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add templates/index.html
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Real HTML&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Make a directory to store data files.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir static
 </pre></div>
 </div>
-<p>Download the data file and load it into the template context and dump it into the HTML template</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<p>Download <a class="reference external" href="https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv">the comma-delimited file</a>
+that will be the backbone of our application and save it there as <tt class="docutils literal"><span class="pre">la-riots-deaths.csv</span></tt>. Add it to your git repository.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add static
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Added CSV source data&quot;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Show how GitHub nicely formats CSV in the website</p>
+<p>Use Python&#8217;s <tt class="docutils literal"><span class="pre">csv</span></tt> module to open up the file in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
 </span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
+<span class="hll"><span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+</span><span class="hll"><span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+</span><span class="hll"><span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+</span>
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-<span class="hll">    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/baltimore-cctv-locations.csv&#39;</span>
-</span><span class="hll">    <span class="n">object_list</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
-<span class="hll">        <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">,</span>
-</span>    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
@@ -297,244 +348,664 @@ like other common commands like ls or cd.</p>
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Create basic table in HTML page</p>
-<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;h1&gt;Baltimore CCTV locations&lt;/h1&gt;</span>
+<p>Pass the list to your template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="x">&lt;table&gt;</span>
-<span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">    &lt;tr&gt;</span>
-<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.number</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
-<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.location</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
-<span class="x">        &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.project</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
-<span class="x">    &lt;/tr&gt;</span>
-<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
-<span class="x">&lt;/table&gt;</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+<span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+</span><span class="hll">        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
+<p>Dump it out in <tt class="docutils literal"><span class="pre">index.html</span></tt> and reload it in your browser to see what&#8217;s going on.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">    &lt;head&gt;&lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;h1&gt;Deaths during the L.A. riots&lt;/h1&gt;</span>
+<span class="hll"><span class="x">        </span><span class="cp">{{</span> <span class="nv">object_list</span> <span class="cp">}}</span><span class="x"></span>
+</span><span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Use Flask&#8217;s templating language <a class="reference external" href="http://jinja.pocoo.org/">Jinja</a> to loop through
+the data and create <a class="reference external" href="http://www.w3schools.com/html/html_tables.asp">an HTML table</a> that lists all the names.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">    &lt;head&gt;&lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;h1&gt;Deaths during the L.A. riots&lt;/h1&gt;</span>
+<span class="hll"><span class="x">        &lt;table border=1 cellpadding=7&gt;</span>
+</span><span class="hll"><span class="x">            &lt;tr&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Name&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">            &lt;/tr&gt;</span>
+</span><span class="hll"><span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">            &lt;tr&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.full_name</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">            &lt;/tr&gt;</span>
+</span><span class="hll"><span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">        &lt;/table&gt;</span>
+</span><span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Expand the table to include a lot more data.</p>
+<div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
+<span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
+<span class="x">    &lt;head&gt;&lt;/head&gt;</span>
+<span class="x">    &lt;body&gt;</span>
+<span class="x">        &lt;h1&gt;Deaths during the L.A. riots&lt;/h1&gt;</span>
+<span class="x">        &lt;table border=1 cellpadding=7&gt;</span>
+<span class="x">            &lt;tr&gt;</span>
+<span class="x">                &lt;th&gt;Name&lt;/th&gt;</span>
+<span class="hll"><span class="x">                &lt;th&gt;Date&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Type&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Address&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Age&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Gender&lt;/th&gt;</span>
+</span><span class="hll"><span class="x">                &lt;th&gt;Race&lt;/th&gt;</span>
+</span><span class="x">            &lt;/tr&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            &lt;tr&gt;</span>
+<span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.full_name</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+<span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.date</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.type</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.address</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.age</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.gender</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.race</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
+</span><span class="x">            &lt;/tr&gt;</span>
+<span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">        &lt;/table&gt;</span>
+<span class="x">    &lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Commit your work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Created basic table&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Next we&#8217;re going to create a unique &#8220;detail&#8221; page dedicated to each person. Start by opening
+up <tt class="docutils literal"><span class="pre">app.py</span></tt> and adding the URL that will help make this happen.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a new file in your templates directory called <tt class="docutils literal"><span class="pre">detail.html</span></tt> for it to connect with.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/detail.html
+</pre></div>
+</div>
+<p>Put something simple in it. Then use your browser to visit <tt class="docutils literal"><span class="pre">localhost:8000/1/</span></tt>, <tt class="docutils literal"><span class="pre">or</span> <span class="pre">localhost:8000/200/</span></tt> or any other number.</p>
+<div class="highlight-html"><div class="highlight"><pre>Hello World!
+</pre></div>
+</div>
+<p>To customize the page for each person, we will need to connect the <tt class="docutils literal"><span class="pre">number</span></tt> in the URL
+with the <tt class="docutils literal"><span class="pre">id</span></tt> column in the CSV data file. First, use Python to transform the data list
+we currently have into a dictionary with each records <tt class="docutils literal"><span class="pre">id</span></tt> value as the key.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="hll"><span class="n">csv_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">o</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">])</span>
+</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Then have the <tt class="docutils literal"><span class="pre">detail</span></tt> function connect the number from the URL with the corresponding record
+in the dictionary and pass it through the template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="n">csv_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">o</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">])</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
+        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+<span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">,</span>
+</span><span class="hll">        <span class="nb">object</span><span class="o">=</span><span class="n">csv_dict</span><span class="p">[</span><span class="n">number</span><span class="p">],</span>
+</span><span class="hll">    <span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
+        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Now use the person&#8217;s name in a real HTML document to make a headline in <tt class="docutils literal"><span class="pre">detail.html</span></tt>.
+Reload <tt class="docutils literal"><span class="pre">localhost:8000/1/</span></tt>.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>{{ object.full_name }}<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Return to <tt class="docutils literal"><span class="pre">index.html</span></tt> and add a hyperlink to each detail page to the table.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+<span class="hll">                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+</span>                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>In <tt class="docutils literal"><span class="pre">detail.html</span></tt> you can use the rest of the data fields to write a sentence about the victim
+and print out the summary that&#8217;s been written in the data file.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+<span class="hll">        <span class="nt">&lt;h1&gt;</span>
+</span><span class="hll">            {{ object.full_name }}, a {{ object.age }} year old,
+</span><span class="hll">            {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+</span><span class="hll">            in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+</span><span class="hll">        <span class="nt">&lt;/h1&gt;</span>
+</span><span class="hll">        <span class="nt">&lt;p&gt;</span>{{ object.story }}<span class="nt">&lt;/p&gt;</span>
+</span>    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Once again, commit your work.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Created a detail page about each victim.&quot;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
 </div>
 <div class="section" id="act-4-hello-javascript">
 <h2>Act 4: Hello JavaScript<a class="headerlink" href="#act-4-hello-javascript" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<p>Next we will work to make a map with every victim in <tt class="docutils literal"><span class="pre">index.html</span></tt> using the
+<a class="reference external" href="http://leafletjs.com/">Leaflet</a> JavaScript library. Start by importing it in your page.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+<span class="hll">        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span>    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-<span class="hll"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span></pre></div>
-</div>
-<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-<span class="hll"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class="hll">    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
-</span><span class="hll">
-</span><span class="hll">    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class="hll">        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-</span><span class="hll">        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
-</span><span class="hll">        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
-</span><span class="hll">    <span class="p">});</span>
-</span><span class="hll">    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
-</span><span class="hll"><span class="nt">&lt;/script&gt;</span>
-</span></pre></div>
-</div>
-<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
-        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
-    <span class="p">});</span>
-    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
-
-<span class="hll">    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="hll">      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
-</span><span class="hll">      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
-</span><span class="hll">        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
-</span><span class="hll">        <span class="p">{</span>
-</span><span class="hll">          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
-</span><span class="hll">          <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">            <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">number</span> <span class="p">}},</span>
-</span><span class="hll">            <span class="s2">&quot;location&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.location }}&quot;</span><span class="p">,</span>
-</span><span class="hll">            <span class="s2">&quot;project&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.project }}&quot;</span><span class="p">,</span>
-</span><span class="hll">          <span class="p">},</span>
-</span><span class="hll">          <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
-</span><span class="hll">            <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[</span>
-</span><span class="hll">              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span>
-</span><span class="hll">              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}</span>
-</span><span class="hll">            <span class="p">]</span>
-</span><span class="hll">          <span class="p">}</span>
-</span><span class="hll">        <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</span><span class="hll">        <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
-</span><span class="hll">      <span class="p">]</span>
-</span><span class="hll">    <span class="p">};</span>
-</span>
-    <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
-        <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span>
-                <span class="s2">&quot;Camera #&quot;</span> <span class="o">+</span>
-                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">number</span> <span class="o">+</span>
-                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
-                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>
-                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
-                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">project</span>
-            <span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">});</span>
-    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
-<span class="nt">&lt;/script&gt;</span>
+<p>Create an HTML element to hold the map and use Leaflet to boot it up and center on Los Angeles.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+<span class="hll">        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span>        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+<span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class="hll">            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">34.055</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.35</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+</span><span class="hll">            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+</span><span class="hll">            <span class="p">});</span>
+</span><span class="hll">            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+</span><span class="hll">        <span class="nt">&lt;/script&gt;</span>
+</span>    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
-        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
-    <span class="p">});</span>
-    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
-        <span class="p">{</span>
-          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">number</span> <span class="p">}},</span>
-            <span class="s2">&quot;location&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.location }}&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;project&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.project }}&quot;</span><span class="p">,</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[</span>
-              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span>
-              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}</span>
-            <span class="p">]</span>
-          <span class="p">}</span>
-        <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-        <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">};</span>
-
-<span class="hll">    <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class="hll">    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
-</span><span class="nt">&lt;/script&gt;</span>
+<p>Loop through the CSV data and format it as a <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> object, which Leaflet can easily load.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">34.055</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.35</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+                <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+                <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+            <span class="p">});</span>
+            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+<span class="hll">            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="hll">              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+</span><span class="hll">              <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+</span><span class="hll">                <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="hll">                <span class="p">{</span>
+</span><span class="hll">                  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+</span><span class="hll">                  <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.full_name }}&quot;</span><span class="p">,</span>
+</span><span class="hll">                    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.id }}&quot;</span>
+</span><span class="hll">                  <span class="p">},</span>
+</span><span class="hll">                  <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+</span><span class="hll">                    <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}]</span>
+</span><span class="hll">                  <span class="p">}</span>
+</span><span class="hll">                <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="hll">                <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+</span><span class="hll">              <span class="p">]</span>
+</span><span class="hll">            <span class="p">};</span>
+</span><span class="hll">            <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class="hll">            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+</span>        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-html"><div class="highlight"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:800px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-    <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">39.295</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.61219</span><span class="p">],</span> <span class="mi">14</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
-        <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
-        <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
-    <span class="p">});</span>
-    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
-
-    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
-        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
-        <span class="p">{</span>
-          <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">number</span> <span class="p">}},</span>
-            <span class="s2">&quot;location&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.location }}&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;project&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.project }}&quot;</span><span class="p">,</span>
-          <span class="p">},</span>
-          <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[</span>
-              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span>
-              <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}</span>
-            <span class="p">]</span>
-          <span class="p">}</span>
-        <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-        <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
-      <span class="p">]</span>
-    <span class="p">};</span>
-
-<span class="hll">    <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
-</span><span class="hll">        <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="hll">            <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span>
-</span><span class="hll">                <span class="s2">&quot;Camera #&quot;</span> <span class="o">+</span>
-</span><span class="hll">                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">number</span> <span class="o">+</span>
-</span><span class="hll">                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
-</span><span class="hll">                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span>
-</span><span class="hll">                <span class="s2">&quot;&lt;br&gt;&quot;</span> <span class="o">+</span>
-</span><span class="hll">                <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">project</span>
-</span><span class="hll">            <span class="p">);</span>
-</span><span class="hll">        <span class="p">}</span>
-</span><span class="hll">    <span class="p">});</span>
-</span>    <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
-<span class="nt">&lt;/script&gt;</span>
+<p>Add a popup on the map pins that shows the name of the victim.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">34.055</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.35</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+                <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+                <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+            <span class="p">});</span>
+            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span>
+                  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.full_name }}&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.id }}&quot;</span>
+                  <span class="p">},</span>
+                  <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}]</span>
+                  <span class="p">}</span>
+                <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+              <span class="p">]</span>
+            <span class="p">};</span>
+<span class="hll">            <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span><span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">full_name</span><span class="p">);</span>
+</span><span class="hll">                <span class="p">}</span>
+</span><span class="hll">            <span class="p">});</span>
+</span>            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Now wrap the name in a hyperlink to that person&#8217;s detail page.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([</span><span class="mf">34.055</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.35</span><span class="p">],</span> <span class="mi">9</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+                <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+                <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+            <span class="p">});</span>
+            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;features&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="nx">obj</span> <span class="k">in</span> <span class="nx">object_list</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span>
+                  <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Feature&quot;</span><span class="p">,</span>
+                  <span class="s2">&quot;properties&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;full_name&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.full_name }}&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;{{ obj.id }}&quot;</span>
+                  <span class="p">},</span>
+                  <span class="s2">&quot;geometry&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;coordinates&quot;</span><span class="o">:</span> <span class="p">[{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">x</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">y</span> <span class="p">}}]</span>
+                  <span class="p">}</span>
+                <span class="p">}{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">not</span> <span class="nx">loop</span><span class="p">.</span><span class="nx">last</span> <span class="o">%</span><span class="p">},{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span><span class="o">%</span> <span class="nx">endfor</span> <span class="o">%</span><span class="p">}</span>
+              <span class="p">]</span>
+            <span class="p">};</span>
+<span class="hll">            <span class="kd">var</span> <span class="nx">dataLayer</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">geoJson</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">onEachFeature</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="nx">layer</span><span class="p">.</span><span class="nx">bindPopup</span><span class="p">(</span>
+</span><span class="hll">                        <span class="s1">&#39;&lt;a href=&quot;&#39;</span> <span class="o">+</span> <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;/&quot;&gt;&#39;</span> <span class="o">+</span>
+</span><span class="hll">                            <span class="nx">feature</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">full_name</span> <span class="o">+</span>
+</span><span class="hll">                        <span class="s1">&#39;&lt;/a&gt;&#39;</span>
+</span><span class="hll">                    <span class="p">);</span>
+</span><span class="hll">                <span class="p">}</span>
+</span><span class="hll">            <span class="p">});</span>
+</span>            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">dataLayer</span><span class="p">);</span>
+        <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Commit your map.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;Replaced table with map&quot;</span>
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Made a map on the index page&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Open up <tt class="docutils literal"><span class="pre">detail.html</span></tt> and make a map there, focus on just that victim.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+<span class="hll">    <span class="nt">&lt;head&gt;</span>
+</span><span class="hll">        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="hll">    <span class="nt">&lt;/head&gt;</span>
+</span>    <span class="nt">&lt;body&gt;</span>
+<span class="hll">        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</span>        <span class="nt">&lt;h1&gt;</span>
+            {{ object.full_name }}, a {{ object.age }} year old,
+            {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+            in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+        <span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;p&gt;</span>{{ object.story }}<span class="nt">&lt;/p&gt;</span>
+<span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class="hll">            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([{{</span> <span class="nx">object</span><span class="p">.</span><span class="nx">y</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">object</span><span class="p">.</span><span class="nx">x</span> <span class="p">}}],</span> <span class="mi">16</span><span class="p">);</span>
+</span><span class="hll">            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">maxZoom</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">attribution</span><span class="o">:</span> <span class="s1">&#39;Data, imagery and map information provided by &lt;a href=&quot;http://open.mapquest.co.uk&quot; target=&quot;_blank&quot;&gt;MapQuest&lt;/a&gt;,&lt;a href=&quot;http://www.openstreetmap.org/&quot; target=&quot;_blank&quot;&gt;OpenStreetMap&lt;/a&gt; and contributors.&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">subdomains</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;otile1&#39;</span><span class="p">,</span><span class="s1">&#39;otile2&#39;</span><span class="p">,</span><span class="s1">&#39;otile3&#39;</span><span class="p">,</span><span class="s1">&#39;otile4&#39;</span><span class="p">]</span>
+</span><span class="hll">            <span class="p">});</span>
+</span><span class="hll">            <span class="nx">map</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">mapquestLayer</span><span class="p">);</span>
+</span><span class="hll">            <span class="kd">var</span> <span class="nx">marker</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">marker</span><span class="p">([{{</span> <span class="nx">object</span><span class="p">.</span><span class="nx">y</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">object</span><span class="p">.</span><span class="nx">x</span> <span class="p">}}]).</span><span class="nx">addTo</span><span class="p">(</span><span class="nx">map</span><span class="p">);</span>
+</span><span class="hll">        <span class="nt">&lt;/script&gt;</span>
+</span>    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>Commit that.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Made a map on the detail page&quot;</span>
+<span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
 </div>
 <div class="section" id="act-5-hello-internet">
 <h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
+<p>In this final act, we will publish your application to the Internet using
+<a class="reference external" href="http://pythonhosted.org/Frozen-Flask/">Frozen Flask</a>, a Python library that saves every page
+you&#8217;ve made with Flask as a flat file that can be uploaded to the web.</p>
+<p>First, use pip to install Frozen Flask.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Frozen-Flask
 </pre></div>
 </div>
+<p>Create a new file called <tt class="docutils literal"><span class="pre">freeze.py</span></tt> where we will configure what it should create.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch freeze.py
 </pre></div>
 </div>
-<p>Fill in freeze app</p>
+<p>Import a basic Frozen Flask configuration.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s">&#39;FREEZER_RELATIVE_URLS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
-
 <span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>Run it, which will create a new directory called <tt class="docutils literal"><span class="pre">build</span></tt> in your project with the saved
+files.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
 </pre></div>
 </div>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
-<span class="nv">$ </span>git commit -m <span class="s2">&quot;Frozen our app&quot;</span>
+<p>Try opening one in your web browse. Notice that the default configuration only saved <tt class="docutils literal"><span class="pre">index.html</span></tt>, and not all your
+detail pages. Edit <tt class="docutils literal"><span class="pre">freeze.py</span></tt> to give it the instructions it needs to make a page for every record
+in the source CSV.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">csv_list</span>
+</span><span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+<span class="hll"><span class="nd">@freezer.register_generator</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">():</span>
+</span><span class="hll">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">yield</span> <span class="p">{</span><span class="s">&#39;number&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]}</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Open up the frozen page in the browser and point out differences</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout gh-pages
+<p>Run it again and notice all the additional pages it made in the <tt class="docutils literal"><span class="pre">build</span></tt> directory.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
+</pre></div>
+</div>
+<p>Commit all of the flat pages to the repository.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
+<span class="nv">$ </span>git commit -m <span class="s2">&quot;Froze my app&quot;</span>
+<span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>Finally, we will publish these static files to the web using GitHub&#8217;s Pages feature. All it
+requires is that we create a new branch in our repository called <tt class="docutils literal"><span class="pre">gh-pages</span></tt> and push our files
+up to GitHub there.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout -b gh-pages
 <span class="nv">$ </span>git rebase master
 <span class="nv">$ </span>git push origin gh-pages
 </pre></div>
 </div>
-<p>The big reveal at <a class="reference external" href="http:/">http:/</a>/&lt;yourusername&gt;.github.io/first-news-app/build/index.html</p>
+<p>Now wait a minute or two, then visit <a class="reference external" href="http:/">http:/</a>/&lt;yourusername&gt;.github.io/first-news-app/build/index.html to cross the finish line.</p>
 </div>
 </div>
 

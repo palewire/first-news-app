@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>First News App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='prettify.css') }}" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
 </head>
@@ -52,7 +53,7 @@
               "type": "Feature",
               "properties": {
                 "full_name": "{{ obj.full_name }}",
-                "address": "{{ obj.address }}"
+                "id": "{{ obj.id }}"
               },
               "geometry": {
                 "type": "Point",
@@ -62,10 +63,13 @@
             {% endfor %}
           ]
         };
-
         var dataLayer = L.geoJson(data, {
             onEachFeature: function(feature, layer) {
-                layer.bindPopup(feature.properties.full_name);
+                layer.bindPopup(
+                    '<a href="' + feature.properties.id + '/">' +
+                        feature.properties.full_name +
+                    '</a>'
+                );
             }
         });
         map.addLayer(dataLayer);
