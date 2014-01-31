@@ -542,7 +542,8 @@ in the dictionary and pass it through the template.</p>
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Now use the person&#8217;s name in a real HTML document to make a headline in <tt class="docutils literal"><span class="pre">detail.html</span></tt>.</p>
+<p>Now use the person&#8217;s name in a real HTML document to make a headline in <tt class="docutils literal"><span class="pre">detail.html</span></tt>.
+Reload <tt class="docutils literal"><span class="pre">localhost:8000/1/</span></tt>.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
@@ -552,7 +553,39 @@ in the dictionary and pass it through the template.</p>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>You can use the rest of the data fields to write a sentence about the victim.</p>
+<p>Return to <tt class="docutils literal"><span class="pre">index.html</span></tt> and add a hyperlink to each detail page to the table.</p>
+<div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;h1&gt;</span>Deaths during the L.A. riots<span class="nt">&lt;/h1&gt;</span>
+        <span class="nt">&lt;table</span> <span class="na">border=</span><span class="s">1</span> <span class="na">cellpadding=</span><span class="s">7</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;tr&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Name<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Date<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Type<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Address<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Age<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Gender<span class="nt">&lt;/th&gt;</span>
+                <span class="nt">&lt;th&gt;</span>Race<span class="nt">&lt;/th&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% for obj in object_list %}
+            <span class="nt">&lt;tr&gt;</span>
+<span class="hll">                <span class="nt">&lt;td&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;{{ obj.id }}/&quot;</span><span class="nt">&gt;</span>{{ obj.full_name }}<span class="nt">&lt;/a&gt;&lt;/td&gt;</span>
+</span>                <span class="nt">&lt;td&gt;</span>{{ obj.date }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.type }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.address }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.age }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.gender }}<span class="nt">&lt;/td&gt;</span>
+                <span class="nt">&lt;td&gt;</span>{{ obj.race }}<span class="nt">&lt;/td&gt;</span>
+            <span class="nt">&lt;/tr&gt;</span>
+        {% endfor %}
+        <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</div>
+<p>In <tt class="docutils literal"><span class="pre">detail.html</span></tt> you can use the rest of the data fields to write a sentence about the victim.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;head&gt;&lt;/head&gt;</span>

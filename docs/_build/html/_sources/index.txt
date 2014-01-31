@@ -624,7 +624,8 @@ in the dictionary and pass it through the template.
             debug=True,
         )
 
-Now use the person's name in a real HTML document to make a headline in ``detail.html``.
+Now use the person's name in a real HTML document to make a headline in ``detail.html``. 
+Reload ``localhost:8000/1/``.
 
 .. code-block:: html
 
@@ -636,7 +637,42 @@ Now use the person's name in a real HTML document to make a headline in ``detail
         </body>
     </html>
 
-You can use the rest of the data fields to write a sentence about the victim.
+Return to ``index.html`` and add a hyperlink to each detail page to the table.
+
+.. code-block:: html
+    :emphasize-lines: 18
+
+    <!doctype html>
+    <html lang="en">
+        <head></head>
+        <body>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </body>
+    </html>
+
+In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim.
 
 .. code-block:: html
     :emphasize-lines: 5-9
