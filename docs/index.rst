@@ -325,7 +325,7 @@ Run ``app.py`` and open up your browser to ``localhost:8000`` or ``127.0.0.1:800
 Now return to the command line and commit your work to your Git repository. (To
 get the terminal back up, you will either need to quit out of ``app.py``
 by hitting ``CTRL-C``, or open a second terminal and do additional work there. 
-If you elect to open a second terminal, which I recommend, make sure to check into the 
+If you elect to open a second terminal, which is recommended, make sure to check into the 
 virtualenv with the ``. bin/activate`` step we used earlier. If you choose to quit out
 of ``app.py``, you will need to turn it back on later by calling ``python app.py`` where appropriate.)
 
