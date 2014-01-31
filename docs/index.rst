@@ -155,13 +155,11 @@ You can check if virtualenv is installed with the following.
 
     $ virtualenv --version
 
-If you don't have it, install it with pip. You might want to use the sudo command 
-to put virtualenv in your system's global directories where it can always be called, just
-like other common commands like ``ls`` or ``cd``.
+If you don't have it, install it with pip.
 
 .. code-block:: bash
 
-    $ sudo pip install virtualenv
+    $ pip install virtualenv
 
 ****************
 Act 1: Hello Git
