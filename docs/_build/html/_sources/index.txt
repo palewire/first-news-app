@@ -1141,5 +1141,5 @@ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
     $ git rebase master
     $ git push origin gh-pages
 
-Now wait a minute or two, then visit http://<yourusername>.github.io/first-news-app/build/index.html to cross the finish line.
+Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-news-app/build/index.html`` to cross the finish line.
 
