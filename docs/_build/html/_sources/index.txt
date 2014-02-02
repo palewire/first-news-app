@@ -213,9 +213,9 @@ file extension since that's `the preferred format of GitHub <https://help.github
 
 .. code-block:: bash
 
-    # On Apples and in Linux try:
+    # Macs or Linux:
     $ touch README.md
-    # In Windows you'll need to fire it up in your text editor right away with something like:
+    # In Windows fire it up in your text editor right away:
     $ start notepad++ README.md
 
 Open up the README in your text editor and type something in it. Maybe something like:
