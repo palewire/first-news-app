@@ -182,7 +182,12 @@ inside its sealed space.
 
 .. code-block:: bash
 
+    # In Linux or Mac OSX try this...
     $ . bin/activate
+    # In Windows it might take something more like...
+    $ cd Scripts
+    $ activate
+    $ cd ..
 
 Create a new Git repository.
 
@@ -208,7 +213,10 @@ file extension since that's `the preferred format of GitHub <https://help.github
 
 .. code-block:: bash
 
+    # On Apples and in Linux try:
     $ touch README.md
+    # In Windows you'll need to fire it up in your text editor right away with something like:
+    $ start notepad++ README.md
 
 Open up the README in your text editor and type something in it. Maybe something like:
 
@@ -252,7 +260,10 @@ Create a new file called ``app.py`` where we will configure Flask.
 
 .. code-block:: bash
 
+    # Again, Macs and Linux:
     $ touch app.py
+    # Windows:
+    $ start notepad++ app.py
 
 Open ``app.py`` with your text editor and import the Flask basics. You are now writing Python!
 
@@ -285,7 +296,10 @@ Create the ``index.html`` we referenced in ``app.py``.
 
 .. code-block:: bash
 
+    # Macs and Linux:
     $ touch templates/index.html
+    # Windows:
+    $ start notepad++ templates/index.html
 
 Open it up and write something clever.
 
@@ -549,7 +563,11 @@ Create a new file in your templates directory called ``detail.html`` for it to c
 
 .. code-block:: bash
 
+    # Macs and Linux:
     $ touch templates/detail.html
+    # Windows:
+    $ start notepad++ templates/detail.html
+
 
 Put something simple in it. Then use your browser to visit ``localhost:8000/1/``, ``or localhost:8000/200/`` or any other number.
 
@@ -1076,7 +1094,10 @@ Create a new file called ``freeze.py`` where we will configure what it should cr
 
 .. code-block:: bash
 
+    # Mac and Linux:
     $ touch freeze.py
+    # Windows:
+    $ start notepad++ freeze.py
 
 Import a basic Frozen Flask configuration.
 

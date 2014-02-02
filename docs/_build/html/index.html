@@ -180,7 +180,12 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 </div>
 <p>Turn on the virtualenv, which will instruct your terminal to only use those libraries installed
 inside its sealed space.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>. bin/activate
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># In Linux or Mac OSX try this...</span>
+<span class="nv">$ </span>. bin/activate
+<span class="c"># In Windows it might take something more like...</span>
+<span class="nv">$ </span><span class="nb">cd </span>Scripts
+<span class="nv">$ </span>activate
+<span class="nv">$ </span><span class="nb">cd</span> ..
 </pre></div>
 </div>
 <p>Create a new Git repository.</p>
@@ -198,7 +203,10 @@ Then connect your local directory to it with the following.</p>
 </div>
 <p>Create your first file, a blank <tt class="docutils literal"><span class="pre">README</span></tt> with a <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>
 file extension since that&#8217;s <a class="reference external" href="https://help.github.com/articles/github-flavored-markdown">the preferred format of GitHub</a>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch README.md
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># On Apples and in Linux try:</span>
+<span class="nv">$ </span>touch README.md
+<span class="c"># In Windows you&#39;ll need to fire it up in your text editor right away with something like:</span>
+<span class="nv">$ </span>start notepad++ README.md
 </pre></div>
 </div>
 <p>Open up the README in your text editor and type something in it. Maybe something like:</p>
@@ -228,7 +236,10 @@ we&#8217;ll use to put together our website.</p>
 </pre></div>
 </div>
 <p>Create a new file called <tt class="docutils literal"><span class="pre">app.py</span></tt> where we will configure Flask.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch app.py
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Again, Macs and Linux:</span>
+<span class="nv">$ </span>touch app.py
+<span class="c"># Windows:</span>
+<span class="nv">$ </span>start notepad++ app.py
 </pre></div>
 </div>
 <p>Open <tt class="docutils literal"><span class="pre">app.py</span></tt> with your text editor and import the Flask basics. You are now writing Python!</p>
@@ -252,7 +263,10 @@ the complete list of people who died during the riots using a template called <t
 </pre></div>
 </div>
 <p>Create the <tt class="docutils literal"><span class="pre">index.html</span></tt> we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/index.html
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Macs and Linux:</span>
+<span class="nv">$ </span>touch templates/index.html
+<span class="c"># Windows:</span>
+<span class="nv">$ </span>start notepad++ templates/index.html
 </pre></div>
 </div>
 <p>Open it up and write something clever.</p>
@@ -474,7 +488,10 @@ up <tt class="docutils literal"><span class="pre">app.py</span></tt> and adding 
 </pre></div>
 </div>
 <p>Create a new file in your templates directory called <tt class="docutils literal"><span class="pre">detail.html</span></tt> for it to connect with.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch templates/detail.html
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Macs and Linux:</span>
+<span class="nv">$ </span>touch templates/detail.html
+<span class="c"># Windows:</span>
+<span class="nv">$ </span>start notepad++ templates/detail.html
 </pre></div>
 </div>
 <p>Put something simple in it. Then use your browser to visit <tt class="docutils literal"><span class="pre">localhost:8000/1/</span></tt>, <tt class="docutils literal"><span class="pre">or</span> <span class="pre">localhost:8000/200/</span></tt> or any other number.</p>
@@ -954,7 +971,10 @@ you&#8217;ve made with Flask as a flat file that can be uploaded to the web.</p>
 </pre></div>
 </div>
 <p>Create a new file called <tt class="docutils literal"><span class="pre">freeze.py</span></tt> where we will configure what it should create.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>touch freeze.py
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Mac and Linux:</span>
+<span class="nv">$ </span>touch freeze.py
+<span class="c"># Windows:</span>
+<span class="nv">$ </span>start notepad++ freeze.py
 </pre></div>
 </div>
 <p>Import a basic Frozen Flask configuration.</p>
