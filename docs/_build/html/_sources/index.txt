@@ -118,7 +118,11 @@ test to see what version, if any, is there waiting for you by typing the followi
     $ python -V
 
 If you don't have Python installed (a more likely fate for Windows users) try downloading and installing it from `here 
-<http://www.python.org/download/releases/2.7.6/>`_. Python 2.7 is preferred but you can probably find a
+<http://www.python.org/download/releases/2.7.6/>`_. In Windows, it's also crucial to make sure that the 
+Python program is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can guide
+you through that process.
+
+Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you futz a little.
 
 pip and virtualenv
@@ -131,7 +135,11 @@ needed to create a working web application.
 
 If you don't have it already, you can get pip by following 
 `these instructions <http://www.pip-installer.org/en/latest/installing.html>`_.
-Verify it's installed with the following.
+
+In Windows, it's necessary to make sure that the 
+Python ``Scripts`` directory is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can help.
+
+Verify pip is installed with the following.
 
 .. code-block:: bash
 

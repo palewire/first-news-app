@@ -134,7 +134,10 @@ test to see what version, if any, is there waiting for you by typing the followi
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python -V
 </pre></div>
 </div>
-<p>If you don&#8217;t have Python installed (a more likely fate for Windows users) try downloading and installing it from <a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>. Python 2.7 is preferred but you can probably find a
+<p>If you don&#8217;t have Python installed (a more likely fate for Windows users) try downloading and installing it from <a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>. In Windows, it&#8217;s also crucial to make sure that the
+Python program is available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This screencast</a> can guide
+you through that process.</p>
+<p>Python 2.7 is preferred but you can probably find a
 way to make most of this tutorial work with other versions if you futz a little.</p>
 </div>
 <div class="section" id="pip-and-virtualenv">
@@ -144,8 +147,10 @@ makes it easy to install open-source libraries that
 expand what you&#8217;re able to do with Python. Later, we will use it to install everything
 needed to create a working web application.</p>
 <p>If you don&#8217;t have it already, you can get pip by following
-<a class="reference external" href="http://www.pip-installer.org/en/latest/installing.html">these instructions</a>.
-Verify it&#8217;s installed with the following.</p>
+<a class="reference external" href="http://www.pip-installer.org/en/latest/installing.html">these instructions</a>.</p>
+<p>In Windows, it&#8217;s necessary to make sure that the
+Python <tt class="docutils literal"><span class="pre">Scripts</span></tt> directory is available on your system&#8217;s <tt class="docutils literal"><span class="pre">PATH</span></tt> so it can be called from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This screencast</a> can help.</p>
+<p>Verify pip is installed with the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip -V
 </pre></div>
 </div>
