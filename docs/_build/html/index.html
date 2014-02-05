@@ -375,7 +375,7 @@ that will be the backbone of our application and save it there as <tt class="doc
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Pass the list to your template.</p>
+<p>Next pass the list to your template, <tt class="docutils literal"><span class="pre">index.html</span></tt>, so you can use it there.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
@@ -400,7 +400,7 @@ that will be the backbone of our application and save it there as <tt class="doc
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Dump it out in <tt class="docutils literal"><span class="pre">index.html</span></tt> and reload it in your browser to see what&#8217;s going on.</p>
+<p>Make sure to save <tt class="docutils literal"><span class="pre">app.py</span></tt>. Then dump the data out in <tt class="docutils literal"><span class="pre">index.html</span></tt> and reload it in your browser to see what&#8217;s going on.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
 <span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
 <span class="x">    &lt;head&gt;&lt;/head&gt;</span>

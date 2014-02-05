@@ -434,7 +434,7 @@ Open up ``app.py`` in your text editor and use Python's ``csv`` module to open u
             debug=True,
         )
 
-Pass the list to your template.
+Next pass the list to your template, ``index.html``, so you can use it there.
 
 .. code-block:: python
     :emphasize-lines: 12-14
@@ -462,7 +462,7 @@ Pass the list to your template.
             debug=True,
         )
 
-Dump it out in ``index.html`` and reload it in your browser to see what's going on.
+Make sure to save ``app.py``. Then dump the data out in ``index.html`` and reload it in your browser to see what's going on.
 
 .. code-block:: jinja
     :emphasize-lines: 6
