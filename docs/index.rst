@@ -287,7 +287,7 @@ Open ``app.py`` with your text editor and import the Flask basics. You are now w
 .. code-block:: python
 
     from flask import Flask
-    app = Flask(__name__)
+    app = Flask(__name__) # Note that those are double underscores on each side! You'll see them again.
 
 Now configure Flask to make a page at your site's root URL, where we will publish
 the complete list of people who died during the riots using a template called ``index.html``.
