@@ -482,7 +482,7 @@ If it isn't already running, return the command line, restart your test server a
 
         $ python app.py
 
-Now we'll use Jinja to sculpt the data to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
+Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
 
 .. code-block:: jinja
     :emphasize-lines: 6-15
