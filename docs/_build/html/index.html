@@ -176,7 +176,8 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 </div>
 <div class="section" id="act-1-hello-git">
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
-<p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
+<p>Start by creating a new development environment with virtualenv. Name it after our application.
+(Note that any line in this tutoral that begins with &#8220;$&#8221; should be run from the command line. And you don&#8217;t type the &#8220;$&#8221;.)</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv first-news-app
 </pre></div>
 </div>
@@ -220,7 +221,7 @@ file extension since that&#8217;s <a class="reference external" href="https://he
 =================
 </pre></div>
 </div>
-<p>Officially add the file to your repository for tracking with Git&#8217;s <tt class="docutils literal"><span class="pre">add</span></tt> command.</p>
+<p>Make sure to save it. Then officially add the file to your repository for tracking with Git&#8217;s <tt class="docutils literal"><span class="pre">add</span></tt> command.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add README.md
 </pre></div>
 </div>
@@ -256,7 +257,7 @@ we&#8217;ll use to put together our website.</p>
 </div>
 <p>Open <tt class="docutils literal"><span class="pre">app.py</span></tt> with your text editor and import the Flask basics. You are now writing Python!</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span> <span class="c"># Note the double underscores on each side! You&#39;ll see them again.</span>
 </pre></div>
 </div>
 <p>Now configure Flask to make a page at your site&#8217;s root URL, where we will publish
@@ -270,22 +271,22 @@ the complete list of people who died during the riots using a template called <t
 </span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
+<p>Return your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
 </pre></div>
 </div>
-<p>Create the <tt class="docutils literal"><span class="pre">index.html</span></tt> we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
+<p>Next create the <tt class="docutils literal"><span class="pre">index.html</span></tt> file we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Macs and Linux:</span>
 <span class="nv">$ </span>touch templates/index.html
 <span class="c"># Windows:</span>
 <span class="nv">$ </span>start notepad++ templates/index.html
 </pre></div>
 </div>
-<p>Open it up and write something clever.</p>
+<p>Open it up in your text editor and write something clever.</p>
 <div class="highlight-html"><div class="highlight"><pre>Hello World!
 </pre></div>
 </div>
-<p>Configure Flask to boot up a test server when you run <tt class="docutils literal"><span class="pre">app.py</span></tt>.</p>
+<p>Return to <tt class="docutils literal"><span class="pre">app.py</span></tt> and Configure Flask to boot up a test server when you run it.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -303,7 +304,7 @@ the complete list of people who died during the riots using a template called <t
 </span><span class="hll">    <span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Run <tt class="docutils literal"><span class="pre">app.py</span></tt> and open up your browser to <tt class="docutils literal"><span class="pre">localhost:8000</span></tt> or <tt class="docutils literal"><span class="pre">127.0.0.1:8000</span></tt>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">app.py</span></tt> on the command-line and open up your browser to <tt class="docutils literal"><span class="pre">http://localhost:8000</span></tt> or <tt class="docutils literal"><span class="pre">http://127.0.0.1:8000</span></tt>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
