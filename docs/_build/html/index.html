@@ -590,6 +590,10 @@ in the dictionary and pass it through the template.</p>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Restart your test server and take a look at <tt class="docutils literal"><span class="pre">http://localhost:8000/1/</span></tt> again.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
+</pre></div>
+</div>
 <p>Return to <tt class="docutils literal"><span class="pre">index.html</span></tt> and add a hyperlink to each detail page to the table.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
@@ -622,6 +626,10 @@ in the dictionary and pass it through the template.</p>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Restart your test server and take a look at <tt class="docutils literal"><span class="pre">http://localhost:8000/</span></tt>.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
+</pre></div>
+</div>
 <p>In <tt class="docutils literal"><span class="pre">detail.html</span></tt> you can use the rest of the data fields to write a sentence about the victim
 and print out the summary that&#8217;s been written in the data file.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
@@ -638,7 +646,7 @@ and print out the summary that&#8217;s been written in the data file.</p>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>Once again, commit your work.</p>
+<p>Reload <tt class="docutils literal"><span class="pre">http://localhost:8000/1/</span></tt> to see it. Then once again commit your work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Created a detail page about each victim.&quot;</span>
 <span class="nv">$ </span>git push origin master

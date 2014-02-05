@@ -686,6 +686,12 @@ Now clear ``detail.html`` and make a new HTML document with a headline drawn fro
         </body>
     </html>
 
+Restart your test server and take a look at ``http://localhost:8000/1/`` again.
+
+.. code-block:: bash
+
+    $ python app.py
+
 Return to ``index.html`` and add a hyperlink to each detail page to the table.
 
 .. code-block:: html
@@ -721,6 +727,12 @@ Return to ``index.html`` and add a hyperlink to each detail page to the table.
         </body>
     </html>
 
+Restart your test server and take a look at ``http://localhost:8000/``.
+
+.. code-block:: bash
+
+    $ python app.py
+
 In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim
 and print out the summary that's been written in the data file.
 
@@ -740,7 +752,7 @@ and print out the summary that's been written in the data file.
         </body>
     </html>
 
-Once again, commit your work.
+Reload ``http://localhost:8000/1/`` to see it. Then once again commit your work.
 
 .. code-block:: bash
 
