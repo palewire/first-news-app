@@ -549,8 +549,8 @@ Reload your page in the browser again to see the change. Then commit your work.
     $ git commit -m "Created basic table"
     $ git push origin master
 
-Next we're going to create a unique "detail" page dedicated to each person. Start by opening
-up ``app.py`` and adding the URL that will help make this happen.
+Next we're going to create a unique "detail" page dedicated to each person. Start by returning to
+ ``app.py`` in your text editor and adding the URL that will help make this happen.
 
 .. code-block:: python
     :emphasize-lines: 16-18
