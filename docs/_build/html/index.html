@@ -510,13 +510,17 @@ that will be the backbone of our application and save it there as <tt class="doc
 <span class="nv">$ </span>start notepad++ templates/detail.html
 </pre></div>
 </div>
-<p>Put something simple in it. Then use your browser to visit <tt class="docutils literal"><span class="pre">localhost:8000/1/</span></tt>, <tt class="docutils literal"><span class="pre">or</span> <span class="pre">localhost:8000/200/</span></tt> or any other number.</p>
+<p>Put something simple in it with your text editor.</p>
 <div class="highlight-html"><div class="highlight"><pre>Hello World!
 </pre></div>
 </div>
+<p>Then, if it&#8217;s not running, restart your test server and use your browser to visit <tt class="docutils literal"><span class="pre">http://localhost:8000/1/</span></tt>, <tt class="docutils literal"><span class="pre">http://localhost:8000/200/</span></tt> or any other number.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
+</pre></div>
+</div>
 <p>To customize the page for each person, we will need to connect the <tt class="docutils literal"><span class="pre">number</span></tt> in the URL
-with the <tt class="docutils literal"><span class="pre">id</span></tt> column in the CSV data file. First, use Python to transform the data list
-we currently have into a dictionary with each records <tt class="docutils literal"><span class="pre">id</span></tt> value as the key.</p>
+with the <tt class="docutils literal"><span class="pre">id</span></tt> column in the CSV data file. First, return to <tt class="docutils literal"><span class="pre">app.py</span></tt> in the text editor and use Python
+to transform the data list we currently have there into a dictionary with each record&#8217;s <tt class="docutils literal"><span class="pre">id</span></tt> value as the key.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>

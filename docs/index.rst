@@ -592,15 +592,21 @@ Create a new file in your templates directory called ``detail.html`` for it to c
     $ start notepad++ templates/detail.html
 
 
-Put something simple in it. Then use your browser to visit ``localhost:8000/1/``, ``or localhost:8000/200/`` or any other number.
+Put something simple in it with your text editor.
 
 .. code-block:: html
 
     Hello World!
 
+Then, if it's not running, restart your test server and use your browser to visit ``http://localhost:8000/1/``, ``http://localhost:8000/200/`` or any other number.
+
+.. code-block:: bash
+
+    $ python app.py
+
 To customize the page for each person, we will need to connect the ``number`` in the URL
-with the ``id`` column in the CSV data file. First, use Python to transform the data list
-we currently have into a dictionary with each records ``id`` value as the key.
+with the ``id`` column in the CSV data file. First, return to ``app.py`` in the text editor and use Python 
+to transform the data list we currently have there into a dictionary with each record's ``id`` value as the key.
 
 .. code-block:: python
     :emphasize-lines: 9
