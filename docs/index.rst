@@ -345,7 +345,7 @@ Return to ``app.py`` and Configure Flask to boot up a test server when you run i
             debug=True,
         )
 
-Run ``app.py`` on the command-line and open up your browser to ``http://localhost:8000`` or ``http://127.0.0.1:8000``.
+Don't forget to save your changes. Then run ``app.py`` on the command-line and open up your browser to ``http://localhost:8000`` or ``http://127.0.0.1:8000``.
 
 .. code-block:: bash
 
