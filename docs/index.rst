@@ -408,7 +408,7 @@ that will be the backbone of our application and save it there as ``la-riots-dea
     $ git commit -m "Added CSV source data"
     $ git push origin master
 
-Use Python's ``csv`` module to open up the file in ``app.py``.
+Open up ``app.py`` in your text editor and use Python's ``csv`` module to open up the file.
 
 .. code-block:: python
     :emphasize-lines: 1, 6-8
