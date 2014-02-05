@@ -282,7 +282,8 @@ Create a new file called ``app.py`` where we will configure Flask.
     # Windows:
     $ start notepad++ app.py
 
-Open ``app.py`` with your text editor and import the Flask basics. You are now writing Python!
+Open ``app.py`` with your text editor and import the Flask basics. This is the code that will serve as your
+application's "backend," routing data to the appropriate pages.
 
 .. code-block:: python
 
@@ -309,7 +310,7 @@ Return your command-line interface and create a directory to store your template
 
     $ mkdir templates
 
-Next create the ``index.html`` file we referenced in ``app.py``. This is the HTML file where we will 
+Next create the ``index.html`` file we referenced in ``app.py``. This is the HTML file where your will lay out your webpage.
 
 .. code-block:: bash
 

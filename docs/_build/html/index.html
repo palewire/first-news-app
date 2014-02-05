@@ -255,7 +255,8 @@ we&#8217;ll use to put together our website.</p>
 <span class="nv">$ </span>start notepad++ app.py
 </pre></div>
 </div>
-<p>Open <tt class="docutils literal"><span class="pre">app.py</span></tt> with your text editor and import the Flask basics. You are now writing Python!</p>
+<p>Open <tt class="docutils literal"><span class="pre">app.py</span></tt> with your text editor and import the Flask basics. This is the code that will serve as your
+application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span> <span class="c"># Note the double underscores on each side! You&#39;ll see them again.</span>
 </pre></div>
@@ -275,7 +276,7 @@ the complete list of people who died during the riots using a template called <t
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
 </pre></div>
 </div>
-<p>Next create the <tt class="docutils literal"><span class="pre">index.html</span></tt> file we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>. This is the HTML file where we will</p>
+<p>Next create the <tt class="docutils literal"><span class="pre">index.html</span></tt> file we referenced in <tt class="docutils literal"><span class="pre">app.py</span></tt>. This is the HTML file where your will lay out your webpage.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Macs and Linux:</span>
 <span class="nv">$ </span>touch templates/index.html
 <span class="c"># Windows:</span>
