@@ -1197,9 +1197,9 @@ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
 
 .. code-block:: bash
 
-    $ git checkout -b gh-pages
-    $ git rebase master
-    $ git push origin gh-pages
+    $ git checkout -b gh-pages # Create the new branch
+    $ git merge master # Pull in all the code from the master branch
+    $ git push origin gh-pages # Push up to GitHub from your new branch
 
 Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-news-app/build/index.html`` to cross the finish line.
 

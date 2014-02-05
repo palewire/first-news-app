@@ -1046,9 +1046,9 @@ requires is that we create a new branch in our repository called <tt class="docu
 up to GitHub there. Keep in mind there are many other options for publishing flat files, ranging from
 <a class="reference external" href="https://en.wikipedia.org/wiki/Dropbox_%28service%29">Dropbox</a>
 to <a class="reference external" href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon&#8217;s S3 service</a>.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout -b gh-pages
-<span class="nv">$ </span>git rebase master
-<span class="nv">$ </span>git push origin gh-pages
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git checkout -b gh-pages <span class="c"># Create the new branch</span>
+<span class="nv">$ </span>git merge master <span class="c"># Pull in all the code from the master branch</span>
+<span class="nv">$ </span>git push origin gh-pages <span class="c"># Push up to GitHub from your new branch</span>
 </pre></div>
 </div>
 <p>Now wait a minute or two, then visit <tt class="docutils literal"><span class="pre">http://&lt;yourusername&gt;.github.io/first-news-app/build/index.html</span></tt> to cross the finish line.</p>
