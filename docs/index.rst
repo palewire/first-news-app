@@ -174,6 +174,7 @@ Act 1: Hello Git
 ****************
 
 Start by creating a new development environment with virtualenv. Name it after our application.
+(Note that any line in this tutoral that begins with "$" should be run from the command line. And you don't type the "$".)
 
 .. code-block:: bash
 
@@ -233,7 +234,7 @@ Open up the README in your text editor and type something in it. Maybe something
     My first news app
     =================
 
-Officially add the file to your repository for tracking with Git's ``add`` command.
+Make sure to save it. Then officially add the file to your repository for tracking with Git's ``add`` command.
 
 .. code-block:: bash
 
@@ -302,13 +303,13 @@ the complete list of people who died during the riots using a template called ``
     def index():
         return render_template('index.html')
 
-Create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
+Return your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
 
 .. code-block:: bash
 
     $ mkdir templates
 
-Create the ``index.html`` we referenced in ``app.py``.
+Next create the ``index.html`` file we referenced in ``app.py``.
 
 .. code-block:: bash
 
@@ -317,13 +318,13 @@ Create the ``index.html`` we referenced in ``app.py``.
     # Windows:
     $ start notepad++ templates/index.html
 
-Open it up and write something clever.
+Open it up in your text editor and write something clever.
 
 .. code-block:: html
 
     Hello World!
 
-Configure Flask to boot up a test server when you run ``app.py``.
+Return to ``app.py`` and Configure Flask to boot up a test server when you run it.
 
 .. code-block:: python
     :emphasize-lines: 9-15
@@ -344,7 +345,7 @@ Configure Flask to boot up a test server when you run ``app.py``.
             debug=True,
         )
 
-Run ``app.py`` and open up your browser to ``localhost:8000`` or ``127.0.0.1:8000``.
+Run ``app.py`` on the command-line and open up your browser to ``http://localhost:8000`` or ``http://127.0.0.1:8000``.
 
 .. code-block:: bash
 
