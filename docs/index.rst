@@ -282,7 +282,7 @@ Create a new file called ``app.py`` where we will configure Flask.
     # Windows:
     $ start notepad++ app.py
 
-Open ``app.py`` with your text editor and import the Flask basics. This is the code that will serve as your
+Open ``app.py`` with your text editor and import the Flask basics. This is the file that will serve as your
 application's "backend," routing data to the appropriate pages.
 
 .. code-block:: python
