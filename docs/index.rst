@@ -675,8 +675,7 @@ in the dictionary and pass it through the template.
             debug=True,
         )
 
-Now use the person's name in a real HTML document to make a headline in ``detail.html``. 
-Reload ``localhost:8000/1/``.
+Now clear ``detail.html`` and make a new HTML document with a headline drawn from the data we're passed in from the dictionary.
 
 .. code-block:: html
 
