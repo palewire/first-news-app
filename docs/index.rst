@@ -43,7 +43,7 @@ to participate.
 1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
 2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
 3. `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
-4. Version 2.7 of the `Python <http://python.org>`_ programming language
+4. Version 2.7 of the `Python <http://python.org/download/releases/2.7.6/>`_ programming language
 5. The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
 
 .. note::
