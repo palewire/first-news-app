@@ -309,7 +309,7 @@ Return your command-line interface and create a directory to store your template
 
     $ mkdir templates
 
-Next create the ``index.html`` file we referenced in ``app.py``.
+Next create the ``index.html`` file we referenced in ``app.py``. This is the HTML file where we will 
 
 .. code-block:: bash
 
@@ -462,7 +462,7 @@ Next pass the list to your template, ``index.html``, so you can use it there.
             debug=True,
         )
 
-Make sure to save ``app.py``. Then dump the data out in ``index.html`` and reload it in your browser to see what's going on.
+Make sure to save ``app.py``. Then dump the data out in ``index.html``. This is an example of Flask's templating language `Jinja <http://jinja.pocoo.org/>`_
 
 .. code-block:: jinja
     :emphasize-lines: 6
@@ -476,8 +476,13 @@ Make sure to save ``app.py``. Then dump the data out in ``index.html`` and reloa
         </body>
     </html>
 
-Use Flask's templating language `Jinja <http://jinja.pocoo.org/>`_ to loop through
-the data and create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
+If it isn't already running, return the command line, restart your test server and visit ``http://localhost:8000`` again.
+
+.. code-block:: 
+
+        $ python app.py
+
+Now we'll use Jinja to sculpt the data to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
 
 .. code-block:: jinja
     :emphasize-lines: 6-15
