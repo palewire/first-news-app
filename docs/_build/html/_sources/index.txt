@@ -233,17 +233,25 @@ Open up the README in your text editor and type something in it. Maybe something
     My first news app
     =================
 
-Officially add the file to your repository for tracking with git's ``add`` command.
+Officially add the file to your repository for tracking with Git's ``add`` command.
 
 .. code-block:: bash
 
     $ git add README.md
 
-Log its creation with git's ``commit`` command.
+Log its creation with Git's ``commit`` command.
 
 .. code-block:: bash
 
     $ git commit -m "First commit"
+
+If this is your first time using Git, you may be prompted to configure you name and email.
+If so, take the time now.
+
+.. code-block:: bash
+
+    $ git config --global user.email "your@email.com"
+    $ git config --global user.name "your name"
 
 Push it up to GitHub.
 
