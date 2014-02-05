@@ -545,7 +545,7 @@ Reload your page in the browser again to see the change. Then commit your work.
 
 .. code-block:: bash
 
-    $ git add .
+    $ git add . # Using "." is a trick that will quickly stage *all* files you've changed.
     $ git commit -m "Created basic table"
     $ git push origin master
 
