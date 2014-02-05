@@ -541,7 +541,7 @@ Pause to reload your browser page. Next expand the table to include a lot more d
         </body>
     </html>
 
-Look at your webpage again to see the change. Then commit your work.
+Reload your page in the browser again to see the change. Then commit your work.
 
 .. code-block:: bash
 
