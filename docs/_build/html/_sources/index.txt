@@ -605,7 +605,7 @@ Then, if it's not running, restart your test server and use your browser to visi
 
 To customize the page for each person, we will need to connect the ``number`` in the URL
 with the ``id`` column in the CSV data file. First, return to ``app.py`` in the text editor and use Python 
-to transform the data list we currently have there into a dictionary with each record's ``id`` value as the key.
+to transform the data list we currently have there into a dictionary with each record's ``id`` as the key.
 
 .. code-block:: python
     :emphasize-lines: 9
