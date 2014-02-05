@@ -240,21 +240,21 @@ Make sure to save it. Then officially add the file to your repository for tracki
 
     $ git add README.md
 
-Log its creation with Git's ``commit`` command.
+Log its creation with Git's ``commit`` command. You can include a personalized message after the ``-m`` flag.
 
 .. code-block:: bash
 
     $ git commit -m "First commit"
 
 If this is your first time using Git, you may be prompted to configure you name and email.
-If so, take the time now.
+If so, take the time now. Then run the ``commit`` command above again.
 
 .. code-block:: bash
 
     $ git config --global user.email "your@email.com"
     $ git config --global user.name "your name"
 
-Push it up to GitHub.
+Now, finally, push your commit up to GitHub.
 
 .. code-block:: bash
 
