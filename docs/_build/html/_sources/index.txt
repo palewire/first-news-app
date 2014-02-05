@@ -506,7 +506,7 @@ Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML tabl
         </body>
     </html>
 
-Expand the table to include a lot more data.
+Pause to reload your browser page. Next expand the table to include a lot more data.
 
 .. code-block:: jinja
     :emphasize-lines: 9-14, 19-24
