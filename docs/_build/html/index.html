@@ -93,7 +93,7 @@ some form of it, and there are alternative programs you can install as well.</p>
 <p>On Windows you can find the command-line interface by opening the &#8220;command prompt.&#8221; Here are instructions for
 <a class="reference external" href="http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8">Windows 8</a>
 and <a class="reference external" href="http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window">earlier versions</a>. On
-an Apple desktops, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">&#8220;Terminal&#8221; application</a>. Ubuntu Linux
+Apple computers, you open the <a class="reference external" href="http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line">&#8220;Terminal&#8221; application</a>. Ubuntu Linux
 comes with a program of the <a class="reference external" href="http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it">same name</a>.</p>
 </div>
 <div class="section" id="id3">
@@ -176,17 +176,19 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 </div>
 <div class="section" id="act-1-hello-git">
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
-<p>Start by creating a new development environment with virtualenv. Name it after our application.
-(Note that any line in this tutoral that begins with &#8220;$&#8221; should be run from the command line. And you don&#8217;t type the &#8220;$&#8221;.)</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>virtualenv first-news-app
+<p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Note that any line in this tutoral that begins with &quot;$&quot; should be run from the command line.</span>
+<span class="c"># And you don&#39;t type the &quot;$&quot;.</span>
+<span class="nv">$ </span>virtualenv first-news-app
 </pre></div>
 </div>
 <p>Jump into the directory it created.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>first-news-app
 </pre></div>
 </div>
-<p>Turn on the virtualenv, which will instruct your terminal to only use those libraries installed
-inside its sealed space.</p>
+<p>Turn on the new virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space. You only need to create the virtualenv once, but you&#8217;ll need to repeat these
+&#8220;activation&#8221; steps each time you return to working on this project.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># In Linux or Mac OSX try this...</span>
 <span class="nv">$ </span>. bin/activate
 <span class="c"># In Windows it might take something more like...</span>
@@ -989,19 +991,21 @@ and print out the summary that&#8217;s been written in the data file.</p>
 <h2>Act 5: Hello Internet<a class="headerlink" href="#act-5-hello-internet" title="Permalink to this headline">¶</a></h2>
 <p>In this final act, we will publish your application to the Internet using
 <a class="reference external" href="http://pythonhosted.org/Frozen-Flask/">Frozen Flask</a>, a Python library that saves every page
-you&#8217;ve made with Flask as a flat file that can be uploaded to the web.</p>
-<p>First, use pip to install Frozen Flask.</p>
+you&#8217;ve made with Flask as a flat file that can be uploaded to the web. This is an
+alternative publishing method that does not require you configure and host an full-fledged Internet
+server, which requires more time and money.</p>
+<p>First, use pip to install Frozen Flask from the command line.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>pip install Frozen-Flask
 </pre></div>
 </div>
-<p>Create a new file called <tt class="docutils literal"><span class="pre">freeze.py</span></tt> where we will configure what it should create.</p>
+<p>Create a new file called <tt class="docutils literal"><span class="pre">freeze.py</span></tt> where we will configure what pages it should convert into flat files.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Mac and Linux:</span>
 <span class="nv">$ </span>touch freeze.py
 <span class="c"># Windows:</span>
 <span class="nv">$ </span>start notepad++ freeze.py
 </pre></div>
 </div>
-<p>Import a basic Frozen Flask configuration.</p>
+<p>Use your text editor to write a basic Frozen Flask configuration.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span>
 <span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
@@ -1010,14 +1014,17 @@ you&#8217;ve made with Flask as a flat file that can be uploaded to the web.</p>
     <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Run it, which will create a new directory called <tt class="docutils literal"><span class="pre">build</span></tt> in your project with the saved
-files.</p>
+<p>Now run it from the command line, which will create a new directory called <tt class="docutils literal"><span class="pre">build</span></tt>
+filled with a set of flattened files.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
 </pre></div>
 </div>
-<p>Try opening one in your browser. Notice that the default configuration only saved <tt class="docutils literal"><span class="pre">index.html</span></tt>, and not all your
-detail pages. Edit <tt class="docutils literal"><span class="pre">freeze.py</span></tt> to give it the instructions it needs to make a page for every record
-in the source CSV.</p>
+<p>Use your browser to open up one of the local files in <tt class="docutils literal"><span class="pre">build</span></tt>, rather that visit the
+dynamically generated pages we created at <tt class="docutils literal"><span class="pre">localhost</span></tt>.</p>
+<p>You will notice that the default Frozen Flask configuration only flatted out <tt class="docutils literal"><span class="pre">index.html</span></tt>, and not all your
+detail pages our template could generate using the data file.</p>
+<p>To flatten those, again edit <tt class="docutils literal"><span class="pre">freeze.py</span></tt> to give it the instructions it needs to
+make a page for every record in the source CSV.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">csv_list</span>
 </span><span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
@@ -1031,7 +1038,8 @@ in the source CSV.</p>
     <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Run it again and notice all the additional pages it made in the <tt class="docutils literal"><span class="pre">build</span></tt> directory.</p>
+<p>Run it again from the command line and notice all the additional pages it made in the <tt class="docutils literal"><span class="pre">build</span></tt> directory. Try
+opening one in your browser.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python freeze.py
 </pre></div>
 </div>

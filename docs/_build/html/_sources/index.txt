@@ -63,7 +63,7 @@ some form of it, and there are alternative programs you can install as well.
 On Windows you can find the command-line interface by opening the "command prompt." Here are instructions for 
 `Windows 8 <http://windows.microsoft.com/en-us/windows/command-prompt-faq#1TC=windows-8>`_ 
 and `earlier versions <http://windows.microsoft.com/en-us/windows-vista/open-a-command-prompt-window>`_. On
-an Apple desktops, you open the `"Terminal" application 
+Apple computers, you open the `"Terminal" application 
 <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux 
 comes with a program of the `same name 
 <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
@@ -174,10 +174,11 @@ Act 1: Hello Git
 ****************
 
 Start by creating a new development environment with virtualenv. Name it after our application.
-(Note that any line in this tutoral that begins with "$" should be run from the command line. And you don't type the "$".)
 
 .. code-block:: bash
 
+    # Note that any line in this tutoral that begins with "$" should be run from the command line. 
+    # And you don't type the "$".
     $ virtualenv first-news-app
 
 Jump into the directory it created.
@@ -186,8 +187,9 @@ Jump into the directory it created.
 
     $ cd first-news-app
 
-Turn on the virtualenv, which will instruct your terminal to only use those libraries installed
-inside its sealed space.
+Turn on the new virtualenv, which will instruct your terminal to only use those libraries installed
+inside its sealed space. You only need to create the virtualenv once, but you'll need to repeat these
+"activation" steps each time you return to working on this project.
 
 .. code-block:: bash
 
@@ -481,7 +483,7 @@ If it isn't already running, return the command line, restart your test server a
 
 .. code-block:: 
 
-        $ python app.py
+    $ python app.py
 
 Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
 
@@ -1121,15 +1123,17 @@ Act 5: Hello Internet
 
 In this final act, we will publish your application to the Internet using 
 `Frozen Flask <http://pythonhosted.org/Frozen-Flask/>`_, a Python library that saves every page 
-you've made with Flask as a flat file that can be uploaded to the web.
+you've made with Flask as a flat file that can be uploaded to the web. This is an
+alternative publishing method that does not require you configure and host an full-fledged Internet
+server, which requires more time and money.
 
-First, use pip to install Frozen Flask.
+First, use pip to install Frozen Flask from the command line.
 
 .. code-block:: bash
 
     $ pip install Frozen-Flask
 
-Create a new file called ``freeze.py`` where we will configure what it should create.
+Create a new file called ``freeze.py`` where we will configure what pages it should convert into flat files.
 
 .. code-block:: bash
 
@@ -1138,7 +1142,7 @@ Create a new file called ``freeze.py`` where we will configure what it should cr
     # Windows:
     $ start notepad++ freeze.py
 
-Import a basic Frozen Flask configuration.
+Use your text editor to write a basic Frozen Flask configuration.
 
 .. code-block:: python
 
@@ -1149,16 +1153,21 @@ Import a basic Frozen Flask configuration.
     if __name__ == '__main__':
         freezer.freeze()
 
-Run it, which will create a new directory called ``build`` in your project with the saved
-files. 
+Now run it from the command line, which will create a new directory called ``build`` 
+filled with a set of flattened files. 
 
 .. code-block:: bash
 
     $ python freeze.py
 
-Try opening one in your browser. Notice that the default configuration only saved ``index.html``, and not all your
-detail pages. Edit ``freeze.py`` to give it the instructions it needs to make a page for every record
-in the source CSV.
+Use your browser to open up one of the local files in ``build``, rather that visit the 
+dynamically generated pages we created at ``localhost``. 
+
+You will notice that the default Frozen Flask configuration only flatted out ``index.html``, and not all your
+detail pages our template could generate using the data file.
+
+To flatten those, again edit ``freeze.py`` to give it the instructions it needs to 
+make a page for every record in the source CSV.
 
 .. code-block:: python
     :emphasize-lines: 2,5-8
@@ -1175,7 +1184,8 @@ in the source CSV.
     if __name__ == '__main__':
         freezer.freeze()
 
-Run it again and notice all the additional pages it made in the ``build`` directory.
+Run it again from the command line and notice all the additional pages it made in the ``build`` directory. Try
+opening one in your browser.
 
 .. code-block:: bash
 
@@ -1202,4 +1212,3 @@ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
     $ git push origin gh-pages # Push up to GitHub from your new branch
 
 Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-news-app/build/index.html`` to cross the finish line.
-
