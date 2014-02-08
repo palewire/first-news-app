@@ -1125,7 +1125,7 @@ In this final act, we will publish your application to the Internet using
 `Frozen Flask <http://pythonhosted.org/Frozen-Flask/>`_, a Python library that saves every page 
 you've made with Flask as a flat file that can be uploaded to the web. This is an
 alternative publishing method that does not require you configure and host an full-fledged Internet
-server, which requires more time and money.
+server.
 
 First, use pip to install Frozen Flask from the command line.
 
