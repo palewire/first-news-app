@@ -7,7 +7,7 @@ Pygments==1.6
 Sphinx==1.2.1
 Werkzeug==0.9.4
 argh==0.23.3
-argparse==1.2.1
+argparse
 backports.ssl-match-hostname==3.4.0.2
 coverage==3.7.1
 docutils==0.11
