@@ -101,6 +101,8 @@ it's installed from your command line like so:
 
 .. code-block:: bash
 
+    # You don't have to type the "$" It's just a generic symbol 
+    # geeks use to show they're working on the command line.
     $ git --version
 
 Once that's done, you should create an account at GitHub, if you don't already have one.
@@ -177,8 +179,8 @@ Start by creating a new development environment with virtualenv. Name it after o
 
 .. code-block:: bash
 
-    # Note that any line in this tutoral that begins with "$" should be run from the command line. 
-    # And you don't type the "$".
+    # You don't have to type the "$" It's just a generic symbol 
+    # geeks use to show they're working on the command line.
     $ virtualenv first-news-app
 
 Jump into the directory it created.
@@ -212,7 +214,9 @@ Jump into the repository.
 
     $ cd repo
 
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``.
+Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``. Don't check "Initialize with README."
+You want to start with a blank repository.
+
 Then connect your local directory to it with the following.
 
 .. code-block:: bash

@@ -120,7 +120,9 @@ with many helpful tools for reviewing code and managing projects. It also has so
 <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-mac">Macs</a> and
 <a class="reference external" href="https://help.github.com/articles/set-up-git#platform-linux">Linux</a>. You can verify
 it&#8217;s installed from your command line like so:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git --version
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
+<span class="c"># geeks use to show they&#39;re working on the command line.</span>
+<span class="nv">$ </span>git --version
 </pre></div>
 </div>
 <p>Once that&#8217;s done, you should create an account at GitHub, if you don&#8217;t already have one.
@@ -177,8 +179,8 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 <div class="section" id="act-1-hello-git">
 <h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
 <p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="c"># Note that any line in this tutoral that begins with &quot;$&quot; should be run from the command line.</span>
-<span class="c"># And you don&#39;t type the &quot;$&quot;.</span>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
+<span class="c"># geeks use to show they&#39;re working on the command line.</span>
 <span class="nv">$ </span>virtualenv first-news-app
 </pre></div>
 </div>
@@ -205,8 +207,9 @@ inside its sealed space. You only need to create the virtualenv once, but you&#8
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd </span>repo
 </pre></div>
 </div>
-<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <tt class="docutils literal"><span class="pre">first-news-app</span></tt>.
-Then connect your local directory to it with the following.</p>
+<p>Visit <a class="reference external" href="http://www.github.com">GitHub</a> and create a new public repository named <tt class="docutils literal"><span class="pre">first-news-app</span></tt>. Don&#8217;t check &#8220;Initialize with README.&#8221;
+You want to start with a blank repository.</p>
+<p>Then connect your local directory to it with the following.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git remote add origin https://github.com/&lt;yourusername&gt;/first-news-app.git
 </pre></div>
 </div>
