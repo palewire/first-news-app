@@ -214,7 +214,9 @@ Jump into the repository.
 
     $ cd repo
 
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``.
+Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``. Don't check "Initialize with README."
+You want to start with a blank repository.
+
 Then connect your local directory to it with the following.
 
 .. code-block:: bash
