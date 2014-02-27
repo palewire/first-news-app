@@ -177,7 +177,7 @@ you want to copy your code to a server that publishes pages on the Internet.</p>
 </div>
 </div>
 <div class="section" id="act-1-hello-git">
-<h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
+<span id="activate"></span><h2>Act 1: Hello Git<a class="headerlink" href="#act-1-hello-git" title="Permalink to this headline">¶</a></h2>
 <p>Start by creating a new development environment with virtualenv. Name it after our application.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># You don&#39;t have to type the &quot;$&quot; It&#39;s just a generic symbol</span>
 <span class="c"># geeks use to show they&#39;re working on the command line.</span>
@@ -277,7 +277,7 @@ the complete list of people who died during the riots using a template called <t
 </span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Return your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
+<p>Return to your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
 </pre></div>
 </div>
@@ -292,7 +292,7 @@ the complete list of people who died during the riots using a template called <t
 <div class="highlight-html"><div class="highlight"><pre>Hello World!
 </pre></div>
 </div>
-<p>Return to <tt class="docutils literal"><span class="pre">app.py</span></tt> and Configure Flask to boot up a test server when you run it.</p>
+<p>Return to <tt class="docutils literal"><span class="pre">app.py</span></tt> and configure Flask to boot up a test server when you run it.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -318,7 +318,7 @@ the complete list of people who died during the riots using a template called <t
 get the terminal back up, you will either need to quit out of <tt class="docutils literal"><span class="pre">app.py</span></tt>
 by hitting <tt class="docutils literal"><span class="pre">CTRL-C</span></tt>, or open a second terminal and do additional work there.
 If you elect to open a second terminal, which is recommended, make sure to check into the
-virtualenv with the <tt class="docutils literal"><span class="pre">activate</span></tt> step we used earlier. If you choose to quit out
+virtualenv by repeating the <tt class="docutils literal"><span class="pre">.</span> <span class="pre">bin/activate</span></tt> part of <a class="reference internal" href="#activate"><em>Act 1: Hello Git</em></a>. If you choose to quit out
 of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will need to turn it back on later by calling <tt class="docutils literal"><span class="pre">python</span> <span class="pre">app.py</span></tt> where appropriate.)</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
@@ -331,7 +331,7 @@ of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will n
 </div>
 <div class="section" id="act-3-hello-html">
 <h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
-<p>Start over in your <tt class="docutils literal"><span class="pre">index.html</span></tt> file with a bare-bones HTML document.</p>
+<p>Start over in your <tt class="docutils literal"><span class="pre">templates/index.html</span></tt> file with a bare-bones HTML document.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;head&gt;&lt;/head&gt;</span>

@@ -171,6 +171,8 @@ If you don't have it, install it with pip.
 
 If that doesn't work, `try following this advice <http://www.virtualenv.org/en/latest/virtualenv.html#installation>`_.
 
+.. _activate:
+
 ****************
 Act 1: Hello Git
 ****************
@@ -310,7 +312,7 @@ the complete list of people who died during the riots using a template called ``
     def index():
         return render_template('index.html')
 
-Return your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
+Return to your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
 
 .. code-block:: bash
 
@@ -331,7 +333,7 @@ Open it up in your text editor and write something clever.
 
     Hello World!
 
-Return to ``app.py`` and Configure Flask to boot up a test server when you run it.
+Return to ``app.py`` and configure Flask to boot up a test server when you run it.
 
 .. code-block:: python
     :emphasize-lines: 9-15
@@ -362,7 +364,7 @@ Now return to the command line and commit your work to your Git repository. (To
 get the terminal back up, you will either need to quit out of ``app.py``
 by hitting ``CTRL-C``, or open a second terminal and do additional work there. 
 If you elect to open a second terminal, which is recommended, make sure to check into the 
-virtualenv with the ``activate`` step we used earlier. If you choose to quit out
+virtualenv by repeating the ``. bin/activate`` part of :ref:`activate`. If you choose to quit out
 of ``app.py``, you will need to turn it back on later by calling ``python app.py`` where appropriate.)
 
 .. code-block:: bash
@@ -380,7 +382,7 @@ Push it up to GitHub and check out the changes there.
 Act 3: Hello HTML
 *****************
 
-Start over in your ``index.html`` file with a bare-bones HTML document.
+Start over in your ``templates/index.html`` file with a bare-bones HTML document.
 
 .. code-block:: html
 
