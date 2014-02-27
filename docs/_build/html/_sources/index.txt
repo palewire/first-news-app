@@ -682,7 +682,7 @@ in the dictionary and pass it through the template.
             debug=True,
         )
 
-Now clear ``detail.html`` and make a new HTML document with a headline drawn from the data we're passed in from the dictionary.
+Now clear ``detail.html`` and make a new HTML document with a headline drawn from the data we've passed in from the dictionary.
 
 .. code-block:: html
 
