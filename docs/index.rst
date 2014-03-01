@@ -13,8 +13,8 @@ By the end you will have published your work on the World Wide Web.
 
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
-by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construction but will debut on February 27 `at the 
-2014 CAR Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
+by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at the 
+Computer-Assisted Reporting Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
 
 * Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
 * Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_

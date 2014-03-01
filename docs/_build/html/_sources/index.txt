@@ -13,8 +13,8 @@ By the end you will have published your work on the World Wide Web.
 
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ 
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
-by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It is still under construction but will debut on February 27 `at the 
-2014 CAR Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
+by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at the 
+Computer-Assisted Reporting Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
 
 * Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
 * Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
@@ -781,7 +781,7 @@ Next we will work to make a map with every victim in ``index.html`` using the
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
             <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
         </head>
         <body>
@@ -819,7 +819,7 @@ Create an HTML element to hold the map and use Leaflet to boot it up and center 
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
             <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
         </head>
         <body>
@@ -867,7 +867,7 @@ Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
             <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
         </head>
         <body>
@@ -935,7 +935,7 @@ Add a popup on the map pins that shows the name of the victim.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
             <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
         </head>
         <body>
@@ -1007,7 +1007,7 @@ Now wrap the name in a hyperlink to that person's detail page.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
             <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
         </head>
         <body>
@@ -1091,7 +1091,7 @@ Open up ``detail.html`` and make a map there, focus on just that victim.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
             <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
         </head>
         <body>
