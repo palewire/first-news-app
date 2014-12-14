@@ -130,7 +130,7 @@ way to make most of this tutorial work with other versions if you futz a little.
 pip and virtualenv
 ------------------
 
-The `pip package manager <http://www.pip-installer.org/en/latest/index.html>`_
+The `pip package manager <https://pip.pypa.io/en/latest/installing.html>`_
 makes it easy to install open-source libraries that 
 expand what you're able to do with Python. Later, we will use it to install everything
 needed to create a working web application. 
