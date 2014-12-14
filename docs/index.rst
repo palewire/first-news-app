@@ -44,7 +44,7 @@ to participate.
 2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
 3. `Git <http://git-scm.com/>`_ version control software and an account at `GitHub.com <http://www.github.com>`_
 4. Version 2.7 of the `Python <http://python.org/download/releases/2.7.6/>`_ programming language
-5. The `pip <http://www.pip-installer.org/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
+5. The `pip <https://pip.pypa.io/en/latest/installing.html>`_ package manager and `virtualenv <http://www.virtualenv.org/en/latest/>`_ environment manager for Python
 
 .. note::
 
@@ -130,13 +130,13 @@ way to make most of this tutorial work with other versions if you futz a little.
 pip and virtualenv
 ------------------
 
-The `pip package manager <https://pip.pypa.io/en/latest/installing.html>`_
+The `pip package manager <https://pip.pypa.io/en/latest/>`_
 makes it easy to install open-source libraries that 
 expand what you're able to do with Python. Later, we will use it to install everything
 needed to create a working web application. 
 
 If you don't have it already, you can get pip by following 
-`these instructions <http://www.pip-installer.org/en/latest/installing.html>`_. In Windows, it's necessary to make sure that the 
+`these instructions <https://pip.pypa.io/en/latest/installing.html>`_. In Windows, it's necessary to make sure that the 
 Python ``Scripts`` directory is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can help.
 
 Verify pip is installed with the following.
