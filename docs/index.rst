@@ -16,7 +16,7 @@ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data
 by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at the 
 Computer-Assisted Reporting Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
 
-* Code repository: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
+* Code: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
 * Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
 * Documentation: `http://first-news-app.rtfd.org/ <http://first-news-app.rtfd.org/>`_
 * Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
