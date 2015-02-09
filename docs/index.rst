@@ -759,8 +759,8 @@ First, return to ``app.py`` and pull the CSV data into the ``detail`` view.
         object_list = get_csv()
         return render_template(template, object_list=object_list)
 
-    @app.route('/<number>/')
-    def detail(number):
+    @app.route('/<row_id>/')
+    def detail(row_id):
         template = 'detail.html'
         object_list = get_csv()
         return render_template(template)
@@ -791,8 +791,8 @@ Then have the ``detail`` function loop through the CSV data list, testing each r
         object_list = get_csv()
         return render_template(template, object_list=object_list)
 
-    @app.route('/<number>/')
-    def detail(number):
+    @app.route('/<row_id>/')
+    def detail(row_id):
         template = 'detail.html'
         object_list = get_csv()
         for row in object_list:
@@ -912,8 +912,8 @@ Right now Flask throws an ugly error. The polite thing to do is return what is c
         object_list = get_csv()
         return render_template(template, object_list=object_list)
 
-    @app.route('/<number>/')
-    def detail(number):
+    @app.route('/<row_id>/')
+    def detail(row_id):
         template = 'detail.html'
         object_list = get_csv()
         for row in object_list:
