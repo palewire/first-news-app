@@ -6,20 +6,13 @@ First News App
 
 A step-by-step guide to publishing a simple news application.
 
-This tutorial will walk you through the process of building an interactive data visualization
-from a structured dataset. You will get hands-on experience in every stage of the development process,
-writing Python, HTML and JavaScript and recording it in Git's version control system.
-By the end you will have published your work on the World Wide Web.
+This tutorial will walk you through the process of building an interactive data visualization from a structured dataset. You will get hands-on experience in every stage of the development process, writing Python, HTML and JavaScript and recording it in Git's version control system. By the end you will have published your work on the World Wide Web.
 
-This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
-and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
-by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at the
-Computer-Assisted Reporting Conference in Baltimore, MD <https://ire.org/events-and-training/event/973/1026/>`_.
+This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_ by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at NICAR's annual conference in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version is `scheduled <http://ire.org/conferences/nicar2015/hands-on-training/>`_ for the upcoming Atlanta conference on March 6, 2015.
 
-* Code: `https://github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
-* Demonstration: `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
-* Documentation: `http://first-news-app.rtfd.org/ <http://first-news-app.rtfd.org/>`_
-* Issues: `https://github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
+* Code: `github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
+* Demonstration: `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
+* Issues: `github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
 
 ******************
 What you will make
@@ -31,7 +24,7 @@ for five days in 1992. You will repurpose the data from `a Los Angeles Times
 application <http://spreadsheets.latimes.com/la-riots-deaths/>`_ that
 accompanied a story released on the 20th anniversary of the riots.
 
-A working example can be found at `http://ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
+A working example can be found at `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
 
 **********************
 Prelude: Prerequisites

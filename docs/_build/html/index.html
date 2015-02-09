@@ -44,19 +44,12 @@
   <div class="section" id="first-news-app">
 <h1>First News App<a class="headerlink" href="#first-news-app" title="Permalink to this headline">¶</a></h1>
 <p>A step-by-step guide to publishing a simple news application.</p>
-<p>This tutorial will walk you through the process of building an interactive data visualization
-from a structured dataset. You will get hands-on experience in every stage of the development process,
-writing Python, HTML and JavaScript and recording it in Git&#8217;s version control system.
-By the end you will have published your work on the World Wide Web.</p>
-<p>This guide was prepared for training sessions of <a class="reference external" href="http://www.ire.org/">Investigative Reporters and Editors (IRE)</a>
-and the <a class="reference external" href="http://data.nicar.org/">National Institute for Computer-Assisted Reporting (NICAR)</a>
-by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It debuted on February 27, 2014, <a class="reference external" href="https://ire.org/events-and-training/event/973/1026/">at the
-Computer-Assisted Reporting Conference in Baltimore, MD</a>.</p>
+<p>This tutorial will walk you through the process of building an interactive data visualization from a structured dataset. You will get hands-on experience in every stage of the development process, writing Python, HTML and JavaScript and recording it in Git&#8217;s version control system. By the end you will have published your work on the World Wide Web.</p>
+<p>This guide was prepared for training sessions of <a class="reference external" href="http://www.ire.org/">Investigative Reporters and Editors (IRE)</a> and the <a class="reference external" href="http://data.nicar.org/">National Institute for Computer-Assisted Reporting (NICAR)</a> by <a class="reference external" href="http://palewi.re/who-is-ben-welsh/">Ben Welsh</a>. It debuted on February 27, 2014, <a class="reference external" href="https://ire.org/events-and-training/event/973/1026/">at NICAR&#8217;s annual conference in Baltimore</a>. A revised version is <a class="reference external" href="http://ire.org/conferences/nicar2015/hands-on-training/">scheduled</a> for the upcoming Atlanta conference on March 6, 2015.</p>
 <ul class="simple">
-<li>Code: <a class="reference external" href="https://github.com/ireapps/first-news-app">https://github.com/ireapps/first-news-app</a></li>
-<li>Demonstration: <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">http://ireapps.github.io/first-news-app/build/index.html</a></li>
-<li>Documentation: <a class="reference external" href="http://first-news-app.rtfd.org/">http://first-news-app.rtfd.org/</a></li>
-<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">https://github.com/ireapps/first-news-app/issues</a></li>
+<li>Code: <a class="reference external" href="https://github.com/ireapps/first-news-app">github.com/ireapps/first-news-app</a></li>
+<li>Demonstration: <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">ireapps.github.io/first-news-app/build/index.html</a></li>
+<li>Issues: <a class="reference external" href="https://github.com/ireapps/first-news-app/issues">github.com/ireapps/first-news-app/issues</a></li>
 </ul>
 <div class="section" id="what-you-will-make">
 <h2>What you will make<a class="headerlink" href="#what-you-will-make" title="Permalink to this headline">¶</a></h2>
@@ -65,7 +58,7 @@ about the more than 60 people who died during the riots that swept Los Angeles
 for five days in 1992. You will repurpose the data from <a class="reference external" href="http://spreadsheets.latimes.com/la-riots-deaths/">a Los Angeles Times
 application</a> that
 accompanied a story released on the 20th anniversary of the riots.</p>
-<p>A working example can be found at <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">http://ireapps.github.io/first-news-app/build/index.html</a></p>
+<p>A working example can be found at <a class="reference external" href="http://ireapps.github.io/first-news-app/build/index.html">ireapps.github.io/first-news-app/build/index.html</a></p>
 </div>
 <div class="section" id="prelude-prerequisites">
 <h2>Prelude: Prerequisites<a class="headerlink" href="#prelude-prerequisites" title="Permalink to this headline">¶</a></h2>
@@ -644,8 +637,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
     <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;row_id&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">row_id</span><span class="p">):</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
 <span class="hll">    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
 </span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
@@ -673,8 +666,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
     <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;row_id&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">row_id</span><span class="p">):</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
     <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
 <span class="hll">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">object_list</span><span class="p">:</span>
@@ -776,8 +769,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
     <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;row_id&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">row_id</span><span class="p">):</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
     <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">object_list</span><span class="p">:</span>
