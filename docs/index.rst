@@ -487,7 +487,7 @@ Make sure to save ``app.py``. Then dump the data out in ``index.html``. This is 
 
 If it isn't already running, return the command line, restart your test server and visit ``http://localhost:8000`` again.
 
-.. code-block::
+.. code-block:: bash
 
     $ python app.py
 
@@ -1204,10 +1204,6 @@ Commit all of the flat pages to the repository.
 
 Finally, we will publish these static files to the web using `GitHub's Pages <http://pages.github.com/>`_ feature. All it requires is that we create a new branch in our repository called ``gh-pages`` and push our files up to GitHub there.
 
-.. note::
-
-    Keep in mind there are many other options for publishing flat files, ranging from `Dropbox <https://en.wikipedia.org/wiki/Dropbox_%28service%29>`_ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
-
 .. code-block:: bash
 
     $ git checkout -b gh-pages # Create the new branch
@@ -1216,6 +1212,6 @@ Finally, we will publish these static files to the web using `GitHub's Pages <ht
 
 Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-news-app/build/index.html`` to cross the finish line.
 
-.. admonition:
+.. note::
 
-    If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages.
+    If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, ranging from `Dropbox <https://en.wikipedia.org/wiki/Dropbox_%28service%29>`_ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
