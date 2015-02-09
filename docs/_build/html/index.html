@@ -263,21 +263,38 @@ we&#8217;ll use to put together our website.</p>
 <p>Open <tt class="docutils literal"><span class="pre">app.py</span></tt> with your text editor and import the Flask basics. This is the file that will serve as your
 application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span> <span class="c"># Note the double underscores on each side! You&#39;ll see them again.</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>  <span class="c"># Note the double underscores on each side!</span>
 </pre></div>
 </div>
-<p>Now configure Flask to make a page at your site&#8217;s root URL, where we will publish
-the complete list of people who died during the riots using a template called <tt class="docutils literal"><span class="pre">index.html</span></tt>.</p>
+<p>Next we will configure Flask to make a page at your site&#8217;s root URL, where we will publish the complete list of people who died during the riots using a template called <tt class="docutils literal"><span class="pre">index.html</span></tt>.</p>
+<p>That starts by importing <tt class="docutils literal"><span class="pre">render_template</span></tt>, a Flask function we can use to combine data with HTML.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 </span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next create a function called <tt class="docutils literal"><span class="pre">index</span></tt> that returns our rendered <tt class="docutils literal"><span class="pre">index.html</span></tt> template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
-</span><span class="hll"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+<span class="hll"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+</span><span class="hll">    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Return to your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
+<p>Finally use one of Flask&#8217;s coolest tricks, the <tt class="docutils literal"><span class="pre">app.route</span></tt> decorater to connect that function with the root URL of our site, <tt class="docutils literal"><span class="pre">/</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+</span><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now return to your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir templates
 </pre></div>
 </div>
@@ -299,27 +316,28 @@ the complete list of people who died during the riots using a template called <t
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 
 <span class="hll"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class="hll">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-</span><span class="hll">        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-</span><span class="hll">    <span class="p">)</span>
+</span><span class="hll">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </span></pre></div>
 </div>
-<p>Don&#8217;t forget to save your changes. Then run <tt class="docutils literal"><span class="pre">app.py</span></tt> on the command-line and open up your browser to <tt class="docutils literal"><span class="pre">http://localhost:8000</span></tt> or <tt class="docutils literal"><span class="pre">http://127.0.0.1:8000</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You&#8217;re probably asking, what the heck is <tt class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></tt>? It&#8217;s just one of the weird things in Python you have to memorize. But it&#8217;s worth the brain space because it allows you to run any Python script all by itself.</p>
+<p class="last">Anything indented inside that particular <tt class="docutils literal"><span class="pre">if</span></tt> clause is executed when the script is called from the command line. In this case, that means booting up your web site using Flask&#8217;s built-in <tt class="docutils literal"><span class="pre">app.run</span></tt> function.</p>
+</div>
+<p>Don&#8217;t forget to save your changes. Then run <tt class="docutils literal"><span class="pre">app.py</span></tt> on the command-line and open up your browser to <a class="reference external" href="http://localhost:5000">localhost:5000</a></p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
-<p>Now return to the command line and commit your work to your Git repository. (To
-get the terminal back up, you will either need to quit out of <tt class="docutils literal"><span class="pre">app.py</span></tt>
-by hitting <tt class="docutils literal"><span class="pre">CTRL-C</span></tt>, or open a second terminal and do additional work there.
-If you elect to open a second terminal, which is recommended, make sure to check into the
-virtualenv by repeating the <tt class="docutils literal"><span class="pre">.</span> <span class="pre">bin/activate</span></tt> part of <a class="reference internal" href="#activate"><em>Act 1: Hello Git</em></a>. If you choose to quit out
-of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will need to turn it back on later by calling <tt class="docutils literal"><span class="pre">python</span> <span class="pre">app.py</span></tt> where appropriate.)</p>
+<p>Now return to the command line and commit your work to your Git repository.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To get the terminal back up, you will either need to quit out of <tt class="docutils literal"><span class="pre">app.py</span></tt> by hitting <tt class="docutils literal"><span class="pre">CTRL-C</span></tt>, or open a second terminal and do additional work there. If you elect to open a second terminal, which is recommended, make sure to check into the virtualenv by repeating the <tt class="docutils literal"><span class="pre">.</span> <span class="pre">bin/activate</span></tt> part of <a class="reference internal" href="#activate"><em>Act 1: Hello Git</em></a>. If you choose to quit out of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will need to turn it back on later by calling <tt class="docutils literal"><span class="pre">python</span> <span class="pre">app.py</span></tt> where appropriate.</p>
+</div>
+<p>I bet you remember how from above. But here&#8217;s a reminder.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Flask app.py and first template&quot;</span>
 </pre></div>
@@ -328,6 +346,7 @@ of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will n
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
+<p>Congratulations, you&#8217;ve made a real web page with Flask. Now to put something useful in it.</p>
 </div>
 <div class="section" id="act-3-hello-html">
 <h2>Act 3: Hello HTML<a class="headerlink" href="#act-3-hello-html" title="Permalink to this headline">¶</a></h2>
@@ -351,62 +370,141 @@ of <tt class="docutils literal"><span class="pre">app.py</span></tt>, you will n
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>mkdir static
 </pre></div>
 </div>
-<p>Download <a class="reference external" href="https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv">the comma-delimited file</a>
-that will be the backbone of our application and save it there as <tt class="docutils literal"><span class="pre">la-riots-deaths.csv</span></tt>. Add it to your git repository.</p>
+<p>Download <a class="reference external" href="https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv">the comma-delimited file</a> that will be the backbone of our application and save it there as <tt class="docutils literal"><span class="pre">la-riots-deaths.csv</span></tt>. Add it to your git repository.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add static
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Added CSV source data&quot;</span>
 <span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Open up <tt class="docutils literal"><span class="pre">app.py</span></tt> in your text editor and use Python&#8217;s <tt class="docutils literal"><span class="pre">csv</span></tt> module to access the CSV data.</p>
+<p>Next we will open up <tt class="docutils literal"><span class="pre">app.py</span></tt> in your text editor and create a function that uses Python&#8217;s <tt class="docutils literal"><span class="pre">csv</span></tt> module to access the CSV data.</p>
+<p>First, create the new function and give it the path to your CSV file.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="hll"><span class="kn">import</span> <span class="nn">csv</span>
 </span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="hll"><span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
-</span><span class="hll"><span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span><span class="hll"><span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
-</span>
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="hll"><span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+</span><span class="hll">    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+</span><span class="hll">
+</span><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Next pass the list to your template, <tt class="docutils literal"><span class="pre">index.html</span></tt>, so you can use it there.</p>
+<p>Open up the file path for reading with Python using the built-in <a class="reference external" href="https://docs.python.org/2/library/functions.html#open">open</a> function.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
-<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+<span class="hll">    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pass it into the csv module&#8217;s <a class="reference external" href="https://docs.python.org/2/library/csv.html#csv.DictReader">DictReader</a>, to be parsed and returned as a list of dictionaries.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+<span class="hll">    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Don&#8217;t know what a dictionary is? That&#8217;s okay. You can read more about them <a class="reference external" href="http://learnpythonthehardway.org/book/ex39.html">here</a> but the minimum you need to know now is that they are Python&#8217;s way of handling each row in your CSV. The columns there, like <tt class="docutils literal"><span class="pre">id</span></tt> or <tt class="docutils literal"><span class="pre">gender</span></tt>, are translated in &#8220;keys&#8221; on dictionary objects that you can access like <tt class="docutils literal"><span class="pre">row['id']</span></tt>.</p>
+</div>
+<p>A quirks of CSV objects is that once they&#8217;re used they disappear. There&#8217;s a good reason related to efficiency and memory limitations and all that but we won&#8217;t bother with that here. Just take our word and use Python&#8217;s built-in <tt class="docutils literal"><span class="pre">list</span></tt> function to convert this one to a permanent list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+<span class="hll">    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Close the function by return the csv list.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="hll">    <span class="k">return</span> <span class="n">csv_list</span>
+</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next have your <tt class="docutils literal"><span class="pre">index</span></tt> function pull the CSV data using your new code and pass it on the top the template, where it will be named <tt class="docutils literal"><span class="pre">object_list</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">csv_list</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-<span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
-</span><span class="hll">        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
-</span><span class="hll">    <span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+<span class="hll">    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 </span>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Make sure to save <tt class="docutils literal"><span class="pre">app.py</span></tt>. Then dump the data out in <tt class="docutils literal"><span class="pre">index.html</span></tt>. This is an example of Flask&#8217;s templating language <a class="reference external" href="http://jinja.pocoo.org/">Jinja</a></p>
+<p>Make sure to save <tt class="docutils literal"><span class="pre">app.py</span></tt>. Then return to the <tt class="docutils literal"><span class="pre">index.html</span></tt> template. There you can dump out the <tt class="docutils literal"><span class="pre">object_list</span></tt> data using Flask&#8217;s templating language <a class="reference external" href="http://jinja.pocoo.org/">Jinja</a>.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
 <span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
 <span class="x">    &lt;head&gt;&lt;/head&gt;</span>
@@ -417,11 +515,11 @@ that will be the backbone of our application and save it there as <tt class="doc
 <span class="x">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>If it isn&#8217;t already running, return the command line, restart your test server and visit <tt class="docutils literal"><span class="pre">http://localhost:8000</span></tt> again.</p>
+<p>If it isn&#8217;t already running, return the command line, restart your test server and visit <a class="reference external" href="http://localhost:5000">localhost:5000</a> again.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
-<p>Now we&#8217;ll use Jinja to sculpt the data in <tt class="docutils literal"><span class="pre">index.html</span></tt> to create <a class="reference external" href="http://www.w3schools.com/html/html_tables.asp">an HTML table</a> that lists all the names.</p>
+<p>Now we&#8217;ll use Jinja to sculpt the data in <tt class="docutils literal"><span class="pre">index.html</span></tt> to create <a class="reference external" href="http://www.w3schools.com/html/html_tables.asp">an HTML table</a> that lists all the names. Flask&#8217;s templating language allows us to loop through the data list and print out a row for each record.</p>
 <div class="highlight-jinja"><div class="highlight"><pre><span class="x">&lt;!doctype html&gt;</span>
 <span class="x">&lt;html lang=&quot;en&quot;&gt;</span>
 <span class="x">    &lt;head&gt;&lt;/head&gt;</span>
@@ -431,11 +529,11 @@ that will be the backbone of our application and save it there as <tt class="doc
 </span><span class="hll"><span class="x">            &lt;tr&gt;</span>
 </span><span class="hll"><span class="x">                &lt;th&gt;Name&lt;/th&gt;</span>
 </span><span class="hll"><span class="x">            &lt;/tr&gt;</span>
-</span><span class="hll"><span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">            </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
 </span><span class="hll"><span class="x">            &lt;tr&gt;</span>
 </span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.full_name</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
 </span><span class="hll"><span class="x">            &lt;/tr&gt;</span>
-</span><span class="hll"><span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+</span><span class="hll"><span class="x">            </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 </span><span class="hll"><span class="x">        &lt;/table&gt;</span>
 </span><span class="x">    &lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
@@ -457,7 +555,7 @@ that will be the backbone of our application and save it there as <tt class="doc
 </span><span class="hll"><span class="x">                &lt;th&gt;Gender&lt;/th&gt;</span>
 </span><span class="hll"><span class="x">                &lt;th&gt;Race&lt;/th&gt;</span>
 </span><span class="x">            &lt;/tr&gt;</span>
-<span class="x">        </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">for</span> <span class="nv">obj</span> <span class="k">in</span> <span class="nv">object_list</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">            &lt;tr&gt;</span>
 <span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.full_name</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
 <span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.date</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
@@ -467,7 +565,7 @@ that will be the backbone of our application and save it there as <tt class="doc
 </span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.gender</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
 </span><span class="hll"><span class="x">                &lt;td&gt;</span><span class="cp">{{</span> <span class="nv">obj.race</span> <span class="cp">}}</span><span class="x">&lt;/td&gt;</span>
 </span><span class="x">            &lt;/tr&gt;</span>
-<span class="x">        </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">            </span><span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span><span class="x"></span>
 <span class="x">        &lt;/table&gt;</span>
 <span class="x">    &lt;/body&gt;</span>
 <span class="x">&lt;/html&gt;</span>
@@ -479,34 +577,37 @@ that will be the backbone of our application and save it there as <tt class="doc
 <span class="nv">$ </span>git push origin master
 </pre></div>
 </div>
-<p>Next we&#8217;re going to create a unique &#8220;detail&#8221; page dedicated to each person. Start by returning to <tt class="docutils literal"><span class="pre">app.py</span></tt> in your text editor and adding the URL that will help make this happen.</p>
+<p>Next we&#8217;re going to create a unique &#8220;detail&#8221; page dedicated to each person. Start by returning to <tt class="docutils literal"><span class="pre">app.py</span></tt> in your text editor and adding the URL and template that will help make this happen.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
-<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">csv_list</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
-        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 
-<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
-</span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
-</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">)</span>
-</span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="p">)</span>
+<span class="hll"><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;row_id&gt;/&#39;</span><span class="p">)</span>
+</span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">row_id</span><span class="p">):</span>
+</span><span class="hll">    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
+</span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+</span><span class="hll">
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Notice a key difference between the URL route for the index and the one we just added. This time, both the URL route and function accept an argument, named <tt class="docutils literal"><span class="pre">row_id</span></tt>. Our goal is for the number passed into the URL and then through the function where it can be used to pull the record with the corresponding <tt class="docutils literal"><span class="pre">id</span></tt> from the CSV. Once we have our hands on it, we can pass it on to the template to render its unique page.</p>
 </div>
 <p>Create a new file in your templates directory called <tt class="docutils literal"><span class="pre">detail.html</span></tt> for it to connect with.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="c"># Macs and Linux:</span>
@@ -519,73 +620,69 @@ that will be the backbone of our application and save it there as <tt class="doc
 <div class="highlight-html"><div class="highlight"><pre>Hello World!
 </pre></div>
 </div>
-<p>Then, if it&#8217;s not running, restart your test server and use your browser to visit <tt class="docutils literal"><span class="pre">http://localhost:8000/1/</span></tt>, <tt class="docutils literal"><span class="pre">http://localhost:8000/200/</span></tt> or any other number.</p>
+<p>Then, if it&#8217;s not running, restart your test server and use your browser to visit <a class="reference external" href="http://localhost:5000/1/">localhost:5000/1/</a>, <a class="reference external" href="http://localhost:5000/200/">localhost:5000/200/</a> or any other number.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
-<p>To customize the page for each person, we will need to connect the <tt class="docutils literal"><span class="pre">number</span></tt> in the URL
-with the <tt class="docutils literal"><span class="pre">id</span></tt> column in the CSV data file. First, return to <tt class="docutils literal"><span class="pre">app.py</span></tt> in the text editor and use Python
-to transform the data list we currently have there into a dictionary with each record&#8217;s <tt class="docutils literal"><span class="pre">id</span></tt> as the key.</p>
+<p>To customize the page for each person, we will need to connect the <tt class="docutils literal"><span class="pre">row_id</span></tt> in the URL with the <tt class="docutils literal"><span class="pre">id</span></tt> column in the CSV data file.</p>
+<p>First, return to <tt class="docutils literal"><span class="pre">app.py</span></tt> and pull the CSV data into the <tt class="docutils literal"><span class="pre">detail</span></tt> view.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
-<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
-<span class="hll"><span class="n">csv_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">o</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">])</span>
-</span>
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">csv_list</span>
+
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
-        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
+<span class="hll">    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then have the <tt class="docutils literal"><span class="pre">detail</span></tt> function connect the number from the URL with the corresponding record
-in the dictionary and pass it through the template.</p>
+<p>Then have the <tt class="docutils literal"><span class="pre">detail</span></tt> function loop through the CSV data list, testing each row&#8217;d <tt class="docutils literal"><span class="pre">id</span></tt> field against the <tt class="docutils literal"><span class="pre">row_id</span></tt> provided by the URL. When you find a match, pass that row out to the template for rendering with the name <tt class="docutils literal"><span class="pre">object</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
-<span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-<span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
-<span class="n">csv_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([[</span><span class="n">o</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">],</span> <span class="n">o</span><span class="p">]</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">csv_list</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span>
-        <span class="n">object_list</span><span class="o">=</span><span class="n">csv_list</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
-<span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;detail.html&#39;</span><span class="p">,</span>
-</span><span class="hll">        <span class="nb">object</span><span class="o">=</span><span class="n">csv_dict</span><span class="p">[</span><span class="n">number</span><span class="p">],</span>
-</span><span class="hll">    <span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
+    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+<span class="hll">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">object_list</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">row_id</span><span class="p">:</span>
+</span><span class="hll">            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="nb">object</span><span class="o">=</span><span class="n">row</span><span class="p">)</span>
 </span>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
-        <span class="n">host</span><span class="o">=</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
-        <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>
-        <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-        <span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now clear <tt class="docutils literal"><span class="pre">detail.html</span></tt> and make a new HTML document with a headline drawn from the data we&#8217;ve passed in from the dictionary.</p>
@@ -598,7 +695,7 @@ in the dictionary and pass it through the template.</p>
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>Restart your test server and take a look at <tt class="docutils literal"><span class="pre">http://localhost:8000/1/</span></tt> again.</p>
+<p>Restart your test server and take a look at <tt class="docutils literal"><span class="pre">http://localhost:5000/1/</span></tt> again.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
@@ -638,8 +735,7 @@ in the dictionary and pass it through the template.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python app.py
 </pre></div>
 </div>
-<p>In <tt class="docutils literal"><span class="pre">detail.html</span></tt> you can use the rest of the data fields to write a sentence about the victim
-and print out the summary that&#8217;s been written in the data file.</p>
+<p>In <tt class="docutils literal"><span class="pre">detail.html</span></tt> you can use the rest of the data fields to write a sentence about the victim.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
@@ -649,15 +745,48 @@ and print out the summary that&#8217;s been written in the data file.</p>
 </span><span class="hll">            {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
 </span><span class="hll">            in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
 </span><span class="hll">        <span class="nt">&lt;/h1&gt;</span>
-</span><span class="hll">        <span class="nt">&lt;p&gt;</span>{{ object.story }}<span class="nt">&lt;/p&gt;</span>
-</span>    <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+</span><span class="hll">    <span class="nt">&lt;/body&gt;</span>
+</span><span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
-<p>Reload <tt class="docutils literal"><span class="pre">http://localhost:8000/1/</span></tt> to see it. Then once again commit your work.</p>
+<p>Reload <a class="reference external" href="http://localhost:5000/1/">localhost:5000/1/</a> to see it. Then once again commit your work.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Created a detail page about each victim.&quot;</span>
 <span class="nv">$ </span>git push origin master
+</pre></div>
+</div>
+<p>One last thing before we move on. What is somebody vists an URL for an <tt class="docutils literal"><span class="pre">id</span></tt> that doesn&#8217;t exist, like <a class="reference external" href="http://localhost:5000/99999/">localhost:5000/99999/</a>?</p>
+<p>Right now Flask throws an ugly error. The polite thing to do is return what is called a <a class="reference external" href="http://en.wikipedia.org/wiki/HTTP_404">404 response code</a>. To do that Flask, you only need to import a function called <tt class="docutils literal"><span class="pre">abort</span></tt> and run it after our loop finishes without finding a match.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">abort</span>
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_csv</span><span class="p">():</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="s">&#39;./static/la-riots-deaths.csv&#39;</span>
+    <span class="n">csv_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">csv_obj</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+    <span class="n">csv_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">csv_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">csv_list</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;index.html&#39;</span>
+    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">object_list</span><span class="o">=</span><span class="n">object_list</span><span class="p">)</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;number&gt;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">detail</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&#39;detail.html&#39;</span>
+    <span class="n">object_list</span> <span class="o">=</span> <span class="n">get_csv</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">object_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">row_id</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="nb">object</span><span class="o">=</span><span class="n">row</span><span class="p">)</span>
+<span class="hll">    <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1030,13 +1159,13 @@ dynamically generated pages we created at <tt class="docutils literal"><span cla
 <p>You will notice that the default Frozen Flask configuration only flatted out <tt class="docutils literal"><span class="pre">index.html</span></tt>, and not all your detail pages our template could generate using the data file.</p>
 <p>To flatten those, again edit <tt class="docutils literal"><span class="pre">freeze.py</span></tt> to give it the instructions it needs to make a page for every record in the source CSV.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask_frozen</span> <span class="kn">import</span> <span class="n">Freezer</span>
-<span class="hll"><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">csv_list</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">get_csv</span>
 </span><span class="n">freezer</span> <span class="o">=</span> <span class="n">Freezer</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
 <span class="hll"><span class="nd">@freezer.register_generator</span>
 </span><span class="hll"><span class="k">def</span> <span class="nf">detail</span><span class="p">():</span>
-</span><span class="hll">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_list</span><span class="p">:</span>
-</span><span class="hll">        <span class="k">yield</span> <span class="p">{</span><span class="s">&#39;number&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]}</span>
+</span><span class="hll">    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">get_csv</span><span class="p">:</span>
+</span><span class="hll">        <span class="k">yield</span> <span class="p">{</span><span class="s">&#39;row_id&#39;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]}</span>
 </span>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">freezer</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>

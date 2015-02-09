@@ -296,13 +296,36 @@ application's "backend," routing data to the appropriate pages.
 .. code-block:: python
 
     from flask import Flask
-    app = Flask(__name__) # Note the double underscores on each side! You'll see them again.
+    app = Flask(__name__)  # Note the double underscores on each side!
 
-Now configure Flask to make a page at your site's root URL, where we will publish
-the complete list of people who died during the riots using a template called ``index.html``.
+Next we will configure Flask to make a page at your site's root URL, where we will publish the complete list of people who died during the riots using a template called ``index.html``.
+
+That starts by importing ``render_template``, a Flask function we can use to combine data with HTML.
 
 .. code-block:: python
-    :emphasize-lines: 2, 5-7
+    :emphasize-lines: 2
+
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+Next create a function called ``index`` that returns our rendered ``index.html`` template.
+
+.. code-block:: python
+    :emphasize-lines: 5-8
+
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    def index():
+        template = 'index.html'
+        return render_template(template)
+
+Finally use one of Flask's coolest tricks, the ``app.route`` decorater to connect that function with the root URL of our site, ``/``.
+
+.. code-block:: python
+    :emphasize-lines: 5
 
     from flask import Flask
     from flask import render_template
@@ -310,9 +333,10 @@ the complete list of people who died during the riots using a template called ``
 
     @app.route("/")
     def index():
-        return render_template('index.html')
+        template = 'index.html'
+        return render_template(template)
 
-Return to your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
+Now return to your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
 
 .. code-block:: bash
 
@@ -336,7 +360,7 @@ Open it up in your text editor and write something clever.
 Return to ``app.py`` and configure Flask to boot up a test server when you run it.
 
 .. code-block:: python
-    :emphasize-lines: 9-15
+    :emphasize-lines: 10-12
 
     from flask import Flask
     from flask import render_template
@@ -344,28 +368,31 @@ Return to ``app.py`` and configure Flask to boot up a test server when you run i
 
     @app.route("/")
     def index():
-        return render_template('index.html')
+        template = 'index.html'
+        return render_template(template)
 
     if __name__ == '__main__':
-        app.run(
-            host="0.0.0.0",
-            port=8000,
-            use_reloader=True,
-            debug=True,
-        )
+        app.run(debug=True, use_reloader=True)
 
-Don't forget to save your changes. Then run ``app.py`` on the command-line and open up your browser to ``http://localhost:8000`` or ``http://127.0.0.1:8000``.
+.. note::
+
+    You're probably asking, what the heck is ``if __name__ == '__main__'``? It's just one of the weird things in Python you have to memorize. But it's worth the brain space because it allows you to run any Python script all by itself.
+
+    Anything indented inside that particular ``if`` clause is executed when the script is called from the command line. In this case, that means booting up your web site using Flask's built-in ``app.run`` function.
+
+Don't forget to save your changes. Then run ``app.py`` on the command-line and open up your browser to `localhost:5000 <http://localhost:5000>`_
 
 .. code-block:: bash
 
     $ python app.py
 
-Now return to the command line and commit your work to your Git repository. (To
-get the terminal back up, you will either need to quit out of ``app.py``
-by hitting ``CTRL-C``, or open a second terminal and do additional work there.
-If you elect to open a second terminal, which is recommended, make sure to check into the
-virtualenv by repeating the ``. bin/activate`` part of :ref:`activate`. If you choose to quit out
-of ``app.py``, you will need to turn it back on later by calling ``python app.py`` where appropriate.)
+Now return to the command line and commit your work to your Git repository.
+
+.. note::
+
+    To get the terminal back up, you will either need to quit out of ``app.py`` by hitting ``CTRL-C``, or open a second terminal and do additional work there. If you elect to open a second terminal, which is recommended, make sure to check into the virtualenv by repeating the ``. bin/activate`` part of :ref:`activate`. If you choose to quit out of ``app.py``, you will need to turn it back on later by calling ``python app.py`` where appropriate.
+
+I bet you remember how from above. But here's a reminder.
 
 .. code-block:: bash
 
@@ -377,6 +404,8 @@ Push it up to GitHub and check out the changes there.
 .. code-block:: bash
 
     $ git push origin master
+
+Congratulations, you've made a real web page with Flask. Now to put something useful in it.
 
 *****************
 Act 3: Hello HTML
@@ -408,8 +437,7 @@ Make a directory to store data files.
 
     $ mkdir static
 
-Download `the comma-delimited file <https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv>`_
-that will be the backbone of our application and save it there as ``la-riots-deaths.csv``. Add it to your git repository.
+Download `the comma-delimited file <https://raw.github.com/ireapps/first-news-app/master/static/la-riots-deaths.csv>`_ that will be the backbone of our application and save it there as ``la-riots-deaths.csv``. Add it to your git repository.
 
 .. code-block:: bash
 
@@ -417,7 +445,9 @@ that will be the backbone of our application and save it there as ``la-riots-dea
     $ git commit -m "Added CSV source data"
     $ git push origin master
 
-Open up ``app.py`` in your text editor and use Python's ``csv`` module to access the CSV data.
+Next we will open up ``app.py`` in your text editor and create a function that uses Python's ``csv`` module to access the CSV data.
+
+First, create the new function and give it the path to your CSV file.
 
 .. code-block:: python
     :emphasize-lines: 1, 6-8
@@ -427,51 +457,142 @@ Open up ``app.py`` in your text editor and use Python's ``csv`` module to access
     from flask import render_template
     app = Flask(__name__)
 
-    csv_path = './static/la-riots-deaths.csv'
-    csv_obj = csv.DictReader(open(csv_path, 'r'))
-    csv_list = list(csv_obj)
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
 
     @app.route("/")
     def index():
-        return render_template('index.html')
+        template = 'index.html'
+        return render_template(template)
 
     if __name__ == '__main__':
-        app.run(
-            host="0.0.0.0",
-            port=8000,
-            use_reloader=True,
-            debug=True,
-        )
+        app.run(debug=True, use_reloader=True)
 
-Next pass the list to your template, ``index.html``, so you can use it there.
+Open up the file path for reading with Python using the built-in `open <https://docs.python.org/2/library/functions.html#open>`_ function.
 
 .. code-block:: python
-    :emphasize-lines: 12-14
+    :emphasize-lines: 8
 
     import csv
     from flask import Flask
     from flask import render_template
     app = Flask(__name__)
 
-    csv_path = './static/la-riots-deaths.csv'
-    csv_obj = csv.DictReader(open(csv_path, 'r'))
-    csv_list = list(csv_obj)
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'rb')
 
     @app.route("/")
     def index():
-        return render_template('index.html',
-            object_list=csv_list,
-        )
+        template = 'index.html'
+        return render_template(template)
 
     if __name__ == '__main__':
-        app.run(
-            host="0.0.0.0",
-            port=8000,
-            use_reloader=True,
-            debug=True,
-        )
+        app.run(debug=True, use_reloader=True)
 
-Make sure to save ``app.py``. Then dump the data out in ``index.html``. This is an example of Flask's templating language `Jinja <http://jinja.pocoo.org/>`_
+Pass it into the csv module's `DictReader <https://docs.python.org/2/library/csv.html#csv.DictReader>`_, to be parsed and returned as a list of dictionaries.
+
+.. code-block:: python
+    :emphasize-lines: 9
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'rb')
+        csv_obj = csv.DictReader(csv_file)
+
+    @app.route("/")
+    def index():
+        template = 'index.html'
+        return render_template(template)
+
+    if __name__ == '__main__':
+        app.run(debug=True, use_reloader=True)
+
+.. note::
+
+    Don't know what a dictionary is? That's okay. You can read more about them `here <http://learnpythonthehardway.org/book/ex39.html>`_ but the minimum you need to know now is that they are Python's way of handling each row in your CSV. The columns there, like ``id`` or ``gender``, are translated in "keys" on dictionary objects that you can access like ``row['id']``.
+
+A quirks of CSV objects is that once they're used they disappear. There's a good reason related to efficiency and memory limitations and all that but we won't bother with that here. Just take our word and use Python's built-in ``list`` function to convert this one to a permanent list.
+
+.. code-block:: python
+    :emphasize-lines: 10
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'rb')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+
+    @app.route("/")
+    def index():
+        template = 'index.html'
+        return render_template(template)
+
+    if __name__ == '__main__':
+        app.run(debug=True, use_reloader=True)
+
+Close the function by return the csv list.
+
+.. code-block:: python
+    :emphasize-lines: 11
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'rb')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+        return csv_list
+
+    @app.route("/")
+    def index():
+        template = 'index.html'
+        return render_template(template)
+
+    if __name__ == '__main__':
+        app.run(debug=True, use_reloader=True)
+
+Next have your ``index`` function pull the CSV data using your new code and pass it on the top the template, where it will be named ``object_list``.
+
+.. code-block:: python
+    :emphasize-lines: 16,17
+
+    import csv
+    from flask import Flask
+    from flask import render_template
+    app = Flask(__name__)
+
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'r')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+        return csv_list
+
+    @app.route("/")
+    def index():
+        template = 'index.html'
+        object_list = get_csv()
+        return render_template(template, object_list=object_list)
+
+    if __name__ == '__main__':
+        app.run(debug=True, use_reloader=True)
+
+Make sure to save ``app.py``. Then return to the ``index.html`` template. There you can dump out the ``object_list`` data using Flask's templating language `Jinja <http://jinja.pocoo.org/>`_.
 
 .. code-block:: jinja
     :emphasize-lines: 6
@@ -485,13 +606,13 @@ Make sure to save ``app.py``. Then dump the data out in ``index.html``. This is 
         </body>
     </html>
 
-If it isn't already running, return the command line, restart your test server and visit ``http://localhost:8000`` again.
+If it isn't already running, return the command line, restart your test server and visit `localhost:5000 <http://localhost:5000>`_ again.
 
 .. code-block:: bash
 
     $ python app.py
 
-Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names.
+Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names. Flask's templating language allows us to loop through the data list and print out a row for each record.
 
 .. code-block:: jinja
     :emphasize-lines: 6-15
@@ -505,11 +626,11 @@ Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML tabl
                 <tr>
                     <th>Name</th>
                 </tr>
-            {% for obj in object_list %}
+                {% for obj in object_list %}
                 <tr>
                     <td>{{ obj.full_name }}</td>
                 </tr>
-            {% endfor %}
+                {% endfor %}
             </table>
         </body>
     </html>
@@ -534,7 +655,7 @@ Pause to reload your browser page. Next expand the table to include a lot more d
                     <th>Gender</th>
                     <th>Race</th>
                 </tr>
-            {% for obj in object_list %}
+                {% for obj in object_list %}
                 <tr>
                     <td>{{ obj.full_name }}</td>
                     <td>{{ obj.date }}</td>
@@ -544,7 +665,7 @@ Pause to reload your browser page. Next expand the table to include a lot more d
                     <td>{{ obj.gender }}</td>
                     <td>{{ obj.race }}</td>
                 </tr>
-            {% endfor %}
+                {% endfor %}
             </table>
         </body>
     </html>
@@ -557,37 +678,40 @@ Reload your page in the browser again to see the change. Then commit your work.
     $ git commit -m "Created basic table"
     $ git push origin master
 
-Next we're going to create a unique "detail" page dedicated to each person. Start by returning to ``app.py`` in your text editor and adding the URL that will help make this happen.
+Next we're going to create a unique "detail" page dedicated to each person. Start by returning to ``app.py`` in your text editor and adding the URL and template that will help make this happen.
 
 .. code-block:: python
-    :emphasize-lines: 16-18
+    :emphasize-lines: 19-23
 
     import csv
     from flask import Flask
     from flask import render_template
     app = Flask(__name__)
 
-    csv_path = './static/la-riots-deaths.csv'
-    csv_obj = csv.DictReader(open(csv_path, 'r'))
-    csv_list = list(csv_obj)
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'r')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+        return csv_list
 
     @app.route("/")
     def index():
-        return render_template('index.html',
-            object_list=csv_list,
-        )
+        template = 'index.html'
+        object_list = get_csv()
+        return render_template(template, object_list=object_list)
 
-    @app.route('/<number>/')
-    def detail(number):
-        return render_template('detail.html')
+    @app.route('/<row_id>/')
+    def detail(row_id):
+        template = 'detail.html'
+        return render_template(template)
 
     if __name__ == '__main__':
-        app.run(
-            host="0.0.0.0",
-            port=8000,
-            use_reloader=True,
-            debug=True,
-        )
+        app.run(debug=True, use_reloader=True)
+
+.. note::
+
+    Notice a key difference between the URL route for the index and the one we just added. This time, both the URL route and function accept an argument, named ``row_id``. Our goal is for the number passed into the URL and then through the function where it can be used to pull the record with the corresponding ``id`` from the CSV. Once we have our hands on it, we can pass it on to the template to render its unique page.
 
 Create a new file in your templates directory called ``detail.html`` for it to connect with.
 
@@ -598,89 +722,85 @@ Create a new file in your templates directory called ``detail.html`` for it to c
     # Windows:
     $ start notepad++ templates/detail.html
 
-
 Put something simple in it with your text editor.
 
 .. code-block:: html
 
     Hello World!
 
-Then, if it's not running, restart your test server and use your browser to visit ``http://localhost:8000/1/``, ``http://localhost:8000/200/`` or any other number.
+Then, if it's not running, restart your test server and use your browser to visit `localhost:5000/1/ <http://localhost:5000/1/>`_, `localhost:5000/200/ <http://localhost:5000/200/>`_ or any other number.
 
 .. code-block:: bash
 
     $ python app.py
 
-To customize the page for each person, we will need to connect the ``number`` in the URL
-with the ``id`` column in the CSV data file. First, return to ``app.py`` in the text editor and use Python
-to transform the data list we currently have there into a dictionary with each record's ``id`` as the key.
+To customize the page for each person, we will need to connect the ``row_id`` in the URL with the ``id`` column in the CSV data file.
+
+First, return to ``app.py`` and pull the CSV data into the ``detail`` view.
 
 .. code-block:: python
-    :emphasize-lines: 9
+    :emphasize-lines: 22
 
     import csv
     from flask import Flask
     from flask import render_template
     app = Flask(__name__)
 
-    csv_path = './static/la-riots-deaths.csv'
-    csv_obj = csv.DictReader(open(csv_path, 'r'))
-    csv_list = list(csv_obj)
-    csv_dict = dict([[o['id'], o] for o in csv_list])
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'r')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+        return csv_list
 
     @app.route("/")
     def index():
-        return render_template('index.html',
-            object_list=csv_list,
-        )
+        template = 'index.html'
+        object_list = get_csv()
+        return render_template(template, object_list=object_list)
 
     @app.route('/<number>/')
     def detail(number):
-        return render_template('detail.html')
+        template = 'detail.html'
+        object_list = get_csv()
+        return render_template(template)
 
     if __name__ == '__main__':
-        app.run(
-            host="0.0.0.0",
-            port=8000,
-            use_reloader=True,
-            debug=True,
-        )
+        app.run(debug=True, use_reloader=True)
 
-Then have the ``detail`` function connect the number from the URL with the corresponding record
-in the dictionary and pass it through the template.
+Then have the ``detail`` function loop through the CSV data list, testing each row'd ``id`` field against the ``row_id`` provided by the URL. When you find a match, pass that row out to the template for rendering with the name ``object``.
 
 .. code-block:: python
-    :emphasize-lines: 19-21
+    :emphasize-lines: 23,24,25
 
     import csv
     from flask import Flask
     from flask import render_template
     app = Flask(__name__)
 
-    csv_path = './static/la-riots-deaths.csv'
-    csv_obj = csv.DictReader(open(csv_path, 'r'))
-    csv_list = list(csv_obj)
-    csv_dict = dict([[o['id'], o] for o in csv_list])
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'r')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+        return csv_list
 
     @app.route("/")
     def index():
-        return render_template('index.html',
-            object_list=csv_list,
-        )
+        template = 'index.html'
+        object_list = get_csv()
+        return render_template(template, object_list=object_list)
 
     @app.route('/<number>/')
     def detail(number):
-        return render_template('detail.html',
-            object=csv_dict[number],
-        )
+        template = 'detail.html'
+        object_list = get_csv()
+        for row in object_list:
+            if row['id'] == row_id:
+                return render_template(template, object=row)
 
     if __name__ == '__main__':
-        app.run(
-            host="0.0.0.0",
-            port=8000,
-            use_reloader=True,
-            debug=True,
-        )
+        app.run(debug=True, use_reloader=True)
 
 Now clear ``detail.html`` and make a new HTML document with a headline drawn from the data we've passed in from the dictionary.
 
@@ -694,7 +814,7 @@ Now clear ``detail.html`` and make a new HTML document with a headline drawn fro
         </body>
     </html>
 
-Restart your test server and take a look at ``http://localhost:8000/1/`` again.
+Restart your test server and take a look at ``http://localhost:5000/1/`` again.
 
 .. code-block:: bash
 
@@ -741,8 +861,7 @@ Restart your test server and take a look at ``http://localhost:8000/``.
 
     $ python app.py
 
-In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim
-and print out the summary that's been written in the data file.
+In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim.
 
 .. code-block:: html
     :emphasize-lines: 5-10
@@ -756,17 +875,54 @@ and print out the summary that's been written in the data file.
                 {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
                 in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
             </h1>
-            <p>{{ object.story }}</p>
         </body>
     </html>
 
-Reload ``http://localhost:8000/1/`` to see it. Then once again commit your work.
+Reload `localhost:5000/1/ <http://localhost:5000/1/>`_ to see it. Then once again commit your work.
 
 .. code-block:: bash
 
     $ git add .
     $ git commit -m "Created a detail page about each victim."
     $ git push origin master
+
+One last thing before we move on. What is somebody vists an URL for an ``id`` that doesn't exist, like `localhost:5000/99999/ <http://localhost:5000/99999/>`_?
+
+Right now Flask throws an ugly error. The polite thing to do is return what is called a `404 response code <http://en.wikipedia.org/wiki/HTTP_404>`_. To do that Flask, you only need to import a function called ``abort`` and run it after our loop finishes without finding a match.
+
+.. code-block:: python
+    :emphasize-lines: 3,27
+
+    import csv
+    from flask import Flask
+    from flask import abort
+    from flask import render_template
+    app = Flask(__name__)
+
+    def get_csv():
+        csv_path = './static/la-riots-deaths.csv'
+        csv_file = open(csv_path, 'r')
+        csv_obj = csv.DictReader(csv_file)
+        csv_list = list(csv_obj)
+        return csv_list
+
+    @app.route("/")
+    def index():
+        template = 'index.html'
+        object_list = get_csv()
+        return render_template(template, object_list=object_list)
+
+    @app.route('/<number>/')
+    def detail(number):
+        template = 'detail.html'
+        object_list = get_csv()
+        for row in object_list:
+            if row['id'] == row_id:
+                return render_template(template, object=row)
+        abort(404)
+
+    if __name__ == '__main__':
+        app.run(debug=True, use_reloader=True)
 
 ***********************
 Act 4: Hello JavaScript
@@ -1177,13 +1333,13 @@ To flatten those, again edit ``freeze.py`` to give it the instructions it needs 
     :emphasize-lines: 2,5-8
 
     from flask_frozen import Freezer
-    from app import app, csv_list
+    from app import app, get_csv
     freezer = Freezer(app)
 
     @freezer.register_generator
     def detail():
-        for row in csv_list:
-            yield {'number': row['id']}
+        for row in get_csv:
+            yield {'row_id': row['id']}
 
     if __name__ == '__main__':
         freezer.freeze()
