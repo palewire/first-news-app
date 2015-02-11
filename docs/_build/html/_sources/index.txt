@@ -379,6 +379,8 @@ Don't forget to save your changes. Then run ``app.py`` on the command-line and o
 
     $ python app.py
 
+.. image:: /_static/hello-flask-hello-world.png
+
 Now return to the command line and commit your work to your Git repository.
 
 .. note::
@@ -605,6 +607,8 @@ If it isn't already running, return the command line, restart your test server a
 
     $ python app.py
 
+.. image:: /_static/hello-html-dump.png
+
 Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML table <http://www.w3schools.com/html/html_tables.asp>`_ that lists all the names. Flask's templating language allows us to loop through the data list and print out a row for each record.
 
 .. code-block:: jinja
@@ -628,7 +632,11 @@ Now we'll use Jinja to sculpt the data in ``index.html`` to create `an HTML tabl
         </body>
     </html>
 
-Pause to reload your browser page. Next expand the table to include a lot more data.
+Pause to reload your browser page.
+
+.. image:: /_static/hello-html-names.png
+
+Next expand the table to include a lot more data.
 
 .. code-block:: jinja
     :emphasize-lines: 9-14, 19-24
@@ -663,7 +671,11 @@ Pause to reload your browser page. Next expand the table to include a lot more d
         </body>
     </html>
 
-Reload your page in the browser again to see the change. Then commit your work.
+Reload your page in the browser again to see the change.
+
+.. image:: /_static/hello-html-table.png
+
+Then commit your work.
 
 .. code-block:: bash
 
@@ -726,6 +738,8 @@ Then, if it's not running, restart your test server and use your browser to visi
 .. code-block:: bash
 
     $ python app.py
+
+.. image:: /_static/hello-html-hello-detail.png
 
 To customize the page for each person, we will need to connect the ``row_id`` in the URL with the ``id`` column in the CSV data file.
 
@@ -813,6 +827,8 @@ Restart your test server and take a look at ``http://localhost:5000/1/`` again.
 
     $ python app.py
 
+.. image:: /_static/hello-html-hello-cesar.png
+
 Return to ``index.html`` and add a hyperlink to each detail page to the table.
 
 .. code-block:: html
@@ -854,6 +870,8 @@ Restart your test server and take a look at ``http://localhost:8000/``.
 
     $ python app.py
 
+.. image:: /_static/hello-html-hello-links.png
+
 In ``detail.html`` you can use the rest of the data fields to write a sentence about the victim.
 
 .. code-block:: html
@@ -871,7 +889,11 @@ In ``detail.html`` you can use the rest of the data fields to write a sentence a
         </body>
     </html>
 
-Reload `localhost:5000/1/ <http://localhost:5000/1/>`_ to see it. Then once again commit your work.
+Reload `localhost:5000/1/ <http://localhost:5000/1/>`_ to see it.
+
+.. image:: /_static/hello-html-hello-graf.png
+
+Then once again commit your work.
 
 .. code-block:: bash
 
@@ -879,9 +901,11 @@ Reload `localhost:5000/1/ <http://localhost:5000/1/>`_ to see it. Then once agai
     $ git commit -m "Created a detail page about each victim."
     $ git push origin master
 
-One last thing before we move on. What is somebody vists an URL for an ``id`` that doesn't exist, like `localhost:5000/99999/ <http://localhost:5000/99999/>`_?
+One last thing before we move on. What if somebody vists an URL for an ``id`` that doesn't exist, like `localhost:5000/99999/ <http://localhost:5000/99999/>`_? Right now Flask throws an ugly error.
 
-Right now Flask throws an ugly error. The polite thing to do is return what is called a `404 response code <http://en.wikipedia.org/wiki/HTTP_404>`_. To do that Flask, you only need to import a function called ``abort`` and run it after our loop finishes without finding a match.
+.. image:: /_static/hello-html-error.png
+
+The polite thing to do is return what is called a `404 response code <http://en.wikipedia.org/wiki/HTTP_404>`_. To do that Flask, you only need to import a function called ``abort`` and run it after our loop finishes without finding a match.
 
 .. code-block:: python
     :emphasize-lines: 3,27
@@ -916,6 +940,10 @@ Right now Flask throws an ugly error. The polite thing to do is return what is c
 
     if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)
+
+Reload your bad URL and you'll see the change.
+
+.. image:: /_static/hello-html-404.png
 
 ***********************
 Act 4: Hello JavaScript
