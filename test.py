@@ -13,6 +13,7 @@ class AppTest(unittest.TestCase):
     def test_app(self):
         self.app.get('/')
         self.app.get('/1/')
+        self.app.get('/999/')
 
     def test_freeze(self):
         freeze.freezer.freeze()
