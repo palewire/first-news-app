@@ -15,14 +15,14 @@ def get_csv():
 
 @app.route("/")
 def index():
-    template = 'test.html'
+    template = 'index.html'
     object_list = get_csv()
     return render_template(template, object_list=object_list)
 
 
 @app.route('/<row_id>/')
 def detail(row_id):
-    template = 'test.html'
+    template = 'detail.html'
     object_list = get_csv()
     for row in object_list:
         if row['id'] == row_id:
