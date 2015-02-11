@@ -1036,6 +1036,10 @@ Create an HTML element to hold the map and use Leaflet to boot it up and center 
         </body>
     </html>
 
+Reload the root URL of your site at `localhost:5000 <http://localhost:5000/>`_.
+
+.. image:: /_static/hello-js-empty-map.png
+
 Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/wiki/GeoJSON>`_ object, which Leaflet can easily load.
 
 .. code-block:: html
@@ -1103,6 +1107,10 @@ Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/
             </script>
         </body>
     </html>
+
+Reload the page.
+
+.. image:: /_static/hello-js-pins.png
 
 Add a popup on the map pins that shows the name of the victim.
 
@@ -1175,6 +1183,10 @@ Add a popup on the map pins that shows the name of the victim.
             </script>
         </body>
     </html>
+
+Reload the page and click a pin.
+
+.. image:: /_static/hello-js-popup.png
 
 Now wrap the name in a hyperlink to that person's detail page.
 
@@ -1252,6 +1264,10 @@ Now wrap the name in a hyperlink to that person's detail page.
         </body>
     </html>
 
+Reload again and click a pin.
+
+.. image:: /_static/hello-js-pin-link.png
+
 Commit your map.
 
 .. code-block:: bash
@@ -1263,13 +1279,13 @@ Commit your map.
 Open up ``detail.html`` and make a map there, focus on just that victim.
 
 .. code-block:: html
-    :emphasize-lines: 3-6,8,15-24
+    :emphasize-lines: 3-6,8,14-23
 
     <!doctype html>
     <html lang="en">
         <head>
             <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1278,7 +1294,6 @@ Open up ``detail.html`` and make a map there, focus on just that victim.
                 {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
                 in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
             </h1>
-            <p>{{ object.story }}</p>
             <script type="text/javascript">
                 var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
                 var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
@@ -1291,6 +1306,10 @@ Open up ``detail.html`` and make a map there, focus on just that victim.
             </script>
         </body>
     </html>
+
+Reload a detail page, like the one at `localhost:5000/1/ <http://localhost:5000/1/>`_.
+
+.. image:: /_static/hello-js-detail-map.png
 
 Commit that.
 
@@ -1388,6 +1407,8 @@ Finally, we will publish these static files to the web using `GitHub's Pages <ht
     $ git push origin gh-pages # Push up to GitHub from your new branch
 
 Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-news-app/build/index.html`` to cross the finish line.
+
+.. image:: /_static/hello-internet.png
 
 .. note::
 

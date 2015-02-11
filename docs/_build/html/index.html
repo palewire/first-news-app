@@ -880,6 +880,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Reload the root URL of your site at <a class="reference external" href="http://localhost:5000/">localhost:5000</a>.</p>
+<img alt="_images/hello-js-empty-map.png" src="_images/hello-js-empty-map.png" />
 <p>Loop through the CSV data and format it as a <a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> object, which Leaflet can easily load.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
@@ -945,6 +947,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Reload the page.</p>
+<img alt="_images/hello-js-pins.png" src="_images/hello-js-pins.png" />
 <p>Add a popup on the map pins that shows the name of the victim.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
@@ -1014,6 +1018,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Reload the page and click a pin.</p>
+<img alt="_images/hello-js-popup.png" src="_images/hello-js-popup.png" />
 <p>Now wrap the name in a hyperlink to that person&#8217;s detail page.</p>
 <div class="highlight-html"><div class="highlight"><pre><span class="cp">&lt;!doctype html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
@@ -1087,6 +1093,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Reload again and click a pin.</p>
+<img alt="_images/hello-js-pin-link.png" src="_images/hello-js-pin-link.png" />
 <p>Commit your map.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Made a map on the index page&quot;</span>
@@ -1098,7 +1106,7 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
 <span class="hll">    <span class="nt">&lt;head&gt;</span>
 </span><span class="hll">        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css&quot;</span> <span class="nt">/&gt;</span>
-</span><span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </span><span class="hll">    <span class="nt">&lt;/head&gt;</span>
 </span>    <span class="nt">&lt;body&gt;</span>
 <span class="hll">        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;map&quot;</span> <span class="na">style=</span><span class="s">&quot;width:100%; height:300px;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
@@ -1107,7 +1115,6 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
             {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
             in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
         <span class="nt">&lt;/h1&gt;</span>
-        <span class="nt">&lt;p&gt;</span>{{ object.story }}<span class="nt">&lt;/p&gt;</span>
 <span class="hll">        <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
 </span><span class="hll">            <span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">).</span><span class="nx">setView</span><span class="p">([{{</span> <span class="nx">object</span><span class="p">.</span><span class="nx">y</span> <span class="p">}},</span> <span class="p">{{</span> <span class="nx">object</span><span class="p">.</span><span class="nx">x</span> <span class="p">}}],</span> <span class="mi">16</span><span class="p">);</span>
 </span><span class="hll">            <span class="kd">var</span> <span class="nx">mapquestLayer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">L</span><span class="p">.</span><span class="nx">TileLayer</span><span class="p">(</span><span class="s1">&#39;http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png&#39;</span><span class="p">,</span> <span class="p">{</span>
@@ -1122,6 +1129,8 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="nt">&lt;/html&gt;</span>
 </pre></div>
 </div>
+<p>Reload a detail page, like the one at <a class="reference external" href="http://localhost:5000/1/">localhost:5000/1/</a>.</p>
+<img alt="_images/hello-js-detail-map.png" src="_images/hello-js-detail-map.png" />
 <p>Commit that.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>git add .
 <span class="nv">$ </span>git commit -m <span class="s2">&quot;Made a map on the detail page&quot;</span>
@@ -1195,6 +1204,7 @@ dynamically generated pages we created at <tt class="docutils literal"><span cla
 </pre></div>
 </div>
 <p>Now wait a minute or two, then visit <tt class="docutils literal"><span class="pre">http://&lt;yourusername&gt;.github.io/first-news-app/build/index.html</span></tt> to cross the finish line.</p>
+<img alt="_images/hello-internet.png" src="_images/hello-internet.png" />
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, ranging from <a class="reference external" href="https://en.wikipedia.org/wiki/Dropbox_%28service%29">Dropbox</a> to <a class="reference external" href="https://en.wikipedia.org/wiki/Amazon_S3">Amazon&#8217;s S3 service</a>.</p>

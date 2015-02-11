@@ -1,11 +1,25 @@
 <!doctype html>
 <html lang="en">
-    <head></head>
+    <head>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+        <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+    </head>
     <body>
+        <div id="map" style="width:100%; height:300px;"></div>
         <h1>
             {{ object.full_name }}, a {{ object.age }} year old,
             {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
             in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
         </h1>
+        <script type="text/javascript">
+            var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
+            var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                subdomains: ['otile1','otile2','otile3','otile4']
+            });
+            map.addLayer(mapquestLayer);
+            var marker = L.marker([{{ object.y }}, {{ object.x }}]).addTo(map);
+        </script>
     </body>
 </html>
