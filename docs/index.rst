@@ -864,7 +864,7 @@ Return to ``index.html`` and add a hyperlink to each detail page to the table.
         </body>
     </html>
 
-Restart your test server and take a look at ``http://localhost:8000/``.
+Restart your test server and take a look at ``http://localhost:5000/``.
 
 .. code-block:: bash
 
