@@ -1378,7 +1378,7 @@ To flatten those, again edit ``freeze.py`` to give it the instructions it needs 
 
     @freezer.register_generator
     def detail():
-        for row in get_csv:
+        for row in get_csv():
             yield {'row_id': row['id']}
 
     if __name__ == '__main__':
