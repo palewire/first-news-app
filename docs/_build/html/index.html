@@ -138,7 +138,7 @@ test to see what version, if any, is there waiting for you by typing the followi
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ python -V
 </pre></div>
 </div>
-<p>If you don&#8217;t have Python installed (a more likely fate for Windows users) try downloading and installing it from <a class="reference external" href="http://www.python.org/download/releases/2.7.6/">here</a>. In Windows, it&#8217;s also crucial to make sure that the
+<p>If you don&#8217;t have Python installed (a more likely fate for Windows users) try downloading and installing it from <a class="reference external" href="https://www.python.org/download/releases/2.7.8/">here</a>. In Windows, it&#8217;s also crucial to make sure that the
 Python program is available on your system&#8217;s <code class="docutils literal"><span class="pre">PATH</span></code> so it can be called from anywhere on the command line. <a class="reference external" href="http://showmedo.com/videotutorials/video?name=960000&amp;fromSeriesID=96">This screencast</a> can guide
 you through that process.</p>
 <p>Python 2.7 is preferred but you can probably find a
@@ -268,14 +268,40 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>  <span class="c1"># Note the double underscores on each side!</span>
 </pre></div>
 </div>
-<p>Next we will configure Flask to make a page at your site&#8217;s root URL, where we will publish the complete list of people who died during the riots using a template called <code class="docutils literal"><span class="pre">index.html</span></code>.</p>
-<p>That starts by importing <code class="docutils literal"><span class="pre">render_template</span></code>, a Flask function we can use to combine data with HTML.</p>
+<p>Next we will configure Flask to make a page at your site&#8217;s root URL.</p>
+<p>Configure Flask to boot up a test server when you run <code class="docutils literal"><span class="pre">app.py</span></code>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="hll"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class="hll">    <span class="c1"># Fire up the Flask test server</span>
+</span><span class="hll">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You&#8217;re probably asking, &#8220;What the heck is <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code>?&#8221; The short answer: It&#8217;s just one of the weird things in Python you have to memorize. But it&#8217;s worth the brain space because it allows you to run any Python script as a program.</p>
+<p class="last">Anything indented inside that particular <code class="docutils literal"><span class="pre">if</span></code> clause is executed when the script is called from the command line. In this case, that means booting up your web site using Flask&#8217;s built-in <code class="docutils literal"><span class="pre">app.run</span></code> function.</p>
+</div>
+<p>Don&#8217;t forget to save your changes. Then run <code class="docutils literal"><span class="pre">app.py</span></code> on the command-line and open up your browser to <a class="reference external" href="http://localhost:5000">localhost:5000</a></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python app.py
+</pre></div>
+</div>
+<p>Here&#8217;s what you should see. A website with nothing to show.</p>
+<img alt="_images/hello-flask-404.png" src="_images/hello-flask-404.png" />
+<p>Next we&#8217;ll put a page there. Our goal is to publish the complete list of
+people who died during the riots using a template called <code class="docutils literal"><span class="pre">index.html</span></code>.</p>
+<p>That starts by importing <code class="docutils literal"><span class="pre">render_template</span></code>, a Flask function we can use to combine data with HTML to make a webpage.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="hll"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 </span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Fire up the Flask test server</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Next create a function called <code class="docutils literal"><span class="pre">index</span></code> that returns our rendered <code class="docutils literal"><span class="pre">index.html</span></code> template.</p>
+<p>Then create a function called <code class="docutils literal"><span class="pre">index</span></code> that returns our rendered <code class="docutils literal"><span class="pre">index.html</span></code> template.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -283,9 +309,14 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 <span class="hll"><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
 </span><span class="hll">    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;index.html&#39;</span>
 </span><span class="hll">    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
-</span></pre></div>
+</span><span class="hll">
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Fire up the Flask test server</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 </div>
-<p>Finally use one of Flask&#8217;s coolest tricks, the <code class="docutils literal"><span class="pre">app.route</span></code> decorater to connect that function with the root URL of our site, <code class="docutils literal"><span class="pre">/</span></code>.</p>
+<p>Now use one of Flask&#8217;s coolest tricks, the <code class="docutils literal"><span class="pre">app.route</span></code> decorater, to connect
+that function with the root URL of our site, <code class="docutils literal"><span class="pre">/</span></code>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -294,9 +325,13 @@ application&#8217;s &#8220;backend,&#8221; routing data to the appropriate pages
 </span><span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;index.html&#39;</span>
     <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Fire up the Flask test server</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now return to your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
+<p>Return to your command-line interface and create a directory to store your templates in <a class="reference external" href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">the default location Flask expects</a>.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>$ mkdir templates
 </pre></div>
 </div>
@@ -311,31 +346,11 @@ $ start notepad++ templates/index.html
 <div class="highlight-html"><div class="highlight"><pre><span></span>Hello World!
 </pre></div>
 </div>
-<p>Return to <code class="docutils literal"><span class="pre">app.py</span></code> and configure Flask to boot up a test server when you run it.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">render_template</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-
-<span class="nd">@app.route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
-    <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;index.html&#39;</span>
-    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
-
-<span class="hll"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span class="hll">    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</span></pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>You&#8217;re probably asking, what the heck is <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__'</span></code>? It&#8217;s just one of the weird things in Python you have to memorize. But it&#8217;s worth the brain space because it allows you to run any Python script all by itself.</p>
-<p class="last">Anything indented inside that particular <code class="docutils literal"><span class="pre">if</span></code> clause is executed when the script is called from the command line. In this case, that means booting up your web site using Flask&#8217;s built-in <code class="docutils literal"><span class="pre">app.run</span></code> function.</p>
-</div>
-<p>Don&#8217;t forget to save your changes. Then run <code class="docutils literal"><span class="pre">app.py</span></code> on the command-line and open up your browser to <a class="reference external" href="http://localhost:5000">localhost:5000</a></p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python app.py
-</pre></div>
-</div>
+<p>Head back to your browser and visit <a class="reference external" href="http://localhost:5000">localhost:5000</a> again. You should see
+the contents of your template displayed on the page.</p>
 <img alt="_images/hello-flask-hello-world.png" src="_images/hello-flask-hello-world.png" />
-<p>Now return to the command line and commit your work to your Git repository.</p>
+<p>We&#8217;re approaching the end of this act, so it&#8217;s time to save your work by returning to the
+command line and committing these changes to your Git repository.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">To get the terminal back up, you will either need to quit out of <code class="docutils literal"><span class="pre">app.py</span></code> by hitting <code class="docutils literal"><span class="pre">CTRL-C</span></code>, or open a second terminal and do additional work there. If you elect to open a second terminal, which is recommended, make sure to check into the virtualenv by repeating the <code class="docutils literal"><span class="pre">.</span> <span class="pre">bin/activate</span></code> part of <a class="reference internal" href="#activate"><span>Act 1: Hello Git</span></a>. If you choose to quit out of <code class="docutils literal"><span class="pre">app.py</span></code>, you will need to turn it back on later by calling <code class="docutils literal"><span class="pre">python</span> <span class="pre">app.py</span></code> where appropriate.</p>

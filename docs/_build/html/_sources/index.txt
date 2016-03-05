@@ -122,7 +122,7 @@ test to see what version, if any, is there waiting for you by typing the followi
     $ python -V
 
 If you don't have Python installed (a more likely fate for Windows users) try downloading and installing it from `here
-<http://www.python.org/download/releases/2.7.6/>`_. In Windows, it's also crucial to make sure that the
+<https://www.python.org/download/releases/2.7.8/>`_. In Windows, it's also crucial to make sure that the
 Python program is available on your system's ``PATH`` so it can be called from anywhere on the command line. `This screencast <http://showmedo.com/videotutorials/video?name=960000&fromSeriesID=96>`_ can guide
 you through that process.
 
@@ -300,9 +300,40 @@ application's "backend," routing data to the appropriate pages.
     from flask import Flask
     app = Flask(__name__)  # Note the double underscores on each side!
 
-Next we will configure Flask to make a page at your site's root URL, where we will publish the complete list of people who died during the riots using a template called ``index.html``.
+Next we will configure Flask to make a page at your site's root URL.
 
-That starts by importing ``render_template``, a Flask function we can use to combine data with HTML.
+Configure Flask to boot up a test server when you run ``app.py``.
+
+.. code-block:: python
+    :emphasize-lines: 4-6
+
+    from flask import Flask
+    app = Flask(__name__)
+
+    if __name__ == '__main__':
+        # Fire up the Flask test server
+        app.run(debug=True, use_reloader=True)
+
+.. note::
+
+    You're probably asking, "What the heck is ``if __name__ == '__main__'``?" The short answer: It's just one of the weird things in Python you have to memorize. But it's worth the brain space because it allows you to run any Python script as a program.
+
+    Anything indented inside that particular ``if`` clause is executed when the script is called from the command line. In this case, that means booting up your web site using Flask's built-in ``app.run`` function.
+
+Don't forget to save your changes. Then run ``app.py`` on the command-line and open up your browser to `localhost:5000 <http://localhost:5000>`_
+
+.. code-block:: bash
+
+    $ python app.py
+
+Here's what you should see. A website with nothing to show.
+
+.. image:: /_static/hello-flask-404.png
+
+Next we'll put a page there. Our goal is to publish the complete list of
+people who died during the riots using a template called ``index.html``.
+
+That starts by importing ``render_template``, a Flask function we can use to combine data with HTML to make a webpage.
 
 .. code-block:: python
     :emphasize-lines: 2
@@ -311,7 +342,11 @@ That starts by importing ``render_template``, a Flask function we can use to com
     from flask import render_template
     app = Flask(__name__)
 
-Next create a function called ``index`` that returns our rendered ``index.html`` template.
+    if __name__ == '__main__':
+        # Fire up the Flask test server
+        app.run(debug=True, use_reloader=True)
+
+Then create a function called ``index`` that returns our rendered ``index.html`` template.
 
 .. code-block:: python
     :emphasize-lines: 5-8
@@ -324,7 +359,12 @@ Next create a function called ``index`` that returns our rendered ``index.html``
         template = 'index.html'
         return render_template(template)
 
-Finally use one of Flask's coolest tricks, the ``app.route`` decorater to connect that function with the root URL of our site, ``/``.
+    if __name__ == '__main__':
+        # Fire up the Flask test server
+        app.run(debug=True, use_reloader=True)
+
+Now use one of Flask's coolest tricks, the ``app.route`` decorater, to connect
+that function with the root URL of our site, ``/``.
 
 .. code-block:: python
     :emphasize-lines: 5
@@ -338,7 +378,11 @@ Finally use one of Flask's coolest tricks, the ``app.route`` decorater to connec
         template = 'index.html'
         return render_template(template)
 
-Now return to your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
+    if __name__ == '__main__':
+        # Fire up the Flask test server
+        app.run(debug=True, use_reloader=True)
+
+Return to your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
 
 .. code-block:: bash
 
@@ -359,38 +403,13 @@ Open it up in your text editor and write something clever.
 
     Hello World!
 
-Return to ``app.py`` and configure Flask to boot up a test server when you run it.
-
-.. code-block:: python
-    :emphasize-lines: 10-12
-
-    from flask import Flask
-    from flask import render_template
-    app = Flask(__name__)
-
-    @app.route("/")
-    def index():
-        template = 'index.html'
-        return render_template(template)
-
-    if __name__ == '__main__':
-        app.run(debug=True, use_reloader=True)
-
-.. note::
-
-    You're probably asking, what the heck is ``if __name__ == '__main__'``? It's just one of the weird things in Python you have to memorize. But it's worth the brain space because it allows you to run any Python script all by itself.
-
-    Anything indented inside that particular ``if`` clause is executed when the script is called from the command line. In this case, that means booting up your web site using Flask's built-in ``app.run`` function.
-
-Don't forget to save your changes. Then run ``app.py`` on the command-line and open up your browser to `localhost:5000 <http://localhost:5000>`_
-
-.. code-block:: bash
-
-    $ python app.py
+Head back to your browser and visit `localhost:5000 <http://localhost:5000>`_ again. You should see
+the contents of your template displayed on the page.
 
 .. image:: /_static/hello-flask-hello-world.png
 
-Now return to the command line and commit your work to your Git repository.
+We're approaching the end of this act, so it's time to save your work by returning to the
+command line and committing these changes to your Git repository.
 
 .. note::
 
