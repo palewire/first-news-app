@@ -1,5 +1,6 @@
 Flask
 Sphinx
+sphinx-autobuild
 pep8
 pyflakes
 python-coveralls
