@@ -6,9 +6,18 @@ First News App
 
 A step-by-step guide to publishing a simple news application.
 
-This tutorial will walk you through the process of building an interactive data visualization from a structured dataset. You will get hands-on experience in every stage of the development process, writing Python, HTML and JavaScript and recording it in Git's version control system. By the end you will have published your work on the World Wide Web.
+This tutorial will walk you through the process of building an interactive data visualization
+from a structured dataset. You will get hands-on experience in every stage of the
+development process, writing Python, HTML and JavaScript and recording it in Git's
+version control system. By the end you will have published your work on the World Wide Web.
 
-This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_ by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at NICAR's annual conference in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version is `scheduled <http://ire.org/conferences/nicar2015/hands-on-training/>`_ for the upcoming Atlanta conference on March 6, 2015.
+This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
+and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
+by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at NICAR's annual conference
+in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version was presented at
+`the following year's conference <http://ire.org/conferences/nicar2015/hands-on-training/>`_ in Atlanta. It
+is scheduled to be taught again at `the upcoming Denver conference <http://www.ire.org/conferences/nicar2016/schedule/>`_
+on March 11 and 12, 2016.
 
 * Code: `github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
 * Demonstration: `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
@@ -864,7 +873,7 @@ Return to ``index.html`` and add a hyperlink to each detail page to the table.
         </body>
     </html>
 
-Restart your test server and take a look at ``http://localhost:8000/``.
+Restart your test server and take a look at ``http://localhost:5000/``.
 
 .. code-block:: bash
 
@@ -1378,7 +1387,7 @@ To flatten those, again edit ``freeze.py`` to give it the instructions it needs 
 
     @freezer.register_generator
     def detail():
-        for row in get_csv:
+        for row in get_csv():
             yield {'row_id': row['id']}
 
     if __name__ == '__main__':
