@@ -4,14 +4,24 @@
     <meta charset="utf-8">
     <title>First News App</title>
     <link rel="stylesheet" href="../static/prettify.css" />
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
-    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
 </head>
 <body>
+    <nav>
+        <a href="http://first-news-app.readthedocs.org/">
+            <img src="../static/irelogo.png">
+        </a>
+    </nav>
+
+    <header>
+        <h1>John H. Willers, a 37 year old, white male died on 1992-04-29
+in a homicide at 10621 Sepulveda Blvd. in Mission Hills.</h1>
+    </header>
+
     <div id="map" style="width:100%; height:300px;"></div>
 
-    <h1>John H. Willers, a 37 year old, white male died on 1992-04-29
-in a homicide at 10621 Sepulveda Blvd. in Mission Hills.</h1>
+    <p><a href="/">&laquo; Back</a></p>
 
     <script type="text/javascript">
         var map = L.map('map').setView([34.263184, -118.46777], 16);
@@ -23,7 +33,13 @@ in a homicide at 10621 Sepulveda Blvd. in Mission Hills.</h1>
         });
         map.addLayer(mapquestLayer);
 
-        var marker = L.marker([34.263184, -118.46777]).addTo(map);
+        var blackIcon = L.Icon.extend({
+            options: {
+                iconUrl: "../static/marker-24.png",
+                iconSize: [24, 24]
+            }
+        });
+        var marker = L.marker([34.263184, -118.46777], {icon: new blackIcon()}).addTo(map);
     </script>
 </body>
 </html>
