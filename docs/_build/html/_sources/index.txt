@@ -1441,3 +1441,20 @@ Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-new
 .. note::
 
     If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, ranging from `Dropbox <https://en.wikipedia.org/wiki/Dropbox_%28service%29>`_ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
+
+So you've built a site. But it's kind of janky looking. The next chapter, which we won't have time for in class,
+will show you how to dress it up to look like the `demonstration site <http://ireapps.github.io/first-news-app/build/index.html>`_.
+
+*******************
+Epilogue: Hello CSS
+*******************
+
+The first step is to create a stylesheet in the static directory where `CSS <https://en.wikipedia.org/wiki/Cascading_Style_Sheets>`_
+code that controls the design of the page can be stored.
+
+.. code-block:: bash
+
+    # Macs or Linux:
+    $ touch static/style.css
+    # In Windows fire it up in your text editor right away:
+    $ start notepad++ static/style.css
