@@ -1449,6 +1449,12 @@ will show you how to dress it up to look like the `demonstration site <http://ir
 Epilogue: Hello CSS
 *******************
 
+Before you get started, move back to the master branch of your repository.
+
+.. code-block:: bash
+
+    $ git checkout master
+
 The first step is to create a stylesheet in the static directory where `CSS <https://en.wikipedia.org/wiki/Cascading_Style_Sheets>`_
 code that controls the design of the page can be stored.
 
@@ -1458,3 +1464,610 @@ code that controls the design of the page can be stored.
     $ touch static/style.css
     # In Windows fire it up in your text editor right away:
     $ start notepad++ static/style.css
+
+Add the style tag to the top of ``index.html`` so it imported on the page. Flask's built-in ``url_for``
+method will create the URL for us.
+
+.. code-block:: html
+    :emphasize-lines: 4
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>Deaths during the L.A. riots</h1>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var dataLayer = L.geoJson(data, {
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup(
+                            '<a href="' + feature.properties.id + '/">' +
+                                feature.properties.full_name +
+                            '</a>'
+                        );
+                    }
+                });
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
+
+
+Before we start styling the page, let's do a little reorganization of the HTML
+to make a little more like a news site.
+
+First, download this `IRE logo <https://raw.githubusercontent.com/ireapps/first-news-app/master/static/irelogo.png>`_
+and throw in the ``static`` directory. We'll add that as an image in a new
+navigation bar at the top of the site, then zip up the headline and move it above the map with
+with a new byline.
+
+.. code-block:: html
+    :emphasize-lines: 9-19
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        </head>
+        <body>
+            <nav>
+                <a href="http://first-news-app.readthedocs.org/">
+                    <img src="{{ url_for('static', filename='irelogo.png') }}">
+                </a>
+            </nav>
+            <header>
+                <h1>These are the 60 people who died during the L.A. riots</h1>
+                <div class="byline">
+                    By <a href="http://first-news-app.readthedocs.org/">The First News App Tutorial</a>
+                </div>
+            </header>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var dataLayer = L.geoJson(data, {
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup(
+                            '<a href="' + feature.properties.id + '/">' +
+                                feature.properties.full_name +
+                            '</a>'
+                        );
+                    }
+                });
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
+
+Now go into ``style.css`` and toss in some style we've prepared that will
+draw in a dark top bar, limit the width of the page and tighten up the rest
+of the page.
+
+.. code-block:: css
+
+    body {
+        margin: 0 auto;
+        padding: 0;
+        font-family: Verdana, sans-serif;
+        background-color: ##F2EFEC;
+        max-width: 1200px;
+    }
+    nav {
+        background-color: #333132;
+        width: 100%;
+        height: 50px;
+    }
+    nav img {
+        height: 34px;
+        padding: 8px;
+    }
+    header {
+        margin: 25px 10px 15px 10px;
+        font-family: Times, Times New Roman, serif;
+    }
+    h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 44px;
+        line-height: 50px;
+        font-weight: bold;
+        font-style: italic;
+    	text-shadow: 0.3px 0.3px 0px gray;
+        letter-spacing: .01em;
+    }
+    .byline {
+        margin: 6px 0 0 0;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .byline a {
+        text-transform: uppercase;
+    }
+    table {
+        border-collapse:collapse;
+        margin: 0 0 20px 0;
+        border-width: 0;
+        width: 100%;
+        font-size: 14px;
+    }
+    th {
+        text-align:left;
+    }
+    tr, td, th {
+        border-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #f3f3f3;
+    }
+    p {
+        line-height:140%;
+    }
+    a {
+        color: #4591B8;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+
+Reload the page and you should see something a little more presentable.
+
+.. image:: /_static/hello-css-desktop.png
+
+The next step is to upgrade the styles to reshape the page on smaller devices
+like tablets and phones. This is done using a system known as `responsive design <https://en.wikipedia.org/wiki/Responsive_web_design>`_
+and `CSS media queries <https://en.wikipedia.org/wiki/Media_queries>`_ that set different style rules at different device sizes.
+
+First the HTML page needs an extra tag to turn the system on.
+
+.. code-block:: html
+    :emphasize-lines: 4
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        </head>
+        <body>
+            <nav>
+                <a href="http://first-news-app.readthedocs.org/">
+                    <img src="{{ url_for('static', filename='irelogo.png') }}">
+                </a>
+            </nav>
+            <header>
+                <h1>These are the 60 people who died during the L.A. riots</h1>
+                <div class="byline">
+                    By <a href="http://first-news-app.readthedocs.org/">The First News App Tutorial</a>
+                </div>
+            </header>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var dataLayer = L.geoJson(data, {
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup(
+                            '<a href="' + feature.properties.id + '/">' +
+                                feature.properties.full_name +
+                            '</a>'
+                        );
+                    }
+                });
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
+
+Now the ``style.css`` file should be expanded to include media queries
+that will drop columns from the table on smaller devices.
+
+.. code-block:: css
+    :emphasize-lines: 64-79
+
+    body {
+        margin: 0 auto;
+        padding: 0;
+        font-family: Verdana, sans-serif;
+        background-color: ##F2EFEC;
+        max-width: 1200px;
+    }
+    nav {
+        background-color: #333132;
+        width: 100%;
+        height: 50px;
+    }
+    nav img {
+        height: 34px;
+        padding: 8px;
+    }
+    header {
+        margin: 25px 10px 15px 10px;
+        font-family: Times, Times New Roman, serif;
+    }
+    h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 44px;
+        line-height: 50px;
+        font-weight: bold;
+        font-style: italic;
+    	text-shadow: 0.3px 0.3px 0px gray;
+        letter-spacing: .01em;
+    }
+    .byline {
+        margin: 6px 0 0 0;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .byline a {
+        text-transform: uppercase;
+    }
+    table {
+        border-collapse:collapse;
+        margin: 0 0 20px 0;
+        border-width: 0;
+        width: 100%;
+        font-size: 14px;
+    }
+    th {
+        text-align:left;
+    }
+    tr, td, th {
+        border-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #f3f3f3;
+    }
+    p {
+        line-height:140%;
+    }
+    a {
+        color: #4591B8;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    @media (max-width: 979px) {
+        tr th:nth-of-type(n+3),
+        tr td:nth-of-type(n+3) {
+            display:none;
+        }
+    }
+    @media (max-width: 420px) {
+        tr th:nth-of-type(n+2),
+        tr td:nth-of-type(n+2) {
+            display:none;
+        }
+    }
+
+Reload the page and size down your browser to see how the page should appear
+when visited by a mobile phone.
+
+.. image:: /_static/hello-css-mobile.png
+
+We can punch up the map markers by replacing the Leaflet default pins with custom
+designs from the `Mapbox's open-source Maki set <https://www.mapbox.com/maki/>`_.
+
+Download `these <https://github.com/ireapps/first-news-app/blob/master/static/marker-24.png>`_ `two <https://github.com/ireapps/first-news-app/blob/master/static/marker-24%402x.png>`_
+black pin images and add them to your ``static`` directory.
+
+Now expand our Leaflet JavaScript code to substitute these images for the defaults.
+
+.. code-block:: html
+    :emphasize-lines: 70-75,77-79
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        </head>
+        <body>
+            <nav>
+                <a href="http://first-news-app.readthedocs.org/">
+                    <img src="{{ url_for('static', filename='irelogo.png') }}">
+                </a>
+            </nav>
+            <header>
+                <h1>These are the 60 people who died during the L.A. riots</h1>
+                <div class="byline">
+                    By <a href="http://first-news-app.readthedocs.org/">The First News App Tutorial</a>
+                </div>
+            </header>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <table border=1 cellpadding=7>
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Race</th>
+                </tr>
+            {% for obj in object_list %}
+                <tr>
+                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
+                    <td>{{ obj.date }}</td>
+                    <td>{{ obj.type }}</td>
+                    <td>{{ obj.address }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.race }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <script type="text/javascript">
+                var map = L.map('map').setView([34.055, -118.35], 9);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var data = {
+                  "type": "FeatureCollection",
+                  "features": [
+                    {% for obj in object_list %}
+                    {
+                      "type": "Feature",
+                      "properties": {
+                        "full_name": "{{ obj.full_name }}",
+                        "id": "{{ obj.id }}"
+                      },
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                      }
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  ]
+                };
+                var blackIcon = L.Icon.extend({
+                    options: {
+                        iconUrl: "{{ url_for('static', filename='marker-24.png') }}",
+                        iconSize: [24, 24]
+                    }
+                });
+                var dataLayer = L.geoJson(data, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.marker(latlng, {icon: new blackIcon()});
+                    },
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup(
+                            '<a href="' + feature.properties.id + '/">' +
+                                feature.properties.full_name +
+                            '</a>'
+                        );
+                    }
+                });
+                map.addLayer(dataLayer);
+            </script>
+        </body>
+    </html>
+
+That will restyle the map to look like this.
+
+.. image:: /_static/hello-css-markers.png
+
+Extending this new design to detail page is simply a matter of repeating the steps above.
+
+.. code-block:: html
+    :emphasize-lines: 4-5,10-18,28-34
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        </head>
+        <body>
+            <nav>
+                <a href="http://first-news-app.readthedocs.org/">
+                    <img src="{{ url_for('static', filename='irelogo.png') }}">
+                </a>
+            </nav>
+            <header>
+                <h1>{{ object.full_name }}, a {{ object.age }} year old, {{ object.race|lower }} {{ object.gender|lower }} died on {{ object.date }}
+        in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.</h1>
+            </header>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <script type="text/javascript">
+                var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
+                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
+                    subdomains: ['otile1','otile2','otile3','otile4']
+                });
+                map.addLayer(mapquestLayer);
+                var blackIcon = L.Icon.extend({
+                    options: {
+                        iconUrl: "{{ url_for('static', filename='marker-24.png') }}",
+                        iconSize: [24, 24]
+                    }
+                });
+                var marker = L.marker([{{ object.y }}, {{ object.x }}], {icon: new blackIcon()}).addTo(map);
+            </script>
+        </body>
+    </html>
+
+That should shape up the page like this.
+
+.. image:: /_static/hello-css-detail.png
+
+Now it is time to build out all the pages by running the freeze script that will save all of
+the pages again.
+
+.. code-block:: bash
+
+    $ python freeze.py
+
+Commit all of the flat pages to the repository.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Froze my restyled app"
+    $ git push origin master
+
+Republish your work by going back to the ``gh-pages`` branch and pushing up the code.
+
+.. code-block:: bash
+
+    $ git checkout gh-pages
+    $ git merge master
+    $ git push origin gh-pages
+
+Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-news-app/build/index.html`` to see
+the restyled application.
