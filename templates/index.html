@@ -2,17 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First News App</title>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ url_for('static', filename='prettify.css') }}" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css" />
     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
 </head>
 <body>
-    <div id="map" style="width:100%; height:300px;"></div>
+    <nav>
+        <a href="http://first-news-app.readthedocs.org/">
+            <img src="{{ url_for('static', filename='irelogo.png') }}">
+        </a>
+    </nav>
 
-    <h1>Deaths during the L.A. riots</h1>
+    <header>
+        <h1>These are the 60 people who died during the L.A. riots</h1>
+        <div class="byline">
+            By <a href="http://first-news-app.readthedocs.org/">The First News App Tutorial</a>
+        </div>
+    </header>
 
-    <table border=1 cellpadding=7>
+    <div id="map" style="width:100%; height:400px;"></div>
+
+    <table border=1 cellpadding=10>
         <tr>
             <th>Name</th>
             <th>Date</th>
@@ -63,7 +77,16 @@
             {% endfor %}
           ]
         };
+        var blackIcon = L.Icon.extend({
+            options: {
+                iconUrl: "{{ url_for('static', filename='marker-24.png') }}",
+                iconSize: [24, 24]
+            }
+        });
         var dataLayer = L.geoJson(data, {
+            pointToLayer: function (feature, latlng) {
+                return L.marker(latlng, {icon: new blackIcon()});
+            },
             onEachFeature: function(feature, layer) {
                 layer.bindPopup(
                     '<a href="' + feature.properties.id + '/">' +
