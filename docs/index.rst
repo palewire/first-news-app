@@ -171,7 +171,7 @@ If you don't have it, install it with pip.
     # If you're on a Mac or Linux and get an error saying you lack the right permissions, try it again as a superuser.
     $ sudo pip install virtualenv
 
-If that doesn't work, `try following this advice <http://www.virtualenv.org/en/latest/virtualenv.html#installation>`_.
+If that doesn't work, `try following this advice <http://virtualenv.readthedocs.org/en/latest/installation.html>`_.
 
 .. _activate:
 
