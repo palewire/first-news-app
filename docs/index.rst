@@ -986,8 +986,8 @@ Next we will work to make a map with every victim in ``index.html`` using the
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <h1>Deaths during the L.A. riots</h1>
@@ -1024,8 +1024,8 @@ Create an HTML element to hold the map and use Leaflet to boot it up and center 
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1076,8 +1076,8 @@ Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1148,8 +1148,8 @@ Add a popup on the map pins that shows the name of the victim.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1224,8 +1224,8 @@ Now wrap the name in a hyperlink to that person's detail page.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1312,8 +1312,8 @@ Open up ``detail.html`` and make a map there, focus on just that victim.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1475,8 +1475,8 @@ method will create the URL for us.
     <html lang="en">
         <head>
             <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1559,8 +1559,8 @@ with a new byline.
     <html lang="en">
         <head>
             <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <nav>
@@ -1726,8 +1726,8 @@ First the HTML page needs an extra tag to turn the system on.
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <nav>
@@ -1908,8 +1908,8 @@ Now expand our Leaflet JavaScript code to substitute these images for the defaul
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <nav>
@@ -2009,8 +2009,8 @@ Extending this new design to detail page is simply a matter of repeating the ste
         <head>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-            <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-            <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         </head>
         <body>
             <nav>
