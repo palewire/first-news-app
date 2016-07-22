@@ -1054,12 +1054,11 @@ Create an HTML element to hold the map and use Leaflet to boot it up and center 
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
             </script>
         </body>
     </html>
@@ -1106,12 +1105,11 @@ Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -1178,12 +1176,11 @@ Add a popup on the map pins that shows the name of the victim.
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -1254,12 +1251,11 @@ Now wrap the name in a hyperlink to that person's detail page.
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -1324,12 +1320,11 @@ Open up ``detail.html`` and make a map there, focus on just that victim.
             </h1>
             <script type="text/javascript">
                 var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var marker = L.marker([{{ object.y }}, {{ object.x }}]).addTo(map);
             </script>
         </body>
@@ -1505,12 +1500,11 @@ method will create the URL for us.
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -1599,12 +1593,11 @@ with a new byline.
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -1766,12 +1759,11 @@ First the HTML page needs an extra tag to turn the system on.
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -1948,12 +1940,11 @@ Now expand our Leaflet JavaScript code to substitute these images for the defaul
             </table>
             <script type="text/javascript">
                 var map = L.map('map').setView([34.055, -118.35], 9);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var data = {
                   "type": "FeatureCollection",
                   "features": [
@@ -2025,12 +2016,11 @@ Extending this new design to detail page is simply a matter of repeating the ste
             <div id="map" style="width:100%; height:300px;"></div>
             <script type="text/javascript">
                 var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
-                var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://open.mapquest.co.uk" target="_blank">MapQuest</a>,<a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.',
-                    subdomains: ['otile1','otile2','otile3','otile4']
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
                 });
-                map.addLayer(mapquestLayer);
+                map.addLayer(osmLayer);
                 var blackIcon = L.Icon.extend({
                     options: {
                         iconUrl: "{{ url_for('static', filename='marker-24.png') }}",
