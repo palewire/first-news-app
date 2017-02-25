@@ -15,7 +15,7 @@ version control system. By the end you will have published your work on the Worl
 What you will make
 ******************
 
-If you complete this lession, you will publish an interactive database and map
+If you complete this lesson, you will publish an interactive database and map
 about the dozens of people who died during the riots that swept Los Angeles
 for five days in 1992. You will do this by repurposing the data from `a Los Angeles Times
 application <http://spreadsheets.latimes.com/la-riots-deaths/>`_ that
