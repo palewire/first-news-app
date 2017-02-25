@@ -11,29 +11,28 @@ from a structured dataset. You will get hands-on experience in every stage of th
 development process, writing Python, HTML and JavaScript and recording it in Git's
 version control system. By the end you will have published your work on the World Wide Web.
 
-This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
-and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
-by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted on February 27, 2014, `at NICAR's annual conference
-in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version was presented at
-`the following year's conference <http://ire.org/conferences/nicar2015/hands-on-training/>`_ in Atlanta. It
-is scheduled to be taught again at `the upcoming Denver conference <http://www.ire.org/conferences/nicar2016/schedule/>`_
-on March 11 and 12, 2016.
-
-* Code: `github.com/ireapps/first-news-app <https://github.com/ireapps/first-news-app>`_
-* Demonstration: `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
-* Issues: `github.com/ireapps/first-news-app/issues <https://github.com/ireapps/first-news-app/issues>`_
-
 ******************
 What you will make
 ******************
 
-This tutorial will guide you through the process of publishing an interactive database and map
-about the more than 60 people who died during the riots that swept Los Angeles
-for five days in 1992. You will repurpose the data from `a Los Angeles Times
+If you complete this lession, you will publish an interactive database and map
+about the dozens of people who died during the riots that swept Los Angeles
+for five days in 1992. You will do this by repurposing the data from `a Los Angeles Times
 application <http://spreadsheets.latimes.com/la-riots-deaths/>`_ that
 accompanied a story released on the 20th anniversary of the riots.
 
-A working example can be found at `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
+A working example of what you'll make can be found at `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
+
+****************
+About the author
+****************
+
+This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
+and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
+by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in February 2014, `at NICAR's annual conference
+in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version was presented at
+`the 2015 conference <http://ire.org/conferences/nicar2015/hands-on-training/>`_ in Atlanta and the 2016 conference in 
+`Denver<http://www.ire.org/conferences/nicar2016/schedule/>`. It is scheduled to taught for the fourth time at `the upcoming NICAR conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_.
 
 **********************
 Prelude: Prerequisites
