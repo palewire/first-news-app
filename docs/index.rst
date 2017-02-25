@@ -32,7 +32,7 @@ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data
 by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in February 2014, `at NICAR's annual conference
 in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version was presented at
 `the 2015 conference <http://ire.org/conferences/nicar2015/hands-on-training/>`_ in Atlanta and the 2016 conference in 
-`Denver<http://www.ire.org/conferences/nicar2016/schedule/>`. It is scheduled to taught for the fourth time at `the upcoming NICAR conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_.
+`Denver<http://www.ire.org/conferences/nicar2016/schedule/>`_. It is scheduled to taught for the fourth time at `the upcoming NICAR conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_.
 
 **********************
 Prelude: Prerequisites
