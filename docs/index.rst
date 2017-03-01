@@ -8,14 +8,14 @@ A step-by-step guide to publishing a simple news application.
 
 This tutorial will walk you through the process of building an interactive data visualization
 from a structured dataset. You will get hands-on experience in every stage of the
-development process, writing Python, HTML and JavaScript and recording it in git's
+development process, writing Python, HTML and JavaScript while recording it in Git's
 version control system. By the end you will have published your work on the World Wide Web.
 
 ******************
 What you will make
 ******************
 
-If you complete this lesson, you will publish an interactive database and map
+By the end of this lesson, you will publish an interactive database and map
 about the dozens of people who died during the riots that swept Los Angeles
 for five days in 1992. You will do this by repurposing the data from `a Los Angeles Times
 application <http://spreadsheets.latimes.com/la-riots-deaths/>`_ that
@@ -23,23 +23,24 @@ accompanied a story released on the 20th anniversary of the riots.
 
 A working example of what you'll make can be found at `ireapps.github.io/first-news-app/build/index.html <http://ireapps.github.io/first-news-app/build/index.html>`_
 
-****************
-About the author
-****************
+.. image:: /_static/hello-css-markers.png
+
+*****************
+About the authors
+*****************
 
 This guide was prepared for training sessions of `Investigative Reporters and Editors (IRE) <http://www.ire.org/>`_
 and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data.nicar.org/>`_
 by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in February 2014 `at NICAR's conference
 in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version was presented at
 `the 2015 conference <http://ire.org/conferences/nicar2015/hands-on-training/>`_ in Atlanta and the 2016 conference in
-`Denver <http://www.ire.org/conferences/nicar2016/schedule/>`_. It is scheduled to taught for the fourth time at `the upcoming NICAR conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_.
+`Denver <http://www.ire.org/conferences/nicar2016/schedule/>`_. It is scheduled to taught for the fourth time at `the upcoming NICAR conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_ by Armand Emamdjomeh and Ben Welsh.
 
 **********************
 Prelude: Prerequisites
 **********************
 
-Before you can begin, your computer needs the following tools installed and working
-to participate.
+Before you can begin, your computer needs the following tools installed and working.
 
 1. A `command-line interface <https://en.wikipedia.org/wiki/Command-line_interface>`_ to interact with your computer
 2. A `text editor <https://en.wikipedia.org/wiki/Text_editor>`_ to work with plain text files
@@ -56,31 +57,37 @@ to participate.
 Command-line interface
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it, and there are alternative programs you can install as well.
+Unless something is wrong with your computer, there should be a way to open a window that lets you type in commands. Different operating systems give this tool slightly different names, but they all have some form of it.
 
-On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_. On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_. Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
+On Windows you can find the command-line interface by opening the "command prompt." Here are `instructions <https://www.bleepingcomputer.com/tutorials/windows-command-prompt-introduction/>`_.
+
+On Apple computers, you open the `"Terminal" application <http://blog.teamtreehouse.com/introduction-to-the-mac-os-x-command-line>`_.
+
+Ubuntu Linux comes with a program of the `same name <http://askubuntu.com/questions/38162/what-is-a-terminal-and-how-do-i-open-and-use-it>`_.
 
 Text editor
 -----------
 
 A program like Microsoft Word, which can do all sorts of text formatting like
-change the size and color of words, is not what you need. Do not try to use it below.
+change the size and color of words, is not what you need. Do not try to use it.
 
 You need a program that works with simple `"plain text" files <https://en.wikipedia.org/wiki/Text_file>`_,
 and is therefore capable of editing documents containing Python code, HTML markup and other languages without
 dressing them up by adding anything extra. Such programs are easy to find and some of the best ones are free, including those below.
 
-For Windows, I recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_. For
-Apple computers, try `TextWrangler <http://www.barebones.com/products/textwrangler/download.html>`_. In
-Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor.
+For Windows, I recommend installing `Notepad++ <http://notepad-plus-plus.org/>`_.
+
+For Apple computers, try `Sublime Text <https://www.sublimetext.com/>`_.
+
+In Ubuntu Linux you can stick with the pre-installed `gedit <https://help.ubuntu.com/community/gedit>`_ text editor.
 
 Python
 ~~~~~~
 
-Python is a computer programming language, like many others you may have heard of like Ruby or PHP or Java. It is free and open source. To continue to with this class, you will need to have version 2.7 installed.
+Python is a computer programming language, like many others you may have heard of such as Ruby or PHP or Java. It is free and open source. You will need to have version 2.7 installed.
 
-For Apples
-^^^^^^^^^^
+For Mac
+^^^^^^^
 
 If you are using Mac OSX, Python version 2.7 is probably already installed and you can test to see what version, if any, is already available by typing the following into your terminal.
 
@@ -100,47 +107,54 @@ You should see something like this after you hit enter:
     $ python -V
     Python 2.7.12
 
-If you get an error instead, Mac users should install Python by following `these instructions <http://docs.python-guide.org/en/latest/starting/install/osx/>`_ offered by The Hitchhikers Guide to Python.
+If you get an error instead, Mac users should install Python by following `these instructions <http://docs.python-guide.org/en/latest/starting/install/osx/>`_ .
 
-If your version is 2.7.11 or 2.7.13 or some other slight variation from what's above, that's okay. If it's Python 3, that's another issue and you should try to install Python 2.7 instead. If you continue with Python 3, this class may largely work, but you could encounter some small problems you'll need to sort out on your own.
+If your version is 2.7.11 or 2.7.13 or some other slight variation from what's above, that's okay.
+
+If it's Python 3, that's another issue and you should try to install Python 2.7 instead. If you continue with Python 3, this class may largely work, but you could encounter some small problems you'll need to sort out on your own.
 
 For Windows
 ^^^^^^^^^^^
 
-Just like Apple users, Windows people should open their command prompt and investigate whether Python is already installed.
+Windows people should open their command prompt and investigate whether Python is already installed by typing the following command.
 
 .. code-block:: bash
 
-    python -V
+    $ python -V
+
+.. note::
+
+    You'll note that the example above begins with a "$". You do not need to type this. It is only a generic symbol
+    commonly used by geeks to indicate a piece of code should be run from the command line. On Windows, this prompt could even look quite different, likely starting with a phrase like ``C:\``.
 
 You should see something like this after you hit enter:
 
 .. code-block:: bash
 
-    python -V
+    $ python -V
     Python 2.7.12
 
 
-If not Windows users can find a similar installation guide `here <http://docs.python-guide.org/en/latest/starting/install/win/>`_ which will have you try downloading and installing Python from `here <https://www.python.org/downloads/release/python-2712/>`_. After that's done, ensure Python is installed by reopening the command prompt and running the command above again.
+If you get an error instead, install Python by following the installation guide `here <http://docs.python-guide.org/en/latest/starting/install/win/>`_ which will have you download and install Python from `here <https://www.python.org/downloads/release/python-2712/>`_. After that's done, ensure Python is installed by reopening the command prompt and running the command above again.
+
+If your version is 2.7.11 or 2.7.13 or some other slight variation from what's above, that's okay.
+
+If it's Python 3, that's another issue and you should try to install Python 2.7 instead. If you continue with Python 3, this class may largely work, but you could encounter some small problems you'll need to sort out on your own.
 
 .. _command-line-pip:
 
 pip and virtualenv
 ~~~~~~~~~~~~~~~~~~
 
-The `pip package manager <https://pip.pypa.io/en/latest/>`_
-makes it easy to install open-source libraries that
-expand what you're able to do with Python. Later, we will use it to install everything
-needed to create a working web application.
-
-If you don't have it already, you can get pip by following
-`these instructions <https://pip.pypa.io/en/latest/installing.html>`_.s
+The `pip package manager <https://pip.pypa.io/en/latest/>`_ makes it easy to install open-source libraries that expand what you're able to do with Python. Later, we will use it to install everything needed to create a working web application.
 
 Verify pip is installed with the following command:
 
 .. code-block:: bash
 
     $ pip -V
+
+If you get and error, that means don't have pip installed. You can get it by following `these instructions <https://pip.pypa.io/en/latest/installing.html>`_.
 
 The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
 makes it possible to create an isolated corner of your computer where all the different
