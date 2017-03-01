@@ -8,7 +8,7 @@ A step-by-step guide to publishing a simple news application.
 
 This tutorial will walk you through the process of building an interactive data visualization
 from a structured dataset. You will get hands-on experience in every stage of the
-development process, writing Python, HTML and JavaScript and recording it in Git's
+development process, writing Python, HTML and JavaScript and recording it in git's
 version control system. By the end you will have published your work on the World Wide Web.
 
 ******************
