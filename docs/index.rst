@@ -25,6 +25,8 @@ A working example of what you'll make can be found at `ireapps.github.io/first-n
 
 .. image:: /_static/hello-css-markers.png
 
+Past students of this class have gone on to use the skills they learned to create projects like The Chicago Reporter's `police complaints database <http://projects.chicagoreporter.com/settlements/search/cases>`_.
+
 *****************
 About the authors
 *****************
@@ -225,7 +227,7 @@ inside its sealed space. You only need to create the virtualenv once, but you'll
     $ . bin/activate
     # In Windows it might take something more like...
     $ cd Scripts
-    $ activate
+    $ . .\activate
     $ cd ..
 
 Create a new Git repository.
@@ -240,17 +242,15 @@ Jump into the repository.
 
     $ cd repo
 
-Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``. Don't check "Initialize with README."
-You want to start with a blank repository.
+Visit `GitHub <http://www.github.com>`_ and create a new public repository named ``first-news-app``. Don't check "Initialize with README." You want to start with a blank repository.
 
-Then connect your local directory to it with the following.
+Then connect your local directory to GitHub with the following command.
 
 .. code-block:: bash
 
     $ git remote add origin https://github.com/<yourusername>/first-news-app.git
 
-Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_
-file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
+Create your first file, a blank ``README`` with a `Markdown <https://en.wikipedia.org/wiki/Markdown>`_ file extension since that's `the preferred format of GitHub <https://help.github.com/articles/github-flavored-markdown>`_.
 
 .. code-block:: bash
 
@@ -298,8 +298,7 @@ Reload your repository on GitHub and see your handiwork.
 Act 2: Hello Flask
 ******************
 
-Use pip on the command line to install `Flask <http://flask.pocoo.org/>`_, the Python "microframework"
-we'll use to put together our website.
+Use pip on the command line to install `Flask <http://flask.pocoo.org/>`_, the Python "microframework" we'll use to put together our website.
 
 .. code-block:: bash
 
@@ -324,7 +323,7 @@ application's "backend," routing data to the appropriate pages.
 
 Next we will configure Flask to make a page at your site's root URL.
 
-Configure Flask to boot up a test server when you run ``app.py``.
+Configure Flask to boot up a test server when you run ``app.py`` like so:
 
 .. code-block:: python
     :emphasize-lines: 4-6
@@ -352,10 +351,11 @@ Here's what you should see. A website with nothing to show.
 
 .. image:: /_static/hello-flask-404.png
 
-Next we'll put a page there. Our goal is to publish the complete list of
-people who died during the riots using a template called ``index.html``.
+Next we'll put a page there. Our goal is to publish the complete list of people who died during the riots using a template. We will call that template "index.html".
 
-That starts by importing ``render_template``, a Flask function we can use to combine data with HTML to make a webpage.
+Before we do that, return to your command-line interface and stop your webserver by hitting the combination of ``CTRL-C``. You should now again at the standard command-line interface.
+
+Now in ``app.py`` import ``render_template``, a Flask function we can use to combine data with HTML to make a webpage.
 
 .. code-block:: python
     :emphasize-lines: 2
@@ -385,8 +385,7 @@ Then create a function called ``index`` that returns our rendered ``index.html``
         # Fire up the Flask test server
         app.run(debug=True, use_reloader=True)
 
-Now use one of Flask's coolest tricks, the ``app.route`` decorater, to connect
-that function with the root URL of our site, ``/``.
+Now use one of Flask's coolest tricks, the ``app.route`` decorator, to connect that function with the root URL of our site, ``/``.
 
 .. code-block:: python
     :emphasize-lines: 5
@@ -404,7 +403,7 @@ that function with the root URL of our site, ``/``.
         # Fire up the Flask test server
         app.run(debug=True, use_reloader=True)
 
-Return to your command-line interface and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
+Return to your command line and create a directory to store your templates in `the default location Flask expects <http://flask.pocoo.org/docs/quickstart/#rendering-templates>`_.
 
 .. code-block:: bash
 
@@ -425,8 +424,13 @@ Open it up in your text editor and write something clever.
 
     Hello World!
 
-Head back to your browser and visit `localhost:5000 <http://localhost:5000>`_ again. You should see
-the contents of your template displayed on the page.
+Now restart your Flask server.
+
+.. code-block:: bash
+
+    $ python app.py
+
+Head back to your browser and visit `localhost:5000 <http://localhost:5000>`_ again. You should see the contents of your template displayed on the page.
 
 .. image:: /_static/hello-flask-hello-world.png
 
@@ -437,11 +441,13 @@ command line and committing these changes to your Git repository.
 
     To get the terminal back up, you will either need to quit out of ``app.py`` by hitting ``CTRL-C``, or open a second terminal and do additional work there. If you elect to open a second terminal, which is recommended, make sure to check into the virtualenv by repeating the ``. bin/activate`` part of :ref:`activate`. If you choose to quit out of ``app.py``, you will need to turn it back on later by calling ``python app.py`` where appropriate.
 
+    As we progress through this lesson, you will need to continually do this to switch between the server and terminal. We no longer be instructing to do it each time from here on.
+
 I bet you remember how from above. But here's a reminder.
 
 .. code-block:: bash
 
-    $ git add .
+    $ git add . # Using "." is a trick that will quickly stage *all* files you've changed.
     $ git commit -m "Flask app.py and first template"
 
 Push it up to GitHub and check out the changes there.
@@ -476,7 +482,7 @@ Commit the changes to your repository, if only for practice.
     $ git commit -m "Real HTML"
     $ git push origin master
 
-Make a directory to store data files.
+Make a directory to store our data file.
 
 .. code-block:: bash
 
@@ -490,7 +496,7 @@ Download `the comma-delimited file <https://raw.github.com/ireapps/first-news-ap
     $ git commit -m "Added CSV source data"
     $ git push origin master
 
-Next we will open up ``app.py`` in your text editor and create a function that uses Python's ``csv`` module to access the CSV data.
+Next we will open up ``app.py`` in your text editor and create a function that uses Python's ``csv`` module to access the data.
 
 First, create the new function and give it the path to your CSV file.
 
@@ -560,9 +566,9 @@ Pass it into the csv module's `DictReader <https://docs.python.org/2/library/csv
 
 .. note::
 
-    Don't know what a dictionary is? That's okay. You can read more about them `here <http://learnpythonthehardway.org/book/ex39.html>`_ but the minimum you need to know now is that they are Python's way of handling each row in your CSV. The columns there, like ``id`` or ``gender``, are translated in "keys" on dictionary objects that you can access like ``row['id']``.
+    Don't know what a dictionary is? That's okay. You can read more about them `here <http://learnpythonthehardway.org/book/ex39.html>`_ but the minimum you need to know now is that they are Python's way of handling each row in your CSV. The columns there, like ``id`` or ``gender``, are translated into "keys" on dictionary objects that you can access like ``row['id']``.
 
-A quirks of CSV objects is that once they're used they disappear. There's a good reason related to efficiency and memory limitations and all that but we won't bother with that here. Just take our word and use Python's built-in ``list`` function to convert this one to a permanent list.
+A quirk of CSV objects is that once they're used they disappear. There's a good reason related to efficiency and memory limitations and all that but we won't bother with that here. Just take our word and use Python's built-in ``list`` function to convert this one to a permanent list.
 
 .. code-block:: python
     :emphasize-lines: 10
@@ -586,7 +592,7 @@ A quirks of CSV objects is that once they're used they disappear. There's a good
     if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)
 
-Close the function by return the csv list.
+Close the function by returning the csv list.
 
 .. code-block:: python
     :emphasize-lines: 11
@@ -729,7 +735,7 @@ Then commit your work.
 
 .. code-block:: bash
 
-    $ git add . # Using "." is a trick that will quickly stage *all* files you've changed.
+    $ git add .
     $ git commit -m "Created basic table"
     $ git push origin master
 
@@ -759,14 +765,14 @@ Next we're going to create a unique "detail" page dedicated to each person. Star
     @app.route('/<row_id>/')
     def detail(row_id):
         template = 'detail.html'
-        return render_template(template)
+        return render_template(template, row_id=row_id)
 
     if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)
 
 .. note::
 
-    Notice a key difference between the URL route for the index and the one we just added. This time, both the URL route and function accept an argument, named ``row_id``. Our goal is for the number passed into the URL and then through the function where it can be used to pull the record with the corresponding ``id`` from the CSV. Once we have our hands on it, we can pass it on to the template to render its unique page.
+    Notice a key difference between the URL route for the index and the one we just added. This time, both the URL route and function accept an argument, named ``row_id``. Our goal is for the number passed into the URL to go into the function where it can be used to pull the record with the corresponding ``id`` from the CSV. Once we have our hands on it, we can pass it on to the template to render its unique page.
 
 Create a new file in your templates directory called ``detail.html`` for it to connect with.
 
@@ -777,11 +783,11 @@ Create a new file in your templates directory called ``detail.html`` for it to c
     # Windows:
     $ start notepad++ templates/detail.html
 
-Put something simple in it with your text editor.
+Put something simple in it with your text editor. We'll use the same templating language as above to print out the row id for each page.he
 
 .. code-block:: html
 
-    Hello World!
+    Hello {{ row_id }}!
 
 Then, if it's not running, restart your test server and use your browser to visit `localhost:5000/1/ <http://localhost:5000/1/>`_, `localhost:5000/200/ <http://localhost:5000/200/>`_ or any other number.
 
@@ -820,12 +826,12 @@ First, return to ``app.py`` and pull the CSV data into the ``detail`` view.
     def detail(row_id):
         template = 'detail.html'
         object_list = get_csv()
-        return render_template(template)
+        return render_template(template, row_id=row_id)
 
     if __name__ == '__main__':
         app.run(debug=True, use_reloader=True)
 
-Then have the ``detail`` function loop through the CSV data list, testing each row'd ``id`` field against the ``row_id`` provided by the URL. When you find a match, pass that row out to the template for rendering with the name ``object``.
+Then have the ``detail`` function loop through the CSV data list, testing each row's ``id`` field against the ``row_id`` provided by the URL. When you find a match, pass that row out to the template for rendering with the name ``object``.
 
 .. code-block:: python
     :emphasize-lines: 23,24,25
@@ -955,7 +961,7 @@ One last thing before we move on. What if somebody vists an URL for an ``id`` th
 
 .. image:: /_static/hello-html-error.png
 
-The polite thing to do is return what is called a `404 response code <http://en.wikipedia.org/wiki/HTTP_404>`_. To do that Flask, you only need to import a function called ``abort`` and run it after our loop finishes without finding a match.
+The polite thing to do is return what is called a `404 response code <http://en.wikipedia.org/wiki/HTTP_404>`_. To do that with Flask, you only need to import a function called ``abort`` and run it after our loop finishes without finding a match.
 
 .. code-block:: python
     :emphasize-lines: 3,27
@@ -999,55 +1005,80 @@ Reload your bad URL and you'll see the change.
 Act 4: Hello JavaScript
 ***********************
 
-Next we will work to make a map with every victim in ``index.html`` using the
-`Leaflet <http://leafletjs.com/>`_ JavaScript library. Start by importing it in your page.
+Now we will use the `Leaflet <http://leafletjs.com/>`_ JavaScript library to create a map on each detail page showing where the victim died. Start by importing it in your page.
 
 .. code-block:: html
-    :emphasize-lines: 4-5
+    :emphasize-lines: 3-6
 
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
         </head>
         <body>
-            <h1>Deaths during the L.A. riots</h1>
-            <table border=1 cellpadding=7>
-                <tr>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Address</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Race</th>
-                </tr>
-            {% for obj in object_list %}
-                <tr>
-                    <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
-                    <td>{{ obj.date }}</td>
-                    <td>{{ obj.type }}</td>
-                    <td>{{ obj.address }}</td>
-                    <td>{{ obj.age }}</td>
-                    <td>{{ obj.gender }}</td>
-                    <td>{{ obj.race }}</td>
-                </tr>
-            {% endfor %}
-            </table>
+            <h1>
+                {{ object.full_name }}, a {{ object.age }} year old,
+                {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+                in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+            </h1>
         </body>
     </html>
+
+Open up ``detail.html`` and make a map there, focus on just that victim.
+
+.. code-block:: html
+    :emphasize-lines: 8,14-23
+
+    <!doctype html>
+    <html lang="en">
+        <head>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        </head>
+        <body>
+            <div id="map" style="width:100%; height:300px;"></div>
+            <h1>
+                {{ object.full_name }}, a {{ object.age }} year old,
+                {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
+                in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
+            </h1>
+            <script type="text/javascript">
+                var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
+                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 18,
+                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
+                });
+                map.addLayer(osmLayer);
+                var marker = L.marker([{{ object.y }}, {{ object.x }}]).addTo(map);
+            </script>
+        </body>
+    </html>
+
+Reload a detail page, like the one at `localhost:5000/1/ <http://localhost:5000/1/>`_.
+
+.. image:: /_static/hello-js-detail-map.png
+
+Commit that.
+
+.. code-block:: bash
+
+    $ git add .
+    $ git commit -m "Made a map on the detail page"
+    $ git push origin master
+
+Next we will work to make a map with every victim in ``index.html`` in one view.
 
 Create an HTML element to hold the map and use Leaflet to boot it up and center on Los Angeles.
 
 .. code-block:: html
-    :emphasize-lines: 8,32-40
+    :emphasize-lines: 4-5,8,32-40
 
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1097,8 +1128,8 @@ Loop through the CSV data and format it as a `GeoJSON <https://en.wikipedia.org/
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1168,8 +1199,8 @@ Add a popup on the map pins that shows the name of the victim.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1243,8 +1274,8 @@ Now wrap the name in a hyperlink to that person's detail page.
     <!doctype html>
     <html lang="en">
         <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+            <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
         </head>
         <body>
             <div id="map" style="width:100%; height:300px;"></div>
@@ -1322,57 +1353,12 @@ Commit your map.
     $ git commit -m "Made a map on the index page"
     $ git push origin master
 
-Open up ``detail.html`` and make a map there, focus on just that victim.
-
-.. code-block:: html
-    :emphasize-lines: 3-6,8,14-23
-
-    <!doctype html>
-    <html lang="en">
-        <head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-        </head>
-        <body>
-            <div id="map" style="width:100%; height:300px;"></div>
-            <h1>
-                {{ object.full_name }}, a {{ object.age }} year old,
-                {{ object.race }} {{ object.gender|lower }} died on {{ object.date }}
-                in a {{ object.type|lower }} at {{ object.address }} in {{ object.neighborhood }}.
-            </h1>
-            <script type="text/javascript">
-                var map = L.map('map').setView([{{ object.y }}, {{ object.x }}], 16);
-                var osmLayer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 18,
-                    attribution: 'Data, imagery and map information provided by <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> and contributors.'
-                });
-                map.addLayer(osmLayer);
-                var marker = L.marker([{{ object.y }}, {{ object.x }}]).addTo(map);
-            </script>
-        </body>
-    </html>
-
-Reload a detail page, like the one at `localhost:5000/1/ <http://localhost:5000/1/>`_.
-
-.. image:: /_static/hello-js-detail-map.png
-
-Commit that.
-
-.. code-block:: bash
-
-    $ git add .
-    $ git commit -m "Made a map on the detail page"
-    $ git push origin master
 
 *********************
 Act 5: Hello Internet
 *********************
 
-In this final act, we will publish your application to the Internet using
-`Frozen Flask <http://pythonhosted.org/Frozen-Flask/>`_, a Python library that saves every page
-you've made with Flask as a flat file that can be uploaded to the web. This is an
-alternative publishing method that does not require you configure and host an full-fledged Internet
-server.
+In this final act, we will publish your application to the Internet using `Frozen Flask <http://pythonhosted.org/Frozen-Flask/>`_, a Python library that saves every page you've made with Flask as a flat file that can be uploaded to the web. This is an alternative publishing method that does not require you configure and host an full-fledged Internet server.
 
 First, use pip to install Frozen Flask from the command line.
 
@@ -1380,7 +1366,7 @@ First, use pip to install Frozen Flask from the command line.
 
     $ pip install Frozen-Flask
 
-Create a new file called ``freeze.py`` where we will configure what pages it should convert into flat files.
+Create a new file called ``freeze.py`` where we will configure which pages it should convert into flat files.
 
 .. code-block:: bash
 
@@ -1400,17 +1386,15 @@ Use your text editor to write a basic Frozen Flask configuration.
     if __name__ == '__main__':
         freezer.freeze()
 
-Now run it from the command line, which will create a new directory called ``build``
-filled with a set of flattened files.
+Now run it from the command line, which will create a new directory called ``build`` filled with a set of flattened files.
 
 .. code-block:: bash
 
     $ python freeze.py
 
-Use your browser to open up one of the local files in ``build``, rather that visit the
-dynamically generated pages we created at ``localhost``.
+Use your browser to open up one of the local files in ``build``, rather that visit the dynamically generated pages we created at ``localhost``.
 
-You will notice that the default Frozen Flask configuration only flatted out ``index.html``, and not all your detail pages our template could generate using the data file.
+You will notice that the default Frozen Flask configuration only flattened out ``index.html``, and not all your detail pages our template could generate using the data file.
 
 To flatten those, again edit ``freeze.py`` to give it the instructions it needs to make a page for every record in the source CSV.
 
@@ -1457,7 +1441,7 @@ Now wait a minute or two, then visit ``http://<yourusername>.github.io/first-new
 
 .. note::
 
-    If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, ranging from `Dropbox <https://en.wikipedia.org/wiki/Dropbox_%28service%29>`_ to `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
+    If your page does not appear, make sure that you have verified your email address with GitHub. It is required before the site will allow publishing pages. And keep in mind there are many other options for publishing flat files, like `Amazon's S3 service <https://en.wikipedia.org/wiki/Amazon_S3>`_.
 
 So you've built a site. But it's kind of janky looking. The next chapter, which we won't have time for in class,
 will show you how to dress it up to look like the `demonstration site <http://ireapps.github.io/first-news-app/build/index.html>`_.
