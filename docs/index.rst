@@ -154,7 +154,7 @@ Verify pip is installed with the following command:
 
     $ pip -V
 
-If you get and error, that means don't have pip installed. You can get it by following `these instructions <https://pip.pypa.io/en/latest/installing.html>`_.
+If you get and error, that means you don't have pip installed. You can get it by following `these instructions <https://pip.pypa.io/en/latest/installing.html>`_.
 
 The `virtualenv environment manager <http://www.virtualenv.org/en/latest/>`_
 makes it possible to create an isolated corner of your computer where all the different
