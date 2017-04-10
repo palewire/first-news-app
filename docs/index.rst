@@ -25,7 +25,7 @@ A working example of what you'll make can be found at `ireapps.github.io/first-n
 
 .. image:: /_static/hello-css-markers.png
 
-Past students of this class have gone on to use the skills they learned to create projects like The Chicago Reporter's `police complaints database <http://projects.chicagoreporter.com/settlements/search/cases>`_ and the San Antonio Express-News' `homicide database <http://homicides.expressnews.com/>`_. 
+Past students of this class have gone on to use the skills they learned to create projects like The Chicago Reporter's `police complaints database <http://projects.chicagoreporter.com/settlements/search/cases>`_, the Naples DailyNews grehound dogs death database <http://naplesnews-floridagreyhounds.com/build/index.html>`_ and the San Antonio Express-News' `homicide database <http://homicides.expressnews.com/>`_. 
 
 *****************
 About the authors
@@ -36,7 +36,7 @@ and the `National Institute for Computer-Assisted Reporting (NICAR) <http://data
 by `Ben Welsh <http://palewi.re/who-is-ben-welsh/>`_. It debuted in February 2014 `at NICAR's conference
 in Baltimore <https://ire.org/events-and-training/event/973/1026/>`_. A revised version was presented at
 `the 2015 conference <http://ire.org/conferences/nicar2015/hands-on-training/>`_ in Atlanta and the 2016 conference in
-`Denver <http://www.ire.org/conferences/nicar2016/schedule/>`_. It is scheduled to taught for the fourth time at `the upcoming NICAR conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_ by Armand Emamdjomeh and Ben Welsh.
+`Denver <http://www.ire.org/conferences/nicar2016/schedule/>`_. It was taught for the fourth time at `the 2017 conference in Jacksonville <https://www.ire.org/events-and-training/event/2702/2885/>`_ by Armand Emamdjomeh and Ben Welsh.
 
 **********************
 Prelude: Prerequisites
