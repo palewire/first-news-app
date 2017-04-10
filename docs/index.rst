@@ -25,7 +25,7 @@ A working example of what you'll make can be found at `ireapps.github.io/first-n
 
 .. image:: /_static/hello-css-markers.png
 
-Past students of this class have gone on to use the skills they learned to create projects like The Chicago Reporter's `police complaints database <http://projects.chicagoreporter.com/settlements/search/cases>`_, the Naples DailyNews grehound dogs death database <http://naplesnews-floridagreyhounds.com/build/index.html>`_ and the San Antonio Express-News' `homicide database <http://homicides.expressnews.com/>`_. 
+Past students of this class have gone on to use the skills they learned to create projects like The Chicago Reporter's `police complaints database <http://projects.chicagoreporter.com/settlements/search/cases>`_, the `Naples Daily News' grehound dogs death database <http://naplesnews-floridagreyhounds.com/build/index.html>`_ and the San Antonio Express-News' `homicide database <http://homicides.expressnews.com/>`_. 
 
 *****************
 About the authors
