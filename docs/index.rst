@@ -2042,6 +2042,27 @@ That should shape up the page like this.
 
 .. image:: /_static/hello-css-detail.png
 
+Before we build our pages again, we need to add one line of configuration to the freeze script to ensure that the path to our CSS and images is relative. Without it, the path would look to the root directory (``/``) instead of respecting the build directory (``/build/``) that is in the URL.
+
+.. code-block:: python
+   :emphasize-lines: 6
+
+   from flask_frozen import Freezer
+   from app import app, get_csv
+   from app import app
+
+   freezer = Freezer(app)
+   app.config['FREEZER_RELATIVE_URLS'] = True
+
+
+   @freezer.register_generator
+   def detail():
+       for row in get_csv():
+           yield {'row_id': row['id']}
+
+   if __name__ == '__main__':
+       freezer.freeze()
+
 Now it is time to build out all the pages by running the freeze script that will save all of
 the pages again.
 
